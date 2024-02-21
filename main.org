@@ -19,6 +19,7 @@
           "bibtex %b"
           "xelatex -interaction nonstopmode -output-directory %o %f"
           "xelatex -interaction nonstopmode -output-directory %o %f"))
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
 #+end_src
 
 #+begin_export latex
@@ -106,11 +107,111 @@ TODO
 
 ** 矩阵乘积态 (MPS)
 
+*** MPS的表示
+
 数值模拟量子多体问题的根本困难在于系统的希尔伯特空间的维度随着系统尺寸的增大指数上升。
 比如对于自旋系统，由 $N$ 个自旋 $\frac{1}{2}$ 的粒子构成的格点有 $2^N$ 维的希尔伯特空间，为了表示这个系统的状态，需要 $2^N$ 维的向量作为波函数。
 所以不做任何近似的严格表示这个波函数，并精确求解系统的本征态，只能处理很小的系统。
 而White在1992年提出了密度矩阵重整化(DMRG)方法 [[cite:White1992]] 成功地求解了各种一维模型的低能态性质。
-后来Vidal提出矩阵乘积态(MPS)，人们认识到DMRG方法可以被认为是对MPS表示的波函数进行优化的过程。
+后来Vidal提出矩阵乘积态(MPS) [[cite:Vidal2003]] ，人们认识到DMRG方法可以被认为是对MPS表示的波函数进行优化的过程。
+
+MPS使用一个张量链来表示高维的向量。
+以自旋 $\frac{1}{2}$ 系统为例子，一个长度为 $L$ 的自旋系统波函数
+\begin{equation}\label{eq:一维系统波函数}
+|\Psi\rangle = T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} |\sigma_0 \sigma_1 \cdots \sigma_{L-1}\rangle ,
+\end{equation}
+可以被使用MPS来表示：
+\begin{equation}\label{eq:一维系统波函数的MPS展开}
+T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} = \sum_{v_1, v_1, \cdots, v_{N-1}}
+(A_0 ^ {\sigma_0})_{v_1}
+(A_1 ^ {\sigma_1})_{v_1 v_2}
+(A_2 ^ {\sigma_2})_{v_2 v_3}
+\cdots (A_{L-1} ^ {\sigma_{N-1}})_{v_{N-1}} ,
+\end{equation}
+其中 $\sigma_i$ 为第 $i$ 个格点处的自旋，可以取 $\uparrow$ 或者 $\downarrow$。
+从公式 [[eqref:eq:一维系统波函数的MPS展开]] 中看到，MPS表示的波函数在一个构型下的分量，是一连串的矩阵乘积，这是矩阵乘积态(MPS)名称由来。
+
+在MPS表示中，除了最左边和最右边的格点外，第 $i$ 个格点处的 $(A_i^{\sigma_i})_{v_i v_{i+1}}$ 是一个三阶张量，它有一个物理指标 $\sigma_i$
+和两个虚拟指标 $v_i$ 和 $v_{i+1}$ 。
+其中物理指标 $\sigma_i$ 可以取 $\uparrow$ 或者 $\downarrow$，其维度是 $2$ ，通常使用 $d$ 标记。
+而虚拟指标的维度是一个可调节的参数，通常用 $D$ 表示。
+对于其他类型的系统，一个格点处的物理维度并不一定是 $2$ ，如tJ模型 $d=3$ ， Hubbard模型 $d=4$ 。
+
+*** 面积定律与MPS
+
+在 $D$ 不变的情况下，MPS可以使用随着系统尺寸线性上升的参数来表示维度指数上升的波函数。
+而固定 $D$ 的MPS正合适表示满足纠缠熵面积定律的态。
+
+一个量子态分割成两个部分A和B后，A部分和B部分之间的纠缠熵是
+\begin{equation}\label{eq:纠缠熵}
+S_{A|B} = - \rm{tr} (\hat\rho_A \ln \hat\rho_A) = - \rm{tr} (\hat\rho_B \ln \hat\rho_B) = - \sum_{v=0}^{V-1} \lambda_v \ln \lambda_v,
+\end{equation}
+其中 $\hat\rho_A$ 和 $\hat\rho_B$ 是A部分和B部分的约化密度矩阵，$\lambda_v$ 是他们的本征值， $V$ 为约化密度矩阵的维度。
+纠缠熵最大的情况下，所有的本征值相等，即 $\lambda_v = \frac{1}{V}$，此时 $S_{A|B} = \ln V$ 。
+而约化密度矩阵的维度随着较小系统的尺寸指数上升，不妨假设A部分比B部分更小， 有$S_{A|B} \propto |A|$ ，其中 $|A|$ 为A部分的体积。
+而当系统满足纠缠熵面积定律时，纠缠熵有更强的约束， 即
+\begin{equation}\label{eq:面积定律}
+S_{A|B} \propto |\partial A| = |\partial B|,
+\end{equation}
+其中 $|\partial X|$ 表示X的边界大小。
+
+对于公式 [[eqref:eq:一维系统波函数的MPS展开]] 表示的MPS， 切割为长度为 $X$ 和 $Y$ 的两部分， $X+Y=L$ ，X部分的约化密度矩阵为
+\begin{equation}\label{eq:MPS切割后的约化密度矩阵}
+\begin{aligned}
+(\hat\rho_X)_{\sigma_0,\sigma_1,\cdots,\sigma_{X-1}}^{\sigma'_0,\sigma_2,\cdots,\sigma'_{X-1}} &=&
+(A_0 ^ {\sigma_0})_{v_1}
+\cdots
+(A_{X-1} ^ {\sigma_{X-1}})_{v_{X-1} v_X}
+(A_X ^ {\sigma_X})_{v_X v_{X+1}}
+\cdots
+(A_{L-1} ^ {\sigma_{N-1}})_{v_{N-1}}
+\\
+& &
+(A_0 ^ {\sigma'_0})^\dag_{v'_1}
+\cdots
+(A_{X-1} ^ {\sigma'_{X-1}})^\dag_{v'_{X-1} v'_X}
+(A_X ^ {\sigma_X})^\dag_{v'_X v'_{X+1}}
+\cdots
+(A_{L-1} ^ {\sigma_{N-1}})^\dag_{v'_{N-1}} ,
+\end{aligned}
+\end{equation}
+其中爱因斯坦求和约定被使用， $\sigma_X, \cdots \sigma_{N-1}, v_1, \cdots v_{N-1}, v'_1, \cdots v'_{N-1}$ 被自动求和。
+注意到
+\begin{equation}
+\begin{aligned}
+(\hat\rho_X)_{\sigma_0,\sigma_1,\cdots,\sigma_{X-1}}^{\sigma'_0,\sigma_2,\cdots,\sigma'_{X-1}} &=&
+(A_0 ^ {\sigma_0})_{v_1}
+\cdots
+(A_{X-1} ^ {\sigma_{X-1}})_{v_{X-1} v_X}
+\\
+& &
+M_{v_X, v_X'}
+\\
+& &
+(A_0 ^ {\sigma'_0})^\dag_{v'_1}
+\cdots
+(A_{X-1} ^ {\sigma'_{X-1}})^\dag_{v'_{X-1} v'_X},
+\end{aligned}
+\end{equation}
+其中
+\begin{equation}
+\begin{aligned}
+M_{v_X, v_X'} &=&
+(A_X ^ {\sigma_X})_{v_X v_{X+1}}
+\cdots
+(A_{L-1} ^ {\sigma_{N-1}})_{v_{N-1}}
+\\
+& &
+(A_X ^ {\sigma_X})^\dag_{v'_X v'_{X+1}}
+\cdots
+(A_{L-1} ^ {\sigma_{N-1}})^\dag_{v'_{N-1}} ,
+\end{aligned}
+\end{equation}
+而 $M_{v_X,v'_X}$ 是一个 $D \times D$ 的矩阵，所以密度矩阵 $\hat \rho_X$ 的秩不大于 $D$ ，则其可表示的最大纠缠熵为 $S = \ln D$ ，即一个常数。
+而满足纠缠熵面积定律的一维系统，两部分的边界是零维的点，大小也是常数，所以MPS表示的一维系统恰好是满足一维情况下面积定律的系统。
+
+*** 张量网络的图形标记
+
 
 ** 常规张量网络的定义
 
