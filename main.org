@@ -1,4 +1,3 @@
-#+LATEX_COMPILER: xelatex
 #+LATEX_CLASS: thesis
 #+OPTIONS: title:nil
 #+OPTIONS: toc:nil
@@ -15,6 +14,11 @@
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (setq org-latex-pdf-process
+        '("xelatex -interaction nonstopmode -output-directory %o %f"
+          "bibtex %b"
+          "xelatex -interaction nonstopmode -output-directory %o %f"
+          "xelatex -interaction nonstopmode -output-directory %o %f"))
 #+end_src
 
 #+begin_export latex
@@ -106,7 +110,7 @@ TODO
 比如对于自旋系统，由 $N$ 个自旋 $\frac{1}{2}$ 的粒子构成的格点有 $2^N$ 维的希尔伯特空间，为了表示这个系统的状态，需要 $2^N$ 维的向量作为波函数。
 所以不做任何近似的严格表示这个波函数，并精确求解系统的本征态，只能处理很小的系统。
 而White在1992年提出了密度矩阵重整化(DMRG)方法 [[cite:White1992]] 成功地求解了各种一维模型的低能态性质。
-后来Vidal提出矩阵乘积态(MPS)后，人们认识到DMRG方法可以被认为是对MPS表示的波函数进行优化的过程。
+后来Vidal提出矩阵乘积态(MPS)，人们认识到DMRG方法可以被认为是对MPS表示的波函数进行优化的过程。
 
 ** 常规张量网络的定义
 
