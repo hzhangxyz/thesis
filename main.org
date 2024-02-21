@@ -449,7 +449,7 @@ s_0 & s_1 & s_2 \\
 m_0 & m_1 & m_2
 \end{pmatrix},
 \end{equation}
-其中括号是Wigner 3-j符号。
+其中括号是Wigner 3-jm符号。
 + 更高阶 :: 张量需要可以被分解为多个3阶对称性张量收缩的形式。
 
 如上所示，一般对称群的对称性张量结构十分复杂，但对于Abel群来说，情况却十分简单。
@@ -507,7 +507,7 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \begin{equation}
 C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 1 \quad & \text{如果}  \quad \sum_r^{R-1} s_r = 0 ,\\
-0 \quad & \text{如果}  \quad \sum_r^{R-1} s_r = 1 .
+0 \quad & \text{如果}  \quad \sum_r^{R-1} s_r \neq 0 .
 \end{aligned}\right.
 \end{equation}
 
