@@ -398,7 +398,7 @@ U_g^{\otimes R} T_{i_{T,0},\cdots, i_{T,R-1}} = T_{i_{T,0},\cdots, i_{T,R-1}} ,
 \end{equation}
 其中 $g \in G$ ，
 $U_g^{\otimes R} = \otimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量的第 $r$ 个指标的线性空间上的表示。
-满足公式 [[eqref:eq:对称性张量]] 的张量被称作对称性张量，图 [[ref:fig:对称性张量和对称性张量网络]] (a)使用图形标记法展示了此关系。
+满足公式 [[eqref:eq:对称性张量]] 的张量被称作对称性张量 [[cite:Singh2010]] ，图 [[ref:fig:对称性张量和对称性张量网络]] (a)使用图形标记法展示了此关系。
 需要注意对称性张量和对称矩阵完全不同，对称矩阵是做交换两个指标的转置变换下不变的矩阵，对称性张量是在每个指标中各自做相同的群元素代表的群变换下不变的张量。
 
 #+begin_export latex
@@ -428,7 +428,14 @@ V \cong \oplus_{s} d_s V^{s} \cong \oplus_{s} (D^{s} \otimes V^{s}),
 其中 $V^s$ 是群的第 $s$ 个不可约表示空间， $d_s$ 是他的重数，这里 $D^s$ 是 $d_s$ 维的简并空间。
 
 我们可以使用 $U_g^r$ 来作张量的第 $r$ 个指标的基，每个指标的空间 $V^r = \oplus_s (D^{r,s} \otimes V^s)$ 中，使用 $(s,\alpha_s, m_s)$ 来作为基底。
-其中 $s$ 标记了不同的不可约表示， $\alpha_s$ 简并空间的指标，即 $\alpha_s = 0,1,\cdots d_s-1$ ，而 $m_s$ 是这个不可约表示空间中的指标。
+其中 $s$ 标记了不同的不可约表示， $\alpha_s$ 是简并空间的指标，即 $\alpha_s = 0,1,\cdots d_s-1$ ，而 $m_s$ 是这个不可约表示空间中的指标。
+
+在这个基下，一个张量是一个对称性张量的条件是
++ 0阶 :: 标量显然是一个对称性张量。
++ 1阶 :: 其非零元素只能位于平凡的不可约表示中，即 $s=0$ ，而 $m_0=0$ 。
++ 2阶 :: 其非零元素的两个指标需要在相同的不可约表示空间中，且两者的 $m_s$ 需要相等。
++ 3阶 :: 张量需要满足形式 $T_{(s_0,\alpha_{s_0},m_{s_0}),(s_1,\alpha_{s_1},m_{s_1}),(s_2),\alpha_{s_2},m_{s_2}} = P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),(s_2, \alpha_{s_2})} \langle s_0 m_0 s_1 m_1 | s_2 m_2\rangle$ ，其中 $\langle s_0 m_0 s_1 m_1 | s_2 m_2 \rangle$ 是这个群的克莱布希-高登系数。
++ 更高阶 :: 张量可需要以被分解为多个3阶对称性张量收缩的形式。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
@@ -477,7 +484,7 @@ TODO
 \end{enumerate}
 
 \section*{研究报告}
-\begin{enumerate
+\begin{enumerate}
 \item A A A A A A A A A
 \item A A A A A A A A A
 \item A A A A A A A A A
