@@ -397,7 +397,7 @@ M &=
 U_g^{\otimes R} T_{i_{T,0},\cdots, i_{T,R-1}} = T_{i_{T,0},\cdots, i_{T,R-1}} ,
 \end{equation}
 其中 $g \in G$ ，
-$U_g^{\otimes R} = \otimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量的第 $r$ 个指标的线性空间上的表示。
+$U_g^{\otimes R} = \bigotimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量的第 $r$ 个指标的线性空间上的表示。
 满足公式 [[eqref:eq:对称性张量]] 的张量被称作对称性张量 [[cite:Singh2010]] ，图 [[ref:fig:对称性张量和对称性张量网络]] (a)使用图形标记法展示了此关系。
 需要注意对称性张量和对称矩阵完全不同，对称矩阵是做交换两个指标的转置变换下不变的矩阵，对称性张量是在每个指标中各自做相同的群元素代表的群变换下不变的张量。
 
@@ -423,11 +423,11 @@ $U_g^{\otimes R} = \otimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量的�
 
 一个对称性张量的每个边所在的空间都是群的表示空间，空间 $V$ 可以分解为
 \begin{equation}
-V \cong \oplus_{s} d_s V^{s} \cong \oplus_{s} (D^{s} \otimes V^{s}),
+V \cong \bigoplus_{s} d_s V^{s} \cong \bigoplus_{s} (D^{s} \otimes V^{s}),
 \end{equation}
 其中 $V^s$ 是群的第 $s$ 个不可约表示空间， $d_s$ 是他的重数，这里 $D^s$ 是 $d_s$ 维的简并空间。
 
-我们可以使用 $U_g^r$ 来作张量的第 $r$ 个指标的基，每个指标的空间 $V^r = \oplus_s (D^{r,s} \otimes V^s)$ 中，使用 $(s,\alpha_s, m_s)$ 来作为基底。
+我们可以使用 $U_g^r$ 来作张量的第 $r$ 个指标的基，每个指标的空间 $V^r = \bigoplus_s (D^{r,s} \otimes V^s)$ 中，使用 $(s,\alpha_s, m_s)$ 来作为基底。
 其中 $s$ 标记了不同的不可约表示， $\alpha_s$ 是简并空间的指标，即 $\alpha_s = 0,1,\cdots d_s-1$ ，而 $m_s$ 是这个不可约表示空间中的指标。
 
 在这个基下，一个张量是一个对称性张量的条件是
@@ -494,8 +494,12 @@ R(s_0,s_1,\cdots s_{R-1}) .
 群表示 $0$ 中 $U_e^0 = U_z^0 = +1$ ，另一个群表示 $1$ 中 $U_e^1 = +1$ ， $U_z^1 = -1$ 。
 所以 $Z(2)$ 群的对称性条件是：
 \begin{equation}
-C(s_0,s_1,\cdots s_{R-1})
+C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
+1 \quad & \text{如果}  \quad \bigoplus_r^{R-1} s_r = 0 ,\\
+0 \quad & \text{如果}  \quad \bigoplus_r^{R-1} s_r = 1 ,
+\end{aligned}\right.
 \end{equation}
+其中 $\bigoplus$ 为异或运算。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
