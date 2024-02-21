@@ -101,6 +101,7 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 本论文将介绍近些年我们对基于采样的张量网络方法的发展与应用。主要结构安排如下：
 + 第 [[ref:sec:绪论]] 章绪论，即本章。
 + 第 [[ref:sec:张量和张量网络]] 章详细介绍张量和张量网络的基础理论。
++ 第 [[ref:sec:张量网络态的优化方法]] 章介绍多种张量网络态的优化方法。
 
 * 张量和张量网络 <<sec:张量和张量网络>>
 
@@ -216,11 +217,64 @@ M_{v_X, v_X'} =&
 
 *** 张量网络的图形标记
 
+由于张量网络态中各个张量通常有复杂的运算关系，使用爱因斯坦求和约定不能直观地展示张量之间的关系，人们通常使用图形标记法来表示一张张量网络。
+图形标记法中，使用一个闭合的图形表示一个张量，图形上的每一条线表示张量的一个指标，两个张量之间彼此相连的线表示这两个指标将要求和。
+图 [[ref:fig:张量的图形标记法]] 中展示了一些基本的例子。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/graphical_notation.tikz}
+\caption{张量的图形标记法}
+\label{fig:张量的图形标记法}
+\note{注：
+(a)是一个标量 $A$ ，即0阶张量；
+(b)是一个向量 $A_i$ ，即1阶张量，有一个指标 $i$ ；
+(c)是一个矩阵 $A_{ij}$ ，即2阶张量，有两个指标 $i$ 和 $j$ ；
+(d)表示矩阵 $A_{ij}$ 和向量 $B_j$ 的乘积，即 $A_{ij} B_{j}$ ；
+(e)表示两个矩阵相乘，即 $A_{ij} B_{jk}$ ；
+(f)中三个矩阵彼此相连，表示了 $A_{ij} B_{jk} C_{ji}$ 。
+}
+\end{figure}
+#+end_export
+
+使用图形标记法表示的公式 [[eqref:eq:一维系统波函数的MPS展开]] 所展示的MPS在 $L=5$ 时如图 [[ref:fig:图形标记法表示的长度为5的MPS]] 所示。
+张量网络的图形标记法直观地展示了张量之间的连接关系。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/mps.tikz}
+\caption{图形标记法表示的长度为$5$的MPS}
+\label{fig:图形标记法表示的长度为5的MPS}
+\end{figure}
+#+end_export
+
 ** 投影纠缠对态 (PEPS)
+
+*** PEPS的表示
+
+MPS成功地处理一维系统后，有一些将MPS直接应用于二维系统的尝试，如图 [[ref:fig:用于表示二维系统的MPS和PEPS]] (a)所示。
+但是二维系统中，对于满足纠缠熵面积定律的系统，纠缠熵 $S \propto L$ ，其中 $L$ 为边界的长度。
+这意味这MPS的 $D$ 需要随着系统增大而增大。
+时至今日，这种方法通常被用于长条形的系统的求解，而对于真正的二维系统，MPS无法胜任。
+而Verstaete在表示二维系统的MPS上额外上了行间的边从而得到了PEPS [[cite:Verstraete2004]] ，如图 [[ref:fig:用于表示二维系统的MPS和PEPS]] (b)所示。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/mps_to_mps.tikz}
+\caption{用于表示二维系统的MPS和PEPS}
+\label{fig:用于表示二维系统的MPS和PEPS}
+\note{注：由于固定 $D$ 的MPS只能表示常数的纠缠熵，通过在行间加上而外的边可以得到PEPS，PEPS可以满足二维系统的面积定律。}
+\end{figure}
+#+end_export
+
+*** 投影纠缠对
 
 ** 对称性张量和费米子张量
 
-* 张量网络态的优化方法
+* 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
 
