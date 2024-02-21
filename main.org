@@ -450,7 +450,7 @@ m_0 & m_1 & m_2
 \end{pmatrix},
 \end{equation}
 其中括号是Wigner 3-j符号。
-+ 更高阶 :: 张量可需要以被分解为多个3阶对称性张量收缩的形式。
++ 更高阶 :: 张量需要可以被分解为多个3阶对称性张量收缩的形式。
 
 如上所示，一般对称群的对称性张量结构十分复杂，但对于Abel群来说，情况却十分简单。
 Abel群的不可约表示一定是1维的，所以恒有 $m_s=0$ ,故我们将 $m_s$ 省略，使用 $(s,\alpha_s)$ 作为基。
@@ -471,25 +471,31 @@ T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})}.
 \begin{equation}\label{eq:Abel对称张量的原始形式}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),\cdots (s_{R-1}, \alpha_{s_{R-1}})}
-R(s_0,s_1,\cdots s_{R-1}) ,
+C(s_0,s_1,\cdots s_{R-1}) ,
 \end{equation}
 其中
 \begin{equation}
-R(s_0, s_1, \cdots, s_{R-1}) = \left\{\begin{aligned}
-1 \quad & \text{如果} \quad \prod_r^{R-1} U_g^{s_r} = 1 ,\\
+C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
+1 \quad & \text{如果对于任意$g$有}  \quad \prod_r^{R-1} U_g^{s_r} = 1 ,\\
 0 \quad & \text{其他情况},
 \end{aligned}\right.
 \end{equation}
-是对称群决定的对称性规则。
+是对称群决定的对称性条件。
 将公式 [[eqref:eq:Abel对称张量的原始形式]] 稍作变形得到：
 \begin{equation}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 \left(P_{s_0,s_1,\cdots,s_{R-1}}\right)_{\alpha_{s_0},\alpha_{s_1},\cdots \alpha_{s_{R-1}}}
 R(s_0,s_1,\cdots s_{R-1}) .
 \end{equation}
-可见Abel群的对称性张量是一个分块的张量，其中分块方案由对称性规则和张量每个边上的不可约表示分解决定。
+可见Abel群的对称性张量是一个分块的张量，其中分块方案由对称性条件和张量每个边上的不可约表示分解决定。
 
-不可约表示 $s$ 中群元素 $s$ 是 $U_g^s$ ，作为一个一维的酉矩阵，它就是一个复数，所以
+物理中常见的群是 $Z(2)$ 群和 $U(1)$ 群。
+对于 $Z(2)$ 群， $g=e$ 表示不变， $g=z$ 表示反转。
+群表示 $0$ 中 $U_e^0 = U_z^0 = +1$ ，另一个群表示 $1$ 中 $U_e^1 = +1$ ， $U_z^1 = -1$ 。
+所以 $Z(2)$ 群的对称性条件是：
+\begin{equation}
+C(s_0,s_1,\cdots s_{R-1})
+\end{equation}
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
