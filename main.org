@@ -277,12 +277,12 @@ Verstraete在表示二维系统的MPS上额外上了行间的边从而得到了P
 一张PEPS中划分出一个区域X，其与外界相连的边的数目正比与区域的周长，即边的数目 $N \propto |\partial X|$ 。
 类似MPS的情况，计算约化密度矩阵时有同样的形式：
 \begin{equation}\label{eq:PEPS中计算约化密度矩阵}
-(\hat\rho_{X})_{i_{X, 0}, i_{X, 1}, \cdots} ^ {i'_{X, 0}, i'_{X, 1}, \cdots} =
-T_{i_{X,0}, i_{X,1}, \cdots}^{v_0, v_1, \cdots v_{N-1}}
+(\hat\rho_{X})_{s_{X, 0}, s_{X, 1}, \cdots} ^ {s'_{X, 0}, s'_{X, 1}, \cdots} =
+T_{s_{X,0}, s_{X,1}, \cdots}^{v_0, v_1, \cdots v_{N-1}}
 M_{v_0, v_1, \cdots v_{N-1}}^{v'_0, v'_1, \cdots v'_{N-1}}
-T^{\dagger {i'_{X,0}, i'_{X,1}, \cdots}}_{v'_0, v'_1, \cdots v'_{N-1}} , 
+T^{\dagger {s'_{X,0}, s'_{X,1}, \cdots}}_{v'_0, v'_1, \cdots v'_{N-1}} , 
 \end{equation}
-其中， $i_{X,i}$ 为区域X中各个物理指标， $v_i$ 为区域X和外部相连的边的指标。
+其中， $s_{X,i}$ 为区域X中各个物理指标， $v_i$ 为区域X和外部相连的边的指标。
 公式 [[eqref:eq:PEPS中计算约化密度矩阵]] 中间有一个 $D^N$ 维度的矩阵$M$，其中 $D$ 是PEPS中虚拟边的维度。
 而 $S = \ln D^N = N \ln D \propto |\partial X|$ ，所以PEPS可以满足二维系统的纠缠熵面积定律。
 
@@ -298,9 +298,16 @@ T^{\dagger {i'_{X,0}, i'_{X,1}, \cdots}}_{v'_0, v'_1, \cdots v'_{N-1}} ,
 T_{i_{T,0}, i_{T,1}, \cdots, i_{T, R-1}} = &
 \prod_{n=0}^{N-1} (A_n)_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}}
 \\ &
-\prod_{b=0}^{B-1} \delta_{i_{A_{}}}
+\prod_{b=0}^{B-1} \delta^{i_{A_{V_b^0},E_b^0}}_{i_{A_{V_b^1},E_b^1}}
+\\ &
+\prod_{r=0}^{R-1} \delta^{i_{T,r}}_{i_{A_{V'_r},E'_r}} .
 \end{aligned}
 \end{equation}
+这张张量网络中有 $N$ 个张量，即 $A_n$ ，其中 $n = 0, 1, \cdots N-1$ 。
+张量 $A_n$ 的阶数是 $\mathrm{rank}(A_n)$ ，它的指标被记作 $i_{A_n, j}$ ，其中 $j = 0, 1, \cdots \mathrm{rank}(A_n) - 1$ 。
+这张张量网络内部有 $B$ 个边连接两个张量，第 $b$ 个边所连接的是第 $V_b^0$ 个张量的第 $E_b^0$ 个边和第 $V_b^1$ 个张量的第 $E_b^1$ 个边，其中 $b=0,1,\cdots,B-1$
+而这些张量中，有 $R$ 个边没有被收缩，而是作为物理边出现在张量 $T$ 中，
+张量 $T$ 的第 $r$ 个边在张量网络中是第 $V'_r$ 个张量的第 $E'_r$ 个边，其中 $r = 0, 1, \cdots R-1$ 。
 
 
 ** 对称性张量和费米子张量
