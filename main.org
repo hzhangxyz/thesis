@@ -373,28 +373,48 @@ P =
 在张量网络态的投影纠缠对阐述中，投影部分既有湮灭算符也有产生算符，这不够好看。
 我们可以再引入一个虚拟的粒子，得到：
 \begin{equation}
-P = 
-\prod_{n=0}^{N-1} & (A_n)_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}}
+\left\{
+\begin{aligned}
+P &= 
+\prod_{n=0}^{N-1} (A_n)_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}}
 \prod_{j=0}^{\mathrm{rank}(A_n) - 1} 
-a^{i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}},
-\end{equation}
-\begin{equation}
-M =
+a^{i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} , \\
+M &=
 \prod_{b=0}^{B-1} a_{b,0}^{\dag d_b} a_{b,1}^{\dag d_b}
-\prod_{r=0}^{R-1} a_{r+B,0}^{\dag d_{r+B}} c_r^{\dag d_{r+B}}
-,
+\prod_{r=0}^{R-1} a_{r+B,0}^{\dag d_{r+B}} c_r^{\dag d_{r+B}} ,
+\end{aligned}
+\right.
 \end{equation}
-这样我们依然有 $|\Psi\rangle = P M |\Omega\rangle$ 。
+这样我们依然可以将公式 [[eqref:eq:一般的波函数]] 表示为母态上的投影，即 $|\Psi\rangle = P M |\Omega\rangle$ 。
 这种变型的投影纠缠对阐述将每个张量中各个边平等地对待，图结构的信息完全放置在母态生成算符 $M$ 中。
 
 ** 对称性张量和费米子张量
 
 当一个系统的哈密顿量拥有某个对称性时，其基态要么满足这个对称性，要么自发破缺从而是简并的。
 如果公式 [[eqref:eq:一般的波函数]] 表示的基态波函数依然满足这个对称性，我们有
-\begin{equation}
+\begin{equation}\label{eq:对称性张量}
 U_g^{\otimes R} T_{i_{T,0},\cdots, i_{T,R-1}} = T_{i_{T,0},\cdots, i_{T,R-1}} ,
 \end{equation}
-其中
+其中 $g \in G$ ， $G$ 为描述这个对称性的群，
+$U_g^{\otimes R} = \otimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量的第 $r$ 个指标的线性空间上的表示。
+满足公式 [[eqref:eq:对称性张量]] 的张量被称作对称性张量，图 [[ref:fig:对称性张量和对称性张量网络]] (a)使用图形标记法展示了此关系。
+需要注意对称性张量和对称矩阵完全不同，对称矩阵是做交换两个指标的转置变换下不变的矩阵，对称性张量是在每个指标中各自做相同的群元素代表的群变换下不变的张量。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/symmetry.tikz}
+\caption{对称性张量和对称性张量网络}
+\label{fig:对称性张量和对称性张量网络}
+\note{注：}
+\end{figure}
+#+end_export
+
+波函数的物理指标有明确的物理意义，所以给定对称群的群表示是固定的。
+而对于一个张量网络态，我们可以将每个虚拟指标所在的线性空间也看作对称群的一个表示空间，
+从而我们可以对张量网络态中的每个张量各自做对称性变换。
+值得注意的是，这种虚拟指标所在空间的群表示是任意的。
+从图 [[ref:fig:对称性张量和对称性张量网络]] (b) 中可以很明显看出，对称性张量收缩结果仍然是对称性张量。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 

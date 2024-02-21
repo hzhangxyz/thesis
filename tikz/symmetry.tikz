@@ -1,0 +1,127 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,227); %set diagram left start at 0, and has height of 227
+
+
+%Shape: Circle [id:dp6306332264630812] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (389.33,84.17) .. controls (389.33,82.33) and (390.83,80.83) .. (392.67,80.83) .. controls (394.51,80.83) and (396,82.33) .. (396,84.17) .. controls (396,86.01) and (394.51,87.5) .. (392.67,87.5) .. controls (390.83,87.5) and (389.33,86.01) .. (389.33,84.17) -- cycle ;
+%Shape: Circle [id:dp6781873729007006] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (407.33,74.83) .. controls (407.33,72.99) and (408.83,71.5) .. (410.67,71.5) .. controls (412.51,71.5) and (414,72.99) .. (414,74.83) .. controls (414,76.67) and (412.51,78.17) .. (410.67,78.17) .. controls (408.83,78.17) and (407.33,76.67) .. (407.33,74.83) -- cycle ;
+%Shape: Circle [id:dp381925514508604] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (384,103.5) .. controls (384,101.66) and (385.49,100.17) .. (387.33,100.17) .. controls (389.17,100.17) and (390.67,101.66) .. (390.67,103.5) .. controls (390.67,105.34) and (389.17,106.83) .. (387.33,106.83) .. controls (385.49,106.83) and (384,105.34) .. (384,103.5) -- cycle ;
+%Shape: Circle [id:dp2060066428472358] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (394,106.17) .. controls (394,104.33) and (395.49,102.83) .. (397.33,102.83) .. controls (399.17,102.83) and (400.67,104.33) .. (400.67,106.17) .. controls (400.67,108.01) and (399.17,109.5) .. (397.33,109.5) .. controls (395.49,109.5) and (394,108.01) .. (394,106.17) -- cycle ;
+%Shape: Circle [id:dp3860247394398608] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (424,80.83) .. controls (424,78.99) and (425.49,77.5) .. (427.33,77.5) .. controls (429.17,77.5) and (430.67,78.99) .. (430.67,80.83) .. controls (430.67,82.67) and (429.17,84.17) .. (427.33,84.17) .. controls (425.49,84.17) and (424,82.67) .. (424,80.83) -- cycle ;
+%Shape: Circle [id:dp10514751659596411] 
+\draw  [fill={rgb, 255:red, 0; green, 0; blue, 0 }  ,fill opacity=1 ] (420,93.5) .. controls (420,91.66) and (421.49,90.17) .. (423.33,90.17) .. controls (425.17,90.17) and (426.67,91.66) .. (426.67,93.5) .. controls (426.67,95.34) and (425.17,96.83) .. (423.33,96.83) .. controls (421.49,96.83) and (420,95.34) .. (420,93.5) -- cycle ;
+
+
+% Text Node
+\draw (59,96.4) node [anchor=north west][inner sep=0.75pt]    {$U_{g}^{\otimes R}$};
+% Text Node
+\draw    (136.5, 115) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (129,107.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (93,138.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (183,128.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (128,59.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (198,96.4) node [anchor=north west][inner sep=0.75pt]    {$=$};
+% Text Node
+\draw    (267.5, 115) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (260,107.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (224,138.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (314,128.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (259,59.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (478,94.4) node [anchor=north west][inner sep=0.75pt]    {$=$};
+% Text Node
+\draw    (530.5, 96.5) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (523,88.9) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (503,140.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (578, 112.5) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (572,104.9) node [anchor=north west][inner sep=0.75pt]    {$B$};
+% Text Node
+\draw    (596, 62.5) circle [x radius= 14.21, y radius= 14.21]   ;
+\draw (589,54.9) node [anchor=north west][inner sep=0.75pt]    {$C$};
+% Text Node
+\draw (578,176.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (633,133.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (368.5, 96.5) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (361,88.9) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (341,140.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (416, 112.5) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (410,104.9) node [anchor=north west][inner sep=0.75pt]    {$B$};
+% Text Node
+\draw    (434, 62.5) circle [x radius= 14.21, y radius= 14.21]   ;
+\draw (427,54.9) node [anchor=north west][inner sep=0.75pt]    {$C$};
+% Text Node
+\draw (416,176.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (471,133.9) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (80,37) node [anchor=north west][inner sep=0.75pt]   [align=left] {(a)};
+% Text Node
+\draw (327,37) node [anchor=north west][inner sep=0.75pt]   [align=left] {(b)};
+% Connection
+\draw    (125.3,124.26) -- (108,138.56) ;
+% Connection
+\draw    (150,120.4) -- (180,132.4) ;
+% Connection
+\draw    (135.74,100.48) -- (134.63,79) ;
+% Connection
+\draw    (256.3,124.26) -- (239,138.56) ;
+\draw [shift={(247.65,131.41)}, rotate = 140.42] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (281,120.4) -- (311,132.4) ;
+\draw [shift={(296,126.4)}, rotate = 21.8] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (266.74,100.48) -- (265.63,79) ;
+\draw [shift={(266.18,89.74)}, rotate = 267.02] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (362.95,109.94) -- (351.96,136.5) ;
+\draw [shift={(357.45,123.22)}, rotate = 112.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (382.28,101.14) -- (403.11,108.16) ;
+% Connection
+\draw    (381.4,89.8) -- (421.38,69.05) ;
+% Connection
+\draw    (420.61,99.7) -- (429.18,75.88) ;
+% Connection
+\draw    (470.47,129.5) -- (440.8,74.99) ;
+\draw [shift={(455.63,102.24)}, rotate = 241.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (421,172.5) -- (417.13,126.06) ;
+\draw [shift={(419.06,149.28)}, rotate = 265.24] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (524.95,109.94) -- (513.96,136.5) ;
+\draw [shift={(519.45,123.22)}, rotate = 112.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (544.28,101.14) -- (565.11,108.16) ;
+% Connection
+\draw    (543.4,89.8) -- (583.38,69.05) ;
+% Connection
+\draw    (582.61,99.7) -- (591.18,75.88) ;
+% Connection
+\draw    (632.47,129.5) -- (602.8,74.99) ;
+\draw [shift={(617.63,102.24)}, rotate = 241.44] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+% Connection
+\draw    (583,172.5) -- (579.13,126.06) ;
+\draw [shift={(581.06,149.28)}, rotate = 265.24] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][fill={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=0.75]      (0, 0) circle [x radius= 3.35, y radius= 3.35]   ;
+
+\end{tikzpicture}
