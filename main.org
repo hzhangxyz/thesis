@@ -103,7 +103,7 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 + 第 [[ref:sec:张量和张量网络]] 章详细介绍张量和张量网络的基础理论。
 + 第 [[ref:sec:张量网络态的优化方法]] 章介绍多种张量网络态的优化方法。
 
-本论文将一直使用爱因斯坦求和约定。
+本论文将一直使用爱因斯坦求和约定。本论文将一直从 $0$ 开始计数而不是 $1$ 开始计数。
 
 * 张量和张量网络 <<sec:张量和张量网络>>
 
@@ -116,6 +116,27 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 所以不做任何近似的严格表示这个波函数，并精确求解系统的本征态，只能处理很小的系统。
 而White在1992年提出了密度矩阵重整化(DMRG)方法 [[cite:White1992]] 成功地求解了各种一维模型的低能态性质。
 后来Vidal提出矩阵乘积态(MPS) [[cite:Vidal2003]] ，人们认识到DMRG方法可以被认为是对MPS表示的波函数进行优化的过程。
+
+首先介绍一下张量，它可以被简单地认为是多个线性空间上的多线性映射：
+\begin{equation}
+\hat T : V_0 \times V_1 \times V_2 \cdots V_{\mathrm{rank}(T)-1} \to \mathbb{K} .
+\end{equation}
+其中 $V_r$ 是 $\mathbb{K}$ 上的线性空间， $r=0,1,2,\cdots \mathrm{rank}(T)-1$ 。
+而我们的情况下， $\mathbb{K}$ 只会取 $\mathbb{R}$ 或者 $\mathbb{C}$ ， $V_r$ 也一定是定义了内积的有限维线性空间，
+所以可以使用一个高维数组来表示一个张量，即
+\begin{equation}
+\hat T (
+\sum_{i_0=0}^{D_0-1} a_0^{i_0} e_0^{i_0},
+\sum_{i_1=0}^{D_1-1} a_1^{i_1} e_1^{i_1},
+\cdots
+\def\rrr{{R-1}}
+\sum_{i_\rrr=0}^{D_{R-1}-1} a_\rrr^{i_\rrr} e_\rrr^{i_\rrr}
+)
+=
+T^{i_0,i_1,\cdots,i_\rrr} a_0^{i_0} a_1^{i_1} \cdots a_\rrr^{i_\rrr},
+\end{equation}
+其中 $D_r = \mathrm{dim}(V_r)$ ， 而 $R=\mathrm{rank}(T)$ 。
+为了表达上的简便，我们直接称呼 $T$ 为张量。
 
 MPS使用一个张量链来表示高维的向量。
 以自旋 $\frac{1}{2}$ 系统为例子，一个长度为 $L$ 的自旋系统波函数
