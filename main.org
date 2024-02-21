@@ -433,8 +433,23 @@ V \cong \oplus_{s} d_s V^{s} \cong \oplus_{s} (D^{s} \otimes V^{s}),
 在这个基下，一个张量是一个对称性张量的条件是
 + 0阶 :: 标量显然是一个对称性张量。
 + 1阶 :: 其非零元素只能位于平凡的不可约表示中，即 $s=0$ ，而 $m_0=0$ 。
-+ 2阶 :: 其非零元素的两个指标需要在相同的不可约表示空间中，且两者的 $m_s$ 需要相等。
-+ 3阶 :: 张量需要满足形式 $T_{(s_0,\alpha_{s_0},m_{s_0}),(s_1,\alpha_{s_1},m_{s_1}),(s_2),\alpha_{s_2},m_{s_2}} = P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),(s_2, \alpha_{s_2})} \langle s_0 m_0 s_1 m_1 | s_2 m_2\rangle$ ，其中 $\langle s_0 m_0 s_1 m_1 | s_2 m_2 \rangle$ 是这个群的克莱布希-高登系数。
++ 2阶 :: 其非零元素的两个指标需要在相同的不可约表示空间中，且两者的 $m_s$ 相反，张量需要满足形式
+\begin{equation}
+T_{(s_0,\alpha_{s_0},m_{s_0}),(s_1,\alpha_{s_1},m_{s_1})} =
+P_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1})} \delta_{s_0,s_1}
+\begin{pmatrix} s_0 \\ m_{s_0} \quad m_{s_1} \end{pmatrix},
+\end{equation}
+其中括号是Wigner 1-jm符号。
++ 3阶 :: 张量需要满足形式
+\begin{equation}
+T_{(s_0,\alpha_{s_0},m_{s_0}),(s_1,\alpha_{s_1},m_{s_1}),(s_2,\alpha_{s_2},m_{s_2})} =
+P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),(s_2, \alpha_{s_2})}
+\begin{pmatrix}
+s_0 & s_1 & s_2 \\
+m_0 & m_1 & m_2
+\end{pmatrix},
+\end{equation}
+其中括号是Wigner 3-j符号。
 + 更高阶 :: 张量可需要以被分解为多个3阶对称性张量收缩的形式。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
