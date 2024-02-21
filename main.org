@@ -433,7 +433,7 @@ V \cong \oplus_{s} d_s V^{s} \cong \oplus_{s} (D^{s} \otimes V^{s}),
 在这个基下，一个张量是一个对称性张量的条件是
 + 0阶 :: 标量显然是一个对称性张量。
 + 1阶 :: 其非零元素只能位于平凡的不可约表示中，即 $s=0$ ，而 $m_0=0$ 。
-+ 2阶 :: 其非零元素的两个指标需要在相同的不可约表示空间中，且两者的 $m_s$ 相反，张量需要满足形式
++ 2阶 :: 其非零元素的两个指标需要在相同的不可约表示空间中，且两者的 $m_s$ 相反，即张量需要满足形式
 \begin{equation}
 T_{(s_0,\alpha_{s_0},m_{s_0}),(s_1,\alpha_{s_1},m_{s_1})} =
 P_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1})} \delta_{s_0,s_1}
@@ -451,6 +451,45 @@ m_0 & m_1 & m_2
 \end{equation}
 其中括号是Wigner 3-j符号。
 + 更高阶 :: 张量可需要以被分解为多个3阶对称性张量收缩的形式。
+
+如上所示，一般对称群的对称性张量结构十分复杂，但对于Abel群来说，情况却十分简单。
+Abel群的不可约表示一定是1维的，所以恒有 $m_s=0$ ,故我们将 $m_s$ 省略，使用 $(s,\alpha_s)$ 作为基。
+此时 $R$ 阶的对称性张量需要满足
+\begin{equation}
+U_g^{\otimes R} T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
+T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})},
+\end{equation}
+而 $U_g^{\otimes R}$ 中每个项目 $U_g^r = U_g^{s_r}$ ，作为一个一维的酉矩阵，就是一个复数。
+所以我们得到：
+\begin{equation}
+T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})}
+\prod_r^{R-1}U_g^{s_r}
+=
+T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})}.
+\end{equation}
+为此，张量需要满足形式：
+\begin{equation}\label{eq:Abel对称张量的原始形式}
+T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
+P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),\cdots (s_{R-1}, \alpha_{s_{R-1}})}
+R(s_0,s_1,\cdots s_{R-1}) ,
+\end{equation}
+其中
+\begin{equation}
+R(s_0, s_1, \cdots, s_{R-1}) = \left\{\begin{aligned}
+1 \quad & \text{如果} \quad \prod_r^{R-1} U_g^{s_r} = 1 ,\\
+0 \quad & \text{其他情况},
+\end{aligned}\right.
+\end{equation}
+是对称群决定的对称性规则。
+将公式 [[eqref:eq:Abel对称张量的原始形式]] 稍作变形得到：
+\begin{equation}
+T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
+\left(P_{s_0,s_1,\cdots,s_{R-1}}\right)_{\alpha_{s_0},\alpha_{s_1},\cdots \alpha_{s_{R-1}}}
+R(s_0,s_1,\cdots s_{R-1}) .
+\end{equation}
+可见Abel群的对称性张量是一个分块的张量，其中分块方案由对称性规则和张量每个边上的不可约表示分解决定。
+
+不可约表示 $s$ 中群元素 $s$ 是 $U_g^s$ ，作为一个一维的酉矩阵，它就是一个复数，所以
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
