@@ -501,6 +501,16 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \end{equation}
 其中 $\bigoplus$ 为异或运算。
 
+而对于 $U(2)$ 群， $g=\theta$ 表示旋转 $\theta$ 。
+群表示使用一个整数 $s$ 来标记， $U_\theta^s = \mathrm{e}^{\mathrm{i} s \theta}$ 。
+所以 $U(1)$ 群的对称性条件是：
+\begin{equation}
+C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
+1 \quad & \text{如果}  \quad \sum_r^{R-1} s_r = 0 ,\\
+0 \quad & \text{如果}  \quad \sum_r^{R-1} s_r = 1 .
+\end{aligned}\right.
+\end{equation}
+
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
