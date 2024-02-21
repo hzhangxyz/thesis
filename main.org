@@ -290,7 +290,7 @@ T^{\dagger {s'_{X,0}, s'_{X,1}, \cdots}}_{v'_0, v'_1, \cdots v'_{N-1}} ,
 
 使用一张张量网络表示波函数时，我们可以有两种认知方式。第一种是数学上的分解，即对于任意一个 $R$ 个粒子的系统，波函数
 \begin{equation}
-|\Psi\rangle = \sum_{i_{T,0}, i_{T,1}, \cdots, i_{T,R-1}} T_{i_{T,0}, i_{T,1}, \cdots, i_{T,R-1}} |i_0 i_1 \cdots i_{R-1} \rangle ,
+|\Psi\rangle = T_{i_{T,0}, i_{T,1}, \cdots, i_{T,R-1}} |i_0 i_1 \cdots i_{R-1} \rangle ,
 \end{equation}
 中 $T$ 作为一个 $R$ 阶张量，可以被分解为一张张量网络：
 \begin{equation}
@@ -305,10 +305,47 @@ T_{i_{T,0}, i_{T,1}, \cdots, i_{T, R-1}} = &
 \end{equation}
 这张张量网络中有 $N$ 个张量，即 $A_n$ ，其中 $n = 0, 1, \cdots N-1$ 。
 张量 $A_n$ 的阶数是 $\mathrm{rank}(A_n)$ ，它的指标被记作 $i_{A_n, j}$ ，其中 $j = 0, 1, \cdots \mathrm{rank}(A_n) - 1$ 。
-这张张量网络内部有 $B$ 个边连接两个张量，第 $b$ 个边所连接的是第 $V_b^0$ 个张量的第 $E_b^0$ 个边和第 $V_b^1$ 个张量的第 $E_b^1$ 个边，其中 $b=0,1,\cdots,B-1$
+这张张量网络内部有 $B$ 个边连接两个张量，第 $b$ 个边所连接的是第 $V_b^0$ 个张量的第 $E_b^0$ 个边和第 $V_b^1$ 个张量的第 $E_b^1$ 个边，其中 $b=0,1,\cdots B-1$
 而这些张量中，有 $R$ 个边没有被收缩，而是作为物理边出现在张量 $T$ 中，
 张量 $T$ 的第 $r$ 个边在张量网络中是第 $V'_r$ 个张量的第 $E'_r$ 个边，其中 $r = 0, 1, \cdots R-1$ 。
+这张张量网络中，由 $A_n$ ， $n=0, \cdots N-1$ 组成，由 $V_b^0, V_b^1, V'_r, E_b^0, E_b^1, E'_r$ ， $b=0,\cdots B-1, r=0,\cdots R-1$ 表示张量的图结构。
+通过不同的张量网络图结构，可以构造出不同类型的张量网络。
 
+另一种认知方式是将张量网络态视为对一群纠缠对所构成的母态的投影。
+先把波函数写成产生算符的形式：
+\begin{equation}
+|\Psi\rangle = T_{i_{T,0}, i_{T,1}, \cdots, i_{T,R-1}} \prod_{r=0}^{R-1} c_r^{\dag i_{T,r}} |\Omega\rangle ,
+\end{equation}
+其中 $|\Omega\rangle$ 是真空态，  $c_r^{\dag i_{T,r}}$ 是第 $r$ 个粒子处，产生第 $i_{T,r}$ 个构型的算符。
+需要注意的是，对于一些系统， $c_r^{\dag i_{T,r}}$ 不一定是单个粒子的产生算符，而可能是多个粒子产生算符的复合。
+然后将波函数视为对一个母态的投影：
+\begin{equation}
+|\Psi\rangle = P M |\Omega\rangle ,
+\end{equation}
+其中 $P$ 为投影算符， $M$ 为制备母态的算符。
+而母态为众多组纠缠对的组合：
+\begin{equation}
+M = 
+\prod_{b=0}^{B-1} a_{b,0}^{\dag d_b} a_{b,1}^{\dag d_b}
+,
+\end{equation}
+其中第 $b$ 组纠缠对由 $a_{b,0}^{\dag d_b}$ 和 $a_{b,1}^{\dag d_b}$ 生成， 这里 $d_b$ 取值范围为 $0, 1, \cdots D_b - 1$ ，其中 $D_b$ 为这组纠缠对的个数。
+而投影算符被定义为：
+\begin{equation}
+\begin{aligned}
+P = 
+\prod_{n=0}^{N-1} & (A_n)_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}} \\
+&
+\prod_{j=0}^{\mathrm{rank}(A_n) - 1} \left\{
+\begin{aligned}
+&a^{i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} \ & \text{如果 $A_n$ 的第 $j$ 个边为虚拟边}, \\
+&c^{\dag i_{A_n,j}}_{Z_{A_n,j}} \ & \text{如果 $A_n$ 的第 $j$ 个边为物理边},
+\end{aligned}
+\right.
+\end{aligned}
+\end{equation}
+其中 $A_n$ 的第 $j$ 个边，如果是物理边，则是 $|\Psi\rangle$ 的第 $Z_{A_n,j}$ 个边，
+如果是虚拟边，则将湮灭掉第 $X_{A_n,j}$ 组纠缠对中粒子，而 $Y_{A_n,j}$ 取 $0$ 或 $1$ ，标记其湮灭的是纠缠对中靠前的还是靠后的粒子。
 
 ** 对称性张量和费米子张量
 
