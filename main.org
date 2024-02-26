@@ -1142,7 +1142,9 @@ P_A \left(a_{x+1}^{\dag d} a_{x}^{\dag d} \right) = \left(\delta_{i_x i_{x+1}} A
 \input{tikz/tensor-exp.tikz}
 \caption{张量指数的幂展开}
 \label{fig:张量指数的幂展开}
-\note{注：
+\note{注：张量的指数由幂展开所定义。
+不同于矩阵，两个矩阵 $A$ 和 $B$ 相乘只有 $A B$ ，而张量相互收缩时，需要指定收缩时边的关系，即那两个边应当彼此相连。
+而幂展开中含有多个张量的收缩，所以在定义张量的指数时需要给定边之间的关系。
 }
 \end{figure}
 #+end_export
