@@ -692,6 +692,38 @@ a_0^{i_0} a_1^{i_1} \cdots \\
 (A'_n)_{i_{s_0} i_{s_1}\cdots} = (A_n)_{i_0 i_1 \cdots} (-1)^{\sum_{j<k,s_j>s_k} p(a_j^{i_j}) p(a_k^{i_k})} .
 \end{equation}
 
+*** 张量的共轭
+
+共轭用于将波函数从希尔伯特空间转换到对偶空间，从而进行内积运算。
+寻常的张量网络所表示的态进行共轭可以表示为每个张量都取共轭后所组成的张量网络。
+对于费米子张量网络，依然有类似的性质。
+
+考虑波函数 $P M | \Omega\rangle$ ，其中 $P$ 和 $M$ 为公式 [[eqref:eq:投影纠缠对阐述的一般张量网络]] 所展示，
+求共轭得到 $\langle \Omega | M^\dag P^\dag$ ，其中
+\begin{equation}
+\left\{
+\begin{aligned}
+M^\dag &=
+\prod_{b=0}^{B-1} a_{b,1}^{d_b} a_{b,0}^{d_b}
+\prod_{r=0}^{R-1} c_r^{d_{r+B}} a_{r+B,0}^{d_{r+B}} , \\
+P^\dag &= 
+\prod_{n=0}^{N-1} (A_n)^\dag_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}}
+\prod_{j=\mathrm{rank}(A_n) - 1}^{0}
+a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
+\end{aligned}
+\right.
+\end{equation}
+当计算某个物理量时，真正计算的是
+\begin{equation}
+\langle \Psi^\dag_1 |O| \Psi_2 \rangle = \langle \Omega | P^\dag_1 M^\dag_1 O M_2 P_2 | \Omega \rangle ,
+\end{equation}
+考虑其中某组虚拟粒子所在的子空间，表达式为
+\begin{equation}
+\langle \Omega | a^{d_1} a^{\dag d_2} a^{d_3} a^{\dag d_4} | \Omega \rangle  ,
+\end{equation}
+其中 $a^{d_1}$ ， $a^{d_2}$ ， $a^{d_3}$ ， $a^{d_4}$ 分别是  $P^\dag_1$ ， $M^\dag_1$ ， $M_2$ ， $P_2$ 中这组粒子的算符。
+
+
 *** 翻转费米箭头
 
 费米箭头用于表示纠缠对中产生算符的顺序，而调换产生算符的顺序常用于其他运算的预处理中。
