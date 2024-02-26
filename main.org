@@ -646,6 +646,7 @@ bose-$U(1)$ 对称性或者bose-$Z(2)$ 对称性。
 
 ** 费米子张量上的张量操作
 
+费米子张量中，
 对称性张量的各种张量操作过程中与寻常的张量没有差别，
 而纠缠对中引入费米子却会改变几乎所有的张量操作，
 现在我们需要对各种张量运算一个一个考虑费米子的影响。
@@ -666,9 +667,9 @@ a_0^{i_0} a_1^{i_1} \cdots ,
 如果为 $0$ 则不会产生符号，
 其中
 \begin{equation}
-p (a_j^{i_j}) = \left\{\begin{aligned}
-1  \quad & \text{如果} a_j^{i_j} \text{是费米的} \\
-0  \quad & \text{如果} a_j^{i_j} \text{是波色的} .
+p (a) = \left\{\begin{aligned}
+1  \quad & \text{如果} a \text{是费米的} \\
+0  \quad & \text{如果} a \text{是波色的} .
 \end{aligned}\right.
 \end{equation}
 为了简单表述，我们称呼这时产生了 $p(a_j^{i_j}) p(a_{j+1}^{i_{j+1}})$ 个符号。
@@ -686,8 +687,58 @@ a_0^{i_0} a_1^{i_1} \cdots \\
 &= (A'_n)_{i_{s_0} i_{s_1} \cdots} a_{s_0}^{i_{s_0}} a_{s_1}^{i_{s_1}} \cdots ,
 \end{aligned}
 \end{equation}
-其中
+其中 $s_0, s_1, \cdots$ 为一个排列，描述了如何转置，而 $A'_n$ 满足：
+\begin{equation}
+(A'_n)_{i_{s_0} i_{s_1}\cdots} = (A_n)_{i_0 i_1 \cdots} (-1)^{\sum_{j<k,s_j>s_k} p(a_j^{i_j}) p(a_k^{i_k})} .
+\end{equation}
 
+*** 翻转费米箭头
+
+费米箭头用于表示纠缠对中产生算符的顺序，而调换产生算符的顺序常用于其他运算的预处理中。
+考虑两个投影子以及母态中的纠缠对产生算符：
+\begin{equation}
+\begin{aligned}
+P M =
+&(A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& a_x^{\dag d} b_y^{\dag d} ,
+\end{aligned}
+\end{equation}
+其中 $A$ 的第 $x$ 个边与 $B$ 的第 $y$ 个边相连，
+交换纠缠对中的两个产生算符得到
+\begin{equation}
+\begin{aligned}
+P M =
+&(A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& (-1)^{p(a_x^{\dag d}) p(b_y^{\dag d})} b_y^{\dag d} a_x^{\dag d} .
+\end{aligned}
+\end{equation}
+可见当我们翻转两个张量彼此相连的边上的费米箭头时，只产生了一个符号，
+不妨将它放置在 $A$ 中，得到：
+\begin{equation}
+\begin{aligned}
+P M =
+& (-1)^{p(a_x^{i_x})} (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& b_y^{\dag d} a_x^{\dag d} ,
+\end{aligned}
+\end{equation}
+其中我们用到了
+\begin{equation}\label{eq:翻转箭头时的符号推导}
+\begin{aligned}
+p(a_x^{\dag d}) p(b_y^{\dag d}) &= p(a_x^{\dag d}) ^ 2 \\
+&= p(a_x^{\dag d}) \\
+&= p(a_x^{i_x}) .
+\end{aligned}
+\end{equation}
+公式 [[eqref:eq:翻转箭头时的符号推导]] 中第一行的等式来自纠缠对中两个粒子拥有相同的费米子奇偶性；
+第二行的等式来自对于任意 $a$ ， $p(a)$ 取 $0$ 或者 $1$ ；
+第三行的等式来自于整个张量网络中在 $a_x$ 这个粒子的子空间上的分量为
+\begin{equation}
+\langle \Omega | a^{i_x} a_x^{\dag d} |\Omega\rangle = \delta_{i_x, d} ,
+\end{equation}
+从而 $i_x \neq d$ 时，张量网络整体都为 $0$ 的事实。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
