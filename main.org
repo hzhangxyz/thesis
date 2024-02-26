@@ -476,7 +476,7 @@ C(s_0,s_1,\cdots s_{R-1}) ,
 其中
 \begin{equation}
 C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
-1 \quad & \text{如果对于任意$g$有}  \quad \prod_r^{R-1} U_g^{s_r} = 1 ,\\
+1 \quad & \text{如果对于任意$g$有}  \quad \prod_{r=0}^{R-1} U_g^{s_r} = 1 ,\\
 0 \quad & \text{其他情况},
 \end{aligned}\right.
 \end{equation}
@@ -495,21 +495,43 @@ R(s_0,s_1,\cdots s_{R-1}) .
 所以 $Z(2)$ 群的对称性条件是：
 \begin{equation}
 C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
-1 \quad & \text{如果}  \quad \bigoplus_r^{R-1} s_r = 0 ,\\
-0 \quad & \text{如果}  \quad \bigoplus_r^{R-1} s_r = 1 ,
+1 \quad & \text{如果}  \quad \bigoplus_{r=0}^{R-1} s_r = 0 ,\\
+0 \quad & \text{如果}  \quad \bigoplus_{r=0}^{R-1} s_r = 1 ,
 \end{aligned}\right.
 \end{equation}
 其中 $\bigoplus$ 为异或运算。
 
-而对于 $U(2)$ 群， $g=\theta$ 表示旋转 $\theta$ 。
+而对于 $U(1)$ 群， $g=\theta$ 表示旋转 $\theta$ 。
 群表示使用一个整数 $s$ 来标记， $U_\theta^s = \mathrm{e}^{\mathrm{i} s \theta}$ 。
 所以 $U(1)$ 群的对称性条件是：
 \begin{equation}
 C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
-1 \quad & \text{如果}  \quad \sum_r^{R-1} s_r = 0 ,\\
-0 \quad & \text{如果}  \quad \sum_r^{R-1} s_r \neq 0 .
+1 \quad & \text{如果}  \quad \sum_{r=0}^{R-1} s_r = 0 ,\\
+0 \quad & \text{如果}  \quad \sum_{r=0}^{R-1} s_r \neq 0 .
 \end{aligned}\right.
 \end{equation}
+
+对于 $U(1)$ 群和 $Z(2)$ 的乘积群，可以使用各个子群的群表示的乘积来表示这个群的群表示。
+比如对于 $U(1) \times Z(2)$ 群，群元素为 $g=(\theta, p)$ ，其中 $p=e=+1$ 表示不变， $p=z=-1$ 表示反转。
+群表示可以标记为 $s=(z, b)$ 其中 $z$ 为整数， $b=0$ 或 $1$ ，而 $U_{\theta,p}^{z, b} = \mathrm{e}^{\mathrm{i} z \theta} p^b$ 。
+对称性条件 $C=1$ 的条件为
+\begin{equation}
+\begin{aligned}
+1 &= \prod_{r=0}^{R-1} U_{\theta,p}^{z_r, b_r} \\
+&= \prod_{r=0}^{R-1} \mathrm{e}^{\mathrm{i} z_r \theta} p^{b_r} \\
+&= \mathrm{e}^{\mathrm{i} \sum_{r=0}^{R-1} z_r \theta} p^{\sum b_r} \quad \forall \theta, p ,
+\end{aligned}
+\end{equation}
+即 $\sum_{r=0}^{R-1} z_r = 0$ 且 $\bigoplus_{r=0}^{R-1} b_r = 0$ 。
+故而有
+\begin{equation}
+C_{U(1)\times Z(2)} = ( (z_0, b_0), (z_1, b_1), \cdots (z_{R-1}, b_{R-1}) ) = C_{U(1)} (z_0, z_1, \cdots z_{R-1}) C_{Z(2)} (b_0, b_1, \cdots b_{R-1}),
+\end{equation}
+可见对于乘积群，对称性条件为各个子群的对称性条件的乘积：
+\begin{equation}
+C_{\prod_i G_i} = \prod_i C_{G_i} .
+\end{equation}
+
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
