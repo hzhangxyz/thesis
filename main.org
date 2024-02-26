@@ -1106,6 +1106,27 @@ A_{i_0 i_1} a_0^{i_0} a_1^{i_1} =
 类似张量的收缩，这种方法中，边的合并与第一次翻转费米箭头完全和边的拆分与第二次翻转费米箭头相互抵消。
 而在矩阵分解的步骤中，在结果中选取合适的费米箭头，可以让计算成直接的分块张量分解，而没有任何其他的费米子性质。
 
+*** 张量的迹
+
+虽然大部分时候，求迹操作是多余的，但是求迹确实是一个基本操作。
+为了对费米子张量进行求迹，我们可以将要求迹的两个边转置到相邻的位置上，并保证费米箭头为 $1$ 的边在费米箭头为 $0$ 的边的前方。
+如此，对于将要对第 $x$ 个和第 $x+1$ 个边求迹的张量 $A$ ：
+\begin{equation}
+\def\a#1{a_{#1}^{i_{#1}}}
+P_A = A_{i_0 i_1 \cdots i_{x-1} i_x i_{x+1} i_{x+2} \cdots} \a{0} \a{1} \cdots \a{x-1} \a{x} \a{x+1} \a{x+2} \cdots,
+\end{equation}
+我们可以得到
+\begin{equation}
+\def\a#1{a_{#1}^{i_{#1}}}
+P_A \left(a_{x+1}^{\dag d} a_{x}^{\dag d} \right) = \left(\delta_{i_x i_{x+1}} A_{i_0 i_1 \cdots i_{x-1} i_{x} i_{x+1} i_{x+2}\cdots} \right) \a{0} \a{1} \cdots \a{x-1} \a{x+1} \cdots
+\end{equation}
+其中
+\begin{equation}
+\def\a#1{a_{#1}^{i_{#1}}}
+\a{x} \a{x+1}a_{x+1}^{\dag d} a_{x}^{\dag d}
+= \delta_{i_{x+1} d} \delta_{i_x d} = \delta_{i_x i_{x+1}} .
+\end{equation}
+
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
