@@ -927,8 +927,50 @@ PM=
 \end{aligned}
 \end{equation}
 
+如果要合并并非相连的两个边，需要进行张量的转置，
+而如果要合并费米箭头不一致的两个边，需要先对费米箭头进行翻转。
+容易验证，对于合并连续的 $l$ 个边，其产生的符号等于这些合并的边的全转置产生的符号：
+\begin{equation}
+\begin{aligned}
+PM=
+&
+(-1)^{\sum_{m<n} p(a_m^{i_m}) p(a_n^{i_n})}
+(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
+&
+(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
+&
+(a_x^{d_0}a_{x+1}^{d_1}\cdots a_{x+l-1}^{d_{l-1}})^\dag
+(b_y^{d_0} b_{y+1}^{d_1}\cdots b_{y+l-1}^{d_{l-1}})^\dag
+,
+\end{aligned}
+\end{equation}
+或者
+\begin{equation}
+\begin{aligned}
+PM=
+&
+(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
+&
+(-1)^{\sum_{m<n} p(b_m^{j_m}) p(b_n^{j_n})}
+(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
+&
+(a_x^{d_0}a_{x+1}^{d_1}\cdots a_{x+l-1}^{d_{l-1}})^\dag
+(b_y^{d_0} b_{y+1}^{d_1}\cdots b_{y+l-1}^{d_{l-1}})^\dag
+,
+\end{aligned}
+\end{equation}
 
 
+值得一提的是，这些产生算符组合而来的复合粒子产生算符依然可以作为张量网络中的纠缠对，因为依然有
+\begin{equation}
+(b_y^{d'_0} b_{y+1}^{d'_1}\cdots b_{y+l-1}^{d'_{l-1}})
+(b_y^{d_0} b_{y+1}^{d_1}\cdots b_{y+l-1}^{d_{l-1}})^\dag
+=
+\delta_{d_0 d'_0}
+\delta_{d_1 d'_1}
+\cdots
+\delta_{d_{l-1} d'_{l-1}}
+\end{equation}
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
