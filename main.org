@@ -1127,6 +1127,13 @@ P_A \left(a_{x+1}^{\dag d} a_{x}^{\dag d} \right) = \left(\delta_{i_x i_{x+1}} A
 = \delta_{i_{x+1} d} \delta_{i_x d} = \delta_{i_x i_{x+1}} .
 \end{equation}
 
+*** 恒等张量
+
+有时我们需要得到一个恒等的张量，比如在计算张量的指数时，需要通过进行幂展开：
+\begin{equation}
+\mathrm{e}^{A}
+\end{equation}
+
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
