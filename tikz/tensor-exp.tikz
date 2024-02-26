@@ -1,0 +1,90 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,190); %set diagram left start at 0, and has height of 190
+
+
+% Text Node
+\draw (118,108.4) node [anchor=north west][inner sep=0.75pt]  [font=\Huge]  {$\mathrm{e}$};
+% Text Node
+\draw    (167.5, 66) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (160,58.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (150,111.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (173,111.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (173,7.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (151,10.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (184,35.4) node [anchor=north west][inner sep=0.75pt]  [font=\Huge]  {$=\ \ \ \ +\ \ \ \ \ +\frac{1}{2} \ \ \ \ \ +\cdots $};
+% Text Node
+\draw (237,131.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (263,135.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (263,24.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (237,26.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (336.5, 86) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (329,78.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (323,137.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (348,138.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (339,22.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (317,23.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (449.5, 72) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (442,64.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (450,11.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (433,12.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw    (450.5, 117) circle [x radius= 14.53, y radius= 14.53]   ;
+\draw (443,109.4) node [anchor=north west][inner sep=0.75pt]    {$A$};
+% Text Node
+\draw (436,164.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Text Node
+\draw (454,165.4) node [anchor=north west][inner sep=0.75pt]    {$$};
+% Connection
+\draw    (176.4,107) -- (170.58,80.21) ;
+% Connection
+\draw    (158.6,107) -- (164.42,80.21) ;
+% Connection
+\draw    (159.63,30) -- (164.39,51.8) ;
+% Connection
+\draw    (176.29,27) -- (170.7,51.82) ;
+% Connection
+\draw    (243,46) -- (243,127) ;
+% Connection
+\draw    (269,44) -- (269,131) ;
+% Connection
+\draw    (350.5,134) -- (340.57,99.96) ;
+% Connection
+\draw    (330.53,133) -- (334.67,100.42) ;
+% Connection
+\draw    (325.95,43) -- (333.03,71.88) ;
+% Connection
+\draw    (343.18,42) -- (338.68,71.63) ;
+% Connection
+\draw    (441.42,32) -- (446.62,57.75) ;
+% Connection
+\draw    (454.53,31) -- (451.27,57.57) ;
+% Connection
+\draw    (457.96,161) -- (452.93,131.33) ;
+% Connection
+\draw    (443.85,160) -- (448.28,131.37) ;
+% Connection
+\draw    (454.8,85.54) -- (455.2,103.24) ;
+% Connection
+\draw    (444.8,85.76) -- (445.2,103.46) ;
+
+\end{tikzpicture}

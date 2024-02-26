@@ -1131,8 +1131,21 @@ P_A \left(a_{x+1}^{\dag d} a_{x}^{\dag d} \right) = \left(\delta_{i_x i_{x+1}} A
 
 有时我们需要得到一个恒等的张量，比如在计算张量的指数时，需要通过进行幂展开：
 \begin{equation}
-\mathrm{e}^{A}
+\mathrm{e}^{A} = \sum_{n=0}^{\infty} \frac{1}{n!} A^n ,
 \end{equation}
+其中的 $A^0$ 为恒等张量， 而 $A^n, n>0$  为多个 $A$ 的收缩。
+以一个四阶张量 $A$ 为例，其指数的图形标记如图 [[ref:fig:张量指数的幂展开]] 所示。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/tensor-exp.tikz}
+\caption{张量指数的幂展开}
+\label{fig:张量指数的幂展开}
+\note{注：
+}
+\end{figure}
+#+end_export
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
