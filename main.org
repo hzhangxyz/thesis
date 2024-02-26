@@ -496,7 +496,7 @@ R(s_0,s_1,\cdots s_{R-1}) .
 对于 $Z(2)$ 群， $g=e$ 表示不变， $g=z$ 表示反转。
 群表示 $0$ 中 $U_e^0 = U_z^0 = +1$ ，另一个群表示 $1$ 中 $U_e^1 = +1$ ， $U_z^1 = -1$ 。
 所以 $Z(2)$ 群的对称性条件是：
-\begin{equation}
+\begin{equation}\label{eq:Z2对称性条件}
 C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 1 \quad & \text{如果}  \quad \bigoplus_{r=0}^{R-1} s_r = 0 ,\\
 0 \quad & \text{如果}  \quad \bigoplus_{r=0}^{R-1} s_r = 1 ,
@@ -603,7 +603,7 @@ P_{\text{虚拟}, b} = a_{b,0}^{\dag d_b} a_{b,1}^{\dag d_b} ,
 公式 [[eqref:eq:投影纠缠对阐述的一般张量网络]] 中投影算符可以写为：
 \begin{equation}
 \begin{aligned}
-P_{投影n} =
+P_{\text{投影}, n} =
 &(A_{n, (s_0, s_1, \cdots s_{R-1})})_{\alpha_{s_0}, \alpha_{s_1}, \cdots \alpha_{s_{R-1}}} \\
 &C(s_0, s_1, \cdots s_{R-1}) \\
 &\prod_{j=0}^{\mathrm{rank}(A_n) - 1} 
@@ -612,12 +612,19 @@ a^{(s_j, \alpha_{s_j})}_{X_{A_n,j},Y_{A_n, j}} ,
 \end{equation}
 由于只涉及到单个张量，这里为了便利省略了指标中表示张量所有的标记，即将 $s_{A_n,j}$ 写成了 $s_{j}$ 。
 
+这里的 $C(s_0, s_1,\cdots s_{R-1})$ 为公式 [[eqref:eq:Z2对称性条件]] 所描述的 $Z(2)$ 群的对称性条件。
 容易验证，当 $C(s_0, s_1, \cdots s_{R-1}) \neq 0$ 时，湮灭算子部分
 \begin{equation}
 \prod_{j=0}^{\mathrm{rank}(A_n) - 1} 
 a^{(s_j, \alpha_{s_j})}_{X_{A_n,j},Y_{A_n, j}}
 \end{equation}
 一定是波色的。
+这保证了投影算子的每个非零项都是波色的，所以投影算子整体是波色的，
+从而我们可以对正常的张量一样，随意交换投影算子。
+
+由此可见，我们可以使用 $Z(2)$ 对称性的张量加上含有费米子的纠缠对湮灭算符，
+作为费米子张量来构造用于描述费米子系统的张量网络。
+这种情况下，我们必须使用纠缠对阐述来理解张量网络态，因为我们需要在母态中包含含有费米子的纠缠对产生算符。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
