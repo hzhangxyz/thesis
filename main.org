@@ -828,6 +828,32 @@ p(a_x^{\dag d}) p(b_y^{\dag d}) &= p(a_x^{\dag d}) ^ 2 \\
 \end{equation}
 从而 $i_x \neq d$ 时，张量网络整体都为 $0$ 的事实。
 
+类似的，我们也可以将符号放置在 $B$ 中，从而得到：
+\begin{equation}
+\begin{aligned}
+P M =
+& (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+& (-1)^{p(b_y^{j_y})}(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& b_y^{\dag d} a_x^{\dag d} .
+\end{aligned}
+\end{equation}
+在实现费米子张量时，我们需要注意在一个网络内翻转费米箭头时，只能会产生一个符号，需要选择放在相连接的两个张量中的哪一个内。
+而对于复数张量，我们完全可以产生半个符号即：
+\begin{equation}
+\begin{aligned}
+P M =
+& \mathrm{i}^{p(a_x^{i_x})} (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+& \mathrm{i}^{p(b_y^{j_y})}(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& b_y^{\dag d} a_x^{\dag d} .
+\end{aligned}
+\end{equation}
+
+*** 边的合并与拆分
+
+对于寻常张量，边的合并与拆分是很常见的，比如将矩阵视为一个向量，实际上就是将二阶张量的两个边合并为一个边的过程。
+对于寻常的稠密张量，边的合并与拆分并不需要真正的数据移动或变换，但是对于对称性张量来说，数据移动是不可避免的。
+当我们将
+
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
