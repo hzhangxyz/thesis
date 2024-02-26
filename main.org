@@ -972,6 +972,23 @@ PM=
 \delta_{d_{l-1} d'_{l-1}}
 \end{equation}
 
+在计算 $\sum_{m<n} p_m p_n$ 原本的两层循环可以使用一个技巧压缩为一层循环：
+\begin{equation}
+\begin{aligned}
+\sum_{m<n} p_m p_n
+&= \frac{\sum_{m,n} p_m p_n - \sum_{n} p_n^2}{2} \\
+&= \frac{(\sum_{n} p_n)^2 - \sum_{n} p_n}{2} .
+\end{aligned}
+\end{equation}
+由于它出现在 $-1$ 的指数上，我们只关注它的二进制第一位，即只关注$(\sum_{n} p_n)^2 - \sum_{n} p_n$ 的二进制第二位，
+而对于任意 $x$ ， $x^2 - x$ 的二进制第二位和 $x$ 的二进制第二位相同，所以
+\begin{equation}
+(-1)^{\sum_{m<n} p_m p_n}
+=
+(-1)^{ \frac{2 \& \sum_n{p_n} }{ 2 }} ,
+\end{equation}
+其中 $\&$ 为按位与。
+
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
 ** 虚时间演化算法
