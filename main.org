@@ -713,6 +713,16 @@ a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
 \end{aligned}
 \right.
 \end{equation}
+这里 $P^\dag$ 可以先恢复所有的产生算符的顺序得到
+\begin{equation}
+P^\dag = 
+\prod_{n=0}^{N-1} (-1)^{\sum_{j<k} p(a_j^{i_j}) p(a_k^{i_k})}
+(A_n)^\dag_{i_{A_n, 0} i_{A_n, 1} \cdots i_{A_n, \mathrm{rank}(A_n) -1}}
+\prod_{j=0}^{\mathrm{rank}(A_n) - 1}
+a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
+\end{equation}
+然而现在，无论是纠缠对的母态 $M^\dag$ 还是投影子中的产生算符，都不符合费米子张量的形式，下面我们一步步地恢复原本的形式。
+
 当计算某个物理量时，真正计算的是
 \begin{equation}
 \langle \Psi^\dag_1 |O| \Psi_2 \rangle = \langle \Omega | P^\dag_1 M^\dag_1 O M_2 P_2 | \Omega \rangle ,
@@ -721,8 +731,49 @@ a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
 \begin{equation}
 \langle \Omega | a^{d_1} a^{\dag d_2} a^{d_3} a^{\dag d_4} | \Omega \rangle  ,
 \end{equation}
-其中 $a^{d_1}$ ， $a^{d_2}$ ， $a^{d_3}$ ， $a^{d_4}$ 分别是  $P^\dag_1$ ， $M^\dag_1$ ， $M_2$ ， $P_2$ 中这组粒子的算符。
+其中 $a^{d_1}$ ， $a^{d_2}$ ， $a^{d_3}$ ， $a^{d_4}$ 分别是  $P^\dag_1$ ， $M^\dag_1$ ， $M_2$ ， $P_2$ 中这组粒子的算符，
+注意这些算符中的上标 $d_i$ 指的是不同的粒子。
+我们可以将共轭空间中的虚拟粒子替换成新的虚拟粒子，其结果依然不变，得到
+\begin{equation}
+\langle \Omega | a^{d_1} a^{\dag d_2} a^{d_3} a^{\dag d_4} | \Omega \rangle =
+\langle \Omega | a'^{d_1} a'^{\dag d_2} a^{d_3} a^{\dag d_4} | \Omega \rangle .
+\end{equation}
+综上，我们考虑共轭后的张量网络时，可以完全不考虑希尔伯特空间中相同的虚拟粒子的影响。
 
+而对于连接两个张量 $P_x$ 和 $P_y$ 的虚拟边，考虑每个元素，我们可以将湮灭算符对往后面移动：
+\begin{equation}
+\begin{aligned}
+&\overbrace{\left(\cdots (a'_1 a'_0) \cdots\right)}^{M^\dag}
+\underbrace{\cdots \overbrace{\left(\cdots a_0^{\prime \dag} \cdots\right)}^{P^\dag_x} \cdots \overbrace{\left(\cdots a_1^{\prime \dag} \cdots\right)}^{P^\dag_y} \cdots}_{P^\dag} \\
+= &\left(\cdots\right)\cdots \left(\cdots a'_1 a'_0 a_0^{\prime \dag} \cdots\right) \cdots \left(\cdots a_1^{\prime \dag} \cdots\right)\cdots \\
+= &\left(\cdots\right)\cdots \left(\cdots a'_1 \cdots\right) \cdots \left(\cdots a'_0 a_0^{\prime \dag} a_1^{\prime \dag} \cdots\right)\cdots \\
+= &\left(\cdots\right)\cdots \left(\cdots a'_1 \cdots\right) \cdots \left(\cdots a'_0 \cdots\right)\cdots (a_0^{\prime \dag} a_1^{\prime \dag}) .
+\end{aligned}
+\end{equation}
+可见所有的虚拟边的共轭，都可以看作正常的费米子张量的费米箭头进行了翻转。
+
+类似的，对于物理边，考虑每一个元素，我们一样可以将 $M^\dag$ 中的算符向后一定：
+\begin{equation}
+\begin{aligned}
+&\overbrace{\left(\cdots (c a') \cdots\right)}^{M^\dag}
+\underbrace{\cdots \overbrace{\left(\cdots a'^\dag \cdots\right)}^{P^\dag_n} \cdots}_{P^\dag} \\
+= &\left(\cdots\right) \cdots \left(\cdots c a' a'^\dag \cdots\right) \cdots \\
+= &\left(\cdots\right) \cdots \left(\cdots a' a'^\dag c \cdots\right) \cdots \\
+= &\left(\cdots\right) \cdots \left(\cdots a' \cdots\right) \cdots (a'^\dag c) .
+\end{aligned}
+\end{equation}
+而 $(a'^\dag c)$ 最终将和原空间中的 $(a^\dag c^\dag)$ 组合， 恢复张量网络的求和的形式，相关项目为：
+\begin{equation}
+\begin{aligned}
+\sum_{d'} a'^{\dag {d'}} c^{d'} \sum_d a^{\dag d} c^{\dag d}
+&= \sum_{d d'} a^{\dag d} a'^{\dag {d'}} c^{d'} c^{\dag d} \\
+&= \sum_{d d'} a^{\dag d} a'^{\dag d'} \delta_{d d'} \\
+&= \sum_{d} a^{\dag d} a'^{\dag d} .
+\end{aligned}
+\end{equation}
+这意味这，我们可以简单地认为物理的产生算符在表示整个 $\langle \Psi_1 | O | \Psi_2 \rangle$ 的张量网络中是一个普通的边，
+他对应的纠缠对中的产生算副靠前，而类似的，共轭空间中的湮灭算符在纠缠对中靠后。
+这样不必再像公式 [[eqref:eq:投影纠缠对阐述的一般张量网络]] 中的 $M$ 那样将物理边和虚拟边分开对待。
 
 *** 翻转费米箭头
 
