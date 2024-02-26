@@ -852,7 +852,83 @@ P M =
 
 对于寻常张量，边的合并与拆分是很常见的，比如将矩阵视为一个向量，实际上就是将二阶张量的两个边合并为一个边的过程。
 对于寻常的稠密张量，边的合并与拆分并不需要真正的数据移动或变换，但是对于对称性张量来说，数据移动是不可避免的。
-当我们将
+假设相邻的两个边，其对称群表示分别是 $(s_0^0, s_0^1, \cdots s_0^{d_0-1})$ 和 $(s_1^0, s_1^1, \cdots s_1^{d_1-1})$ ，
+其中 $d_0$ 和 $d_1$ 分别是两个边的总维度。
+合并成一个边后，群表示为：
+\begin{equation}
+\begin{aligned}
+( &S(s_0^0, s_1^0), S(s_0^0, s_1^1), \cdots S(s_0^0, s_1^{d_1-1}), \\
+  &S(s_0^1, s_1^0), S(s_0^1, s_1^1), \cdots S(s_0^1, s_1^{d_1-1}), \\
+  &\cdots \\
+  &S(s_0^{d_0-1}, s_1^0), S(s_0^{d_0-1}, s_1^{d_0-1}), \cdots S(s_0^{d_0-1}, s_1^{d_1-1})) ,
+\end{aligned}
+\end{equation}
+其中 $S$ 满足：
+\begin{equation}
+U_g^{s_0} U_g^{s_1} = U_g^{S(s_0, s_1)} , \forall g \in G .
+\end{equation}
+
+不难看出，对于 $Z(2)$ 群来说，群表示使用 $0$ 和 $1$ 标记， $S$ 则是布尔异或运算，其构成了表示空间上的 $Z(2)$ 群；
+而对于 $U(1)$ 群来说，群表示使用整数标记， $S$ 则是整数加法运算，其构成了表示空间上的 $Z$ 群。
+对于更加复杂的Abel群，群表示空间为子群的群表示空间的乘积，
+我们可以直接使用子群们的表示空间群的乘积来得到自己的表示空间群，从而得到 $S$ 运算。
+当我们得到合并后的边的对称群表示后，我们通常需要再交换各个维度，将相同对称群表示的维度放在一起，从而保证张量的分块数目尽可能地少。
+
+而对于费米子张量，边上的对称群表示需要按照对称性张量的规则做变换外，纠缠对也需要进行变换。
+仍然以合并两个相邻的边为例，考虑：
+\begin{equation}
+\begin{aligned}
+P M =
+&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&\left( a_x^{\dag d_0} b_y^{\dag d_0} \right) \left( a_{x+1}^{\dag d_1} b_{y+1}^{\dag d_1} \right) ,
+\end{aligned}
+\end{equation}
+当我们合并边时，纠缠对也需要合并，得到：
+\begin{equation}
+\begin{aligned}
+P M =
+&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&
+(-1)^{p(b_y^{d_0}) p(b_{y+1}^{d_1})}
+(a_x^{d_0}a_{x+1}^{d_1})^\dag
+(b_y^{d_0} b_{y+1}^{d_1})^\dag
+.
+\end{aligned}
+\end{equation}
+类似翻转费米箭头的情况，我们可以选择将产生的单个符号放在 $A$ 中或者 $B$ 中：
+\begin{equation}
+\begin{aligned}
+PM=
+&
+(-1)^{p(a_x^{i_x}) p(a_{x+1}^{i_{x+1}})}
+(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&
+(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&
+(a_x^{d_0}a_{x+1}^{d_1})^\dag
+(b_y^{d_0} b_{y+1}^{d_1})^\dag
+,
+\end{aligned}
+\end{equation}
+或者
+\begin{equation}
+\begin{aligned}
+PM=
+&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&
+(-1)^{p(b_y^{j_y}) p(b_{y+1}^{j_{y+1}})}
+(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&
+(a_x^{d_0}a_{x+1}^{d_1})^\dag
+(b_y^{d_0} b_{y+1}^{d_1})^\dag
+.
+\end{aligned}
+\end{equation}
+
+
+
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
