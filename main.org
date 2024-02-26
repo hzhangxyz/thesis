@@ -607,9 +607,17 @@ P_{投影n} =
 &(A_{n, (s_0, s_1, \cdots s_{R-1})})_{\alpha_{s_0}, \alpha_{s_1}, \cdots \alpha_{s_{R-1}}} \\
 &C(s_0, s_1, \cdots s_{R-1}) \\
 &\prod_{j=0}^{\mathrm{rank}(A_n) - 1} 
-a^{(s_j, \alpha_{s_j})}_{X_{A_n,j},Y_{A_n, j}} .
+a^{(s_j, \alpha_{s_j})}_{X_{A_n,j},Y_{A_n, j}} ,
 \end{aligned}
 \end{equation}
+由于只涉及到单个张量，这里为了便利省略了指标中表示张量所有的标记，即将 $s_{A_n,j}$ 写成了 $s_{j}$ 。
+
+容易验证，当 $C(s_0, s_1, \cdots s_{R-1}) \neq 0$ 时，湮灭算子部分
+\begin{equation}
+\prod_{j=0}^{\mathrm{rank}(A_n) - 1} 
+a^{(s_j, \alpha_{s_j})}_{X_{A_n,j},Y_{A_n, j}}
+\end{equation}
+一定是波色的。
 
 * 张量网络态的优化方法 <<sec:张量网络态的优化方法>>
 
