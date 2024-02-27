@@ -1293,10 +1293,35 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 \end{equation}
 所以我们有：
 \begin{equation}
-\mathrm{e}^{x (M_0 + M_1)} = \mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x M_1} \mathrm{e}^{\frac{x}{2} M_0}+ O(x^2),
+\mathrm{e}^{x (M_0 + M_1)} = \mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x M_1} \mathrm{e}^{\frac{x}{2} M_0}+ O(x^3),
 \end{equation}
 这便是二阶的Trotter展开。
 
+对于多个矩阵相乘的情况， $M=M_0 + M_1 + \cdots M_{N-1}$ ，连续使用二阶的Trotter展开可得：
+\begin{equation}
+\begin{aligned}
+\mathrm{e}^{x (M_0 + M_1 + \cdots M_{N-1})}
+=&\mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x (M_1 + M_2 + \cdots M_{N-1})} \mathrm{e}^{\frac{x}{2} M_0}+ O(x^3) \\
+=&\mathrm{e}^{\frac{x}{2} M_0}(
+\mathrm{e}^{\frac{x}{2} M_1}
+\mathrm{e}^{x (M_2 + M_3 + \cdots M_{N-1})}
+\mathrm{e}^{\frac{x}{2} M_1} + O(x^3))
+\mathrm{e}^{\frac{x}{2} M_0}
++O(x^3) \\
+=&\cdots \\
+=&\mathrm{e}^{\frac{x}{2} M_0}
+\mathrm{e}^{\frac{x}{2} M_1}
+\cdots
+\mathrm{e}^{\frac{x}{2} M_{N-2}}
+\mathrm{e}^{\frac{x}{2} M_{N-1}}
+\mathrm{e}^{\frac{x}{2} M_{N-1}}
+\mathrm{e}^{\frac{x}{2} M_{N-2}}
+\cdots
+\mathrm{e}^{\frac{x}{2} M_1}
+\mathrm{e}^{\frac{x}{2} M_0}
++O(N x^3) \\
+\end{aligned}
+\end{equation}
 
 *** 简单更新算法
 
