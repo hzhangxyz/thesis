@@ -1229,13 +1229,74 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 \end{equation}
 其中 $| \psi^0 \rangle$ 为任意不和基态完全正交的初态， $|\psi^*\rangle$ 为基态。
 
-观察公式 [[eqref:eq:幂法虚时间演化]] ，令 $\beta = n \tau$ ，可得：
+如果将系统的无穷温时的密度矩阵 $\rho^0 = I$ 置入初态的位置，则迭代 $n$ 步后为：
 \begin{equation}
-\lim_{\beta \to\infty} \mathrm{e}^{-\beta H} |\psi^0\rangle = |\psi^*\rangle ,
+\rho^n = \mathrm{e}^{-n \tau H} I = \mathrm{e}^{-\beta H} ,
 \end{equation}
-而 $\mathrm{e}^{-\beta H}$  正是温度为 $\frac{1}{\beta}$ 时系统的密度矩阵 。
+其中 $\beta = n \tau$ 。
+而这便是系统温度为 $\frac{1}{\beta}$ 时的密度矩阵，可见，虚时间演化算法可以看成对系统的降温过程。
 
 *** 逐块虚时间演化算法
+
+严格的虚时间演化算法只能计算粒子数最多约 30 的系统，对于更大的系统，态空间的维度指数上升，无法严格表示波函数。
+对于一维只有近临相互作用的系统，表示为矩阵乘积态后，可以使用逐块虚时演化算法求得基态。
+
+首先我们介绍一下矩阵指数的Trotter展开，对于矩阵 $M = M_0 + M_1$ ，考虑指数展开：
+\begin{equation}
+\left\{
+\begin{aligned}
+\mathrm{e}^{x M} &= I + x M + O (x^2), \\
+\mathrm{e}^{x M_0} \mathrm{e}^{x M_1} & = (I + x M_0 + O(x^2)) (I + x M_1 + O(x^2)) ,
+\end{aligned}
+\right.
+\end{equation}
+展开得到：
+\begin{equation}
+\left\{
+\begin{aligned}
+\mathrm{e}^{x M} &= I + x (M_0 + M_1) + O (x^2), \\
+\mathrm{e}^{x M_0} \mathrm{e}^{x M_1} & = I + x (M_0 + M_1) + O(x^2) ,
+\end{aligned}
+\right.
+\end{equation}
+所以我们有：
+\begin{equation}
+\mathrm{e}^{x (M_0 + M_1)} = \mathrm{e}^{x M_0} \mathrm{e}^{x M_1} + O(x^2),
+\end{equation}
+这便是一阶的Trotter展开。
+
+而为了让误差更小，我们可以利用二阶的Trotter展开。考虑指数展开：
+\begin{equation}
+\left\{
+\begin{aligned}
+\mathrm{e}^{x M}
+= &I + x M + \frac{1}{2} x^2 M^2 + O (x^3), \\
+\mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x M_1} \mathrm{e}^{\frac{x}{2} M_0}
+ =
+&(I + \frac{1}{2} x M_0 + \frac{1}{8} x^2 M_0^2 + O(x^3)) \\
+&(I + x M_1 + \frac{1}{2} x^2 M_1^2 + O(x^3))\\
+&(I + \frac{1}{2} x M_0 + \frac{1}{8} x^2 M_0^2 + O(x^3))
+,
+\end{aligned}
+\right.
+\end{equation}
+展开得到：
+\begin{equation}
+\left\{
+\begin{aligned}
+\mathrm{e}^{x M}                                                             = &I + x (M_0 + M_1) + \\
+                                                                               &\frac{1}{2} x^2 (M_0^2 + M_1^2 + M_0 M_1 + M_1 M_0) + O (x^3), \\
+\mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x M_1} \mathrm{e}^{\frac{x}{2} M_0} = &I + x (M_0 + M_1) + \\
+                                                                               &\frac{1}{2} x^2 (M_0^2 + M_1^2 + M_0 M_1 + M_1 M_0) + O (x^3),
+\end{aligned}
+\right.
+\end{equation}
+所以我们有：
+\begin{equation}
+\mathrm{e}^{x (M_0 + M_1)} = \mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x M_1} \mathrm{e}^{\frac{x}{2} M_0}+ O(x^2),
+\end{equation}
+这便是二阶的Trotter展开。
+
 
 *** 简单更新算法
 
