@@ -1241,7 +1241,20 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 严格的虚时间演化算法只能计算粒子数最多约 30 的系统，对于更大的系统，态空间的维度指数上升，无法严格表示波函数。
 对于一维只有近临相互作用的系统，表示为矩阵乘积态后，可以使用逐块虚时演化算法求得基态。
 
-首先我们介绍一下矩阵指数的Trotter展开，对于矩阵 $M = M_0 + M_1$ ，考虑指数展开：
+对于哈密顿量 $H = H_0 + H_1 + \cdots H_{N-1}$ ，虚时间演化作用的算符是
+\begin{equation}
+U = \mathrm{e}^{-\tau (H_0 + H_1 + \cdots H_{N-1})}.
+\end{equation}
+我们希望可以将其化为多个局部的算符作用的乘积，类似：
+\begin{equation}
+\def\expH#1{\mathrm{e}^{-\tau H_{#1}}}
+U = \expH{0} \expH{1} \cdots \expH{N-1},
+\end{equation}
+然而由于各个 $H_n$ 之间彼此不对易，矩阵指数无法直接拆开。
+为了解决这个问题，我们需要使用矩阵指数的Trotter展开。
+
+Trotter展开将矩阵和的指数变为矩阵指数的乘积。
+对于矩阵 $M = M_0 + M_1$ ，考虑指数展开：
 \begin{equation}
 \left\{
 \begin{aligned}
@@ -1313,7 +1326,8 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 \mathrm{e}^{\frac{x}{2} M_1}
 \cdots
 \mathrm{e}^{\frac{x}{2} M_{N-2}}
-\mathrm{e}^{\frac{x}{2} M_{N-1}}
+\mathrm{e}^{\frac{x}{2} M_{N-1}} \\
+&
 \mathrm{e}^{\frac{x}{2} M_{N-1}}
 \mathrm{e}^{\frac{x}{2} M_{N-2}}
 \cdots
