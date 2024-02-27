@@ -1187,7 +1187,48 @@ I = \delta_{i j} b^{\prime i} a^{\prime j} .
 
 *** 严格波函数的虚时间演化算法
 
-对于哈密顿量为 $H$ 的系统，
+对于一个正定的矩阵，其最大本征值以及对应的本征态可以通过幂法迭代就得，即给定任意初始态 $x_0$ 后，使用
+\begin{equation}\label{eq:幂法迭代}
+x_{n} = M x_{n-1} , \quad n > 0,
+\end{equation}
+进行迭代， $x_n$ 随着 $n \to \infty$ 会收敛到最大本征值对应的本征态上。
+
+这是因为使用 $M$ 的本征态 $e_i$ 做基对 $x_0$ 分解后，我们得到：
+\begin{equation}
+x_0 = e_i a_0^i,
+\end{equation}
+而矩阵 $M$ 分解得到：
+\begin{equation}
+M = e_i \lambda_i e_i^\dag,
+\end{equation}
+其中 $\lambda_i$ 为 $M$ 的本征值 ， $\lambda_0 > \lambda_1 > \lambda_2 > \cdots > 0$ 。
+公式 [[eqref:eq:幂法迭代]] 写在此基下为：
+\begin{equation}
+\begin{aligned}
+x_{n} &= e_i a_{n}^i \\
+&= M x_{n} \\
+&= e_{i'} \lambda_{i'} e_{i'}^\dag e_i a_{n-1}^i \\
+&= e_{i'} \lambda_{i'} \delta_{i i'} a_{n-1}^i \\
+&= e_{i} \lambda_{i} a_{n-1}^i \\
+&= e_{i} \lambda_{i}^n a_0^i ,
+\end{aligned}
+\end{equation}
+即 $a_{n}^i = \lambda_i ^{n} a_0^i$ 。
+最大本征值对应的本征态分量相比与其他本征态，比值为：
+\begin{equation}\label{eq:幂法的系数比值}
+\frac{\lambda_0^n a_0^0}{\lambda_i^n a_0^i} = \left(\frac{\lambda_0}{\lambda_i}\right)^n \frac{a_0^0}{a_0^i} , \quad i>0,
+\end{equation}
+而 $\frac{\lambda_0}{\lambda_i} > 1$ ， 故 $n \to \infty$ 时，只要 $a_0^0 \neq 0$ ， 即初态含有最大本征值的分量，公式 [[eqref:eq:幂法的系数比值]] 会趋向无穷大，可见最后将收敛到最大本征值对应的本征态。
+
+对于哈密顿量为 $H$ 的系统，为了求得基态，可以使用 $M = \mathrm{e}^{- \tau H}$ 作为幂法中的矩阵进行迭代， 其中 $\tau > 0$ 。
+$H$ 的本征值为 $\varepsilon_i$ ， $\varepsilon_0 < \varepsilon_1 < \varepsilon_2 < \cdots$ ，则 $M$ 的本征值为
+$\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lambda_2 > \cdots > 0$ 。
+所以使用 $\mathrm{e}^{-\tau H}$ 迭代后，可以得到系统的基态，即：
+\begin{equation}
+\lim_{n\to\infty} \mathrm{e}^{-n\tau H} |\Psi^0\rangle = |\Psi^*\rangle ,
+\end{equation}
+其中 $| \Psi^0 \rangle$ 为任意不和基态完全正交的初态， $|\Psi^*\rangle$ 为基态。
+
 
 *** 逐块虚时间演化算法
 
