@@ -1224,11 +1224,16 @@ x_{n} &= e_i a_{n}^i \\
 $H$ 的本征值为 $\varepsilon_i$ ， $\varepsilon_0 < \varepsilon_1 < \varepsilon_2 < \cdots$ ，则 $M$ 的本征值为
 $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lambda_2 > \cdots > 0$ 。
 所以使用 $\mathrm{e}^{-\tau H}$ 迭代后，可以得到系统的基态，即：
-\begin{equation}
-\lim_{n\to\infty} \mathrm{e}^{-n\tau H} |\Psi^0\rangle = |\Psi^*\rangle ,
+\begin{equation}\label{eq:幂法虚时间演化}
+\lim_{n\to\infty} \mathrm{e}^{-n\tau H} |\psi^0\rangle = |\psi^*\rangle ,
 \end{equation}
-其中 $| \Psi^0 \rangle$ 为任意不和基态完全正交的初态， $|\Psi^*\rangle$ 为基态。
+其中 $| \psi^0 \rangle$ 为任意不和基态完全正交的初态， $|\psi^*\rangle$ 为基态。
 
+观察公式 [[eqref:eq:幂法虚时间演化]] ，令 $\beta = n \tau$ ，可得：
+\begin{equation}
+\lim_{\beta \to\infty} \mathrm{e}^{-\beta H} |\psi^0\rangle = |\psi^*\rangle ,
+\end{equation}
+而 $\mathrm{e}^{-\beta H}$  正是温度为 $\frac{1}{\beta}$ 时系统的密度矩阵 。
 
 *** 逐块虚时间演化算法
 
