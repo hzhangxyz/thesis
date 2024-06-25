@@ -1396,7 +1396,7 @@ TNSP简化了各种张量网络态（TNS）方法，特别是PEPS方法的编程
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics{figures/structure-of-tnsp.pdf}
+\includegraphics[width=0.8\textwidth]{figures/structure-of-tnsp.pdf}
 \caption{张量网络态计算套件的结构}
 \label{fig:张量网络态计算套件的结构}
 \note{注：
@@ -1405,7 +1405,7 @@ TNSP简化了各种张量网络态（TNS）方法，特别是PEPS方法的编程
 在Python接口的基础上，开发了一个名为tetragono的包，提供了一个易于访问和统一的接口，用于适用于不同物理模型和张量类型的多种TNS方法。
 tetragono可以通过插件进行自定义修改。
 套件还包括一个名为tetraku的模型库，其中包含了一系列预定义的插件，这些插件涵盖了各种物理模型、采样策略等。
-此外，tetragono还使用了几个辅助库：lazy_graph，提供了一种在计算中使用的惰性求值机制；以及PyScalapack，提供了ScaLAPACK的Python接口。
+此外，tetragono还使用了几个辅助库：lazy\_graph，提供了一种在计算中使用的惰性求值机制；以及PyScalapack，提供了ScaLAPACK的Python接口。
 }
 \end{figure}
 #+end_export
@@ -1418,7 +1418,23 @@ TAT通过使用所谓的对称性类型（Symmetry）来区分张量类型，对
 随后，张量类型（Tensor）由一系列边名称和一系列边构建，并提供各种张量操作的接口，如奇异值分解（SVD）、收缩或边分割/合并，这些操作在不同张量类型中保持接口的一致性。
 一旦构建了具有特定对称群的张量，其各种操作的函数接口都保持一致。
 
-TODO
+如图 [[ref:fig:张量网络态计算套件的结构]] 所示，我们使用pybind11将TAT的C++接口进行了封装，开发了一个Python3接口。
+用户可以直接通过C++代码访问TAT库，也可以通过Python接口进行访问。
+
+在核心张量库之上，我们开发了tetragono，以提供针对不同物理模型和张量类型的各种TNS方法（特别是PEPS）的简便且统一的接口。
+tetragono引入了抽象态类型（AbstractState）的概念以记录物理模型中的各种信息，以及一个抽象晶格类型（AbstractLattice），涵盖了PEPS虚拟边的详细信息。
+在这两个抽象类之上，tetragono实现了各种TNS方法，包括简单更新和各种基于采样的方法。
+在基于采样的方法中，tetragono实现了物理观测量的计算和优化方法，例如梯度下降 [[cite:Liu2017]] 和随机重构算法 [[cite:Sorella1998,Neuscamman2012,Stokes2020]]。
+同时提供了一个简单的直接对角化方法，可用于对小系统中TNS的结果进行基准测试。
+为提高重用性，各种组件如用于单层或双层网络的边界MPO方法 [[cite:Murg2007]] 的辅助张量系统也被独立封装。
+目前，tetragono仅支持方形晶格上的PEPS。
+但我们注意到，三角晶格上的模型可以直接利用为方形晶格设计的PEPS [[cite:Zhang2022]] 。
+此外，通过引入在某一位置处的多个物理指标，我们可以把其他晶格几何结构（如Kagome和六边晶格）映射到方形晶格上 [[cite:Dong2023]] 。
+
+tetragono提供了一个接口，使用户能够开发自己的插件，从而在框架内自定义物理模型和算法。
+例如，在基于采样的算法 [[cite:Sandvik2007,Liu2017,Dong2019]] , 中，用户可以修改采样规则，以针对特定物理模型提高效率。
+
+我们在套件内为一些常见的物理模型实现了一系列插件，并将它们整合到一个名为tetraku的库中。tetraku被设计为与tetragono无缝集成的插件，使用户无需额外编程即可直接利用这些物理模型。
 
 ** 张量库
 
