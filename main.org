@@ -1238,11 +1238,13 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 
 *** 逐块虚时间演化算法
 
+**** 逐块虚时间演化算法的形式
+
 严格的虚时间演化算法只能计算粒子数最多约 30 的系统，对于更大的系统，态空间的维度指数上升，无法严格表示波函数。
 对于一维只有近临相互作用的系统，表示为矩阵乘积态后，可以使用逐块虚时演化算法求得基态。
 
 对于哈密顿量 $H = H_0 + H_1 + \cdots H_{N-1}$ ，虚时间演化作用的算符是
-\begin{equation}
+\begin{equation}\label{eq:多项的Hamiltonian演化算符}
 U = \mathrm{e}^{-\tau (H_0 + H_1 + \cdots H_{N-1})}.
 \end{equation}
 我们希望可以将其化为多个局部的算符作用的乘积，类似：
@@ -1311,7 +1313,7 @@ Trotter展开将矩阵和的指数变为矩阵指数的乘积。
 这便是二阶的Trotter展开。
 
 对于多个矩阵相乘的情况， $M=M_0 + M_1 + \cdots M_{N-1}$ ，连续使用二阶的Trotter展开可得：
-\begin{equation}
+\begin{equation}\label{eq:多项求和的Trotter展开}
 \begin{aligned}
 \mathrm{e}^{x (M_0 + M_1 + \cdots M_{N-1})}
 =&\mathrm{e}^{\frac{x}{2} M_0} \mathrm{e}^{x (M_1 + M_2 + \cdots M_{N-1})} \mathrm{e}^{\frac{x}{2} M_0}+ O(x^3) \\
@@ -1333,19 +1335,79 @@ Trotter展开将矩阵和的指数变为矩阵指数的乘积。
 \cdots
 \mathrm{e}^{\frac{x}{2} M_1}
 \mathrm{e}^{\frac{x}{2} M_0}
-+O(N x^3) \\
++O(N x^3), \\
 \end{aligned}
 \end{equation}
+将 [[eqref:eq:多项的Hamiltonian演化算符]] 代入 [[eqref:eq:多项求和的Trotter展开]] ，我们可以得到：
+\begin{equation}\label{eq:逐块虚时间演化算法的最终公式}
+\begin{aligned}
+U
+=&\mathrm{e}^{-\tau (H_0 + H_1 + \cdots H_{N-1})} \\
+=&\mathrm{e}^{\frac{-\tau}{2} H_0}
+\mathrm{e}^{\frac{-\tau}{2} H_1}
+\cdots
+\mathrm{e}^{\frac{-\tau}{2} H_{N-2}}
+\mathrm{e}^{\frac{-\tau}{2} H_{N-1}} \\
+&
+\mathrm{e}^{\frac{-\tau}{2} H_{N-1}}
+\mathrm{e}^{\frac{-\tau}{2} H_{N-2}}
+\cdots
+\mathrm{e}^{\frac{-\tau}{2} H_1}
+\mathrm{e}^{\frac{-\tau}{2} H_0}
++O(N \tau^3). \\
+\end{aligned}
+\end{equation}
+[[eqref:eq:逐块虚时间演化算法的最终公式]] 即为逐块虚时间演化算法的核心公式。
+
+**** 张量网络态中的逐块虚时间演化算法
+
+在实际应用中，尤其对仅具有近邻和次近邻相互作用的格点模型，我们通常将哈密顿量拆分成尽可能少的不对易部分，以最大程度地减少误差。
+例如，对于一维仅存在近邻相互作用的系统，哈密顿量可以表示为
+\begin{equation}
+H = \sum_{i=0,\cdots,L-2} h_{i,i+1} ,
+\end{equation}
+其中 $h_{i,i+1}$ 表示第 $i$ 和 $i+1$ 个格点之间的相互作用。
+我们可以将哈密顿量分为两部分 $H=H_0 + H_1$ ，其中
+\begin{equation}
+\left\{
+\begin{aligned}
+H_0 &= \sum_{i=0,2,\cdots} h_{i,i+1} \\
+H_1 &= \sum_{i=1,3,\cdots} h_{i,i+1} .
+\end{aligned}
+\right.
+\end{equation}
+
+TODO: SVD，环境正则
 
 *** 简单更新算法
 
+TODO
+
 ** 采样方法
+
+TODO
 
 *** 基于采样的观测量计算
 
 *** 基于采样方法的变分法
 
 *** 基于采样的自然梯度法
+
+* 张量网络态程序在神威超级计算机上的优化
+
+TODO
+
+* 张量库与张量网络算法库
+
+TODO
+
+* 六角格子中的Hubbard模型的掺杂基态模拟计算
+
+TODO
+
+* 方格子中的Hubbard模型的有限温模拟计算
+
+TODO
 
 
 #+begin_export latex
