@@ -488,7 +488,7 @@ T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})}.
 \end{equation}
 为此，张量需要满足形式：
-\begin{equation}\label{eq:Abel对成性张量的原始形式}
+\begin{equation}\label{eq:Abel对称性张量的原始形式}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 P_{(s_0, \alpha_{s_0}),(s_1, \alpha_{s_1}),\cdots (s_{R-1}, \alpha_{s_{R-1}})}
 C(s_0,s_1,\cdots s_{R-1}) ,
@@ -501,8 +501,8 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \end{aligned}\right.
 \end{equation}
 是对称群决定的对称性条件。
-将公式 [[eqref:eq:Abel对成性张量的原始形式]] 稍作变形得到：
-\begin{equation}\label{eq:Abel对成性张量的形式}
+将公式 [[eqref:eq:Abel对称性张量的原始形式]] 稍作变形得到：
+\begin{equation}\label{eq:Abel对称性张量的形式}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 \left(P_{s_0,s_1,\cdots,s_{R-1}}\right)_{\alpha_{s_0},\alpha_{s_1},\cdots \alpha_{s_{R-1}}}
 R(s_0,s_1,\cdots s_{R-1}) .
@@ -592,7 +592,7 @@ f_{i+1,j}^\dag f_{i,j} = \mathrm{e} ^ {+\mathrm{i}\pi (\sum_{k=j}^{L_2-1} a_{i,k
 所以即使只有近临相互作用的二维系统，进行Jordan-Wigner变换时，也会引入大量的交换费米子产生的相位符号，并且这是多体且长程的。
 当应用Jordan-Wigner变换于张量网络态时，这种长程相互作用，会极大地削弱张量网络态的表示能力。
 
-一种针对费米子的张量网络态可以解决这个问题。
+一种针对费米子的张量网络态可以解决这个问题 [[cite:Dong2019]] 。
 考虑公式 [[eqref:eq:投影纠缠对阐述的一般张量网络]] ，这种张量网络态的阐述中，
 使用母态中的纠缠对建立关联，并使用投影算子将母态投影到真实的物理空间中。
 如果直接将母态中的物理产生算符替换成真实的费米子产生算符，会破坏原本的网络中，
@@ -1634,7 +1634,7 @@ TODO
 ** 张量网络态计算套件概述
 
 基于第 [[ref:sec:张量和张量网络]] 章介绍的各类型张量与第 [[ref:sec:张量网络态算法]] 章介绍的多种张量网络态算法，我们开发了张量网络态计算套件（TNSP）[[cite:TNSP-repo]]。
-TNSP简化了各种张量网络态（TNS）方法，特别是PEPS方法的编程过程，它抽象了不同类型张量的细节，无论是费米子张量、对成性张量还是常规的张量。
+TNSP简化了各种张量网络态（TNS）方法，特别是PEPS方法的编程过程，它抽象了不同类型张量的细节，无论是费米子张量、对称性张量还是常规的张量。
 它提供了简单的用户和编程界面，方便使用各种流行的TNS方法，包括简单更新、梯度优化和各种采样技术。
 该框架的设计本身十分具有灵活性，允许用户通过Python3插件无缝集成自定义的物理模型和优化策略。
 
@@ -1674,7 +1674,7 @@ tetragono引入了抽象态类型（AbstractState）的概念以记录物理模�
 为提高重用性，各种组件如用于单层或双层网络的边界MPO方法 [[cite:Murg2007]] 的辅助张量系统也被独立封装。
 目前，tetragono仅支持方形晶格上的PEPS。
 但我们注意到，三角晶格上的模型可以直接利用为方形晶格设计的PEPS [[cite:Zhang2022]] 。
-此外，通过引入在某一位置处的多个物理指标，我们可以把其他晶格几何结构（如Kagome和六边晶格）映射到方形晶格上 [[cite:Dong2023]] 。
+此外，通过引入在某一位置处的多个物理指标，我们可以把其他晶格几何结构，如Kagome和六边晶格，映射到方形晶格上 [[cite:Dong2023]] 。
 
 tetragono提供了一个接口，使用户能够开发自己的插件，从而在框架内自定义物理模型和算法。
 例如，在基于采样的算法 [[cite:Sandvik2007,Liu2017,Dong2019]] , 中，用户可以修改采样规则，以针对特定物理模型提高效率。
@@ -1695,7 +1695,7 @@ TAT通过静态处理指示每个量子数的费米玻色性质， 提高了代�
 根据对称性类型， TAT定义了一种边类型， 用于表示张量指标的属性， 封装了由对称性类型表征的值及其简并性。
 这种边由若干段组成， 并且在适用的情况下， 包含一个布尔值， 指示费米子情况下的费米箭头。
 其中若干段中的每一段是对称性类型的值与其简并性构成的对。
-一个分块多维数组， 或者说Core类型， 是由这些边的序列通过公式  [[eqref:eq:Abel对成性张量的形式]] 创建而成的， 为了性能效率， 将分块数据存储为一维数组。
+一个分块多维数组， 或者说Core类型， 是由这些边的序列通过公式  [[eqref:eq:Abel对称性张量的形式]] 创建而成的， 为了性能效率， 将分块数据存储为一维数组。
 然后， 张量类型由指向这个Core类型的指针和一个边名称的序列组成， 这允许在不直接改变原始张量的情况下， 通过轻量级的非就地边重命名来操纵张量元数据。
 TAT提供了张量操作的各种接口， 如奇异值分解， 收缩， 或边的分割/合并。
 一旦使用每个对称性所需要的独特属性构建完成了张量， 其他所有的张量操作接口就能在不同的张量类型和对称性组之间保持一致。
@@ -1900,7 +1900,7 @@ function & example\\\hline\hline
 \caption{\label{table:TAT-functions}常用的函数}
 \note{注：
 1. 函数名遵循命名约定，即内置函数以下划线 “\texttt{\_}” 结尾。
-2. \texttt{clear\_symmetry} 函数旨在最大程度地消除对称信息。对于非费米子对成性张量，此操作生成一个非对成性张量。反之，对于费米子张量，该操作的结果是一个费米-$Z(2)$ 对成性张量。
+2. \texttt{clear\_symmetry} 函数旨在最大程度地消除对称信息。对于非费米子对称性张量，此操作生成一个非对称性张量。反之，对于费米子张量，该操作的结果是一个费米-$Z(2)$ 对称性张量。
 3. \texttt{contract} 函数的第二个参数是一个包含对的集合，每对包含第一个张量中的一个边名及其在第二个张量中的对应边名。
 4. \texttt{exponential}、\texttt{identity\_} 和 \texttt{trace} 函数需要一组对来确认边的关系，明确指出张量中哪条边与哪条边对应。
 5. 在 \texttt{qr} 函数中，当第一个参数为 \texttt{'r'} 时，第二个参数表示新形成的 \texttt{R} 张量的自由边。相反，如果第一个参数是 \texttt{'q'}，第二个参数则指定 \texttt{Q} 张量的自由边。最后两个参数表示 QR 分解过程中新创建的边的名称。
@@ -2268,7 +2268,101 @@ DMRG方法对于一维或准一维系统有效，但可能无法充分捕捉二�
 结果发现，在低掺杂浓度下，基态呈现AFM序，然而随着掺杂水平的增加，这一秩序逐渐减弱，并最终在 $\delta>0.05$ 时消失。
 相比之下，即使在较高的掺杂水平下，基态仍持续表现出稳定的CDW序。
 
+** 方法
+
+哈密顿量Hubbard模型的公式为
+\begin{equation}
+H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \sigma} + \text{h.c.} \right) + U \sum_i n_{i \uparrow} n_{i \downarrow},
+\end{equation}
+其中， $t$ 和 $U$ 分别为相邻格点之间的跃迁参数和格点上的库伦相互作用。
+这里， $c_{i, \sigma}$ 表示在格点 $i$ 处具有自旋 $\sigma$ 的电子湮灭算符，且 $n_{i\sigma} = c_{i\sigma}^\dagger c_{i\sigma}$ 。 本文中，默认 $t = 1$ 。
+
+该哈密顿量的多粒子波函数由费米子PEPS表示。为了简化实现，我们将六角格子映射到如图 [[ref:fig:六角格子映射]] 所示的方格子上。
+对于方格子上的每个格点，我们定义一个承载六角格子上的两个物理指标的张量，左上和右下两个角上的张量除外，它们依然只有一个物理指标。
+因此，PEPS中的张量的物理指标维度为 $4^2 = 16$ 。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{figures/honeycomb.pdf}
+\caption{六角格子系统到方格子的映射}
+\label{fig:六角格子映射}
+\note{注：
+六角晶格到方形晶格的映射，用于PEPS方法。每个灰色椭圆对应于PEPS中一个单独的张量，涵盖了两个六角晶格格点，左下角和右上角除外，它们仅包含一个点。黄色区域表示选择用于计算Cooper对相关函数的区域。
+}
+\end{figure}
+#+end_export
+
+我们首先通过应用简单更新方案来优化PEPS波函数  [[cite:Jiang2008]]  。
+得出的PEPS波函数随后作为初始态，利用梯度下降法进行进一步优化  [[cite:Sandvik2007,Liu2017,Dong2019]] 。
+在整个优化过程中，总粒子数始终保持守恒，以确保符合预期的掺杂浓度。
+这一守恒性是通过强制要求 PEPS的 fermi-$U(1)$ 对称性来实现的 [[cite:Singh2010]] 。
+在简单更新过程中，我们通过降序排列奇异值并保留最大的奇异值来截断虚拟指标，从而决定虚拟指标上量子数的选择。
+通过简单更新过程确定的虚拟指标量子数随后被用于梯度下降优化计算。
+为了计算能量和梯度，我们采用了参考文献 [[cite:Vieijra2021]] 中提出的直接采样技术。
+这种方法非常高效，因为避免了采样构型之间的关联，提高了计算效率和结果精度。
+从最初的虚拟指标维度 $D=4$ 开始，我们在简单更新过程中，逐步增加维度到 $D=16$ ，使能量收敛到约 $10^{-3}$ 的水平，如图 [[ref:fig:超导D收敛]] 所示。
+边界MPO方法中的截断维度被设置为 $D_c=2D$ ，同时，在优化PEPS过程中使用的采样数设定为 $N=10^4$ 。
+这些优化步骤和参数选择确保了我们在计算中能够获得准确和可靠的结果，为后续分析提供可靠的基础。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.6\textwidth]{figures/converge-D.pdf}
+\caption{能量随 $D$ 的收敛图}
+\label{fig:超导D收敛}
+\note{注：
+对于 $10 \times 10$ 的晶格（ $198$ 个格点 ），在参数 $U=8$ 和 $δ=0.1$ 的情况下，系统的能量作为虚拟指标维度 $D$ 的倒数的函数呈现收敛趋势。当 $D$ 接近 $16$ 时，能量大约收敛到 $10^{-3}$。
+}
+\end{figure}
+#+end_export
+
+我们获得基态波函数后，则利用直接采样技术 [[cite:Vieijra2021]] 计算物理量和关联函数。
+为了确保高精度，采样次数设定为 $10^5$ 次。此外，我们在此还提高了截断维度到 $D_c = 6D$ ，以尽可能减少截断误差。
+
 ** 计算结果与分析
+
+*** 超导性质
+
+我们首先研究了在六角格子上的空穴掺杂Hubbard模型的超导可能。
+在六角格子上，单态和三态Cooper对函数分别定义为
+\begin{equation}
+\left\{
+\begin{aligned}
+\Delta_s^a(i) &= \frac{1}{\sqrt{2}}(c_{i\uparrow}c_{j\downarrow} - c_{i\downarrow}c_{j\uparrow}) \tag{1} ,\\
+\Delta_t^a(i) &= \frac{1}{\sqrt{2}}(c_{i\uparrow}c_{j\downarrow} + c_{i\downarrow}c_{j\uparrow}) \tag{2} ,\\
+\end{aligned}
+\right.
+\end{equation}
+其中，$j = i + a$，$a$ 是围绕格点 $i$ 的三条边的方向之一。
+Cooper对可以根据它们的对称性进一步分类，它们是 $\Delta_s^a(i)$ 和 $\Delta_t^a(i)$ 的线性组合。
+
+具有超导性的系统可以根据其Cooper对配对的对称性进行分类。在六角格子上，可能的Cooper对对称性在文献 [[cite:Faye2015]] 中被定义为单态或三态对的组合，具体表达如下为
+\begin{equation}
+\left\{
+\begin{aligned}
+    \Delta_{s}(i)    &= \Delta^s_1(i) + \Delta^s_2(i) + \Delta^s_3(i) , \\
+    \Delta_{d+id}(i) &= \Delta^s_1(i) + e^{2\pi i/3} \Delta^s_2(i) + e^{4\pi i/3}\Delta^s_3(i) , \\
+    \Delta_{d-id}(i) &= \Delta^s_1(i) + e^{-2\pi i/3} \Delta^s_2(i) + e^{-4\pi i/3}\Delta^s_3(i) , \\
+    \Delta_{f}(i)    &= \Delta^t_1(i) + \Delta^t_2(i) + \Delta^t_3(i) , \\
+    \Delta_{p+ip}(i) &= \Delta^t_1(i) + e^{2\pi i/3} \Delta^t_2(i) + e^{4\pi i/3}\Delta^t_3(i) , \\
+    \Delta_{p-ip}(i) &= \Delta^t_1(i) + e^{-2\pi i/3} \Delta^t_2(i) + e^{-4\pi i/3}\Delta^t_3(i) .
+\end{aligned}
+\right.
+\end{equation}
+在此， $\Delta_1$ 、 $\Delta_2$ 和 $\Delta_3$ 分别三条边上的Cooper对，如图 [[ref:fig:cooper-pairs]]。
+
+#+begin_export latex
+\begin{figure}[tb]
+\centering
+\includegraphics[width=0.6\textwidth]{./cooper-pairs.pdf}
+\caption{\label{fig:cooper-pairs}Cooper对的对称性}
+\note{注：
+库珀对配对对称性示意图：(a) 对于$s$波和$f$波配对，三个库珀对具有相同的相位；(b) 对于$p$波和$d$波配对，三个库珀对$\Delta_1$、$\Delta_2$和$\Delta_3$分别具有相同的、${\rm exp(\pm 2/3 \pi i)}$和${\rm exp(\pm 4/3 \pi i)}$相位。
+}
+\end{figure}
+#+end_export
+
 
 TODO：参数
 
