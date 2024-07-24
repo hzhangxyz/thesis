@@ -1442,9 +1442,9 @@ TODO
 
 在公式 [[eqref:eq:观测量变形]] 中，有两个指标需要在整个希尔伯特空间中遍历，即 $s$ 和 $s'$ ，这是不可接受的，因为希尔伯特空间的大小高达 $d^N$ ，其中 $d$ 为单个物理指标的维度， $N$ 为物理指标的数目。
 为了解决这个问题，使用蒙特卡罗方法进行采样 $s \sim S$ ，其中 $S$ 为用于采样的分布， $s$ 被采样的概率设为 $p_s$ 。
-我们有
+我们可以估计观测量为
 \begin{equation}\label{eq:观测量采样}
-\langle O \rangle = \frac{\sum_{s \sim S} \frac{\langle\psi|s|\psi\rangle}{p_s}\frac{\sum_{s'} \langle \psi | s | O | s' | \psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} \frac{\langle \psi | s | \psi \rangle}{p_s}} .
+\widehat{\langle O \rangle} = \frac{\sum_{s \sim S} \frac{\langle\psi|s|\psi\rangle}{p_s}\frac{\sum_{s'} \langle \psi | s | O | s' | \psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} \frac{\langle \psi | s | \psi \rangle}{p_s}} .
 \end{equation}
 
 对观测量进行蒙特卡罗计算的时候，我们实际上是在进行多项分布的采样，令构型 $s$ 被采样到的次数为 $n_s$ ，则 $n_s \sim M(n, p_s)$  ，其中 $n$ 为总采样量。
@@ -1464,31 +1464,111 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 \begin{equation}\label{eq:严格观测量}
 \langle O \rangle = \frac{\sum_s p_s r_s O_s}{\sum_s p_s r_s} = \frac{\langle r O \rangle_p}{\langle r\rangle_p} = \langle O \rangle_\psi,
 \end{equation}
-而通过采样得到的能量为
+而通过采样得到的观测量估计为
 \begin{equation}\label{eq:采样观测量}
 \widehat {\langle O \rangle} = \frac{\sum_s q_s r_s O_s}{\sum_s q_s r_s},
 \end{equation}
 这和真实的观测量不同。
 
-将公式 [[eqref:eq:严格观测量]] 和公式 [[eqref:eq:采样观测量]] 的差值与插值平方代入公式 [[eqref:eq:多项分布期望]] ，我们得到
-\begin{equation}
+将公式 [[eqref:eq:严格观测量]] 和公式 [[eqref:eq:采样观测量]] 的差值与差值平方代入公式 [[eqref:eq:多项分布期望]] ，我们得到
+\begin{equation}\label{eq:采样的偏差和方差}
 \left\{
 \begin{aligned}
-\langle \widehat {\langle O \rangle} - \langle O \rangle \rangle_M &= - \frac{1}{n}\langle ( O - \langle O \rangle_\psi ) (r' - \langle r' \rangle_\psi) \rangle_\psi , \\
-\langle (\widehat {\langle O \rangle} - \langle O \rangle)^2 \rangle_M &= \frac{1}{n}\left\langle (O - \langle O \rangle_\psi)^2 r' \right\rangle_\psi .
+\langle \widehat {\langle O \rangle} - \langle O \rangle \rangle_M &= - \frac{1}{n}\langle ( O - \langle O \rangle_\psi ) (r' - \langle r' \rangle_\psi) \rangle_\psi + O(1/n^2), \\
+\langle (\widehat {\langle O \rangle} - \langle O \rangle)^2 \rangle_M &= \frac{1}{n}\left\langle (O - \langle O \rangle_\psi)^2 r' \right\rangle_\psi + O(1/n^2).
 \end{aligned}
 \right.
 \end{equation}
-
+可见 $\langle r' \rangle_\psi = r'_s$ ，即 $p_s \propto \langle \psi | s | \psi \rangle$ 时，通过蒙特卡罗计算的观测量的偏差是  $O(1/n^2)$ 的，当涉及到调整权重的重要采样时，对观测量的估计一般有一个 $1/n$ 级的偏差。
 
 
 *** 基于采样方法的变分法
 
-TODO
+蒙特卡罗方法用于计算梯度即变分蒙特卡罗方法，考虑使用参数 $T_i$ 表示的态 $|\psi\rangle$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
+\begin{equation}
+\left\{
+\begin{aligned}
+\frac{\partial E}{\partial T_i^*}&=\frac{\sum_{s,s'}\langle \partial_{T_i^*}\psi | s | H | s' | \psi \rangle}{\sum_{s}\langle \psi | s | \psi \rangle} - E \frac{\sum_s\langle \partial_{T_i^*}\psi|s|\psi\rangle}{\langle\psi|\psi\rangle} , \\
+\frac{\partial E}{\partial T_i}&=\frac{\sum_{s,s'}\langle \psi | s' | H | s | \partial_{T_i}\psi \rangle}{\sum_{s}\langle \psi | s | \psi \rangle} - E \frac{\sum_s\langle\psi|s|\partial_{T_i}\psi\rangle}{\langle\psi|\psi\rangle} .
+\end{aligned}
+\right.
+\end{equation}
+类似公式 [[eqref:eq:观测量采样]] ，我们可以将梯度写成采样估计的形式
+\begin{equation}
+\left\{
+\begin{aligned}
+\widehat{\frac{\partial E}{\partial T_i^*}}&=\frac{\sum_{s \sim S} r_s \frac{\sum_{s'} \langle \partial_{T_i^*}\psi | s | H | s' | \psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} r_s} - \hat E \frac{\sum_{s \sim S} r_s \frac{\langle \partial_{T_i^*}\psi | s | \psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} r_s} ,\\
+\widehat{\frac{\partial E}{\partial T_i}}&=\frac{\sum_{s \sim S} r_s \frac{\sum_{s'} \langle \psi | s' | H | s | \partial_{T_i}\psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} r_s} - \hat E \frac{\sum_{s \sim S} r_s \frac{\langle \psi | s | \partial_{T_i}\psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} r_s} .
+\end{aligned}
+\right.
+\end{equation}
+而对于任意 $\langle a|$ 和 $|b \rangle$ ，有 $\langle a | s | b \rangle = \frac{\langle a | s | \psi \rangle \langle \psi | s | b \rangle}{\langle \psi | s | \psi \rangle}$ ，令 $\Delta_s^i = \frac{\langle \partial_{T_i^*} \psi|s|\psi\rangle}{\langle \psi|s|\psi \rangle}$ ，
+经过化简，我们有
+\begin{equation}
+\left\{
+\begin{aligned}
+\widehat{\frac{\partial E}{\partial T_i^*}}&=\frac{\sum_{s \sim S} r_s \Delta_s^i E_s }{\sum_{s \sim S} r_s}- \hat E \frac{\sum_{s \sim S} r_s \Delta_s^i }{\sum_{s \sim S} r_s} \\
+\widehat{\frac{\partial E}{\partial T_i}}&=\frac{\sum_{s \sim S} r_s \Delta_s^{i*} E_s^* }{\sum_{s \sim S} r_s}- \hat E \frac{\sum_{s \sim S} r_s \Delta_s^{i*} }{\sum_{s \sim S} r_s} .
+\end{aligned}
+\right.
+\end{equation}
+
+令 $G={\frac{\partial E}{\partial T_i^*}$ ，为了分析梯度的偏差和方差，我们写成多项分布采得的 $q_s$ 的形式，得到
+\begin{equation}\label{eq:梯度的严格和估计}
+\left\{
+\begin{aligned}
+G&=\frac{\sum_{s} p_s r_s \Delta_s E_s }{\sum_{s} p_s r_s}- \frac{\sum_s p_s r_s E_s}{\sum_s p_s r_s} \frac{\sum_{s} p_s r_s \Delta_s}{\sum_{s} p_s r_s} , \\
+\hat G&=\frac{\sum_{s} q_s r_s \Delta_s E_s }{\sum_{s} q_s r_s}- \frac{\sum_s q_s r_s E_s}{\sum_s q_s r_s} \frac{\sum_{s} q_s r_s \Delta_s}{\sum_{s} q_s r_s} .
+\end{aligned}
+\right.
+\end{equation}
+将公式 [[eqref:eq:梯度的严格和估计]] 代入公式 [[eqref:eq:多项分布期望]] ，我们得到
+\begin{equation}\label{eq:梯度的偏差和方差}
+\left\{
+\begin{aligned}
+\langle \frac{n}{n-1}\hat G - G\rangle_M &= \frac{1}{n-1}\left(\langle G\rangle_\psi + \langle r'\rangle_\psi \langle G \rangle_\psi - 2 \langle r' G \rangle_\psi\right) + O(1/n^2), \\
+\langle (\frac{n}{n-1}\hat G - G)^2 \rangle_M &= \frac{1}{n}\left\langle (G - \langle G \rangle_\psi)^2 r' \right\rangle_\psi + O(1/n^2) .
+\end{aligned}
+\right.
+\end{equation}
+与观测量的情况类似，如果 $\langle r' \rangle_\psi = r'_s$ 即 $p_s \propto \langle \psi | s | \psi \rangle$ 时，梯度估计的偏差为 $O(1/n^2)$ ，而涉及到调整权重的重要采样时，则有 $1/n$ 级的偏差。
 
 *** 基于采样的自然梯度法
 
-TODO
+对于两个有度规的空间 $A$ 和 $B$ ， $x^{A*}_i g^{Aij} y^A_j = x^{B*}_i g^{Bij} y^B_j$ 所以
+\begin{equation}\label{eq:度规诱导}
+g^{Aij} = \frac{\partial x^{B*}_k}{\partial x^{A*}_i} g^{Bkl} \frac{\partial y^B_l}{\partial y^A_j} .
+\end{equation}
+而假设希尔伯特空间有平凡度规 ，  $g^H_{ij}=\delta_{ij}$ ，则可以在表示态的参数空间中诱导出参数空间的度规。
+
+希尔伯特空间是射影空间，我们首先将希尔伯特空间的度规诱导至对应的复向量空间中。
+由于
+\begin{equation}
+\psi_i^H = \frac{\psi_i^C}{\sqrt{\sum_k \psi_k^{C*} \psi_k^C}} ,
+\end{equation}
+我们有
+\begin{equation}\label{eq:C和H}
+\frac{\partial \psi^H_i}{\partial \psi^C_j} = \frac{1}{|\psi^C|} (\delta_{ij} - \frac{1}{2}\frac{\psi^C_i \psi^{C*}_j}{|\psi^C|^2}) .
+\end{equation}
+将公式 [[eqref:eq:C和H]] 代入公式 [[eqref:eq:度规诱导]] ，我们得到
+\begin{equation}
+\begin{aligned}
+g^{Cij}
+&= \frac{1}{|\psi^C|}(\delta_{ki} - \frac{\psi^{C*}_k \psi^C_i}{|\psi^C|^2}) \delta_{kl} \frac{1}{|\psi^C|}(\delta_{lj} - \frac{\psi^C_l \psi^{C*}_j}{|\psi^C|^2}) \\
+&= \frac{1}{|\psi^C|^2}(\delta_{ki} - \frac{\psi^{C*}_k \psi^C_i}{|\psi^C|^2}) (\delta_{kj} - \frac{\psi^C_k \psi^{C*}_j}{|\psi^C|^2}) \\
+&= \frac{1}{|\psi^C|^2}(\delta_{ij} - \frac{\psi^C_i \psi^{C*}_j}{|\psi^C|^2}) .
+\end{aligned}
+\end{equation}
+
+而对于参数 $T_i$ 所在的参数空间 $T$ ，其度规为
+\begin{equation}
+\begin{aligned}
+g^{Tij}
+&= \frac{\partial \psi_k^*}{\partial T_i^*} \frac{1}{|\psi|^2}(\delta_{kl} - \frac{\psi_k \psi_l^*}{|\psi|^2}) \frac{\partial \psi_l}{\partial T_j} \\
+&= \frac{1}{|\psi|^2}\frac{\partial \psi_k^*}{\partial T_i^*} (\delta_{kl} - \frac{\psi_k \psi_l^*}{|\psi|^2}) \frac{\partial \psi_l}{\partial T_j} \\
+&= \frac{1}{|\psi|^2} \left(\frac{\partial \psi_k^*}{\partial T_i^*} \frac{\partial \psi_k}{\partial T_j} - \frac{\partial \psi_k^*}{\partial T_i^*} \frac{\psi_k \psi_l^*}{|\psi|^2} \frac{\partial \psi_l}{\partial T_j}\right) .
+\end{aligned}
+\end{equation}
 
 *** 直接采样
 
