@@ -1623,11 +1623,11 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 
 *** 直接采样
 
-TODO
+TODO 直接采样
 
 * 张量网络态程序基础算子在神威超级计算机上的优化 <<sec:神威优化>>
 
-TODO
+TODO 神威优化
 
 * 张量网络态计算套件（TNSP） <<sec:软件>>
 
@@ -2577,7 +2577,7 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 
 * 方形晶格中的Hubbard模型的有限温模拟计算 <<sec:有限温>>
 
-TODO
+TODO 有限温度
 
 
 #+begin_export latex
@@ -2591,15 +2591,9 @@ TODO
 
 #+begin_export latex
 \begin{acknowledgements}
-在研究学习期间，我有幸得到了三位老师的教导，
-他们是：我的导师，中国科大XXX研究员，中科院X昆明动物所马老师以及美国犹他大学的XXX老师。
-三位深厚的学术功底，严谨的工作态度和敏锐的科学洞察力使我受益良多。
-衷心感谢他们多年来给予我的悉心教导和热情帮助。
 
-感谢XXX老师在实验方面的指导以及教授的帮助。
-科大的XXX同学和XXX同学参与了部分试验工作，在此深表谢意。
+TODO 致谢
 
-TODO
 \end{acknowledgements}
 
 \begin{publications}
@@ -2627,6 +2621,7 @@ TODO
 \item A A A A A A A A A
 \end{enumerate}
 
-TODO
+TODO publication
+
 \end{publications}
 #+end_export
