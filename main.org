@@ -2156,6 +2156,59 @@ for i in range(step_number):
 从这个例子中，我们看到通过使用TAT，可以像编写普通的、用于玻色子或自旋系统的PEPS方法那样为费米子系统编写代码。
 一旦系统的哈密顿量和初始参数确定，就无需再在后续使用过程中考虑费米子的反对易性质。
 
+*** 使用tetragono实现的简单更新
+
+在本章节中，我们使用tetragono接口重写了自由费米子模型的简单更新，与直接使用TAT相比，这大大简化了过程。
+一旦定义了物理模型，tetragono中实现的每个算法都可以通过一个命令访问。
+要描述自定义的物理模型，用户只需定义两个函数： =abstract_state= 用于确定模型的物理指标和哈密顿量，以及 =abstract_lattice= 用于设置PEPS中的虚拟指标。
+
+\begin{lstlisting}[language=Python, label={code:tet-abs-state.py}, caption=自由费米子的描述：\texttt{abstract\_state}]
+import TAT
+from TAT import parity
+import tetragono as tet
+
+
+def abstract_state(L1, L2):
+    # Create an abstract state with size of L1 * L2,
+    # and tensor type of fermi-Z(2) symmetry double-precision real number tensor
+    state = tet.AbstractState(TAT.FermiZ2.D.Tensor, L1, L2)
+    # Set one orbit for each site
+    for l1 in range(L1):
+        for l2 in range(L2):
+            state.physics_edges[l1, l2, 0] = [(parity(+1), 1), (parity(-1), 1)]
+    # Retrieve the predefined Hamiltonian term CC
+    CC = tet.common_tensor.Parity.CC.to(float)
+    # Apply the term to all neighboring site pairs in OBC
+    for l1 in range(L1):
+        for l2 in range(L2):
+            if l1 != 0:
+                state.hamiltonians[(l1 - 1, l2, 0), (l1, l2, 0)] = CC
+            if l2 != 0:
+                state.hamiltonians[(l1, l2 - 1, 0), (l1, l2, 0)] = CC
+    return state
+\end{lstlisting}
+
+在代码 [[ref:code:tet-abs-state.py]] 中，我们为自由费米子模型定义了 =abstract_state= ，包括系统大小和张量类型开始，以及每个格点的物理指标。
+该指标由两个段组成：一个量子数为 =+1= ，另一个为 =−1= ；每个段的简并度都是 =1= 。
+根据约定，物理指标的费米箭头默认设置为 =False= 。
+在tetragono中，每个格点可以承载多个物理指标，并通过其轨道索引区分。
+在本例子中，由于每个格点只有一个物理指标，所有轨道索引都是 =0= 。
+
+\begin{lstlisting}[language=Python, label={code:tet-abs-lattice.py}, caption=用于自由费米子的费米子PEPS描述：\texttt{abstract\_lattice}]
+def abstract_lattice(L1, L2, D):
+    # build the abstract lattice from abstract state
+    lattice = tet.AbstractLattice(abstract_state(L1, L2))
+    # Define vertical virtual bonds
+    for l1 in range(lattice.L1 - 1):
+        for l2 in range(lattice.L2):
+            lattice.virtual_bond[l1, l2, "D"] = [(parity(+1), D // 2), (parity(-1), D // 2)]
+    # Define horizontal virtual bonds
+    for l1 in range(lattice.L1):
+        for l2 in range(lattice.L2 - 1):
+            lattice.virtual_bond[l1, l2, "R"] = [(parity(+1), D // 2), (parity(-1), D // 2)]
+    return lattice
+\end{lstlisting}
+
 * 六角晶格中的Hubbard模型的掺杂基态模拟计算 <<sec:超导>>
 
 ** 背景介绍与主要结论
