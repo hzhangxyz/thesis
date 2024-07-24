@@ -2048,6 +2048,7 @@ def initialPEPS(L1, L2, D1, D2):
 算符 $h_{i,j}$ 可视为具有费米子 $Z(2)$ 对称性的四阶张量，并可在 TAT 包中表示为相应类型的费米子张量。
 在代码 [[ref:code:prepare-H.py]] 的第 1-13 行中，函数 =initialH= 被设计用来准备局部哈密顿量项 $h_{i,j}$ 。
 在后续的函数 =initialGate= ， 第 16-18 行中，我们定义了一个门算符 $\mathrm{Gate} = \mathrm{e}^{−\tau h_{i,j}}$，其中 $\tau$ 是时间步长。
+为了计算门张量的指数函数，指数函数被展开为级数形式，如图 [[ref:fig:张量指数的幂展开]] 所示。
 
 \begin{lstlisting}[language=Python, label={code:prepare-H.py}, caption={准备虚时间演化的门张量}]
 def initialH():
