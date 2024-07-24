@@ -1340,7 +1340,7 @@ Trotter展开将矩阵和的指数变为矩阵指数的乘积。
 +O(N x^3), \\
 \end{aligned}
 \end{equation}
-将 [[eqref:eq:多项的Hamiltonian演化算符]] 代入 [[eqref:eq:多项求和的Trotter展开]] ，我们可以得到：
+将公式 [[eqref:eq:多项的Hamiltonian演化算符]] 代入公式 [[eqref:eq:多项求和的Trotter展开]] ，我们可以得到：
 \begin{equation}\label{eq:逐块虚时间演化算法的最终公式}
 \begin{aligned}
 U
@@ -1359,7 +1359,7 @@ U
 +O(N \tau^3). \\
 \end{aligned}
 \end{equation}
-[[eqref:eq:逐块虚时间演化算法的最终公式]] 即为逐块虚时间演化算法的核心公式。
+公式 [[eqref:eq:逐块虚时间演化算法的最终公式]] 即为逐块虚时间演化算法的核心公式。
 
 矩阵乘积态上进行逐块虚时间演化时，每次仅需要在原有的MPS上作用 $U_i=\mathrm{e}^{\frac{-\tau}{2}H_i}$ 。
 如图 [[ref:fig:朴素的itebd]] (a)，对于仅有近临相互作用的系统，所有的 $U_i$ 只会作用在两个相邻的张量上，标记为第 $x$ 个张量和第 $y$ 个张量。
@@ -1423,7 +1423,64 @@ TODO
 
 *** 基于采样的观测量计算
 
-TODO
+对于观测量 $O$ ，我们可以将其分解为多项之和 $O = \sum_i O_i$ ，比如整体的 $z$ 方向自旋 $S_z = \sum_{i} S_z^i$ ，其中 $i$ 遍历所有的格点，而 $S_z^i$ 是 $i$ 格点处的自旋算符。
+通常，量子多体系统很少涉及四体以上的相互作用，我们可以认为每个 $O_i$ 只作用在较少个格点上。
+而无论是计算观测量，还是计算梯度，都可以看作计算单项 $O_i$ 或其梯度后，再计算简单的多项之和，所以不改变问题难度，本章的下文中， $O$ 仅代表观测量的一项。
+
+使用 $O$ 对 $|\psi\rangle$ 进行测量时，观测量为 $\langle O \rangle=\frac{\langle \psi | O | \psi \rangle}{\langle \psi | \psi \rangle}$ 。
+当 $|\psi\rangle$ 使用张量网络进行表示时，比如二维的投影纠缠对态，如果直接计算观测量，我们需要收缩双层的网络 $\langle \psi | O | \psi \rangle$ 。
+如果使用边界MPO的近似方式，复杂度高达 $O(D^4 D_c^3 + d D^6 Dc^2)$  [[cite:Liu2017]] ，其中 $Dc$ 为边界MPO方法中的截断参数，通常 $D_c \propto D^2$。
+而使用蒙特卡罗方法，可以避免双层网络的收缩。
+
+蒙特卡罗方法中，首先对 $\langle O \rangle$ 进行变形，得到
+\begin{equation}\label{eq:观测量变形}
+\langle O \rangle=\frac{\sum_{s,s'}\langle \psi | s | O | s' | \psi \rangle}{\sum_{s}\langle \psi | s | \psi \rangle} , 
+\end{equation}
+其中 $s$ 和 $s'$ 是希尔伯特空间中对某个构型上的投影算子。
+我们这里的表述与标准的变分蒙特卡罗有些不同，比如 我们写成 $\langle \psi | s | \psi \rangle$ 而不是 $\langle \psi | s\rangle \langle s|\psi \rangle$ 。
+这是因为使用费米子张量作为波函数表示时，我们无法将 $\langle \psi | s \rangle$ 写成构型无关的复数，而是得到 $\langle \psi | s$ 作为一个费米子张量，它可以进一步和 $|\psi\rangle$ 收缩得到复数。
+
+在公式 [[eqref:eq:观测量变形]] 中，有两个指标需要在整个希尔伯特空间中遍历，即 $s$ 和 $s'$ ，这是不可接受的，因为希尔伯特空间的大小高达 $d^N$ ，其中 $d$ 为单个物理指标的维度， $N$ 为物理指标的数目。
+为了解决这个问题，使用蒙特卡罗方法进行采样 $s \sim S$ ，其中 $S$ 为用于采样的分布， $s$ 被采样的概率设为 $p_s$ 。
+我们有
+\begin{equation}\label{eq:观测量采样}
+\langle O \rangle = \frac{\sum_{s \sim S} \frac{\langle\psi|s|\psi\rangle}{p_s}\frac{\sum_{s'} \langle \psi | s | O | s' | \psi \rangle}{\langle\psi|s|\psi\rangle}}{\sum_{s \sim S} \frac{\langle \psi | s | \psi \rangle}{p_s}} .
+\end{equation}
+
+对观测量进行蒙特卡罗计算的时候，我们实际上是在进行多项分布的采样，令构型 $s$ 被采样到的次数为 $n_s$ ，则 $n_s \sim M(n, p_s)$  ，其中 $n$ 为总采样量。
+记多项分布下， $X$ 的期望为 $\langle X \rangle_M$ 。
+令 $q_s = \frac{n_s}{n}$ ，对于任意 $q_s-p_s$ 的函数 $F$ ，由于
+$\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M = \frac{\delta_{st} p_s - p_s p_t}{n}$ ，
+而 对于 $k > 2$ ， $\langle (q_s-p_s)^k \rangle_M = O(1/n^2)$ ，
+我们有
+\begin{equation}\label{eq:多项分布期望}
+\langle F(q_s-p_s) \rangle_M = F(0) + \frac{1}{2n} \sum_{st} (\delta_{st} p_s - p_s p_t) \frac{\partial^2 F}{\partial \delta_s \delta_t}(0) + O(1/n^2) ,
+\end{equation}
+
+令 $r_s = \frac{\langle \psi|s|\psi\rangle}{p_s}$， $O_s = \frac{\sum_{s'}\langle\psi|s|O|s'|\psi\rangle}{\langle\psi|s|\psi\rangle}$ ，
+定义 $\langle X \rangle_p=\sum_{s}X_s p_s$ ，$\langle X \rangle_\psi = \frac{\langle X_s r_s \rangle_p}{\langle r_s \rangle_p}$ ，
+记   $r'_s=\frac{r_s}{\langle r\rangle_p}$ 。
+我们有观测量的严格表达式
+\begin{equation}\label{eq:严格观测量}
+\langle O \rangle = \frac{\sum_s p_s r_s O_s}{\sum_s p_s r_s} = \frac{\langle r O \rangle_p}{\langle r\rangle_p} = \langle O \rangle_\psi,
+\end{equation}
+而通过采样得到的能量为
+\begin{equation}\label{eq:采样观测量}
+\widehat {\langle O \rangle} = \frac{\sum_s q_s r_s O_s}{\sum_s q_s r_s},
+\end{equation}
+这和真实的观测量不同。
+
+将公式 [[eqref:eq:严格观测量]] 和公式 [[eqref:eq:采样观测量]] 的差值与插值平方代入公式 [[eqref:eq:多项分布期望]] ，我们得到
+\begin{equation}
+\left\{
+\begin{aligned}
+\langle \widehat {\langle O \rangle} - \langle O \rangle \rangle_M &= - \frac{1}{n}\langle ( O - \langle O \rangle_\psi ) (r' - \langle r' \rangle_\psi) \rangle_\psi , \\
+\langle (\widehat {\langle O \rangle} - \langle O \rangle)^2 \rangle_M &= \frac{1}{n}\left\langle (O - \langle O \rangle_\psi)^2 r' \right\rangle_\psi .
+\end{aligned}
+\right.
+\end{equation}
+
+
 
 *** 基于采样方法的变分法
 
