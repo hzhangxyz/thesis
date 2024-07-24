@@ -2419,7 +2419,30 @@ C(\Delta r) \propto \Delta r^{-K} .
 与 $\delta = 0.05$ 的情况类似，这些关联函数也表现出幂律衰减。
 拟合出的衰减指数 $K$ 随着掺杂水平的增加而减小。
 对于 $\delta = 0.15$ ， $K \sim 1.5$ ，而对于 $\delta = 0.25$ ， $K \sim 1.2$ 。
-在三角格子上的$t-J$模型中也发现了类似的幂律衰减现象 [[cite:Jiang2021]]。
+在三角格子上的 $t-J$ 模型中也发现了类似的幂律衰减现象 [[cite:Jiang2021]]。
+
+随后，我们在更广阔的区间中进行了Hubbard模型的模拟，参数 $U$ 从 $4$ 到 $12$ ，探索了不同的掺杂水平。
+由于之前的研究表明， 当 $U < U_c \approx 3.8$ 时，在广泛的掺杂范围内，六角格子上的Hubbard模型基态为半金属 [[cite:Otsuka2016]] ，因此我们未研究 $U < 4$ 的情况。
+我们的发现表明，在这些特定参数范围内，关联函数始终表现出幂律衰减行为。
+单态($K_s$)和三态($K_t$)关联的衰减指数总结在图 [[ref:fig:k-plot]] 中，可以观察到几个显著的趋势。
+随着掺杂水平的增加，衰减指数 $K_s$ 和 $K_t$ 的值趋于减小。
+对于 $U = 4$ 且掺杂水平 $\delta$ 超过 $0.05$ 的情况， 参数 $K$ 始终小于2。
+在 $\delta=0.2$ 的情况下， $K_s$ 和 $K_t$ 均接近 $1$ 。
+此外，对于 $U = 8$ 且 $\delta$ 大于 $0.1$ 的情况，衰减指数 $K$ 继续保持在2以下，表明当温度趋近于0时超导磁化率发散 [[cite:Peng2023]] 。
+有人提出在范霍夫奇点附近可能会发展出长程超导序 [[cite:Pathak2010,Nandkishore2012]]。
+然而，图 [[ref:fig:k-plot]] 中 $1/8$ 掺杂附近的结果并未显示出显著的行为。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.4\textwidth]{./k-plot.pdf}
+\caption{The power law decay exponent (a) $K_s$ of the singlet pair correlation
+  functions and (b) $K_t$ of the triplet pair correlation
+functions as a function of hole doping $\delta$, for different interaction strengths $U$, on a 198-site honeycomb lattice.
+}
+\label{fig:k-plot}
+\end{figure}
+#+end_export
 
 *** 反铁磁序与电荷密度波序
 
