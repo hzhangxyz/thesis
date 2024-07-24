@@ -1525,7 +1525,7 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 \right.
 \end{equation}
 
-令 $G={\frac{\partial E}{\partial T_i^*}$ ，为了分析梯度的偏差和方差，我们写成多项分布采得的 $q_s$ 的形式，得到
+令 $G=\frac{\partial E}{\partial T_i^*}$ ，为了分析梯度的偏差和方差，我们写成多项分布采得的 $q_s$ 的形式，得到
 \begin{equation}\label{eq:梯度的严格和估计}
 \left\{
 \begin{aligned}
@@ -1954,13 +1954,121 @@ tetragono的代码位于仓库的 =/tetragono= 目录下，组织如下：
 + =conversion.py=  中定义了适用于不同算法的对象转换函数。
 + 最后， =shell.py=  提供了一个高层次、用户友好的接口，称为tetragono shell，用于访问tetragono中的所有功能。
 
+用户可以在命令行中执行 =python -m tetragono.shell= 进入 tetragono shell。
+在tetragono shell中输入 =help= 或 =?= 将显示可用命令。 要获取特定命令的详细使用信息, 用户可以输入 =help <command>= 。
+用户可以在tetragono shell中逐行执行命令, 也可以在脚本文件中列出多个命令, 并使用 =python -m tetragono.shell <script_file>= 运行它们。
+通过这种方式, 可以自动利用 MPI, 这意味着如果用户使用 =mpirun python -m tetragono.shell <script_file>= 执行脚本文件, tetragono 内部实现的每个算法都将在可能的情况下使用 MPI 并行运行，从而加快程序执行速度。
+
 *** 常见模型合集（tetraku）
 
-TODO
+我们使用tetragono实现了几种流行的典型物理模型。
+这些模型包括方格晶格上的J1-J2模型、六角晶格上的Hubbard模型、方格晶格上的Rydberg模型等。
+我们将这些模型收集到 tetraku 库中。
+对于这些预定义模型，用户可以直接使用，无需进一步编码。
+此外，这些模型用作参考，或直接修改以包括额外的相互作用，从而创建更复杂的模型。
 
 ** 套件的使用展示
 
-TODO
+在本章节中，我们通过一个例子展示了TNSP中TAT的Python接口的使用。
+这是一个使用费米子PEPS方法解决方格晶格上的无自旋费米子模型的例子。
+随后，我们重新使用tetragono接口来改写此示例，相较于直接使用TAT，这种方法更为简便。
+
+方格晶格上自由费米子模型的哈密顿量为
+\begin{equation}
+H = \sum_{\langle i, j \rangle} (c_i^\dagger c_j + h.c.),
+\end{equation}
+其中， $\sum_{\langle i, j \rangle}$ 表示对最近邻对 $i$ 格点和 $j$ 格点的求和，本例采用开边界条件（OBC）。
+这个模型的波函数将使用费米子PEPS表示，并采用简单更新时间演化方法 [[cite:Jiang2008]] 来优化这个波函数。
+
+*** 使用Python接口TAT实现的简单更新
+
+我们使用费米子 $Z(2)$ 对称性和双精度实张量来处理自由费米子模型，这在TAT中定义为张量类型 =TAT.FermiZ2.float64.Tensor= 。
+在代码 [[ref:code:node-for-peps.py]] 中，我们定义了一个数据结构类 =Node= ，用于存储与每个格点相关的数据。
+在 =Node= 类结构中， =Tensor= 负责容纳PEPS波函数的主要数据，该张量是一个五阶张量。
+此张量包含四个指标对应于虚拟边，一个阶数用于物理指标。
+此外，我们定义了四个环境张量： =left= 、 =right= 、 =up= 和 =down= 。
+这些张量用于存储关于四个虚拟指标的环境信息，每个都是一个秩为2的张量，即矩阵。
+环境张量的默认值设置为 =None= ，表示环境张量是一个单位矩阵。
+边界边没有分配环境张量。
+需要注意的是，通过一条边连接的相邻节点共享相同的环境张量。
+
+\begin{lstlisting}[language=Python, label={code:node-for-peps.py}, caption={PEPS中的格点}]
+from dataclasses import dataclass
+import TAT
+from TAT import parity
+
+Tensor = TAT.FermiZ2.float64.Tensor
+
+
+@dataclass
+class Node:
+    site: Tensor  # 存储每个格点的张量
+    left: Tensor | None = None  # 存储环境张量
+    right: Tensor | None = None  # 存储环境张量
+    up: Tensor | None = None  # 存储环境张量
+    down: Tensor | None = None  # 存储环境张量
+\end{lstlisting}
+
+在代码 [[ref:code:init-peps.py]] 中，我们为费米子PEPS波函数生成具有费米子 $Z(2)$ 对称性的费米子张量。
+在第2-10行，我们准备了五条边，每条边由段（以量子数及其相应简并度的对列表表示）与费米箭头组成。费米箭头表示位于两个张量之间的EPR对中创造算符的顺序。
+对于每条边，费米子 $Z(2)$ 对称性可能的两个量子数是偶性(+1)和偶性(-1)。
+物理边的简并度统一设置为 =1= 。
+虚拟边两个量子数的简并度设置为 =D1= 和 =D2= ，边界边的简并度设置为 =1= 和 =0= 。这里，参数 =D1= 和 =D2= 可以自由设置，只要它们的和等于表示虚拟指标总维度 =D= 。在更新过程中， =D1= 和 =D2= 将自动调整到最佳值。
+
+随后，在代码 [[ref:code:init-peps.py]] 的第11-19行中，我们通过Python生成器创建一个二维列表，循环遍历每个PEPS中的点， =l1= 范围从 =0= 到 =L1-1= ， =l2= 范围从 =0= 到 =L2-1= ，其中 =L1= 和 =L2= 是晶格的大小。
+该列表由 =Node= 类的实例组成。
+张量使用指标的名称构建，例如 =left= 、 =right= 等。
+出于历史原因 [[cite:Verstraete2008]] ，这里使用的坐标系统中， =l1= 表示行， =l2= 表示列。当然，用户可以选择自己的坐标系统。
+环境张量保持默认值，这意味着对于内部边，环境是一个单位矩阵，而对于边界边，则没有环境张量。
+
+\begin{lstlisting}[language=Python, label={code:init-peps.py}, caption=PEPS的初始化]
+def initialPEPS(L1, L2, D1, D2):
+    phyEdge           = ([(parity(+1), 1 ), (parity(-1), 1 )], False)
+    leftEdge          = ([(parity(+1), D1), (parity(-1), D2)], False)
+    boundaryLeftEdge  = ([(parity(+1), 1 ), (parity(-1), 0 )], False)
+    rightEdge         = ([(parity(+1), D1), (parity(-1), D2)], True)
+    boundaryRightEdge = ([(parity(+1), 1 ), (parity(-1), 0 )], True)
+    upEdge            = ([(parity(+1), D1), (parity(-1), D2)], False)
+    boundaryUpEdge    = ([(parity(+1), 1 ), (parity(-1), 0 )], False)
+    downEdge          = ([(parity(+1), D1), (parity(-1), D2)], True)
+    boundaryDownEdge  = ([(parity(+1), 1 ), (parity(-1), 0 )], True)
+    return [[
+        Node(site=Tensor(["phy", "left", "right", "up", "down"], [
+            phyEdge,
+            boundaryLeftEdge if l2 == 0 else leftEdge,
+            boundaryRightEdge if l2 == L2 - 1 else rightEdge,
+            boundaryUpEdge if l1 == 0 else upEdge,
+            boundaryDownEdge if l1 == L1 - 1 else downEdge,
+        ]).randn_()) for l2 in range(L2)
+    ] for l1 in range(L1)]
+\end{lstlisting}
+
+哈密顿量是各项局部哈密顿量的和，即邻近位置 $i$, $j$ 的两体相互作用 $h_{i,j} = c^\dag_i c_j + c^\dag_j c_i$ 。
+其中， $c^\dag_i$ 表示在格点 $i$ 上费米子的生成算符，而 $c_i$ 是从格点 $i$ 的湮灭算符。
+算符 $h_{i,j}$ 可视为具有费米子 $Z(2)$ 对称性的四阶张量，并可在 TAT 包中表示为相应类型的费米子张量。
+在代码 [[ref:code:prepare-H.py]] 的第 1-13 行中，函数 =initialH= 被设计用来准备局部哈密顿量项 $h_{i,j}$ 。
+在后续的函数 =initialGate= ， 第 16-18 行中，我们定义了一个门算符 $\mathrm{Gate} = \mathrm{e}^{−\tau h_{i,j}}$，其中 $\tau$ 是时间步长。
+
+\begin{lstlisting}[language=Python, label={code:prepare-H.py}, caption={准备虚时间演化的门张量}]
+def initialH():
+    # Prepare the physical edge and its conjugate
+    edge_out = ([(parity(+1), 1), (parity(-1), 1)], False)
+    edge_in  = ([(parity(+1), 1), (parity(-1), 1)], True)
+    # Set the local Hamiltonian with zero filled first
+    H = Tensor(
+        ["Oi", "Oj", "Ii", "Ij"],
+        [edge_out, edge_out, edge_in, edge_in],
+    ).zero_()
+    # Set the non zero item of the local Hamiltonian
+    H[{"Oi": 1, "Oj": 0, "Ii": 0, "Ij": 1}] = 1
+    H[{"Oi": 0, "Oj": 1, "Ii": 1, "Ij": 0}] = 1
+    return H
+
+
+def initialGate(H, tau):
+    # Get the quantum gate from the local hamiltonian term
+    return (-abs(tau) * H).exponential({("Ii", "Oi"), ("Ij", "Oj")})
+\end{lstlisting}
 
 * 六角晶格中的Hubbard模型的掺杂基态模拟计算 <<sec:超导>>
 
