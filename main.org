@@ -2338,7 +2338,7 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 Cooper对可以根据它们的对称性进一步分类，它们是 $\Delta_s^a(i)$ 和 $\Delta_t^a(i)$ 的线性组合。
 
 具有超导性的系统可以根据其Cooper对配对的对称性进行分类。在六角格子上，可能的Cooper对对称性在文献 [[cite:Faye2015]] 中被定义为单态或三态对的组合，具体表达如下为
-\begin{equation}
+\begin{equation}\label{eq:cooper-sym}
 \left\{
 \begin{aligned}
     \Delta_{s}(i)    &= \Delta^s_1(i) + \Delta^s_2(i) + \Delta^s_3(i) , \\
@@ -2355,7 +2355,7 @@ Cooper对可以根据它们的对称性进一步分类，它们是 $\Delta_s^a(i
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.6\textwidth]{./cooper-pairs.pdf}
+\includegraphics[width=0.6\textwidth]{cooper-pairs.pdf}
 \caption{\label{fig:cooper-pairs}Cooper对的对称性示意图}
 \note{注：
 (a) 对于 $s$ 波和 $f$ 波对，三个库珀对具有相同的相位；
@@ -2383,7 +2383,7 @@ C(\Delta r) = \frac{1}{N} \sum_{|{r}_1 - {r}_2| = \Delta r} |\langle \Delta({r}_
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{./exp-decay.pdf}
+\includegraphics[width=0.4\textwidth]{exp-decay.pdf}
 \caption{反铁磁态的Cooper关联衰减}
 \note{注：
 Cooper对关联在 $\delta=0$ 时呈指数衰。 系统为 $198$个格点的六角Hubbard模型；(a) $U=4$, (b) $U=8$, (c) $U=12$ 。}
@@ -2404,7 +2404,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{./power-decay.pdf}
+\includegraphics[width=0.4\textwidth]{power-decay.pdf}
 \caption{代数衰减下的Cooper对关联}
 \note{注：
 在198个格点的六角格子上，对于不同的空穴掺杂水平 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
@@ -2435,18 +2435,54 @@ C(\Delta r) \propto \Delta r^{-K} .
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{./k-plot.pdf}
-\caption{The power law decay exponent (a) $K_s$ of the singlet pair correlation
-  functions and (b) $K_t$ of the triplet pair correlation
-functions as a function of hole doping $\delta$, for different interaction strengths $U$, on a 198-site honeycomb lattice.
+\includegraphics[width=0.4\textwidth]{k-plot.pdf}
+\caption{不同$U$和$\delta$下的基态Cooper对关联衰减指数$K$}
+\note{注：
+在包含198个格点的六角晶格上，不同的相互作用强度 $U$ 下， 单态对关联函数的幂律衰减指数 $K_s$ 和三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
+(a) 单态对关联函数的幂律衰减指数 $K_s$ 随空穴掺杂 $\delta$ 的变化关系；
+(b) 三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
 }
 \label{fig:k-plot}
 \end{figure}
 #+end_export
 
+在空穴掺杂 $\delta=0.25$ 时， $K_s$ 接近 $1$ 。
+然而，当 $U$ 达到 $12$ 且 $\delta=0.15$ 时，$K$ 的值超过了其他空穴浓度下的观察值。
+这可能归因于存在一种竞争序，抑制了超导相。
+值得注意的是，即使使用公式 [[eqref:eq:cooper-sym]] 中定义的对称Cooper对计算对关联函数，这些结果依然保持一致且稳定。
+
+在之前的一项研究中，秦明普利用密度矩阵重正化群（DMRG）计算分析了六角格子上的Hubbard模型，结果表明超导序具有指数衰减的特性 [[cite:Qin2022]]。
+需要注意的是，这些计算是在一个长而窄的准一维格子上进行的。
+而我们的研究结果显示，对关联在距离 $\Delta r < 8$ 范围内呈现幂律衰减，在 $\Delta r = 8$ 处对关联值约为 $10^{-5} \sim 10^{-4}$ 。
+在此距离范围内，我们的结果与参考文献 [[cite:Qin2022]] 的报告结果一致。
+然而，参考文献 [[cite:Qin2022]] 的结果在 $\Delta r > 8$ 时显示出更快的衰减，可以用指数函数拟合。
+这种差异可能来源于参考文献 [[cite:Qin2022]] 中使用的窄准一维格子。
+在参考文献 [[cite:Peng2023]] 中，也观察到了Cooper对关联的幂律衰减。
+但值得注意的是，该文中报告的衰减指数比我们研究中得到的要小。
+
 *** 反铁磁序与电荷密度波序
 
-TODO
+与超导有竞争关系的相态中，最常观察到的两种相是反铁磁（AFM）和电荷密度波（CDW）。
+图 [[ref:fig:sc-lattice]] 显示了在 $U = 12$ 和 $\delta = 0.05$ 条件下， 198个格点的系统的空穴密度 $n_h = 1 - n_{\uparrow} - n_{\downarrow}$ 和自旋密度 $S_z = \frac{1}{2}(n_{\uparrow} - n_{\downarrow})$。
+在图 [[ref:fig:sc-lattice]] 中，圆圈的大小对应于空穴密度，而颜色则表示自旋密度的方向和大小。
+系统表现出带有畴壁结构的弱反铁磁性。
+空穴密度的空间变化则暗示了可能存在CDW序。
+最近的DMRG结果也揭示了在 $1/16 < \delta < 1/12$ 范围内，$U = 8$ 条件下，长而窄的六角格子（最多 $4 \times 32$ 个格子）的电荷和自旋均处在条纹状态 [[cite:Qin2022]]。
+在参考文献 [[cite:Qin2022]] 中，这些条纹垂直于系统的长边边界，这可能与系统尺寸和圆柱形边界条件有关。
+我们的结果为这些条纹图案提供了额外的证据。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.35\textwidth]{sc-lattice.pdf}
+\caption{$U=12$ ， $\delta=0.05$ 时，Hubbard模型的基态实空间图}
+\note{注：
+Hubbard模型基态在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
+颜色方案表示 $S_z$ 的幅值，红色表示自旋上，蓝色表示自旋下。圆圈的大小对应于空穴密度。
+}
+\label{fig:sc-lattice}
+\end{figure}
+#+end_export
 
 ** 小结
 
