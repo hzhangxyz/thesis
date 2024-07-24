@@ -21,7 +21,6 @@
           "xelatex -interaction nonstopmode -output-directory %o %f"
           "xelatex -interaction nonstopmode -output-directory %o %f"))
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
-  (setq org-latex-caption-above nil)
 #+end_src
 
 #+begin_export latex
@@ -1545,7 +1544,7 @@ G&=\frac{\sum_{s} p_s r_s \Delta_s E_s }{\sum_{s} p_s r_s}- \frac{\sum_s p_s r_s
 \end{equation}
 与观测量的情况类似，如果 $\langle r' \rangle_\psi = r'_s$ 即 $p_s \propto \langle \psi | s | \psi \rangle$ 时，梯度估计的偏差为 $O(1/n^2)$ ，而涉及到调整权重的重要采样时，则有 $1/n$ 级的偏差。
 
-*** 基于采样的自然梯度法
+*** 基于采样的自然梯度法 <<sec:::自然梯度法>>
 
 度量空间中，梯度下降算法可以被自然梯度法所取代。
 考虑局部最小化函数 $E(x_i,x_i^*)$ 的任务，我们需要寻找 $\min_{\delta x_i^* g^{ij} \delta x_j = r^2} \hat E(x_i + \delta x_i, x_i^* + \delta x_i^*)$ 。
@@ -1875,6 +1874,8 @@ TAT中常用的函数列在表 [[ref:table:TAT-functions]] 中，由于C++和Pyt
 #+begin_export latex
 \begin{table} [h]
 \begin{center}
+\caption{\label{table:TAT-functions}常用的函数}
+\scriptsize
 \begin{tabular}{|c|c|}
 \hline
 function & example\\\hline\hline
@@ -1897,7 +1898,6 @@ function & example\\\hline\hline
 \texttt{transpose} & \texttt{A.transpose(["j","i"])} \\\hline
 \texttt{zero\_} & \texttt{A.zero\_()} \\\hline
 \end{tabular}
-\caption{\label{table:TAT-functions}常用的函数}
 \note{注：
 1. 函数名遵循命名约定，即内置函数以下划线 “\texttt{\_}” 结尾。
 2. \texttt{clear\_symmetry} 函数旨在最大程度地消除对称信息。对于非费米子对称性张量，此操作生成一个非对称性张量。反之，对于费米子张量，该操作的结果是一个费米-$Z(2)$ 对称性张量。
@@ -2619,7 +2619,68 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 \begin{equation}
 \rho = \sum_{ss'} \rho_{ss'} |s\rangle\langle s'| \to |\rho\rangle_\sharp = \sum_{ss'} \rho_{ss'} |s\rangle \otimes |s'\rangle.
 \end{equation}
-将公式 [[eq:矩阵演化方程]] 进行矢量化，我们得到
+将公式 [[eqref:eq:矩阵演化方程]] 进行矢量化，我们得到
+\begin{equation}
+-\frac{\mathrm{d}}{\mathrm{d}\beta} |\rho(\beta)\rangle_\sharp = \frac{H \otimes I + I \otimes H^T}{2} |\rho(\beta)\rangle_\sharp .
+\end{equation}
+
+令 $H' =  \frac{H \otimes I + I \otimes H^T}{2}$ ，我们有
+\begin{equation} \label{eq:矢量演化方程}
+-\frac{\mathrm{d}}{\mathrm{d}\beta} |\rho(\beta)\rangle_\sharp = H' |\rho(\beta)\rangle_\sharp .
+\end{equation}
+而公式 [[eqref:eq:矢量演化方程]] 正是虚时间演化的演化方程，即
+\begin{equation}
+|\rho(\beta)\rangle_\sharp = \mathrm{e}^{-\beta H'}|\rho(0)\rangle_\sharp .
+\end{equation}
+这意味着，我们可以设 $|\rho(0)\rangle_\sharp=|I\rangle_\sharp$ ，并进行虚时间演化，从而得到系统的降温过程。
+
+然而，对于二维的多体系统，表示为投影纠缠对态后，难以进行高精度的虚时间演化。
+因此我们选择使用自然梯度法的方式进行变分地降温。
+考虑直接在希尔伯特空间中，给定某个态 $|\psi\rangle$ ，给定某个哈密顿量 $O$ ，其能量为
+\begin{equation}
+E = \langle \psi | O | \psi \rangle .
+\end{equation}
+直接计算梯度，得到梯度优化的公式
+\begin{equation} \label{eq:Hilbert空间的优化}
+\Delta |\psi\rangle = - \Delta \tau 2 O |\psi\rangle ,
+\end{equation}
+其中 $\Delta\tau$ 为梯度下降的步长，$\Delta |\psi\rangle$ 为态的增量。
+对比公式 [[eqref:eq:Hilbert空间的优化]] 和公式 [[eqref:eq:矢量演化方程]] ，我们可以发现，若
+\begin{equation}
+\left\{
+\begin{aligned}
+|\psi\rangle &= |\rho(\beta)\rangle_\sharp , \\
+\tau &= \beta , \\
+2O &= H' ,
+\end{aligned}
+\right.
+\end{equation}
+则公式 [[eqref:eq:Hilbert空间的优化]] 正是公式 [[eqref:eq:矢量演化方程]] 这个常微分方程的欧拉迭代解。
+这意味着，在希尔伯特空间直接使用 $H'/2$ 作为哈密顿量进行标准的梯度优化，相当于在对原密度矩阵进行降温。
+另一方面，[[ref:sec:::自然梯度法]] 介绍过的自然梯度法通过诱导度规，可以实现在参数空间中优化得到在希尔伯特空间进行标准的梯度下降的效果。
+综上，我们可以通过算法 [[ref:alg:降温]] 实现在参数空间下的降温
+
+#+begin_export latex
+\begin{algorithm}
+\caption{基于自然梯度的降温算法}\label{alg:降温}
+\begin{algorithmic}
+\Require $n \geq 0$
+\Ensure $y = x^n$
+\State $y \gets 1$
+\State $X \gets x$
+\State $N \gets n$
+\While{$N \neq 0$}
+\If{$N$ is even}
+    \State $X \gets X \times X$
+    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
+\ElsIf{$N$ is odd}
+    \State $y \gets y \times X$
+    \State $N \gets N - 1$
+\EndIf
+\EndWhile
+\end{algorithmic}
+\end{algorithm}
+#+end_export
 
 
 #+begin_export latex
