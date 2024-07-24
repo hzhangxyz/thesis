@@ -68,7 +68,7 @@ abstract TODO
 - SU :: 简单更新 (Simple Update)
 - DMRG :: 密度矩阵重整化 (Density Matrix Renormalization Group)
 
-TODO
+TODO 符号对照表
 
 #+begin_export latex
 \mainmatter
@@ -489,7 +489,7 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \end{equation}
 是对称群决定的对称性条件。
 将公式 [[eqref:eq:Abel对称张量的原始形式]] 稍作变形得到：
-\begin{equation}
+\begin{equation}\label{eq:Abel对称张量的形式}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 \left(P_{s_0,s_1,\cdots,s_{R-1}}\right)_{\alpha_{s_0},\alpha_{s_1},\cdots \alpha_{s_{R-1}}}
 R(s_0,s_1,\cdots s_{R-1}) .
@@ -1412,7 +1412,7 @@ TODO: 环境正则
 
 *** 简单更新算法
 
-TODO
+TODO 简单更新
 
 ** 采样方法
 
@@ -1481,7 +1481,6 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 \end{equation}
 可见 $\langle r' \rangle_\psi = r'_s$ ，即 $p_s \propto \langle \psi | s | \psi \rangle$ 时，通过蒙特卡罗计算的观测量的偏差是  $O(1/n^2)$ 的，当涉及到调整权重的重要采样时，对观测量的估计一般有一个 $1/n$ 级的偏差。
 
-
 *** 基于采样方法的变分法
 
 蒙特卡罗方法用于计算梯度即变分蒙特卡罗方法，考虑使用参数 $T_i$ 表示的态 $|\psi\rangle$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
@@ -1535,12 +1534,42 @@ G&=\frac{\sum_{s} p_s r_s \Delta_s E_s }{\sum_{s} p_s r_s}- \frac{\sum_s p_s r_s
 
 *** 基于采样的自然梯度法
 
-对于两个有度规的空间 $A$ 和 $B$ ， $x^{A*}_i g^{Aij} y^A_j = x^{B*}_i g^{Bij} y^B_j$ 所以
+度量空间中，梯度下降算法可以被自然梯度法所取代。
+考虑局部最小化函数 $E(x_i,x_i^*)$ 的任务，我们需要寻找 $\min_{\delta x_i^* g^{ij} \delta x_j = r^2} \hat E(x_i + \delta x_i, x_i^* + \delta x_i^*)$ 。
+其中 $\hat E$ 通过当前点 $(x_i,x_i^*)$ 处的梯度估计得到，即
+\begin{equation}
+\hat E(x_i+\delta x_i, x_i^* + \delta x_i^*)=E(x_i,x_i^*) + \frac{\partial E}{\partial x_i} \delta x_i + \frac{\partial E}{\partial x_i^*}\delta x_i^* .
+\end{equation}
+使用拉格朗日乘子，定义
+\begin{equation}
+L(\delta x_i, \delta x_i^*, \lambda) = E(x_i) + \frac{\partial E}{\partial x_i} \delta x_i + \frac{\partial E}{\partial x_i^*} \delta x_i^* + \lambda (\delta x_i^* g^{ij} \delta x_j - r^2) ,
+\end{equation}
+并求导得到
+\begin{equation}
+\left\{
+\begin{aligned}
+0&=\frac{\partial L}{\partial \delta x_i} = \frac{\partial E}{\partial x_i} + \lambda \delta x_j^* g^{ji}, \\
+0&=\frac{\partial L}{\partial \delta x_i^*} = \frac{\partial E}{\partial x_i^*} + \lambda g^{ij} \delta x_j .
+\end{aligned}
+\right.
+\end{equation}
+所以，
+\begin{equation}
+\left\{
+\begin{aligned}
+\delta x_i &= -\frac{1}{\lambda} g_{ij}\frac{\partial E}{\partial x_j^*} , \\
+\delta x_i^* &= - \frac{1}{\lambda} g_{ij}^* \frac{\partial E}{\partial x_j} . \\
+\end{aligned}
+\right.
+\end{equation}
+
+使用参数空间的参数表示量子态时，由于表示本身的原因，可能导致在参数空间中难以进行梯度下降。
+而希尔伯特空间中，能量函数有着较简单的形式，假设希尔伯特空间有平凡度规 ， 即 $g^H_{ij}=\delta_{ij}$ ，则可以在表示态的参数空间中诱导出参数空间的度规，从而提高优化效率。
+
+对于两个度量空间 $A$ 和 $B$ ， $x^{A*}_i g^{Aij} y^A_j = x^{B*}_i g^{Bij} y^B_j$ 所以
 \begin{equation}\label{eq:度规诱导}
 g^{Aij} = \frac{\partial x^{B*}_k}{\partial x^{A*}_i} g^{Bkl} \frac{\partial y^B_l}{\partial y^A_j} .
 \end{equation}
-而假设希尔伯特空间有平凡度规 ，  $g^H_{ij}=\delta_{ij}$ ，则可以在表示态的参数空间中诱导出参数空间的度规。
-
 希尔伯特空间是射影空间，我们首先将希尔伯特空间的度规诱导至对应的复向量空间中。
 由于
 \begin{equation}
@@ -1561,13 +1590,21 @@ g^{Cij}
 \end{equation}
 
 而对于参数 $T_i$ 所在的参数空间 $T$ ，其度规为
-\begin{equation}
+\begin{equation}\label{eq:度规推导}
 \begin{aligned}
 g^{Tij}
 &= \frac{\partial \psi_k^*}{\partial T_i^*} \frac{1}{|\psi|^2}(\delta_{kl} - \frac{\psi_k \psi_l^*}{|\psi|^2}) \frac{\partial \psi_l}{\partial T_j} \\
 &= \frac{1}{|\psi|^2}\frac{\partial \psi_k^*}{\partial T_i^*} (\delta_{kl} - \frac{\psi_k \psi_l^*}{|\psi|^2}) \frac{\partial \psi_l}{\partial T_j} \\
 &= \frac{1}{|\psi|^2} \left(\frac{\partial \psi_k^*}{\partial T_i^*} \frac{\partial \psi_k}{\partial T_j} - \frac{\partial \psi_k^*}{\partial T_i^*} \frac{\psi_k \psi_l^*}{|\psi|^2} \frac{\partial \psi_l}{\partial T_j}\right) .
 \end{aligned}
+\end{equation}
+将公式 [[eqref:eq:度规推导]] 写成方便采样估计的形式，得到
+\begin{equation}
+g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{\langle \psi | \psi \rangle} - \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\psi\rangle}{\langle\psi|\psi\rangle} \frac{\sum_l\langle\psi|l|\partial_{T_j}\psi\rangle}{\langle\psi|\psi\rangle} .
+\end{equation}
+可以采样估计
+\begin{equation}
+\widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
 \end{equation}
 
 *** 直接采样
@@ -1578,7 +1615,7 @@ TODO
 
 TODO
 
-* 张量网络态计算套件（TNSP）  <<sec:软件>>
+* 张量网络态计算套件（TNSP） <<sec:软件>>
 
 ** 张量网络态计算套件概述
 
@@ -1608,14 +1645,14 @@ tetragono可以通过插件进行自定义修改。
 套件内的核心张量库TAT旨在为各种类型张量提供统一的接口。
 TAT实现为一个C++17的头文件库，通过泛型编程统一实现不同张量类型。
 TAT通过使用所谓的对称性类型（Symmetry）来区分张量类型，对称性类型主要包含量子数，并提供关于这些量子数是费米子还是玻色子的相关信息。
-根据指定的对称性类型，TAT定义了一个边类型（Edge）来表示张量边的性质，该边类型涵盖了由对称性类型表征的一系列值及其各自的简并度。
+根据指定的对称性类型，TAT定义了一个边类型（Edge）来表示张量指标的性质，该边类型涵盖了由对称性类型表征的一系列值及其各自的简并度。
 随后，张量类型（Tensor）由一系列边名称和一系列边构建，并提供各种张量操作的接口，如奇异值分解（SVD）、收缩或边分割/合并，这些操作在不同张量类型中保持接口的一致性。
 一旦构建了具有特定对称群的张量，其各种操作的函数接口都保持一致。
 
 如图 [[ref:fig:张量网络态计算套件的结构]] 所示，我们使用pybind11将TAT的C++接口进行了封装，开发了一个Python3接口。
 用户可以直接通过C++代码访问TAT库，也可以通过Python接口进行访问。
 
-在核心张量库之上，我们开发了tetragono，以提供针对不同物理模型和张量类型的各种TNS方法（特别是PEPS）的简便且统一的接口。
+在核心张量库之上，我们开发了tetragono，以提供针对不同物理模型和张量类型的各种TNS方法，特别是PEPS的简便且统一的接口。
 tetragono引入了抽象态类型（AbstractState）的概念以记录物理模型中的各种信息，以及一个抽象晶格类型（AbstractLattice），涵盖了PEPS虚拟边的详细信息。
 在这两个抽象类之上，tetragono实现了各种TNS方法，包括简单更新和各种基于采样的方法。
 在基于采样的方法中，tetragono实现了物理观测量的计算和优化方法，例如梯度下降 [[cite:Liu2017]] 和随机重构算法 [[cite:Sorella1998,Neuscamman2012,Stokes2020]]。
@@ -1633,6 +1670,20 @@ tetragono提供了一个接口，使用户能够开发自己的插件，从而�
 ** 套件各组件的设计
 
 *** 张量库（TAT）
+
+作为框架的中最基础的部分，张量包TAT旨在为各种类型的张量提供统一的接口。
+TAT采用对称性类型（Symmetry）来区分对称性张量、费米子张量或标准张量，每种类型都与特定的对称群相对应的不同量子数相关联。
+在没有对称性的情况下，量子数被留空。
+在 $U(1)$ 对称性的情况下，量子数使用一个整数表示，而在 $Z(2)$ 对称性的情况下，量子数是一个布尔值，因为布尔XOR群与 $Z(2)$ 群同构。
+在更复杂的乘积对称群情况中，存在多种量子数，使得对称类型可以被视为任意长度的量子数元组。
+这些量子数的类型以及指示每个量子数是否为费米子的标记，通过泛型编程静态定义，从而增强了代码的可重用性和可读性。
+
+在对称类型基础上，边类型（Edge）被设计为一序列量子数和对应简并数的对所构成的段，如果此对称性类型包含费米子量子数，则额外使用一个布尔值作为费米箭头。
+这里我们使用对的序列而不是序列的对，以提高可读性。
+随后，可以使用从公式  [[eqref:eq:Abel对称张量的形式]] 利用边的序列，即指标的序列创建分块块多维数组。
+包含分块多维数组和边序列的结构在TNSP中被称为核心类型（Core），这些分块的数据存储为一维数组以提高性能。
+然后，张量类型通过组合指向核心类型的共享指针和指标名称序列来得到。
+我们使用指针来实现轻量级的指标重命名，允许在不复制张量数据的情况下，操作张量的指标名称。
 
 TODO
 
