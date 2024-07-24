@@ -1,0 +1,97 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,375); %set diagram left start at 0, and has height of 375
+
+%Straight Lines [id:da7365394487797718] 
+\draw    (71.55,170.55) -- (144.2,170.55) ;
+%Straight Lines [id:da7621391535901423] 
+\draw    (274.2,171.14) -- (346.33,171.14) ;
+%Rounded Rect [id:dp6835962334249526] 
+\draw   (135.12,73.46) .. controls (135.12,66.67) and (140.62,61.17) .. (147.41,61.17) -- (267.6,61.17) .. controls (274.38,61.17) and (279.89,66.67) .. (279.89,73.46) -- (279.89,110.34) .. controls (279.89,117.13) and (274.38,122.63) .. (267.6,122.63) -- (147.41,122.63) .. controls (140.62,122.63) and (135.12,117.13) .. (135.12,110.34) -- cycle ;
+%Straight Lines [id:da5680367237236668] 
+\draw    (161.34,122.81) -- (161.34,152.69) ;
+%Straight Lines [id:da853382146158693] 
+\draw    (255.81,122.37) -- (255.81,152.29) ;
+%Straight Lines [id:da8297545016541825] 
+\draw    (161.34,28.77) -- (161.34,61.29) ;
+%Straight Lines [id:da4358101085316026] 
+\draw    (255.81,28.33) -- (255.81,60.85) ;
+%Straight Lines [id:da9987214929953985] 
+\draw    (361.56,171.12) -- (435.96,171.12) ;
+%Straight Lines [id:da9743752218527166] 
+\draw    (561.93,171.71) -- (636.33,171.71) ;
+%Straight Lines [id:da20846777076905343] 
+\draw    (451.34,30.22) -- (451.34,62.74) ;
+%Straight Lines [id:da4820786432513622] 
+\draw    (545.82,29.78) -- (545.82,62.3) ;
+%Rounded Rect [id:dp17204943517638394] 
+\draw   (436.7,74.03) .. controls (436.7,67.88) and (441.68,62.9) .. (447.83,62.9) -- (549.77,62.9) .. controls (555.92,62.9) and (560.9,67.88) .. (560.9,74.03) -- (560.9,183.59) .. controls (560.9,189.74) and (555.92,194.72) .. (549.77,194.72) -- (447.83,194.72) .. controls (441.68,194.72) and (436.7,189.74) .. (436.7,183.59) -- cycle ;
+%Straight Lines [id:da9400400831614022] 
+\draw    (70.96,328.74) -- (143.4,328.74) ;
+%Straight Lines [id:da2382769903904487] 
+\draw    (273.8,329.33) -- (345.74,329.33) ;
+%Straight Lines [id:da3673687773410417] 
+\draw    (160.75,280.99) -- (160.75,310.69) ;
+%Straight Lines [id:da3557147746028002] 
+\draw    (255.22,280.55) -- (255.22,311.49) ;
+%Straight Lines [id:da539147401672333] 
+\draw    (358.63,328.74) -- (431,328.74) ;
+%Straight Lines [id:da3147239777914608] 
+\draw    (561.4,329.09) -- (633.4,329.33) ;
+%Straight Lines [id:da8862557674103] 
+\draw    (448.41,280.99) -- (448.41,311.09) ;
+%Straight Lines [id:da7692654685209115] 
+\draw    (542.89,280.55) -- (542.89,311.49) ;
+%Shape: Rectangle [id:dp8869375962573955] 
+\draw   (190.26,328.47) -- (208.62,310.36) -- (226.73,328.73) -- (208.37,346.83) -- cycle ;
+%Straight Lines [id:da5982195840629647] 
+\draw    (179.8,328.47) -- (190.26,328.47) ;
+%Straight Lines [id:da2585638624811075] 
+\draw    (226.73,328.73) -- (237.8,328.29) ;
+
+% Text Node
+\draw    (161.96, 170.72) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (161.96,170.72) node    {$A_{x}$};
+% Text Node
+\draw    (255.89, 170.72) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (255.89,170.72) node    {$A_{y}$};
+% Text Node
+\draw (201.87,81.69) node [anchor=north west][inner sep=0.75pt]    {$U_{i}$};
+% Text Node
+\draw (474.16,120.34) node [anchor=north west][inner sep=0.75pt]    {$U_{i} A_{x} A_{y}$};
+% Text Node
+\draw    (161.37, 328.91) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (161.37,328.91) node  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=0 ]  {$A'_{x}$};
+% Text Node
+\draw    (255.3, 328.91) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (255.3,328.91) node  [color={rgb, 255:red, 0; green, 0; blue, 0 }  ,opacity=0 ]  {$A'_{y}$};
+% Text Node
+\draw    (449.04, 328.91) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (449.04,328.91) node    {$A'_{x}$};
+% Text Node
+\draw    (542.97, 328.91) circle [x radius= 17.69, y radius= 17.69]   ;
+\draw (542.97,328.91) node    {$A'_{y}$};
+% Text Node
+\draw (64.33,217.32) node [anchor=north west][inner sep=0.75pt]   [align=left] {(c)};
+% Text Node
+\draw (376.9,216.14) node [anchor=north west][inner sep=0.75pt]   [align=left] {(d)};
+% Text Node
+\draw (376.6,40.97) node [anchor=north west][inner sep=0.75pt]   [align=left] {(b)};
+% Text Node
+\draw (64.92,39.8) node [anchor=north west][inner sep=0.75pt]   [align=left] {(a)};
+% Text Node
+\draw (157.09,322.58) node [anchor=north west][inner sep=0.75pt]    {$u$};
+% Text Node
+\draw (203.96,322.87) node [anchor=north west][inner sep=0.75pt]    {$s$};
+% Text Node
+\draw (249.83,322.29) node [anchor=north west][inner sep=0.75pt]    {$v$};
+% Connection
+\draw    (238.2,170.72) -- (179.65,170.72) ;
+% Connection
+\draw    (525.27,328.91) -- (466.73,328.91) ;
+
+\end{tikzpicture}
+
