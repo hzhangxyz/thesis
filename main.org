@@ -1423,7 +1423,7 @@ SVD后舍弃小的奇异值，是低秩近似的实现。
 TODO: 环境正则
 
 
-*** 简单更新算法
+*** 简单更新算法 <<sec:::简单更新>>
 
 TODO 简单更新
 
@@ -2043,7 +2043,7 @@ def initialPEPS(L1, L2, D1, D2):
     ] for l1 in range(L1)]
 \end{lstlisting}
 
-哈密顿量是各项局部哈密顿量的和，即邻近位置 $i$, $j$ 的两体相互作用 $h_{i,j} = c^\dag_i c_j + c^\dag_j c_i$ 。
+哈密顿量是各项局部哈密顿量的和，每个局部哈密顿量是邻近位置 $i$, $j$ 上的两体相互作用 $h_{i,j} = c^\dag_i c_j + c^\dag_j c_i$ 。
 其中， $c^\dag_i$ 表示在格点 $i$ 上费米子的生成算符，而 $c_i$ 是从格点 $i$ 的湮灭算符。
 算符 $h_{i,j}$ 可视为具有费米子 $Z(2)$ 对称性的四阶张量，并可在 TAT 包中表示为相应类型的费米子张量。
 在代码 [[ref:code:prepare-H.py]] 的第 1-13 行中，函数 =initialH= 被设计用来准备局部哈密顿量项 $h_{i,j}$ 。
@@ -2052,23 +2052,58 @@ def initialPEPS(L1, L2, D1, D2):
 
 \begin{lstlisting}[language=Python, label={code:prepare-H.py}, caption={准备虚时间演化的门张量}]
 def initialH():
-    # Prepare the physical edge and its conjugate
+    # 准备物理指标即其共轭
     edge_out = ([(parity(+1), 1), (parity(-1), 1)], False)
     edge_in  = ([(parity(+1), 1), (parity(-1), 1)], True)
-    # Set the local Hamiltonian with zero filled first
+    # 初始化局部哈密顿量为零
     H = Tensor(
         ["Oi", "Oj", "Ii", "Ij"],
         [edge_out, edge_out, edge_in, edge_in],
     ).zero_()
-    # Set the non zero item of the local Hamiltonian
+    # 设置局部哈密顿量非零元素
     H[{"Oi": 1, "Oj": 0, "Ii": 0, "Ij": 1}] = 1
     H[{"Oi": 0, "Oj": 1, "Ii": 1, "Ij": 0}] = 1
     return H
 
 
 def initialGate(H, tau):
-    # Get the quantum gate from the local hamiltonian term
+    # 从哈密顿量得到演化门算子
     return (-abs(tau) * H).exponential({("Ii", "Oi"), ("Ij", "Oj")})
+\end{lstlisting}
+
+在代码 [[ref:code:su-two-site.py]] 中的 =step= 函数中，我们展示了使用门张量对两个格点进行简单更新，如 [[ref:sec:::简单更新]] 中介绍的那样。
+\begin{lstlisting}[language=Python, label={code:su-two-site.py}, caption=两个格点上的单步演化]
+def step(A, env, B, gate, cutoff, A_dir, B_dir):
+    # 为了复用，这里输入的三个张量这样相连
+    # -A_dir-[A]-B_dir- -A_dir-[env]-B_dir- -A_dir-[B]-B_dir-
+    # A_dir 和 B_dir 是指标名
+
+    # A和B各自进行QR，以将酉部分提取出去，从而降低后续复杂度
+    q_A, r_A = A.qr('r', {"phy", B_dir}, B_dir, A_dir)
+    q_B, r_B = B.qr('r', {"phy", A_dir}, A_dir, B_dir)
+    # 重命名R张量的指标，避免后续冲突
+    r_A = r_A.edge_rename({"phy": "Oi"})
+    r_B = r_B.edge_rename({"phy": "Oj"})
+    # 收缩A、环境的逆（如果非空）、B和门张量
+    C = r_A
+    if env is not None:
+        C = C.contract(env.reciprocal(), {(B_dir, A_dir)})
+    C = C.contract(r_B, {(B_dir, A_dir)})
+    C = C.contract(gate, {("Oi", "Ii"), ("Oj", "Ij")})
+    # 对收缩结果进行SVD，并截断
+    new_A, new_env, new_B = C.svd({A_dir, "Oi"}, B_dir, A_dir, A_dir, B_dir, cutoff)
+    # 归一化环境张量
+    new_env = new_env / new_env.norm_max()
+    # 恢复PEPS的形式，将SVD的结果和新环境与先前的酉矩阵收缩
+    new_A = new_A \
+        .contract(new_env, {(B_dir, A_dir)}) \
+        .contract(q_A, {(A_dir, B_dir)}) \
+        .edge_rename({"Oi": "phy"})
+    new_B = new_B \
+        .contract(new_env, {(A_dir, B_dir)}) \
+        .contract(q_B, {(B_dir, A_dir)}) \
+        .edge_rename({"Oj": "phy"})
+    return new_A, new_env, new_B
 \end{lstlisting}
 
 * 六角晶格中的Hubbard模型的掺杂基态模拟计算 <<sec:超导>>
