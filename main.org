@@ -1426,7 +1426,7 @@ TODO: 环境正则
 
 TODO 简单更新
 
-** 采样方法
+** 采样方法 <<sec::各种采样方法>>
 
 张量网络态可以有效表示服从面积定律的态函数，但是各种张量网络的优化算法难以得到精确的基态，而受限于虚拟指标的维度，严格计算包括能量在内的观测量也有着难以忍受的复杂度。
 通过采样方法即蒙特卡罗方法，可以有效减少在张量网络态上计算观测量和能量时的计算复杂度 [[cite:Sandvik2007,Liu2017]] 。
@@ -1566,7 +1566,7 @@ L(\delta x_i, \delta x_i^*, \lambda) = E(x_i) + \frac{\partial E}{\partial x_i} 
 \right.
 \end{equation}
 所以，
-\begin{equation}
+\begin{equation}\label{eq:自然梯度法}
 \left\{
 \begin{aligned}
 \delta x_i &= -\frac{1}{\lambda} g_{ij}\frac{\partial E}{\partial x_j^*} , \\
@@ -1619,6 +1619,8 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 \begin{equation}
 \widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
 \end{equation}
+
+至此，我们可以得到任意用于表示量子态的函数的参数空间中的度规，这样我们可以利用公式 [[eqref:eq:自然梯度法]] ，
 
 *** 直接采样
 
@@ -2658,30 +2660,27 @@ E = \langle \psi | O | \psi \rangle .
 则公式 [[eqref:eq:Hilbert空间的优化]] 正是公式 [[eqref:eq:矢量演化方程]] 这个常微分方程的欧拉迭代解。
 这意味着，在希尔伯特空间直接使用 $H'/2$ 作为哈密顿量进行标准的梯度优化，相当于在对原密度矩阵进行降温。
 另一方面，[[ref:sec:::自然梯度法]] 介绍过的自然梯度法通过诱导度规，可以实现在参数空间中优化得到在希尔伯特空间进行标准的梯度下降的效果。
-综上，我们可以通过算法 [[ref:alg:降温]] 实现在参数空间下的降温
+综上，我们可以通过算法 [[ref:alg:降温]] 实现在参数空间下的降温。
 
 #+begin_export latex
+\SetKwComment{Comment}{/* }{ */}
 \begin{algorithm}
 \caption{基于自然梯度的降温算法}\label{alg:降温}
-\begin{algorithmic}
-\Require $n \geq 0$
-\Ensure $y = x^n$
-\State $y \gets 1$
-\State $X \gets x$
-\State $N \gets n$
-\While{$N \neq 0$}
-\If{$N$ is even}
-    \State $X \gets X \times X$
-    \State $N \gets \frac{N}{2}$  \Comment{This is a comment}
-\ElsIf{$N$ is odd}
-    \State $y \gets y \times X$
-    \State $N \gets N - 1$
-\EndIf
-\EndWhile
-\end{algorithmic}
+\KwData{哈密顿量 $H$ ， 降温步长 $\Delta\beta$， 表示函数$\text{PEPS}$}
+\KwResult{任意温度下的热态 $\rho(\beta)$}
+初始化参数 $\theta$ 使得 $\text{PEPS}(\theta) = |I\rangle_\sharp$\;
+$O \gets \frac{H \otimes I + I \otimes H^T}{4}$\;
+$\beta \gets 0$\;
+\While{$\beta$ 没有降温到目标温度}{
+  $\rho(\beta) \gets \text{PEPS}(\theta)$\;
+  $E, G, g \gets \texttt{VMC}(O, |\rho(\beta)\rangle_\sharp)$ \Comment*[r]{使用 \ref{sec::各种采样方法} 中的方法采样得到梯度和度规}
+  $\theta \gets \theta - \Delta\beta g^{-1} G$ \;
+  $\beta \gets \beta + \Delta\beta$
+}
 \end{algorithm}
 #+end_export
 
+在自然梯度法中，我们需要计算度规的逆乘以梯度，这个任务可以通过共轭梯度法实现。
 
 #+begin_export latex
 \bibliography{main}
