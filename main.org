@@ -2415,6 +2415,12 @@ C(\Delta r) \propto \Delta r^{-K} .
 \end{figure}
 #+end_export
 
+图 [[ref:fig:超导power-law]] (b) 和图 [[ref:fig:超导power-law]] (c)分别展示了 $\delta = 0.15$ 和 $\delta = 0.25$ 时的关联函数。
+与 $\delta = 0.05$ 的情况类似，这些关联函数也表现出幂律衰减。
+拟合出的衰减指数 $K$ 随着掺杂水平的增加而减小。
+对于 $\delta = 0.15$ ， $K \sim 1.5$ ，而对于 $\delta = 0.25$ ， $K \sim 1.2$ 。
+在三角格子上的$t-J$模型中也发现了类似的幂律衰减现象 [[cite:Jiang2021]]。
+
 *** 反铁磁序与电荷密度波序
 
 TODO
