@@ -2577,6 +2577,8 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 
 * 方形晶格中的Hubbard模型的有限温模拟计算 <<sec:有限温>>
 
+** 背景介绍
+
 张量网络态，作为处理二维阻挫系统和费米子系统的有力工具 [[cite:Verstraete2008,Ors2014,Cirac2021]]，通过捕捉量子多体系统的纠缠结构，使得基于其的方法可以给出这些系统基态的有效表示。
 然而，虽然张量网络方法在模拟二维强关联系统方面取得了丰硕的成果，但迄今为止主要应用于零温。
 然而，真实的物理系统总是存在于有限温度下。
@@ -2598,6 +2600,26 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 我们将本方法与其他数值方法做对比，包括 随机级数展开 [[cite:Sandvik1991,Sandvik1992]] 和行列式量子蒙特卡罗 [[cite:Blankenbecler1981,Hirsch1983,Hirsch1985]] ，
 我们方法的结果与这些方法保持一致。
 
+** 方法
+
+对于给定系统的哈密顿量 $H$ ，温度 $T=1/\beta$ 时，热态密度矩阵为
+\begin{equation}
+\rho(\beta) = \mathrm{e}^{-\beta H} ,
+\end{equation}
+故而我们可以写成
+\begin{equation} \label{eq:原始降温公式}
+\rho(\beta) = \mathrm{e}^{-\frac{\beta}{2} H} I \mathrm{e}^{-\frac{\beta}{2} H} .
+\end{equation}
+可以讲 公式 [[eqref:eq:原始降温公式]] 写成演化形式，即
+\begin{equation} \label{eq:矩阵演化方程}
+- \frac{\mathrm{d}}{\mathrm{d} \beta}\rho(\beta) = \frac{H}{2} \rho(\beta) + \rho(\beta) \frac{H}{2}
+\end{equation}
+
+而对于希尔伯特空间 $V$ 中的矩阵 $\rho$ ，我们可以将其矢量化为 $V \otimes V$ 空间中的向量，即
+\begin{equation}
+\rho = \sum_{ss'} \rho_{ss'} |s\rangle\langle s'| \to |\rho\rangle_\sharp = \sum_{ss'} \rho_{ss'} |s\rangle \otimes |s'\rangle.
+\end{equation}
+将公式 [[eq:矩阵演化方程]] 进行矢量化，我们得到
 
 
 #+begin_export latex
