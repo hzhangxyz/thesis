@@ -2106,6 +2106,56 @@ def step(A, env, B, gate, cutoff, A_dir, B_dir):
     return new_A, new_env, new_B
 \end{lstlisting}
 
+在代码 [[ref:code:su.py]] 中，函数 =simple_update= 通过对所有近临邻点调用 =step= 函数来对整个系统执行单步简单更新。
+
+\begin{lstlisting}[language=Python, label={code:su.py}, caption=PEPS上单步简单更新]
+def simple_update(peps, gate, L1, L2, D):
+    # 循环所有的横向边
+    for l1 in range(L1):
+        for l2 in range(L2 - 1):
+            # 获取将更新的张量
+            A = peps[l1][l2].site
+            env = peps[l1][l2].right
+            B = peps[l1][l2 + 1].site
+            # 调用step
+            A, env, B = step(A, env, B, gate, D, "left", "right")
+            # 更新张量
+            peps[l1][l2].site = A
+            peps[l1][l2 + 1].site = B
+            peps[l1][l2].right = peps[l1][l2 + 1].left = env
+    # 循环所有的竖向边
+    for l2 in range(L2):
+        for l1 in range(L1 - 1):
+            # 获取将更新的张量
+            A = peps[l1][l2].site
+            env = peps[l1][l2].down
+            B = peps[l1 + 1][l2].site
+            # 调用step
+            A, env, B = step(A, env, B, gate, D, "up", "down")
+            # 更新张量
+            peps[l1][l2].site = A
+            peps[l1 + 1][l2].site = B
+            peps[l1][l2].down = peps[l1 + 1][l2].up = env
+\end{lstlisting}
+
+定义了 =simple_update= 后， 函数可以直接用于执行简单更新的计算。
+代码 [[ref:code:runsu.py]] 中通过在 $4 \times 4$ 格子上执行 $50$ 步简单更新提供了一个示例， 虚拟指标维度被设置为 $D=4$ 。初始态中， $D$ 的一半分配给量子数 $+1$，另一半分配给 $-1$ 。
+
+\begin{lstlisting}[language=Python,label={code:runsu.py}, caption=使用\texttt{simple\_update}函数]
+L1 = L2 = 4
+D = 4
+tau = 0.1
+step_number = 50
+
+peps = initialPEPS(L1, L2, D // 2, D // 2)
+gate = initialGate(initialH(), tau)
+for i in range(step_number):
+    simple_update(peps, gate, L1, L2, D)
+\end{lstlisting}
+
+从这个例子中，我们看到通过使用TAT，可以像编写普通的、用于波色子或自旋系统的PEPS方法那样为费米子系统编写代码。
+一旦系统的哈密顿量和初始参数确定，就无需再在后续使用过程中考虑费米子的反对易性质。
+
 * 六角晶格中的Hubbard模型的掺杂基态模拟计算 <<sec:超导>>
 
 ** 背景介绍与主要结论
