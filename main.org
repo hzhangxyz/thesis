@@ -1928,7 +1928,7 @@ auto A = TAT::Tensor<double, Symmetry>(
 =<ScalarType>= 的可用值在表 [[ref:table:可用的scalar]] 中总结。
 表 [[ref:table:可用的symmetry]] 总结了 =<SymmetryType>= 的可选值。
 
-#+caption: \label{table:可用的scalar} 可选的 =ScalarType=
+#+caption: \label{table:可用的scalar} TAT的Python接口中可选的 =ScalarType=
 #+ATTR_LATEX: :font \scriptsize
 |------------------------------+------------------------+---------------------|
 | =<ScalarType>=               | C++的标量类型          | Fortran中的等价类型 |
@@ -1939,7 +1939,7 @@ auto A = TAT::Tensor<double, Symmetry>(
 | =Z=, =complex128=, =complex= | =std::complex<double>= | =complex(kind=8)=   |
 |------------------------------+------------------------+---------------------|
 
-#+caption: \label{table:可用的symmetry} 可选的 =SymmetryType=
+#+caption: \label{table:可用的symmetry} TAT的Python接口中可选的 =SymmetryType=
 #+ATTR_LATEX: :font \scriptsize
 |------------------+----------------------------------+---------------------------|
 | =<SymmetryType>= | C++中的对称性类型                | 守恒量的例子              |
@@ -1984,7 +1984,7 @@ TAT中常用的函数列在表 [[ref:table:TAT-functions]] 中，由于C++和Pyt
 #+begin_export latex
 \begin{table} [h]
 \begin{center}
-\caption{\label{table:TAT-functions}常用的函数}
+\caption{\label{table:TAT-functions} TAT的Python接口中 常用的函数}
 \scriptsize
 \begin{tabular}{|c|c|}
 \hline
