@@ -1577,7 +1577,7 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 \end{equation}
 可见 $\langle r' \rangle_\psi = r'_s$ ，即 $p_s \propto \langle \psi | s | \psi \rangle$ 时，通过蒙特卡罗计算的观测量的偏差是  $O(1/n^2)$ 的，当涉及到调整权重的重要采样时，对观测量的估计一般有一个 $1/n$ 级的偏差。
 
-*** 基于采样方法的变分法
+*** 基于采样方法的变分法 <<sec:::变分采样>>
 
 蒙特卡罗方法用于计算梯度即 {{{VMC}}} 方法，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
 \begin{equation}
@@ -1776,8 +1776,8 @@ TAT通过使用所谓的对称性类型（Symmetry）来区分张量类型，对
 
 在核心张量库之上，我们开发了tetragono，以提供针对不同物理模型和张量类型的各种{{{TNS}}}方法，特别是{{{PEPS}}}的简便且统一的接口。
 tetragono引入了抽象态类型（AbstractState）的概念以记录物理模型中的各种信息，以及一个抽象晶格类型（AbstractLattice），涵盖了{{{PEPS}}}虚拟指标的详细信息。
-在这两个抽象类之上，tetragono实现了各种{{{TNS}}}方法，包括简单更新和各种基于采样的方法。
-在基于采样的方法中，tetragono实现了物理观测量的计算和优化方法，例如梯度下降 [[cite:Liu2017]] 和随机重构算法 [[cite:Sorella1998,Neuscamman2012,Stokes2020]]。
+在这两个抽象类之上，tetragono实现了各种{{{TNS}}}方法，包括 [[ref:sec:::简单更新]] 中介绍的 简单更新和各种基于采样的方法。
+在基于采样的方法中，tetragono实现了物理观测量的计算和优化方法，例如 [[ref:sec:::变分采样]] 中介绍的梯度下降 [[cite:Liu2017]] 和 [[ref:sec:::自然梯度法]] 中介绍的 随机重构算法 [[cite:Sorella1998,Neuscamman2012,Stokes2020]]。
 同时提供了一个简单的直接对角化方法，可用于对小系统中TNS的结果进行基准测试。
 为提高重用性，各种组件如用于单层或双层网络的边界MPS方法 [[cite:Murg2007]] 的辅助张量系统也被独立封装。
 目前，tetragono仅支持方形晶格上的PEPS。
