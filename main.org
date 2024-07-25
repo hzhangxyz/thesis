@@ -2853,20 +2853,20 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 图 [[ref:fig:thermal-heisenberg]] (b) 显示了比热 $C_v$ 随 $\beta$ 的变化情况。
 在此，我们通过数值微分获取 $C_v$。
 具体来说，我们首先得到图 [[ref:fig:thermal-heisenberg]] (a) 数据的B样条曲线，然后可以从该曲线的导数中获取 $C_v$。
-如图 [[ref:fig:thermal-heisenberg]] (b) 所示，我们的结果与SSE的结果基本一致。
-尽管 $C_v$ 的峰值与SSE的结果存在一定的偏差，这主要是由于数值微分带来的误差，但相应的 $\beta$ 值与SSE的结果非常吻合。
+如图 [[ref:fig:thermal-heisenberg]] (b) 所示，我们的结果与 {{{SSE}}} 的结果基本一致。
+尽管 $C_v$ 的峰值与 {{{SSE}}} 的结果存在一定的偏差，这主要是由于数值微分带来的误差，但相应的 $\beta$ 值与 {{{SSE}}} 的结果非常吻合。
 获取 $C_v$ 的更精确方法是直接计算 $\beta^2 (\langle H^2 \rangle - \langle H \rangle^2)$ ，然而在低温处，由于 $\beta^2$ 会放大采样误差，为了得到同等质量的结果，直接计算效率比数值差分要低。
 图 [[ref:fig:thermal-heisenberg]] (c) 展示了均匀磁化率随 $\beta$ 的变化情况，其定义为
 \begin{equation}\label{eq:sus}
 \chi=\frac{\beta}{N}\left (\left\langle M_{z}^{2}\right\rangle - \left\langle M_{z}\right\rangle^{2}\right ) , \quad M_{z}=\sum_{i=1}^{N} S_{i}^{z},
 \end{equation}
-这里，我们同SSE方法 [[cite:Sandvik2010]] 一样， 将 $\langle M_z \rangle^2$ 设置为0，因为哈密顿量中不包含磁场。
-如图 [[ref:fig:thermal-heisenberg]] (c)所示，均匀磁化率在整个温度范围内与SSE方法的结果高度一致。
+这里，我们同{{{SSE}}}方法 [[cite:Sandvik2010]] 一样， 将 $\langle M_z \rangle^2$ 设置为0，因为哈密顿量中不包含磁场。
+如图 [[ref:fig:thermal-heisenberg]] (c)所示，均匀磁化率在整个温度范围内与{{{SSE}}}方法的结果高度一致。
 实际上，比起磁化强度，磁化率更难估计，因为随着温度下降，公式 [[eqref:eq:sus]] 中的 $\beta$ 增加，这要求对 $\langle M_z^2 \rangle$ 估计的精度有了更高的要求以达到固定的精度。
 这也是低温区域内磁化率与精确结果略有偏差的原因，见图 图 [[ref:fig:thermal-heisenberg]] (c)和图 [[ref:fig:thermal-heisenberg]] (c)中 $\beta \approx 10$ 的部分。
 
 当公式 [[eqref:eq:j1-j2]] 中的 $J_2$ 不为零时， $J_1-J_2$ 模型是一个阻挫系统，由于符号问题，不适合使用量子蒙特卡罗方法进行计算。
-在零温度情况下，多个数值计算研究 [[cite:Liu2018,Liu2022,Jiang2012,Hu2013,Wang2018]] 显示，当 $J_2/J_1 = 0.5$ 时，$J_1-J_2$ 模型呈现出量子自旋液相。
+在零温度情况下，多个数值计算研究 [[cite:Liu2018,Liu2022,Jiang2012,Hu2013,Wang2018]] 显示，当 $J_2/J_1 = 0.5$ 时，$J_1-J_2$ 模型呈现出量子自旋液体相。
 
 我们在 $4 \times 4$ 方格晶格上计算了 $J_1-J_2$ 模型，设置 $J_2/J_1 = 0.5$，这允许通过严格对角化方法进行精确计算。
 我们将张量网络虚拟指标的键维度设为 $D=8$，边界维度 $D_c=16$，样本数为 80000。
