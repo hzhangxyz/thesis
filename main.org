@@ -69,6 +69,7 @@ abstract TODO
 #+MACRO: SR 随机重构型
 #+MACRO: SSE 随机序列展开
 #+MACRO: DQMC 行列式 {{{QMC}}}
+#+MACRO: SC 超导
 
 #+attr_latex: :environment ustcnotation
 - ED :: {{{ED}}} (Exact Diagonalization)
@@ -82,9 +83,10 @@ abstract TODO
 - iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
 - SU :: {{{SU}}} (Simple Update)
 - DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
-- SR :: {{{SR}}}(Stochastic Reconfiguration)
-- SSE :: {{{SSE}}}(Stochastic Series Expansion)
-- DQMC :: {{{DQMC}}}(Determinant Quantum Monte Carlo)
+- SR :: {{{SR}}} (Stochastic Reconfiguration)
+- SSE :: {{{SSE}}} (Stochastic Series Expansion)
+- DQMC :: {{{DQMC}}} (Determinant Quantum Monte Carlo)
+- SC :: {{{SC}}} (Superconductivity)
 
 #+MACRO: F 费米
 #+MACRO: B 玻色
@@ -92,6 +94,11 @@ abstract TODO
 #+MACRO: DS 直接采样
 #+MACRO: NG 自然梯度
 #+MACRO: Hilbert 希尔伯特
+#+MACRO: T 张量
+#+MACRO: TN 张量网络
+#+MACRO: L6 六角晶格
+#+MACRO: L4 方形晶格
+#+MACRO: Hubbard 哈伯德
 
 #+begin_export latex
 \mainmatter
@@ -122,16 +129,17 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 近几年，{{{DS}}} 方法 [[cite:Vieijra2021]] 和 {{{NG}}} 法 [[cite:Neuscamman2012]] 被引入，极大提升了采样效率和优化效率。
 
 本论文将介绍近些年我们对基于采样的张量网络方法的发展与应用。主要结构安排如下：
-+ 第 [[ref:sec:绪论]] 章绪论，即本章。
-+ 第 [[ref:sec:张量和张量网络]] 章详细介绍张量和张量网络的基础理论。
-+ 第 [[ref:sec:张量网络态算法]] 章介绍多种基于张量网络态的算法。
-+ 第 [[ref:sec:神威优化]] 章介绍在国产神威系统上对张量网络态的程序优化工作。
-+ 第 [[ref:sec:软件]] 章介绍张量网络态计算套件的设计和开发。
-+ 第 [[ref:sec:超导]] 章介绍在六角晶格中的Hubbard模型基态中寻找超导相的工作。
++ 第 [[ref:sec:绪论]] 章为绪论，即本章。
++ 第 [[ref:sec:张量和张量网络]] 章详细介绍 {{{T}}} 和 {{{TN}}} 的基础理论。
++ 第 [[ref:sec:张量网络态算法]] 章介绍多种基于 {{{TNS}}} 的算法。
++ 第 [[ref:sec:神威优化]] 章介绍在国产神威系统上对 {{{TNS}}} 的程序优化工作。
++ 第 [[ref:sec:软件]] 章介绍 {{{TNS}}} 计算套件的设计和开发。
++ 第 [[ref:sec:超导]] 章介绍在 {{{L6}}} 上的 {{{Hubbard}}} 模型基态中寻找 {{{SC}}} (SC) 相的工作。
 + 第 [[ref:sec:有限温]] 章介绍一种有限温算法以及其测试结果。
 + 第 [[ref:sec:总结与展望]] 章进行总结与展望。
 
-本论文将一直使用爱因斯坦求和约定。本论文将一直从 $0$ 开始计数而不是 $1$ 开始计数。
+本论文将一直使用爱因斯坦求和约定。
+本论文将一直从 $0$ 开始计数而不是 $1$ 开始计数。
 
 * 张量和张量网络 <<sec:张量和张量网络>>
 
