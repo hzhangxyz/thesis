@@ -1,5 +1,4 @@
 #+LATEX_CLASS: thesis
-#+LATEX_HEADER: \usepackage{listings}
 #+OPTIONS: title:nil
 #+OPTIONS: toc:nil
 
@@ -22,17 +21,6 @@
           "xelatex -interaction nonstopmode -output-directory %o %f"))
   (setq org-format-latex-options (plist-put org-format-latex-options :scale 4.0))
 #+end_src
-
-#+begin_export latex
-\definecolor{codegreen}{rgb}{0,0.6,0}
-\definecolor{codegray}{rgb}{0.5,0.5,0.5}
-\definecolor{codepurple}{rgb}{0.58,0,0.82}
-\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
-\lstdefinestyle{mystyle}{backgroundcolor=\color{backcolour}, commentstyle=\color{codegreen}, keywordstyle=\color{magenta}, numberstyle=\tiny\color{codegray}, stringstyle=\color{codepurple}, basicstyle=\ttfamily\footnotesize, breakatwhitespace=false, breaklines=true, captionpos=b, keepspaces=true, numbers=left, numbersep=5pt, showspaces=false, showstringspaces=false, showtabs=false, tabsize=2
-}
-\lstset{style=mystyle}
-\renewcommand{\lstlistingname}{代码}
-#+end_export
 
 #+begin_export latex
 \maketitle
@@ -63,15 +51,13 @@ abstract TODO
 \listoftables
 #+end_export
 
-* 主要符号对照表
-
 #+begin_export latex
 \newenvironment{ustcnotation}{\begin{notation}\begin{notationlist}{2em}}{\end{notationlist}\end{notation}}
 #+end_export
 
 #+attr_latex: :environment ustcnotation
 - ED :: 严格对角化 (Exact Diagonalization)
-- QMC :: 量子蒙特卡洛方法 (Quantum Monte Carlo)
+- QMC :: 量子蒙特卡洛 (Quantum Monte Carlo)
 - Ansatz :: 拟设 (Ansatz)
 - TNS :: 张量网络态 (Tensor Network States)
 - MPS :: 矩阵乘积态 (Matrix Product States)
@@ -80,7 +66,7 @@ abstract TODO
 - SU :: 简单更新 (Simple Update)
 - DMRG :: 密度矩阵重整化 (Density Matrix Renormalization Group)
 - SR :: 随机重构型（Stochastic Reconfiguration）
-- SSE :: 随机交换方法（Stochastic Series Expansion）
+- SSE :: 随机序列展开（Stochastic Series Expansion）
 - DQMC :: 行列式量子蒙特卡洛（Determinant Quantum Monte Carlo）
 
 #+begin_export latex
@@ -2793,7 +2779,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 \end{equation}
 其中 $\mathbf{S}_{i}$ 是位于 $i$ 位置的自旋-1/2算符， $\langle i, j\rangle$ 表示最近邻的格点对， $\langle\langle i, j\rangle\rangle$ 表示次近邻的格点对。
 
-当 $J_{1} = 1$ 且 $J_{2} = 0$ 时，公式 [[eqref:eq:j1-j2]] 即退化为无阻挫的海森堡模型，因此可以通过量子蒙特卡罗（QMC）方法进行模拟而不会遇到符号问题，例如基于随机交换方法（SSE） [[cite:Sandvik1991,Sandvik1992]] 。
+当 $J_{1} = 1$ 且 $J_{2} = 0$ 时，公式 [[eqref:eq:j1-j2]] 即退化为无阻挫的海森堡模型，因此可以通过量子蒙特卡罗（QMC）方法进行模拟而不会遇到符号问题，例如基于随机序列展开（SSE） [[cite:Sandvik1991,Sandvik1992]] 。
 如图 [[ref:fig:thermal-heisenberg]] 所示，我们将得到的结果与SSE方法进行比较。
 具体的模型和计算参数为，大小为 $N = 8 \times 8$ 的方形晶格，采用开放边界条件。
 我们设定投影纠缠对态中的虚拟指标维度为 $D=8$ 。
