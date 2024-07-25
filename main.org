@@ -2592,7 +2592,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 \includegraphics[width=0.35\textwidth]{sc-lattice.pdf}
 \caption{六角晶格上哈伯德模型的基态实空间图}
 \note{注：
-Hubbard模型基态在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
+六角晶格上哈伯德模型在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
 颜色方案表示 $S_z$ 的幅值，红色表示自旋上，蓝色表示自旋下。圆圈的大小对应于空穴密度。
 }
 \label{fig:sc-lattice}
@@ -2616,18 +2616,18 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 为了最小化边界效应，我们在求和时排除了位于边界上的格点。
 在 $U = 12$ 和 $\delta = 0.05$ 时，空穴和自旋的结构因子如图 [[ref:fig:k-space]] (a)和(b)所示。
 空穴结构因子显示出具有动量 $(4/3\pi, 0)$ 的电荷密度波 (CDW)序 ，如 $S_h(\mathbf{k})$ 在 $K$ 点的峰值所示。
-这里的 CDW 序可能来源于费米面嵌套和电子-电子关联， 进一步讨论请参见文献 [[cite:Nandkishore2012,Hur2009]] 。
+这里的 {{{CDW}}} 序可能来源于费米面嵌套和电子-电子关联， 进一步讨论请参见文献 [[cite:Nandkishore2012,Hur2009]] 。
 同样，自旋结构因子在 $K$ 点附近也显示出峰值，表明存在反铁磁 (AFM) 序。
-这与方格子上的 AFM 不同，后者的自旋结构峰值在 $(\pi, \pi)$。
+这与方格子上的 {{{AFM}}} 不同，后者的自旋结构峰值在 $(\pi, \pi)$。
 
 #+begin_export latex
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{k-space.pdf}
-\caption{空穴和自旋的结构因子}
+\caption{六角晶格上哈伯德模型的基态中空穴和自旋的结构因子}
 \note{注：
 (a) 空穴结构因子 $S_{h}({\bf k})$ 和 (b) 自旋结构因子 $S_z ({\bf k})$ 。
-系统为198个格点的Hubbard模型，$U=12$ , $\delta=0.05$ 。
+系统为198个格点的哈伯德模型模型，$U=12$ , $\delta=0.05$ 。
 }
 \label{fig:k-space}
 \end{figure}
@@ -2637,20 +2637,20 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 在图 [[ref:fig:factor-plot]] (a)、(b)、(c) 和 (d) 中，我们分别展示了 $U$ 值为 $16$ 、 $12$ 、 $8$ 和 $4$ 的结果。
 反铁磁（AFM）序在不同 $U$ 下表现出类似的趋势，即随着空穴掺杂 $\delta$ 的增加而减小。
 同样地，电荷密度波（CDW）序在不同 $U$ 参数下也表现出类似的趋势。
-在 $\delta = 0$ 时，即未掺杂时，基态在 $U > 3.8$ 时预计为 AFM [[cite:Otsuka2016]]，这得到了我们的计算结果的验证。
-然而，随着掺杂浓度的增加 ($\delta > 0$），AFM 序迅速减弱，在 $\delta=0.1$ 时几乎接近于零。
-不过，在 $\delta = 0.05$ 时，我们仍然可以观察到显著的 CDW 序，这展现在一个较大的 $S_h(K)$ 值上。
-随着掺杂浓度的进一步增加，CDW 序逐渐减弱。
-然而，即使在相对较高的掺杂浓度如 $\delta = 0.2$ 时，仍然存在相当显著的 CDW 序。
-这些发现表明，系统从 $\delta = 0$ 时的 AFM 基态逐渐过渡到随着掺杂浓度增加带来的 CDW 主导状态。
-AFM 序逐渐被抑制，而 CDW 序变得更加显著。
-即使在较高的掺杂浓度下，显著的 CDW 序仍然存在。
+在 $\delta = 0$ 时，即未掺杂时，基态在 $U > 3.8$ 时预计为 {{{AFM}}}态 [[cite:Otsuka2016]]，这得到了我们的计算结果的验证。
+然而，随着掺杂浓度的增加 ($\delta > 0$），{{{AFM}}} 序迅速减弱，在 $\delta=0.1$ 时几乎接近于零。
+不过，在 $\delta = 0.05$ 时，我们仍然可以观察到显著的 {{{CDW}}} 序，这展现在一个较大的 $S_h(K)$ 值上。
+随着掺杂浓度的进一步增加，{{{CDW}}} 序逐渐减弱。
+然而，即使在相对较高的掺杂浓度如 $\delta = 0.2$ 时，仍然存在相当显著的 {{{CDW}}} 序。
+这些发现表明，系统从 $\delta = 0$ 时的 {{{AFM}}} 基态逐渐过渡到随着掺杂浓度增加带来的 {{{CDW}}} 主导状态。
+{{{AFM}}} 序逐渐被抑制，而 {{{CDW}}} 序变得更加显著。
+即使在较高的掺杂浓度下，显著的 {{{CDW}}} 序仍然存在。
 
 #+begin_export latex
 \begin{figure}
 \centering
 \includegraphics[width=0.45\textwidth]{factor-plot.pdf}
-\caption{各个参数下的AFM序与CDW序}
+\caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序}
 \note{注：
 反铁磁（AFM，$S_{z}(K)$，用红色菱形表示）和电荷密度波（CDW，$S_{h}(K)$，用蓝色方块表示）的序参数，分别对应 (a) $U=4$，(b) $U=8$，(c) $U=12$ 和 (d) $U=16$，掺杂 $\delta$ 从 $0.00$ 到 $0.20$，系统为一个 198 个格点的六角格子上的Hubbard模型。
 }
@@ -2660,7 +2660,7 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 
 为了研究有限尺寸效应的影响，我们考察了不同晶格尺寸下反铁磁（AFM）序和电荷密度波（CDW）序随空穴掺杂 $\delta$ 的变化情况，特别是针对 $U = 12$ 的情况。
 相应的结果如图 [[ref:fig:finite-scaling-cdw-afm]] 所示。
-我们发现，随着晶格尺寸的增加，AFM 序和 CDW 序的结果逐渐收敛。
+我们发现，随着晶格尺寸的增加，{{{AFM}}} 序和 {{{CDW}}} 序的结果逐渐收敛。
 值得注意的是，在 198 个站点的晶格上，有限尺寸效应已经变得很小。
 因此，对于这一晶格尺寸所得到的结果可以认为是对系统基态性质的可靠近似。
 
@@ -2668,17 +2668,17 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{finite-scaling-cdw-afm.pdf}
-\caption{AFM序和CDW序的有限尺寸效应}
+\caption{六角晶格上哈伯德模型上 反铁磁序与电荷密度波序 的有限尺寸效应}
 \note{注：
-(a) AFM序 $S_{z}(K)$ 和 (b) CDW序 $S_{h}(K)$ 关于 $\delta$ 的变化趋势，系统为 $U=12$ 时， 198个格点的六角Hubbard模型。
+(a) AFM序 $S_{z}(K)$ 和 (b) CDW序 $S_{h}(K)$ 关于 $\delta$ 的变化趋势，系统为 $U=12$ 时， 198个格点的六角晶格上哈伯德模型。
 }
 \label{fig:finite-scaling-cdw-afm}
 \end{figure}
 #+end_export
 
 超导（SC）与电荷密度波（CDW）之间的关系是当前研究热点。
-尽管普遍认为 SC 和 CDW 是竞争相，但仍有研究表明 SC 序和 CDW 可以共存，例如文献 [[cite:Morosan2006,Wang2015]] 中的实例。
-因此，这仍然是一个活跃的研究领域，这些相位之间的相互作用依然是一个未解之谜。
+尽管普遍认为 {{{SC}}} 和 {{{CDW}}} 是竞争相，但仍有研究表明 {{{SC}}} 序和 {{{CDW}}} 序 可以共存，例如文献 [[cite:Morosan2006,Wang2015]] 中的实例。
+因此，这仍然是一个活跃的研究领域，这些相之间的关系依然是一个未解之谜。
 
 ** 小结
 
