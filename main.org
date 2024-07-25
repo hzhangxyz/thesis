@@ -153,11 +153,11 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 而White在1992年提出了{{{DMRG}}}(DMRG)方法 [[cite:White1992]] 成功地求解了各种一维模型的低能态性质。
 后来Vidal提出 {{{MPS}}} (MPS) [[cite:Vidal2003]] ，人们认识到{{{DMRG}}}方法可以被认为是对 {{{MPS}}} {{{Ansatz}}}的波函数进行优化的过程。
 
-首先介绍{{{T}}}，它可以被简单地认为是多个线性空间上的多线性映射：
+首先介绍{{{T}}}， $R$阶的张量 可以被简单地认为是多个线性空间上的 $R$ 阶多线性映射：
 \begin{equation}
-\hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{\mathrm{rank}(T)-1} \to \mathbb{K} .
+\hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{R-1} \to \mathbb{K} .
 \end{equation}
-其中 $V_r$ 是 $\mathbb{K}$ 上的线性空间， $r=0,1,2,\cdots \mathrm{rank}(T)-1$ 。
+其中 $V_r$ 是 $\mathbb{K}$ 上的线性空间， $r=0,1,2,\cdots R-1$ , 记 $\mathrm{rank}(\hat T) = R$ 。
 而本论文中， $\mathbb{K}$ 只会取 $\mathbb{R}$ 或者 $\mathbb{C}$ ， $V_r$ 也一定是定义了内积的有限维线性空间，
 所以可以使用一个高维数组来表示一个张量，即
 \begin{equation}
@@ -171,10 +171,10 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 =
 T^{i_0,i_1,\cdots,i_\rrr} a_0^{i_0} a_1^{i_1} \cdots a_\rrr^{i_\rrr},
 \end{equation}
-其中 $D_r = \mathrm{dim}(V_r)$ ， 而 $R=\mathrm{rank}(T)$ 。
-为了表达上的简便，我们直接称呼 $T$ 为张量。
+其中 $D_r = \mathrm{dim}(V_r)$ ， 记 $\mathrm{rank}(T) = R$ 。
+为了表达上的简便，我们直接称呼 $T$ 为张量， 即使严格的说张量应是其所表示的 $\hat T$ 。
 
-MPS使用一个张量链来表示高维的向量。
+{{{MPS}}} 使用一个张量链来表示高维的向量。
 以自旋 $\frac{1}{2}$ 系统为例子，一个长度为 $L$ 的自旋系统波函数
 \begin{equation}\label{eq:一维系统波函数}
 |\Psi\rangle = T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} |\sigma_0 \sigma_1 \cdots \sigma_{L-1}\rangle ,
