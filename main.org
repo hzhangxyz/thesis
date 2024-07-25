@@ -2673,7 +2673,7 @@ $O \gets \frac{H \otimes I + I \otimes H^T}{4}$\;
 $\beta \gets 0$\;
 \While{$\beta$ 没有降温到目标温度}{
   $\rho(\beta) \gets \text{PEPS}(\theta)$\;
-  $E, G, g \gets \texttt{VMC}(O, |\rho(\beta)\rangle_\sharp)$ \Comment*[r]{使用 \ref{sec::各种采样方法} 中的方法采样得到梯度和度规}
+  $E, G, g \gets \texttt{VMC}(O, \rho(\beta))$ \Comment*[r]{使用 \ref{sec::各种采样方法} 中的方法采样得到梯度和度规}
   $\theta \gets \theta - \Delta\beta g^{-1} G$ \;
   $\beta \gets \beta + \Delta\beta$
 }
