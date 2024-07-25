@@ -2499,7 +2499,7 @@ C(\Delta r) = \frac{1}{N} \sum_{|{r}_1 - {r}_2| = \Delta r} |\langle \Delta({r}_
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{exp-decay.pdf}
-\caption{反铁磁态的Cooper关联衰减趋势}
+\caption{六角晶格上哈伯德模型上 反铁磁态的Cooper关联衰减趋势}
 \note{注：
 Cooper对关联函数在 $\delta=0$ 时呈指数衰减。 系统为 $198$ 个格点的六角Hubbard模型；(a) $U=4$, (b) $U=8$, (c) $U=12$ 。}
 \label{fig:指数衰减的超导}
@@ -2520,7 +2520,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{power-decay.pdf}
-\caption{幂律衰减下的Cooper对关联函数}
+\caption{六角晶格上哈伯德模型上 幂律衰减下的Cooper对关联函数}
 \note{注：
 在198个格点的六角晶格上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
 关联函数和 $\Delta r$ 均使用对数刻度表示。
@@ -2551,7 +2551,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{k-plot.pdf}
-\caption{不同$U$和$\delta$下的基态Cooper对关联衰减指数$K$}
+\caption{六角晶格上哈伯德模型上 不同$U$和$\delta$下的基态Cooper对关联衰减指数$K$}
 \note{注：
 在包含198个格点的六角晶格上，不同的相互作用强度 $U$ 下， 单态对关联函数的幂律衰减指数 $K_s$ 和三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
 (a) 单态对关联函数的幂律衰减指数 $K_s$ 随空穴掺杂 $\delta$ 的变化关系；
@@ -2566,7 +2566,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 这可能归因于存在一种竞争序，抑制了超导相。
 值得注意的是，即使使用公式 [[eqref:eq:cooper-sym]] 中定义的对称Cooper对计算对关联函数，这些结果依然保持一致且稳定。
 
-在之前的一项研究中，秦明普利用密度矩阵重正化群（DMRG）计算分析了六角格子上的Hubbard模型，结果表明超导序具有指数衰减的特性 [[cite:Qin2022]]。
+在之前的一项研究中，秦明普利用 {{{DMRG}}}（DMRG）计算分析了 {{{L6}}} 上的{{{Hubbard}}}模型，结果表明超导序具有指数衰减的特性 [[cite:Qin2022]]。
 需要注意的是，这些计算是在一个长而窄的准一维格子上进行的。
 而我们的研究结果显示，对关联在距离 $\Delta r < 8$ 范围内呈现幂律衰减，在 $\Delta r = 8$ 处对关联值约为 $10^{-5} \sim 10^{-4}$ 。
 在此距离范围内，我们的结果与文献 [[cite:Qin2022]] 的报告结果一致。
@@ -2575,9 +2575,9 @@ C(\Delta r) \propto \Delta r^{-K} .
 在文献 [[cite:Peng2023]] 中，也观察到了Cooper对关联的幂律衰减。
 但值得注意的是，该文中报告的衰减指数比我们研究中得到的要小。
 
-*** 反铁磁序与电荷密度波序
+*** {{{AFM}}}序与{{{CDW}}}序
 
-与超导有竞争关系的相态中，最常观察到的两种相是反铁磁（AFM）和电荷密度波（CDW）。
+与超导有竞争关系的相态中，最常观察到的两种相是{{{AFM}}}（AFM）和{{{CDW}}}（CDW）。
 图 [[ref:fig:sc-lattice]] 显示了在 $U = 12$ 和 $\delta = 0.05$ 条件下， 198个格点的系统的空穴密度 $n_h = 1 - n_{\uparrow} - n_{\downarrow}$ 和自旋密度 $S_z = \frac{1}{2}(n_{\uparrow} - n_{\downarrow})$。
 在图 [[ref:fig:sc-lattice]] 中，圆圈的大小对应于空穴密度，而颜色则表示自旋密度的方向和大小。
 系统表现出带有畴壁结构的弱反铁磁性。
