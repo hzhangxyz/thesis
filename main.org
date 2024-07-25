@@ -117,7 +117,7 @@ Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩�
 + 第 [[ref:sec:神威优化]] 章介绍在国产神威系统上对张量网络态的程序优化工作。
 + 第 [[ref:sec:软件]] 章介绍张量网络态计算套件的设计和开发。
 + 第 [[ref:sec:超导]] 章介绍在六角晶格中的Hubbard模型基态中寻找超导相的工作。
-+ 第 [[ref:sec:有限温]] 章介绍方形晶格中的Hubbard模型的有限温模型工作。
++ 第 [[ref:sec:有限温]] 章介绍一种有限温算法以及其测试结果。
 
 本论文将一直使用爱因斯坦求和约定。本论文将一直从 $0$ 开始计数而不是 $1$ 开始计数。
 
@@ -1419,7 +1419,7 @@ SVD后舍弃小的奇异值，是低秩近似的实现。
 在做一步逐块虚时间演化中，将截断后的奇异值矩阵向下一次作用的哈密顿量的两个近邻格点上收缩，从而保证下次作用时，两侧依然为酉。
 这种方法要求两次连续的演化作用有相同的格点，而对于只有近邻相互作用的系统，此条件正好满足。
 
-TODO: 环境正则
+TODO 环境正则
 
 
 *** 简单更新算法 <<sec:::简单更新>>
@@ -2578,7 +2578,7 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 这些观察结果表明，系统的基态从 $\delta = 0$ 的 AFM 主导状态逐渐过渡到随着掺杂浓度增加的 CDW 主导状态。
 此外，在大 $U$ 和小 $\delta$ 区域，系统显示出明显的畴壁结构。
 
-* 方形晶格中的Hubbard模型的有限温模拟计算 <<sec:有限温>>
+* 基于自然梯度法的有限温算法 <<sec:有限温>>
 
 ** 背景介绍
 
@@ -2600,7 +2600,7 @@ AFM 序逐渐被抑制，而 CDW 序变得更加显著。
 不同于之前使用简单更新实现近似的虚时间演化​​工作 [[cite:Kshetrimayum2019,Schmoll2024]] ，此方法直接等价于在表示空间中进行虚时间演化 [[cite:Takai2016,Nomura2021,Hendry2022,Nys2023]] 。
 其变分地更新PEPS网络，保证了精确地降温过程。
 本方法继承了变分蒙特卡洛和PEPS计算基态的优势 ，可以大规模并行化实现，并且只需要收缩单层张量网络即可计算观测量与梯度。
-我们将本方法与其他数值方法做对比，包括 随机级数展开 [[cite:Sandvik1991,Sandvik1992]] 和行列式量子蒙特卡罗 [[cite:Blankenbecler1981,Hirsch1983,Hirsch1985]] ，
+我们将本方法与其他数值方法做对比，包括严格对角化、 随机级数展开 [[cite:Sandvik1991,Sandvik1992]] 和行列式量子蒙特卡罗 [[cite:Blankenbecler1981,Hirsch1983,Hirsch1985]] ，
 我们方法的结果与这些方法保持一致。
 
 ** 方法
@@ -2756,7 +2756,66 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 当公式 [[eqref:eq:j1-j2]] 中的 $J_2$ 不为零时， $J_1-J_2$ 模型是一个阻挫系统，由于符号问题，不适合使用量子蒙特卡罗方法进行计算。
 在零温度情况下，多个数值计算研究 [[cite:Liu2018,Liu2022,Jiang2012,Hu2013,Wang2018]] 显示，当 $J_2/J_1 = 0.5$ 时，$J_1-J_2$ 模型呈现出量子自旋液相。
 
-TODO 有限温结果
+我们在 $4 \times 4$ 方格晶格上计算了 $J_1-J_2$ 模型，设置 $J_2/J_1 = 0.5$，这允许通过严格对角化方法进行精确计算。
+我们将张量网络虚拟指标的键维度设为 $D=8$，边界维度 $D_c=16$，样本数为 80000。
+如图 [[ref:fig:thermal-j1j2]] (a)所示，每点的内能在整个温度范围内与严格对角化的结果高度一致。
+图 [[ref:fig:thermal-j1j2]] (b)中的比热 $C_v$ 同样是通过B样条曲线法获得的，也与严格对角化结果一致。
+图 [[ref:fig:thermal-j1j2]] (c)中显示的磁化率也很好地与ED结果相符。
+因此，我们的方法也适用于有限温度下高度阻挫系统的模拟。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{4x4-j1j2.pdf}
+\caption{ $J_1-J_2$ 模型的降温曲线}
+\note{注：
+二维阻挫的 $J_1-J_2$ 模型在 $4 \times 4$ 方格晶格上的表现：(a) 每格点能量，(b) 每格点比热，(c) 均匀磁化率 $\chi$ 随 $\beta = 1/T$ 的变化情况。
+}
+\label{fig:thermal-j1j2}
+\end{figure}
+#+end_export
+
+*** 费米子系统
+
+我们也尝试将此有限温算法应用于方形晶格的费米子Hubbard模型，其哈密顿量为
+\begin{equation}\label{eq:hubbard}
+    H = -t \sum_{\langle i, j\rangle, \sigma} c_{i\sigma}^\dag c_{j\sigma} + U \sum_{i} n_{i\uparrow} n_{i\downarrow} - \mu \sum_{i\sigma} n_{i\sigma} ,
+\end{equation}
+其中， $c_{i\sigma}$ 是位于格点 $i$ 上自旋为 $\sigma = \uparrow$ 或 $\downarrow$ 的湮灭算符， $n_{i\sigma} = c_{i\sigma}^\dag c_{i\sigma}$ 是粒子数算符。
+在公式 [[eqref:eq:hubbard]] 中，最近邻格点 $\langle i, j \rangle$ 之间的跃迁项幅度为 $t$ ，同一格点 $i$ 上占据两个相反自旋的粒子之间的排斥相互作用参数为 $U$，化学势为 $\mu$。
+
+如第 [[ref:sec:超导]] 中提到过，Hubbard模型作为描述Mott绝缘体的基本工具，其在寻找超导现象，探究i超导机理的计算与分析中极为重要。
+在本次测试中，我们使用 $6 \times 6$ 大小的开边界方形晶格， 参数取 $t=1$ ， $U=8$ 以及 $\mu=4$ ，这对应着半满的反铁磁相 [[cite:Zheng2016]] 。
+需要注意的是，我们的方法也适用于正则系综，不过在此我们使用的是巨正则系综，以便与DQMC进行比较。
+由于这是半满的Hubbard模型，因此对于行列式量子蒙特卡洛算法来说不存在符号问题。
+
+在测试Hubbard模型中，我们发现Hubbard模型高温附近相比自旋系统更加难以及时降温。
+为了解决这个问题，除了取 $p_s' = \sqrt{\langle \psi | s | \psi \rangle}$ 外，
+我们还设置 $p_s = b_s p_s'$ ，其中 $b_s$ 是一个动态调整的值，使得对角项的 $p_s$ 不再远高于非对角项的 $p_s$ 。
+
+如图 [[ref:fig:thermal-hubbard]] 所示，我们将Hubbard模型的结果与DQMC方法进行比较。
+在优化过程中使用了高达30000次采样，在测量过程中使用了600000次采样。
+可以看出，图  [[ref:fig:thermal-hubbard]] (a) 中每格点的能量 $E=\langle H \rangle / N$ 与行列式量子蒙特卡洛结果一致。
+而图  [[ref:fig:thermal-hubbard]] (b) 中的 每格点的双占据 $D=\sum_i \langle n_{i\downarrow} n_{i\uparrow} \rangle / N$ 也和DQMC结果相符。
+图  [[ref:fig:thermal-hubbard]] (c) 则展示了次近邻格点之间的自旋关联 $F=\sum_{\langle\langle i, j \rangle\rangle}\langle \mathbf{S}_i \cdot \mathbf{S}_j \rangle / M$ ，其同样和 行列式量子蒙特卡洛方法获得的结果一致，其中 $M$ 是次近邻格点对的数量。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\includegraphics[width=0.5\textwidth]{6x6-hubbard.pdf}
+\caption{ Hubbard模型的降温曲线 }
+\note{注：
+$6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为 $U=8$，$t=1$ 和 $\mu=4$。(a) 每格点的能量 $E$ ，(b) 每格点的双占据 $D$ ，(c) 次近邻格点之间的自旋关联 $F$ 随着 $\beta = 1/T$ 的变化情况。
+}
+\label{fig:thermal-hubbard}
+\end{figure}
+#+end_export
+
+如图  [[ref:fig:thermal-hubbard]] (a) 所示，随着温度的降低，能量逐渐下降。
+在图  [[ref:fig:thermal-hubbard]] (b) 中可以看出，约在 $1/T = 0.5$ 附近，双占据从一个有限的值收敛到零。
+随着温度的进一步降低，次近邻格点之间的自旋关联在图  [[ref:fig:thermal-hubbard]] (c) 中从零增加到一个有限的值，约发生在 $1/T = 3.0$ 附近。
+由于系统尺寸较小，有限尺寸效应使我们无法观察到明显的相变。
+值得一提的是，本测试结果与文献 [[cite:Li2023]] 中的结果基本一致，只是由于系统尺寸有差异，各个降温曲线不完全相同。
 
 ** 小结
 
