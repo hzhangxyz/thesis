@@ -179,7 +179,7 @@ T^{i_0,i_1,\cdots,i_\rrr} a_0^{i_0} a_1^{i_1} \cdots a_\rrr^{i_\rrr},
 \begin{equation}\label{eq:一维系统波函数}
 |\Psi\rangle = T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} |\sigma_0 \sigma_1 \cdots \sigma_{L-1}\rangle ,
 \end{equation}
-可以被使用MPS来表示：
+可以被使用 {{{MPS}}} 作为 {{{Ansatz}}} 来表示：
 \begin{equation}\label{eq:一维系统波函数的MPS展开}
 T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 (A_0 ^ {\sigma_0})_{v_1}
@@ -190,12 +190,12 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 其中 $\sigma_i$ 为第 $i$ 个格点处的自旋，可以取 $\uparrow$ 或者 $\downarrow$。
 从公式 [[eqref:eq:一维系统波函数的MPS展开]] 中看到，MPS表示的波函数在一个构型下的分量，是一连串的矩阵乘积，这是矩阵乘积态(MPS)名称由来。
 
-在MPS表示中，除了最左边和最右边的格点外，第 $i$ 个格点处的 $(A_i^{\sigma_i})_{v_i v_{i+1}}$ 是一个三阶张量，它有一个物理指标 $\sigma_i$
+在 {{{MPS}}} {{{Ansatz}}} 中，除了最左边和最右边的格点外，第 $i$ 个格点处的 $(A_i^{\sigma_i})_{v_i v_{i+1}}$ 是一个三阶张量，它有一个物理指标 $\sigma_i$
 和两个虚拟指标 $v_i$ 和 $v_{i+1}$ 。
 其中物理指标 $\sigma_i$ 可以取 $\uparrow$ 或者 $\downarrow$，其维度是 $2$ ，通常使用 $d$ 标记。
 而虚拟指标的维度是一个可调节的参数，通常用 $D$ 表示。
 这些指标被称作虚拟指标是因为他们并不是真正的物理指标。
-对于其他类型的系统，一个格点处的物理维度并不一定是 $2$ ，如tJ模型 $d=3$ ， Hubbard模型 $d=4$ 。
+对于其他类型的系统，一个格点处的物理维度并不一定是 $2$ ，如 $t-J$ 模型中 $d=3$ ， {{{Hubbard}}} 模型中 $d=4$ 。
 
 *** 面积定律与MPS
 
