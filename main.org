@@ -55,19 +55,34 @@ abstract TODO
 \newenvironment{ustcnotation}{\begin{notation}\begin{notationlist}{2em}}{\end{notationlist}\end{notation}}
 #+end_export
 
+#+MACRO: ED 严格对角化
+#+MACRO: MC 蒙特卡洛
+#+MACRO: QMC 量子 {{{MC}}}
+#+MACRO: Ansatz 拟设
+#+MACRO: TNS 张量网络态
+#+MACRO: MPS 矩阵乘积态
+#+MACRO: PEPS 投影纠缠对态
+#+MACRO: iTEBD 逐块虚时间演化
+#+MACRO: SU 简单更新
+#+MACRO: DMRG 密度矩阵重整化
+#+MACRO: SR 随机重构型
+#+MACRO: SSE 随机序列展开
+#+MACRO: DQMC 行列式 {{{QMC}}}
+
 #+attr_latex: :environment ustcnotation
-- ED :: 严格对角化 (Exact Diagonalization)
-- QMC :: 量子蒙特卡洛 (Quantum Monte Carlo)
-- Ansatz :: 拟设 (Ansatz)
-- TNS :: 张量网络态 (Tensor Network States)
-- MPS :: 矩阵乘积态 (Matrix Product States)
-- PEPS :: 投影纠缠对态 (Projected Entangled Pair States)
-- iTEBD :: 逐块虚时间演化 (Imaginary Time-evolving Block Decimation)
-- SU :: 简单更新 (Simple Update)
-- DMRG :: 密度矩阵重整化 (Density Matrix Renormalization Group)
-- SR :: 随机重构型（Stochastic Reconfiguration）
-- SSE :: 随机序列展开（Stochastic Series Expansion）
-- DQMC :: 行列式量子蒙特卡洛（Determinant Quantum Monte Carlo）
+- ED :: {{{ED}}} (Exact Diagonalization)
+- MC :: {{{MC}}} （Monte Carlo）
+- QMC :: {{{QMC}}} (Quantum Monte Carlo)
+- Ansatz :: {{{Ansatz}}} (Ansatz)
+- TNS :: {{{TNS}}} (Tensor Network States)
+- MPS :: {{{MPS}}} (Matrix Product States)
+- PEPS :: {{{PEPS}}} (Projected Entangled Pair States)
+- iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
+- SU :: {{{SU}}} (Simple Update)
+- DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
+- SR :: {{{SR}}}（Stochastic Reconfiguration）
+- SSE :: {{{SSE}}}（Stochastic Series Expansion）
+- DQMC :: {{{DQMC}}}（Determinant Quantum Monte Carlo）
 
 #+begin_export latex
 \mainmatter
