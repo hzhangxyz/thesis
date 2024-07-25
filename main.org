@@ -2581,8 +2581,8 @@ C(\Delta r) \propto \Delta r^{-K} .
 图 [[ref:fig:sc-lattice]] 显示了在 $U = 12$ 和 $\delta = 0.05$ 条件下， 198个格点的系统的空穴密度 $n_h = 1 - n_{\uparrow} - n_{\downarrow}$ 和自旋密度 $S_z = \frac{1}{2}(n_{\uparrow} - n_{\downarrow})$。
 在图 [[ref:fig:sc-lattice]] 中，圆圈的大小对应于空穴密度，而颜色则表示自旋密度的方向和大小。
 系统表现出带有畴壁结构的弱反铁磁性。
-空穴密度的空间变化则暗示了可能存在CDW序。
-最近的DMRG结果也揭示了在 $1/16 < \delta < 1/12$ 范围内，$U = 8$ 条件下，长而窄的六角格子（最多 $4 \times 32$ 个格子）的电荷和自旋均处在条纹状态 [[cite:Qin2022]]。
+空穴密度的空间变化则暗示了可能存在{{{CDW}}}序。
+最近的{{{DMRG}}}结果也揭示了在 $1/16 < \delta < 1/12$ 范围内，$U = 8$ 条件下，长而窄的{{{L6}}}（最多 $4 \times 32$ 个格子）上的电荷和自旋均处在条纹状态 [[cite:Qin2022]]。
 在文献 [[cite:Qin2022]] 中，这些条纹垂直于系统的长边边界，这可能与系统尺寸和圆柱形边界条件有关。
 我们的结果为这些条纹图案提供了额外的证据。
 
@@ -2590,7 +2590,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.35\textwidth]{sc-lattice.pdf}
-\caption{$U=12$ ， $\delta=0.05$ 时，Hubbard模型的基态实空间图}
+\caption{六角晶格上哈伯德模型的基态实空间图}
 \note{注：
 Hubbard模型基态在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
 颜色方案表示 $S_z$ 的幅值，红色表示自旋上，蓝色表示自旋下。圆圈的大小对应于空穴密度。
