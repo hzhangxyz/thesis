@@ -326,9 +326,9 @@ Verstraete在表示二维系统的 {{{MPS}}} 上额外加上了行间的边从�
 \begin{figure}
 \centering
 \input{tikz/mps_to_peps.tikz}
-\caption{用于表示二维系统的MPS和PEPS}
+\caption{用于表示二维系统的 矩阵乘积态 和 投影纠缠对态 }
 \label{fig:用于表示二维系统的MPS和PEPS}
-\note{注：由于固定 $D$ 的MPS只能表示常数的纠缠熵，通过在行间加上而外的边可以得到PEPS，PEPS可以满足二维系统的面积定律。}
+\note{注：固定 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
 \end{figure}
 #+end_export
 
