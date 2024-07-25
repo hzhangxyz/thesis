@@ -79,8 +79,9 @@ abstract TODO
 - iTEBD :: 逐块虚时间演化 (Imaginary Time-evolving Block Decimation)
 - SU :: 简单更新 (Simple Update)
 - DMRG :: 密度矩阵重整化 (Density Matrix Renormalization Group)
-
-TODO 符号对照表
+- SR :: 随机重构型（Stochastic Reconfiguration）
+- SSE :: 随机交换方法（Stochastic Series Expansion）
+- DQMC :: 行列式量子蒙特卡洛（Determinant Quantum Monte Carlo）
 
 #+begin_export latex
 \mainmatter
