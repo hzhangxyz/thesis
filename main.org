@@ -2652,7 +2652,7 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \includegraphics[width=0.45\textwidth]{factor-plot.pdf}
 \caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序}
 \note{注：
-反铁磁（AFM，$S_{z}(K)$，用红色菱形表示）和电荷密度波（CDW，$S_{h}(K)$，用蓝色方块表示）的序参数，分别对应 (a) $U=4$，(b) $U=8$，(c) $U=12$ 和 (d) $U=16$，掺杂 $\delta$ 从 $0.00$ 到 $0.20$，系统为一个 198 个格点的六角格子上的Hubbard模型。
+反铁磁（AFM，$S_{z}(K)$，用红色菱形表示）和电荷密度波（CDW，$S_{h}(K)$，用蓝色方块表示）的序参数，分别对应 (a) $U=4$，(b) $U=8$，(c) $U=12$ 和 (d) $U=16$，掺杂 $\delta$ 从 $0.00$ 到 $0.20$，系统为一个  198个格点的六角晶格上哈伯德模型。
 }
 \label{fig:factor-plot}
 \end{figure}
