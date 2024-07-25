@@ -70,6 +70,7 @@ abstract TODO
 #+MACRO: SSE 随机序列展开
 #+MACRO: DQMC 行列式 {{{QMC}}}
 #+MACRO: SC 超导
+#+MACRO: VMC 变分 {{{MC}}}
 
 #+attr_latex: :environment ustcnotation
 - ED :: {{{ED}}} (Exact Diagonalization)
@@ -80,6 +81,7 @@ abstract TODO
 - TNS :: {{{TNS}}} (Tensor Network States)
 - MPS :: {{{MPS}}} (Matrix Product States)
 - PEPS :: {{{PEPS}}} (Projected Entangled Pair States)
+- VMC :: {{{VMC}}} (Variational Monte Carlo)
 - iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
 - SU :: {{{SU}}} (Simple Update)
 - DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
@@ -1577,7 +1579,7 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 
 *** 基于采样方法的变分法
 
-蒙特卡罗方法用于计算梯度即变分蒙特卡罗方法，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
+蒙特卡罗方法用于计算梯度即 {{{VMC}}} 方法，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
 \begin{equation}
 \left\{
 \begin{aligned}
@@ -1740,7 +1742,7 @@ TODO 神威优化
 ** 张量网络态计算套件概述
 
 基于第 [[ref:sec:张量和张量网络]] 章介绍的各类型张量与第 [[ref:sec:张量网络态算法]] 章介绍的多种张量网络态算法，我们开发了张量网络态计算套件（TNSP）[[cite:TNSP-repo]]。
-TNSP简化了各种张量网络态（TNS）方法，特别是PEPS方法的编程过程，它抽象了不同类型张量的细节，无论是费米子张量、对称性张量还是常规的张量。
+TNSP简化了各种张量网络态（TNS）方法，特别是{{{PEPS}}}(PEPS)方法的编程过程，它抽象了不同类型对称性张量的细节，无论是费米子对称性张量、玻色子对称性张量还是常规的张量。
 它提供了简单的用户和编程界面，方便使用各种流行的TNS方法，包括简单更新、梯度优化和各种采样技术。
 该框架的设计本身十分具有灵活性，允许用户通过Python3插件无缝集成自定义的物理模型和优化策略。
 
