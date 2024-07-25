@@ -526,7 +526,7 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \begin{equation}\label{eq:Abel对称性张量的形式}
 T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
 \left(P_{s_0,s_1,\cdots,s_{R-1}}\right)_{\alpha_{s_0},\alpha_{s_1},\cdots \alpha_{s_{R-1}}}
-R(s_0,s_1,\cdots s_{R-1}) .
+C(s_0,s_1,\cdots s_{R-1}) .
 \end{equation}
 可见Abel群的对称性张量是一个分块的张量，其中分块方案由对称性条件和张量每个边上的不可约表示分解决定。
 
