@@ -2544,7 +2544,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 对于 $U = 4$ 且掺杂浓度 $\delta$ 超过 $0.05$ 的情况， 参数 $K$ 始终小于2。
 在 $\delta=0.2$ 的情况下， $K_s$ 和 $K_t$ 均接近 $1$ 。
 此外，对于 $U = 8$ 且 $\delta$ 大于 $0.1$ 的情况，衰减指数 $K$ 继续保持在2以下，表明当温度趋近于0时超导磁化率发散 [[cite:Peng2023]] 。
-有人提出在范霍夫奇点附近可能会发展出长程超导序 [[cite:Pathak2010,Nandkishore2012]]。
+有人提出在 Van Hove 奇点附近可能会发展出长程超导序 [[cite:Pathak2010,Nandkishore2012]]。
 然而，图 [[ref:fig:k-plot]] 中 $1/8$ 掺杂附近的结果并未显示出显著的行为。
 
 #+begin_export latex
