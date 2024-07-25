@@ -2508,7 +2508,7 @@ Cooper对关联函数在 $\delta=0$ 时呈指数衰减。 系统为 $198$ 个格
 
 图 [[ref:fig:超导power-law]] 展示了在不同掺杂浓度下， $U=8$ 时的Cooper对关联函数。
 具体来说，图 [[ref:fig:超导power-law]] (a) 显示了$\delta = 0.05$ 时的关联函数。
-单态和三态的关联函数均表现出代数衰减，即
+单态和三态的关联函数均表现出幂律衰减现象，即
 \begin{equation}
 C(\Delta r) \propto \Delta r^{-K} .
 \end{equation}
@@ -2520,7 +2520,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{power-decay.pdf}
-\caption{代数衰减下的Cooper对关联函数}
+\caption{幂律衰减下的Cooper对关联函数}
 \note{注：
 在198个格点的六角晶格上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
 关联函数和 $\Delta r$ 均使用对数刻度表示。
