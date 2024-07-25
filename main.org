@@ -1706,28 +1706,28 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 
 *** 直接采样
 
-直接采样提供了在PEPS上的一种自回归、无构型关联的采样方法 [[cite:Vieijra2021]] 。
+直接采样提供了在 {{{PEPS}}} 上的一种自回归、无构型关联的采样方法 [[cite:Vieijra2021]] 。
 变分蒙特卡洛方法中，我们需要找到一个采样方法，使得 $r_s = \frac{ \langle \psi | s | \psi \rangle}{p_s} \approx 1$ ，因为 $r_s$ 的分布不均匀会给能量和梯度的估计都带来偏差。
 
-直接采样方案中，对投影纠缠对态上的每个物理指标，依次进行采样。
+直接采样方案，对投影纠缠对态上的每个物理指标，依次进行采样。
 首先， 其试图计算第 0 个物理指标处的约化密度矩阵，即
 \begin{equation}
 \left(\rho_0\right)_{r_0,t_0} = \sum_{s_1 s_2 \cdots} \langle \psi | (r_0 s_1 s_2 \cdots) \rangle \langle (t_0 s_1 s_2 \cdots) | \psi \rangle ,
 \end{equation}
 其中 $s = (s_0 s_1 s_2 \cdots)$, $s_i$ 表示构型 $s$ 在第 $i$ 个物理指标上的值。
-得到 $\rho_0$ 后，模仿在第 0 个格点上进行测量，即以 $\left(\rho_0\right)_{0,0}, \left(\rho_0\right)_{1,1}, \cdots \left(\rho_0\right)_{d-1,d-1}$ 为概率进行采样，得到 $s_0$ 。
+得到 $\rho_0$ 后，模仿在第 0 个格点上进行测量，即以 $\left(\rho_0\right)_{0,0}, \left(\rho_0\right)_{1,1}, \cdots \left(\rho_0\right)_{d-1,d-1}$ 为概率进行采样，得到 $s_0$ ，其中 $d$ 为这个指标的维度。
 接下来计算在第0个点已经坍缩至 $s_0$ 的情况下， 下一个格点的约化密度矩阵，即
 \begin{equation}
 \left(\rho_1\right)_{r_1,t_1} = \sum_{s_2 s_3 \cdots} \langle \psi | (s_0 r_1 s_2 s_3 \cdots) \rangle \langle (s_0 t_1 s_2 s_3 \cdots) | \psi \rangle ,
 \end{equation}
 随后执行相同的操作来进行采样。
 即在采样第 $i$ 个格点时， 第 $0, \cdots i-1$ 个格点均已经采样完毕，此时计算 第 $i$ 个格点的约化密度矩阵
-\begin{equation}
-\left(\rho_i\right)_{r_i,t_i} = \sum_{s_{i+1} s_{i+2} \cdots} \langle \psi | (s_0 s_1 \cdots s_{i-1} r_i s_{i+1} s_{i+2} \cdots) \rangle \langle (s_0 s_1 \cdots s_{i-1} t_i s_{i+1} s_{i+1} \cdots) | \psi \rangle ,
+\begin{equation}\label{eq:直接采样的公式}
+\left(\rho_i\right)_{r_i,t_i} = \sum_{s_{i+1} s_{i+2} \cdots} \langle \psi | (s_0 s_1 \cdots s_{i-1} r_i s_{i+1} s_{i+2} \cdots) \rangle \langle (s_0 s_1 \cdots s_{i-1} t_i s_{i+1} s_{i+1} \cdots) | \psi \rangle .
 \end{equation}
-从而完成 对 第 $i$ 个格点的采样。
+然后模拟在第 $i$ 个格点上的测量，从而完成 对 第 $i$ 个格点的采样。
 
-由于PEPS网络精确收缩代价极高，采样边界MPS和边界MPO方法对计算上述的约化密度矩阵进行计算 [[cite:Liu2017,Murg2007,Verstraete2008,Liu2021]] 。
+由于 {{{PEPS}}} 网络精确收缩代价极高，采样边界MPS和边界MPO方法对计算公式 [[eqref:eq:直接采样的公式]] 中的约化密度矩阵进行计算 [[cite:Liu2017,Murg2007,Verstraete2008,Liu2021]] 。
 由于会重加权，虽然 $r_s$ 的均匀性会影响能量和梯度的偏差，但是直接采样过程中的边界MPO方法里，并不需要很大的 $Dc$ ，通常边界MPO中可以取 $Dc=4$ 甚至 $2$ 。
 而直接采样中的边界MPS的计算可以在后续计算观测量时复用，所以并没有效率上的影响。
 
