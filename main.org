@@ -2520,9 +2520,9 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{power-decay.pdf}
-\caption{代数衰减下的Cooper对关联}
+\caption{代数衰减下的Cooper对关联函数}
 \note{注：
-在198个格点的六角格子上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
+在198个格点的六角晶格上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
 关联函数和 $\Delta r$ 均使用对数刻度表示。
 实线为通过幂律衰减函数拟合的结果：$ C(\Delta r) \propto \Delta r^{-K} $ 。
 }
