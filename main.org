@@ -2849,7 +2849,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 \end{figure}
 #+end_export
 
-如图 [[ref:fig:thermal-heisenberg]] (a) 所示，我们的方法计算得到的每点内能在整个温度范围内（ $\beta = [0, 10]$ ）与SSE的结果一致，这说明我们的方法即使在非常低的温度下也具有出色的精度。
+如图 [[ref:fig:thermal-heisenberg]] (a) 所示，我们的方法计算得到的每点内能在整个温度范围内（ $\beta = [0, 10]$ ）与 {{{SSE}}} 的结果一致，这说明我们的方法即使在非常低的温度下也具有出色的精度。
 图 [[ref:fig:thermal-heisenberg]] (b) 显示了比热 $C_v$ 随 $\beta$ 的变化情况。
 在此，我们通过数值微分获取 $C_v$。
 具体来说，我们首先得到图 [[ref:fig:thermal-heisenberg]] (a) 数据的B样条曲线，然后可以从该曲线的导数中获取 $C_v$。
