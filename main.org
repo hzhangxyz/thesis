@@ -1259,7 +1259,7 @@ x_{n} &= e_i a_{n}^i \\
 \end{equation}
 而 $\frac{\lambda_0}{\lambda_i} > 1$ ， 故 $n \to \infty$ 时，只要 $a_0^0 \neq 0$ ， 即初态含有最大本征值的分量，公式 [[eqref:eq:幂法的系数比值]] 会趋向无穷大，可见最后将收敛到最大本征值对应的本征态。
 
-对于哈密顿量为 $H$ 的系统，为了求得基态，可以使用 $M = \mathrm{e}^{- \tau H}$ 作为幂法中的矩阵进行迭代， 其中 $\tau > 0$ 。
+对于 {{{Hamiltonian}}} 为 $H$ 的系统，为了求得基态，可以使用 $M = \mathrm{e}^{- \tau H}$ 作为幂法中的矩阵进行迭代， 其中 $\tau > 0$ 。
 $H$ 的本征值为 $\varepsilon_i$ ， $\varepsilon_0 < \varepsilon_1 < \varepsilon_2 < \cdots$ ，则 $M$ 的本征值为
 $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lambda_2 > \cdots > 0$ 。
 所以使用 $\mathrm{e}^{-\tau H}$ 迭代后，可以得到系统的基态，即：
@@ -1277,14 +1277,14 @@ $\lambda_i = \mathrm{e}^{- \tau \varepsilon_i}$ , $\lambda_0 > \lambda_1 > \lamb
 
 *** 逐块虚时间演化算法
 
-严格的虚时间演化算法只能计算粒子数最多约 30 的系统，对于更大的系统，态空间的维度指数上升，无法严格表示波函数。
-对于一维只有近临相互作用的系统，表示为矩阵乘积态后，可以使用逐块虚时演化算法求得基态。
+严格的虚时间演化算法实际上就是严格对角化，只能计算粒子数最多约 30 的系统，对于更大的系统，态空间的维度指数上升，无法严格表示波函数。
+对于一维只有近临相互作用的系统，表示为 {{{MPS}}} 后，可以使用逐块虚时演化算法求得基态。
 
-对于哈密顿量 $H = H_0 + H_1 + \cdots H_{N-1}$ ，虚时间演化作用的算符是
+对于哈密顿量 $H = H_0 + H_1 + \cdots H_{N-1}$ ，虚时间演化的演化算符是
 \begin{equation}\label{eq:多项的Hamiltonian演化算符}
 U = \mathrm{e}^{-\tau (H_0 + H_1 + \cdots H_{N-1})}.
 \end{equation}
-我们希望可以将其化为多个局部的算符作用的乘积，类似：
+我们希望可以将其化为多个局部的演化算符作用的乘积，类似：
 \begin{equation}
 \def\expH#1{\mathrm{e}^{-\tau H_{#1}}}
 U = \expH{0} \expH{1} \cdots \expH{N-1},
@@ -1396,19 +1396,19 @@ U
 \end{equation}
 公式 [[eqref:eq:逐块虚时间演化算法的最终公式]] 即为逐块虚时间演化算法的核心公式。
 
-矩阵乘积态上进行逐块虚时间演化时，每次仅需要在原有的MPS上作用 $U_i=\mathrm{e}^{\frac{-\tau}{2}H_i}$ 。
-如图 [[ref:fig:朴素的itebd]] (a)，对于仅有近临相互作用的系统，所有的 $U_i$ 只会作用在两个相邻的张量上，标记为第 $x$ 个张量和第 $y$ 个张量。
+{{{MPS}}} 上进行逐块虚时间演化时，每次仅需要在原有的 {{{MPS}}} 上作用 $U_i=\mathrm{e}^{\frac{-\tau}{2}H_i}$ ，这个 由于其位置与量子计算中的线路门一样， $U_i$ 演化算符有时也被称作门张量。
+如图 [[ref:fig:朴素的itebd]] (a)，对于仅有近临相互作用的系统，所有的 $U_i$ 只会作用在两个相邻的张量上，标记为第 $x$ 个张量和第 $y$ 个张量， 这里  $y=x+1$ 。
 我们可以直接收缩 $U_i$ 以及第 $x$ 个张量 $A_x$ 和 第 $y$ 个张量 $A_y$ ，得到一个大张量 $U_i A_x A_y$ ，如图 [[ref:fig:朴素的itebd]] (b)。
-随后，为了恢复MPS矩阵乘积的形式，我们需要对收缩后的四阶张量进行分解，进行SVD分解后，MPS如图 [[ref:fig:朴素的itebd]] (c) 。
-最后，将多余的奇异值矩阵 $s$ 收缩到左侧的 $u$ 张量或者右侧的 $v$ 张量中，从而完全恢复MPS的形式，即图 [[ref:fig:朴素的itebd]] (d)。
+随后，为了恢复 {{{MPS}}} 的形式，我们需要对收缩后的四阶张量进行分解，进行SVD分解后， {{{MPS}}} 变为图 [[ref:fig:朴素的itebd]] (c) 中的结构。
+最后，将多余的奇异值矩阵 $s$ 收缩到左侧的 $u$ 张量或者右侧的 $v$ 张量中，从而完全恢复{{{MPS}}}的形式，即图 [[ref:fig:朴素的itebd]] (d)。
 
 #+begin_export latex
 \begin{figure}
 \centering
 \input{tikz/trivial_itebd.tikz}
-\caption{MPS上朴素的逐块虚时间演化}
+\caption{矩阵乘积态上朴素的逐块虚时间演化}
 \label{fig:朴素的itebd}
-\note{注：(a) 作用在 $A_x$ 和 $A_y$ 上的 $U_i$ ； (b) 收缩三个张量 ；(c) 对收缩后的张量进行SVD分解；  (c) 收缩奇异值张量，恢复MPS的形式。
+\note{注：(a) 作用在 $A_x$ 和 $A_y$ 上的 $U_i$ ； (b) 收缩三个张量 ；(c) 对收缩后的张量进行SVD分解；  (c) 收缩奇异值张量，恢复矩阵乘积态的形式。
 }
 \end{figure}
 #+end_export
