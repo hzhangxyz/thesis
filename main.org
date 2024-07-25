@@ -71,6 +71,8 @@ abstract TODO
 #+MACRO: DQMC 行列式 {{{QMC}}}
 #+MACRO: SC 超导
 #+MACRO: VMC 变分 {{{MC}}}
+#+MACRO: CDW 电荷密度波
+#+MACRO: AFM 反铁磁
 
 #+attr_latex: :environment ustcnotation
 - ED :: {{{ED}}} (Exact Diagonalization)
@@ -89,6 +91,8 @@ abstract TODO
 - SSE :: {{{SSE}}} (Stochastic Series Expansion)
 - DQMC :: {{{DQMC}}} (Determinant Quantum Monte Carlo)
 - SC :: {{{SC}}} (Superconductivity)
+- CDW :: {{{CDW}}} (Charge Density Wave)
+- AFM :: {{{AFM}}} (Antiferromagnetic)
 
 #+MACRO: F 费米
 #+MACRO: B 玻色
@@ -2347,80 +2351,80 @@ su_create free_fermion.parity L1=4 L2=4 D=4
 su_update 100 0.01 4 # 总步数为100的简单更新，tau=0.01、 D=4
 \end{lstlisting}
 
-* 六角晶格中的Hubbard模型的掺杂基态模拟计算 <<sec:超导>>
+* 六角晶格中的 {{{Hubbard}}} 模型的掺杂基态模拟计算 <<sec:超导>>
 
 ** 背景介绍与主要结论
 
 对高温超导现象 [[cite:Bednorz1986,Wu1987]] 的理解是当代凝聚态物理学中最具挑战性的课题之一。
-普遍认为，通过研究掺杂的Mott绝缘体 [[cite:Lee2006]] 可以理解高温超导，而Hubbard模型 [[cite:Hubbard1964]] 是描述这类绝缘体的基本工具。
-然而，多年来的研究表明，在方形晶格上原始的Hubbard模型并不能产生稳定的超导态 [[cite:Rozhkov2011,Kitatani2019,Qin2020]] 。
-这引起了人们对使用Hubbard模型来研究六角晶格上电子电子关联的兴趣 [[cite:Pathak2010,BlackSchaffer2014,Wang2012,Xu2016,Jiang2014,Gu2020,Kiesel2012,Raghu2010,Honerkamp2008,Ying2020,Wolf2018,Nandkishore2012,Watanabe2013,Ma2014,Wu2013]] 。
-与方形晶格相比，六角晶格因其六边形结构展现出独特的电子特性。
-六角晶格的能带结构在费米能级处具有Dirac锥，同时在 $1/8$ 电子和空穴掺杂的情况下，表现出对数型 Van Hove 奇异性以及显著的费米面嵌套，
-这些特性可能增强六角晶格上的长程超导相 [[cite:Pathak2010,Nandkishore2012]]。
+普遍认为，通过研究掺杂的Mott绝缘体 [[cite:Lee2006]] 可以产生高温超导，而 {{{Hubbard}}} 模型 [[cite:Hubbard1964]] 是描述这类绝缘体的基本工具。
+然而，多年来的研究表明，在 {{{L4}}} 上原始的 {{{Hubbard}}} 模型并不能产生稳定的超导态 [[cite:Rozhkov2011,Kitatani2019,Qin2020]] 。
+这引起了人们对使用{{{Hubbard}}}模型来研究 {{{L6}}} 上电子电子关联的兴趣 [[cite:Pathak2010,BlackSchaffer2014,Wang2012,Xu2016,Jiang2014,Gu2020,Kiesel2012,Raghu2010,Honerkamp2008,Ying2020,Wolf2018,Nandkishore2012,Watanabe2013,Ma2014,Wu2013]] 。
+与{{{L4}}}相比，{{{L6}}}因其六边形结构展现出独特的电子特性。
+{{{L6}}}的能带结构在费米能级处具有Dirac锥，同时在 $1/8$ 电子和空穴掺杂的情况下，表现出对数型 Van Hove 奇异性以及显著的费米面嵌套现象，
+这些特性可能增强 {{{L6}}} 上的长程超导相 [[cite:Pathak2010,Nandkishore2012]]。
 
-尽管在半填充时观察到在约 $U_c = 3.8$ 处有从半金属到反铁磁态的相变 [[cite:Otsuka2016]] ，但关于掺杂对六角晶格上Hubbard模型中的反铁磁态的影响仍然没有彻底研究。
-许多研究都探讨了六角晶格上的超导性，但结果存在争议。
-一个关于六角晶格上Hubbard模型的变分量子Monte Carlo（QMC）研究提出，在掺杂石墨烯中存在具有手性d + id对称性的超导 [[cite:Pathak2010]] 。
+尽管在半填充时观察到在约 $U_c = 3.8$ 处有从半金属到反铁磁态的相变 [[cite:Otsuka2016]] ，但关于掺杂对 {{{L6}}}上{{{Hubbard}}}模型中的反铁磁态的影响仍然没有彻底研究。
+许多研究都探讨了 {{{L6}}} 上的超导性，但结果存在争议。
+一个关于{{{L6}}}上{{{Hubbard}}}模型的 变分{{{QMC}}}（vQMC）研究提出，在掺杂石墨烯中存在具有手性d + id对称性的超导 [[cite:Pathak2010]] 。
 另外，另一项QMC模拟也预测了在强相互作用区间会出现金手性 $d + id$ 波超导性 [[cite:BlackSchaffer2014]] 。
-同样，Grassmann张量乘积态（GTPS）研究也表明在大U极限下，t-J模型中存在手性超导态 [[cite:Gu2013]] 。
-然而，最新的密度矩阵重整化群（DMRG）模拟结果与这些研究相矛盾，指出在掺杂六角晶格的Hubbard模型中，Cooper对关联中缺乏准长程序 [[cite:Qin2022]] 。
+同样，Grassmann张量乘积态（GTPS）研究也表明在大U极限下， $t-J$ 模型中存在手性超导态 [[cite:Gu2013]] 。
+然而，最新的密度矩阵重整化群（DMRG）模拟结果与这些研究相矛盾，指出在{{{L6}}}上的掺杂{{{Hubbard}}}模型中，Cooper对关联中没有准长程序 [[cite:Qin2022]] 。
 
 然而，这些数值方法各自有其局限性。
-VMC方法依赖于基于先验知识设定的初态，这可能导致结果有偏。
-DMRG方法对于一维或准一维系统有效，但可能无法充分捕捉二维系统的特性。
+{{{VMC}}} 方法依赖于基于先验知识设定的初态，这可能导致结果有偏。
+{{{DMRG}}} 方法对于一维或准一维系统有效，但可能无法充分捕捉二维系统的特性。
 此外，文献 [[cite:Gu2013]] 中使用的GTPS使用了简单更新算法，在时间演化过程中涉及近似处理，可能影响结果的准确性。
 
-为了深入探究六角晶格中Hubbard模型掺杂后的性质，我们在一个较宽的参数范围内通过第 [[ref:sec:张量和张量网络]] 章中介绍的费米子投影纠缠对状态研究了空穴掺杂的六角晶格Hubbard模型。
-我们使用第 [[ref:sec:张量网络态算法]] 章介绍的各种优化方法对 PEPS 进行优化，确保了可控的精度。
+为了深入探究{{{L6}}}中{{{Hubbard}}}模型掺杂后的性质，我们在一个较宽的参数范围内通过第 [[ref:sec:张量和张量网络]] 章中介绍的费米子 {{{PEPS}}} 研究了空穴掺杂的{{{L6}}}{{{Hubbard}}}模型。
+我们使用第 [[ref:sec:张量网络态算法]] 章介绍的各种优化方法对 {{{PEPS}}} 进行优化，确保了可控的精度。
 这些方法一方面避免了简单更新优化过程中忽略环境影响而导致的误差，另一方面显著降低了与张量网络截断 $D$ 相关的复杂度问题，使得能够利用更大的网络截断，从而在大系统中实现高度精确且收敛的结果。
-我们观察到准长程超导秩序的存在，其特征是Cooper对关联随距离呈幂律衰减，衰减指数 $K > 1$ 。
-我们还研究了系统中的竞争相，包括电荷密度波（CDW）序和反铁磁（AFM）序。
-结果发现，在低掺杂浓度下，基态呈现AFM序，然而随着掺杂浓度的增加，这一秩序逐渐减弱，并最终在 $\delta>0.05$ 时消失。
-相比之下，即使在较高的掺杂浓度下，基态仍持续表现出稳定的CDW序。
+我们观察到准长程超导秩序的存在，其特征是Cooper对关联随距离呈幂律衰减，但衰减指数 $K > 1$ 。
+我们还研究了系统中的竞争相，包括{{{CDW}}}（CDW）序和{{{AFM}}}（AFM）序。
+结果发现，在低掺杂浓度下，基态呈现 {{{AFM}}} 序，然而随着掺杂浓度的增加，这一秩序逐渐减弱，并最终在 $\delta>0.05$ 时消失。
+相比之下，即使在较高的掺杂浓度下，基态仍持续表现出稳定的 {{{CDW}}} 序。
 
 ** 方法
 
-哈密顿量Hubbard模型的公式为
+{{{Hubbard}}}模型的哈密顿量公式为
 \begin{equation}
 H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \sigma} + \text{h.c.} \right) + U \sum_i n_{i \uparrow} n_{i \downarrow},
 \end{equation}
 其中， $t$ 和 $U$ 分别为相邻格点之间的跃迁参数和格点上的库伦相互作用。
 这里， $c_{i, \sigma}$ 表示在格点 $i$ 处具有自旋 $\sigma$ 的电子湮灭算符，且 $n_{i\sigma} = c_{i\sigma}^\dagger c_{i\sigma}$ 。 本文中，默认 $t = 1$ 。
 
-该哈密顿量的多粒子波函数由费米子PEPS表示。为了简化实现，我们将六角格子映射到如图 [[ref:fig:六角格子映射]] 所示的方格子上。
-对于方格子上的每个格点，我们定义一个承载六角格子上的两个物理指标的张量，左上和右下两个角上的张量除外，它们依然只有一个物理指标。
-因此，PEPS中的张量的物理指标维度为 $4^2 = 16$ 。
+该哈密顿量的多粒子波函数由费米子{{{PEPS}}}表示。为了简化实现，我们将{{{L6}}}映射到如图 [[ref:fig:六角格子映射]] 所示的方格子上。
+对于方格子上的每个格点，我们定义一个承载{{{L6}}}上的两个物理指标的张量，左上和右下两个角上的张量除外，它们依然只有一个物理指标。
+因此，{{{PEPS}}}中的大部分张量的物理指标维度为 $4^2 = 16$ 。
 
 #+begin_export latex
 \begin{figure}
 \centering
 \includegraphics[width=0.4\textwidth]{figures/honeycomb.pdf}
-\caption{六角格子系统到方格子的映射}
+\caption{六角晶格到方格子的映射}
 \label{fig:六角格子映射}
 \note{注：
-六角晶格到方形晶格的映射，用于PEPS方法。每个灰色椭圆对应于PEPS中一个单独的张量，涵盖了两个六角晶格格点，左下角和右上角除外，它们仅包含一个点。黄色区域表示选择用于计算Cooper对相关函数的区域。
+六角晶格到方格子的映射，用于 投影纠缠对态 方法。每个灰色椭圆对应于 投影纠缠对态 中一个单独的张量，它们包含了两个六角晶格的格点，左下角和右上角除外。黄色区域表示选择用于计算Cooper对关联函数的区域。
 }
 \end{figure}
 #+end_export
 
-我们首先通过应用简单更新方案来优化PEPS波函数  [[cite:Jiang2008]]  。
-得出的PEPS波函数随后作为初始态，利用梯度下降法进行进一步优化  [[cite:Sandvik2007,Liu2017,Dong2019]] 。
+我们首先通过应用简单更新方案来优化{{{PEPS}}}波函数  [[cite:Jiang2008]]  。
+得出的{{{PEPS}}}波函数随后作为初始态，利用梯度下降法进行进一步优化  [[cite:Sandvik2007,Liu2017,Dong2019]] 。
 在整个优化过程中，总粒子数始终保持守恒，以确保符合预期的掺杂浓度。
-这一守恒性是通过强制要求 PEPS的 {{{F}}}-$U(1)$ 对称性来实现的 [[cite:Singh2010]] 。
+这一守恒性是通过强制要求 {{{PEPS}}}的 {{{F}}}-$U(1)$ 对称性来实现的 [[cite:Singh2010]] 。
 在简单更新过程中，我们通过降序排列奇异值并保留最大的奇异值来截断虚拟指标，从而决定虚拟指标上量子数的选择。
-通过简单更新过程确定的虚拟指标量子数随后被用于梯度下降优化计算。
+通过简单更新过程确定的虚拟指标量子数随后不再更新并用于梯度下降优化计算。
 为了计算能量和梯度，我们采用了文献 [[cite:Vieijra2021]] 中提出的直接采样技术。
 这种方法非常高效，因为避免了采样构型之间的关联，提高了计算效率和结果精度。
 从最初的虚拟指标维度 $D=4$ 开始，我们在简单更新过程中，逐步增加维度到 $D=16$ ，使能量收敛到约 $10^{-3}$ 的水平，如图 [[ref:fig:超导D收敛]] 所示。
-边界MPS方法中的截断维度被设置为 $D_c=2D$ ，同时，在优化PEPS过程中使用的采样数设定为 $N=10^4$ 。
+边界MPS方法中的截断维度被设置为 $D_c=2D$ ，同时，在优化{{{PEPS}}}过程中使用的采样数设定为 $N=10^4$ 。
 这些优化步骤和参数选择确保了我们在计算中能够获得准确和可靠的结果，为后续分析提供可靠的基础。
 
 #+begin_export latex
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/converge-D.pdf}
-\caption{能量随 $D$ 的收敛图}
+\caption{六角晶格上哈伯德模型的能量随 $D$ 的收敛图}
 \label{fig:超导D收敛}
 \note{注：
 对于 $10 \times 10$ 的晶格（ $198$ 个格点 ），在参数 $U=8$ 和 $δ=0.1$ 的情况下，系统的能量作为虚拟指标维度 $D$ 的倒数的函数呈现收敛趋势。当 $D$ 接近 $16$ 时，能量大约收敛到 $10^{-3}$。
@@ -2435,8 +2439,8 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 
 *** 超导性质
 
-我们首先研究了在六角格子上的空穴掺杂Hubbard模型的超导可能。
-在六角格子上，单态和三态Cooper对函数分别定义为
+我们首先研究了在 {{{L6}}} 上的空穴掺杂{{{Hubbard}}}模型的超导现象存在的可能性。
+在{{{L6}}}上，单态和三态的Cooper对算符分别定义为
 \begin{equation}
 \left\{
 \begin{aligned}
@@ -2446,9 +2450,9 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 \right.
 \end{equation}
 其中，$j = i + a$，$a$ 是围绕格点 $i$ 的三条边的方向之一。
-Cooper对可以根据它们的对称性进一步分类，它们是 $\Delta_s^a(i)$ 和 $\Delta_t^a(i)$ 的线性组合。
+Cooper对可以根据它们的对称性进一步组合分类，它们都是 $\Delta_s^a(i)$ 和 $\Delta_t^a(i)$ 的线性组合。
 
-具有超导性的系统可以根据其Cooper对配对的对称性进行分类。在六角格子上，可能的Cooper对对称性在文献 [[cite:Faye2015]] 中被定义为单态或三态对的组合，具体表达如下为
+具有超导性的系统可以根据其Cooper对配对的对称性进行分类。在{{{L6}}}上，可能的Cooper对对称性在文献 [[cite:Faye2015]] 中被定义为单态或三态对的组合，具体表达如下为
 \begin{equation}\label{eq:cooper-sym}
 \left\{
 \begin{aligned}
@@ -2467,7 +2471,8 @@ Cooper对可以根据它们的对称性进一步分类，它们是 $\Delta_s^a(i
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{cooper-pairs.pdf}
-\caption{\label{fig:cooper-pairs}Cooper对的对称性示意图}
+\caption{六角晶格上Cooper对的对称性示意图}
+\label{fig:cooper-pairs}
 \note{注：
 (a) 对于 $s$ 波和 $f$ 波对，三个库珀对具有相同的相位；
 (b) 对于 $p$ 波和 $d$ 波对，三个库珀对 $\Delta_1$ 、 $\Delta_2$ 和 $\Delta_3$ 分别具有相同的、 ${\rm exp(\pm 2/3 \pi i)}$ 和 ${\rm exp(\pm 4/3 \pi i)}$ 相位。
