@@ -1616,11 +1616,11 @@ g^{Tij}
 g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{\langle \psi | \psi \rangle} - \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\psi\rangle}{\langle\psi|\psi\rangle} \frac{\sum_l\langle\psi|l|\partial_{T_j}\psi\rangle}{\langle\psi|\psi\rangle} .
 \end{equation}
 可以采样估计
-\begin{equation}
+\begin{equation}\label{eq:度规的采样计算}
 \widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
 \end{equation}
 
-至此，我们可以得到任意用于表示量子态的函数的参数空间中的度规，这样我们可以利用公式 [[eqref:eq:自然梯度法]] ，
+至此，我们可以得到任意用于表示量子态的函数的参数空间中的度规，这样便我们可以利用公式 [[eqref:eq:自然梯度法]] ，将度规的逆作用在梯度上，得到参数更新的方向。
 
 *** 直接采样
 
@@ -2680,7 +2680,22 @@ $\beta \gets 0$\;
 \end{algorithm}
 #+end_export
 
-在自然梯度法中，我们需要计算度规的逆乘以梯度，这个任务可以通过共轭梯度法实现。
+在自然梯度法中，我们需要计算度规的逆乘以梯度，即求解
+\begin{equation}
+g X = G,
+\end{equation}
+其中 $g$ 为度规， $G$ 为梯度， $X$ 为更新参数的方向。
+这个求逆任务可以通过共轭梯度法实现。
+在共轭梯度法中，我们不需要知道矩阵 $g$ 的显式形式，只需要知道如何将其作用在向量 $X$ 上，然后多次迭代即可。
+由于 $g$ 本身是 $n_p \times n_p$ 的矩阵，其中 $n_p$ 为参数空间大小。
+而采样方法中， 公式 [[eqref:eq:度规的采样计算]] 给出的度规估计实际上是由 $n_p \times n_s$ 的矩阵乘以 $n_s \times n_p$ 的矩阵得到的，其中 $n_s$ 为采样数目。
+故而共轭梯度法的复杂度为 $n_s n_p n_{cg}$ ，其中 $n_{cg}$ 为共轭梯度法的迭代步数。
+当 $n_p \gg n_s$ 时，共轭梯度相比与直接求逆 的 O(n_p^3) 复杂度要快很多。
+
+
+\begin{equation}
+\widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
+\end{equation}
 
 #+begin_export latex
 \bibliography{main}
