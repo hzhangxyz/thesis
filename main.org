@@ -1801,7 +1801,7 @@ TAT， 作为一个C++17头文件库， 利用泛型编程实现了各种张量�
 TAT通过静态处理指示每个量子数的费米玻色性质， 提高了代码的可读性和可重用性。
 
 根据对称性类型， TAT定义了一种边类型， 用于表示张量指标的属性， 封装了由对称性类型表征的一系列值及其对应的简并性。
-这种边由若干个`段'组成， 并且在适用的情况下， 包含一个布尔值， 指示费米子情况下的费米箭头。
+这种边由若干个`段'组成， 并且在适用的情况下， 还包含一个布尔值， 指示费米子情况下的费米箭头。
 其中若干段中的每一段是对称性类型的值与其简并性构成的对。
 一个分块多维数组， 或者说Core类型， 是由这些边的序列通过公式  [[eqref:eq:Abel对称性张量的形式]] 创建而成的， 为了性能效率， 将分块数据存储为一维数组。
 然后， 张量类型由指向这个Core类型的指针和一个边名称的序列组成， 这允许在不直接改变原始张量的情况下， 通过轻量级的非就地边重命名来操纵张量元数据。
@@ -1809,28 +1809,28 @@ TAT提供了张量操作的各种接口， 如奇异值分解， 收缩， 或�
 一旦使用每个对称性所需要的独特属性构建完成了张量， 其他所有的张量操作接口就能在不同的张量类型和对称性组之间保持一致。
 
 TAT的代码位于仓库的 =/TAT/include/TAT= 目录中，包含 =TAT。hpp= 主文件和四个目录： =structure= 、 =implement= 、 =utility= 和 =miscellaneous= 。在 =structure= 目录中，文件的组织如下：
-+ =name。hpp= 描述了用作指标名称的类型。
-+ =symmetry。hpp= 定义了泛型的对称性类型 =Symmetry= ，用于表示量子数。它可以被实例化为各种对称性类型， 如 =NoSymmetry= 、 =BoseU1Symmetry= 、 =BoseZ2Symmetry= 、 =FermiZ2Symmetry= 、 =FermiU1Symmetry= 等 。
-+ =edge。hpp= 定义了基于对称性类型的边类型用以描述张量指标， 包括一个段和费米箭头， 这里的段被表示为一个C++的向量， 该向量由对称性类型(Symmetry)和维度(dimension)的对所组成 。
-+ =core。hpp= 定义了核心类型，用于包含边序列和分块多维数组。
-+ =tensor。hpp= 通过结合指向核心类型的指针 =shared_ptr<Core>= 和指标名称序列 =vector<Name>= 来描述张量类型，并声明了张量操作的函数，这些函数的实现可以在 =implement= 目录中的相应文件中找到。
-此外，TAT包的各种实用函数和类放置在 =utility= 目录中。在 =miscellaneous= 目录中，文件 =io。hpp= 专门用于定义张量的I/O函数， =scalar。hpp= 处理张量的标量算术，而 =mpi。hpp= 则专注于为张量提供各种MPI函数。
++ =name.hpp= 描述了用作指标名称的类型。
++ =symmetry.hpp= 定义了泛型的对称性类型 =Symmetry= ，用于表示量子数。它可以被实例化为各种对称性类型， 如 =NoSymmetry= 、 =BoseU1Symmetry= 、 =BoseZ2Symmetry= 、 =FermiZ2Symmetry= 、 =FermiU1Symmetry= 等 。
++ =edge.hpp= 定义了基于对称性类型的边类型用以描述张量指标， 包括一个段和费米箭头， 这里的段被表示为一个C++的向量， 该向量由对称性类型(Symmetry)和维度(dimension)的对所组成 。
++ =core.hpp= 定义了核心类型，用于包含边序列和分块多维数组。
++ =tensor.hpp= 通过结合指向核心类型的指针 =shared_ptr<Core>= 和指标名称序列 =vector<Name>= 来描述张量类型，并声明了张量操作的函数，这些函数的实现可以在 =implement= 目录中的相应文件中找到。
+此外，TAT包的各种实用函数和类放置在 =utility= 目录中。在 =miscellaneous= 目录中，文件 =io.hpp= 专门用于定义张量的I/O函数， =scalar.hpp= 处理张量的标量算术，而 =mpi.hpp= 则专注于为张量提供各种MPI函数。
 
 Python接口封装的代码位于仓库的 =/PyTAT= 目录中，包含三个主要文件：
-+ =PyTAT。hpp= 定义了模板函数，这些函数用于封装张量和边。
-+ =dealing_tensor。cpp。in= 用于生成文件， 这些文件实例化 =PyTAT。hpp= 中针对不同张量类型的函数。 文件的生成过程由 =CMakeLists。txt= 协调。
-+ =PyTAT。cpp= 负责定义Python模块中的所有其他组件。
++ =PyTAT.hpp= 定义了模板函数，这些函数用于封装张量和边。
++ =dealing_tensor.cpp.in= 用于生成文件， 这些文件实例化 =PyTAT。hpp= 中针对不同张量类型的函数。 文件的生成过程由 =CMakeLists.txt= 协调。
++ =PyTAT.cpp= 负责定义Python模块中的所有其他组件。
 
-TAT通过使用特定的描述符， 称为 =SymmetryType= ， 来区分属于不同对称性群的张量， 该描述符通常是模板类 =Symmetry<Args。。。>= 的实例化。
-在这里，  =Args。。。= 表示包含指示对称性单群们的可变模板参数。
+TAT通过使用特定的描述符， 称为 =SymmetryType= ， 来区分属于不同对称性群的张量， 该描述符通常是模板类 =Symmetry<Args...>= 的实例化。
+在这里，  =Args...= 表示包含指示对称性单群们的可变模板参数。
 由模板类表示的对称性群是这些单群的乘积。
 值得注意的是，  $U(1)$ 对称性由整数类型表示， 使用 =U1= 作为别名， 而 $Z(2)$ 对称性由布尔类型表示， 使用 =Z2= 作为别名。
-例如，  =Symmetry<U1， Z2>= 表示群 $U(1) \otimes Z(2)$ 。
+例如，  =Symmetry<U1, Z2>= 表示群 $U(1) \otimes Z(2)$ 。
 为了描述费米子对称性， 表明体现这种对称性的粒子是费米子，
 TAT使用类型包装器 =fermi= 来封装单群的标记。
-例如， =Symmetry<fermi<U1>>= 表示费米子 $U(1)$ 对称性。
-为了增强表示的美观性， 用户还可以使用身份包装器 =bose= 为非费米子对称性群标记。
-例如，  =Symmetry<fermi<Z2>， bose<U1>>= 表示费米子 $Z(2)$ $\otimes$ 玻色子 $U(1)$ 群。
+例如， =Symmetry<fermi<U1>>= 表示费米- $U(1)$ 对称性。
+为了增强表示的美观性和一致性， 用户还可以使用身份包装器 =bose= 为非费米子对称性群标记。
+例如，  =Symmetry<fermi<Z2>， bose<U1>>= 表示费米- $Z(2)$ $\otimes$ 玻色- $U(1)$ 群。
 至于非对称性情况， TAT使用 =Symmetry<>= 。
 
 在TAT中，张量类型被定义为 =Tensor<ScalarType， SymmetryType， NameType>= ， 这是一个模板类，
