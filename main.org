@@ -59,6 +59,7 @@ abstract TODO
 #+MACRO: MC 蒙特卡洛
 #+MACRO: QMC 量子 {{{MC}}}
 #+MACRO: Ansatz 拟设
+#+MACRO: NQS 神经网络量子态
 #+MACRO: TNS 张量网络态
 #+MACRO: MPS 矩阵乘积态
 #+MACRO: PEPS 投影纠缠对态
@@ -71,21 +72,23 @@ abstract TODO
 
 #+attr_latex: :environment ustcnotation
 - ED :: {{{ED}}} (Exact Diagonalization)
-- MC :: {{{MC}}} （Monte Carlo）
+- MC :: {{{MC}}} (Monte Carlo)
 - QMC :: {{{QMC}}} (Quantum Monte Carlo)
 - Ansatz :: {{{Ansatz}}} (Ansatz)
+- NQS :: {{{NQS}}} (Neural Quantum States)
 - TNS :: {{{TNS}}} (Tensor Network States)
 - MPS :: {{{MPS}}} (Matrix Product States)
 - PEPS :: {{{PEPS}}} (Projected Entangled Pair States)
 - iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
 - SU :: {{{SU}}} (Simple Update)
 - DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
-- SR :: {{{SR}}}（Stochastic Reconfiguration）
-- SSE :: {{{SSE}}}（Stochastic Series Expansion）
-- DQMC :: {{{DQMC}}}（Determinant Quantum Monte Carlo）
+- SR :: {{{SR}}}(Stochastic Reconfiguration)
+- SSE :: {{{SSE}}}(Stochastic Series Expansion)
+- DQMC :: {{{DQMC}}}(Determinant Quantum Monte Carlo)
 
 #+MACRO: F 费米
 #+MACRO: B 玻色
+#+MACRO: AL 纠缠熵面积定律
 
 #+begin_export latex
 \mainmatter
@@ -103,10 +106,10 @@ abstract TODO
 在某些特殊的强关联系统中，{{{QMC}}} 方法(QMC)能够给出优异结果，但有阻错的系统存在符号问题，为了收敛它必须指数增加采样量。
 另一大类方法则使用 {{{Ansatz}}} (Ansatz)函数来表示波函数，如何用有限数据量表示庞大的希尔伯特空间中的向量是这类数值方法的关键点。
 
-近年来，除了一些传统的有偏拟设和神经网络态拟设，张量网络态(TNS)拟设备受到极大关注。
-2003年，Vidal提出了矩阵乘积态作为最早的张量网络态 [[cite:Vidal2003]] 。
-这种方法使用一维张量链来表示一维系统的波函数，特别适合满足纠缠熵面积定律的系统。
-Verstaete随后将其推广至二维系统，即投影纠缠对态(PEPS) [[cite:Verstraete2004]] ，同样适用于满足面积定律的二维系统。
+近年来，除了一些传统的有偏拟设和 {{{NQS}}} （NQS） {{{Ansatz}}} ，{{{TNS}}} (TNS)拟设备受到极大关注。
+2003年，Vidal提出了{{{MPS}}}作为最早的{{{TNS}}} [[cite:Vidal2003]] 。
+这种方法使用一维张量链来表示一维系统的波函数，特别适合满足 {{{AL}}} 的系统。
+Verstaete随后将其推广至二维系统，即投影纠缠对态(PEPS) [[cite:Verstraete2004]] ，同样适用于满足 {{{AL}}} 的二维系统。
 Vidal针对矩阵乘积态提出了逐块虚时间演化算法(iTEBD) [[cite:Vidal2004,Vidal2007]] ，能有效获得一维系统的基态。
 然而在处理二维系统时，优化投影纠缠态变得十分困难，逐块虚时间演化算法难以获得精确结果。
 2008年，向涛通过在二维系统逐块虚时间演化算法中引入简单环境得到简单更新(SU)方法 [[cite:Jiang2008]] ，实现在计算效率不减的情况下近似获得基态结果。
