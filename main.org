@@ -2693,15 +2693,12 @@ g X = G,
 当 $n_p \gg n_s$ 时，共轭梯度相比与直接求逆 的 $O(n_p^3)$ 复杂度要快很多。
 
 相较与标准的共轭梯度法，我们可以共轭梯度法内，计算 $X^\dag g X$ 时做一些改进。
-
-这是共轭梯度法的一个常见技巧 [[cite:Bjrck1979,Paige1982]] 。
-
-
-
-
+我们不需要将 $g$ 完全作用在 $X$ 上，取而代之，我们直接将 $X$ 放入公式 [[eqref:eq:度规的采样计算]] ，得到
 \begin{equation}
-\widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
+X^\dag_i \widehat{g}^{ij} X_j = \frac{\sum_{s \sim S} r_s (X^\dag_i \Delta_s^i) (\Delta_s^{j*} X_j)}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s (X^\dag_i \Delta_s^i)}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s (\Delta_s^{j*} X_j)}{\sum_{s \sim S} r_s} ,
 \end{equation}
+这样我们可以复用多个中间变量，既减少了运算，也提高了数值稳定性。
+这是共轭梯度法的一个常见技巧 [[cite:Bjrck1979,Paige1982]] 。
 
 #+begin_export latex
 \bibliography{main}
