@@ -328,12 +328,12 @@ Verstraete在表示二维系统的 {{{MPS}}} 上额外加上了行间的边从�
 \input{tikz/mps_to_peps.tikz}
 \caption{用于表示二维系统的 矩阵乘积态 和 投影纠缠对态 }
 \label{fig:用于表示二维系统的MPS和PEPS}
-\note{注：固定 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
+\note{注：固定 虚拟指标维度 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
 \end{figure}
 #+end_export
 
-一张PEPS中划分出一个区域X，其与外界相连的边的数目正比与区域的周长，即边的数目 $N \propto |\partial X|$ 。
-类似MPS的情况，计算约化密度矩阵时有同样的形式：
+一张 {{{PEPS}}} 中划分出一个区域X，其与外界相连的边的数目正比与区域的周长，即边的数目 $N \propto |\partial X|$ 。
+类似 {{{MPS}}} 的情况，计算约化密度矩阵时有同样的形式：
 \begin{equation}\label{eq:PEPS中计算约化密度矩阵}
 (\hat\rho_{X})_{s_{X, 0}, s_{X, 1}, \cdots} ^ {s'_{X, 0}, s'_{X, 1}, \cdots} =
 T_{s_{X,0}, s_{X,1}, \cdots}^{v_0, v_1, \cdots v_{N-1}}
@@ -341,8 +341,8 @@ M_{v_0, v_1, \cdots v_{N-1}}^{v'_0, v'_1, \cdots v'_{N-1}}
 T^{\dag {s'_{X,0}, s'_{X,1}, \cdots}}_{v'_0, v'_1, \cdots v'_{N-1}} , 
 \end{equation}
 其中， $s_{X,i}$ 为区域X中各个物理指标， $v_i$ 为区域X和外部相连的边的指标。
-公式 [[eqref:eq:PEPS中计算约化密度矩阵]] 中间有一个 $D^N$ 维度的矩阵$M$，其中 $D$ 是PEPS中虚拟边的维度。
-而 $S = \ln D^N = N \ln D \propto |\partial X|$ ，所以PEPS可以满足二维系统的纠缠熵面积定律。
+公式 [[eqref:eq:PEPS中计算约化密度矩阵]] 中间有一个 $D^N$ 维度的矩阵$M$，其中 $D$ 是 {{{PEPS}}} 中虚拟指标的维度。
+而 $S = \ln D^N = N \ln D \propto |\partial X|$ ，所以 {{{PEPS}}} 可以满足二维系统的 {{{AL}}} 。
 
 *** 投影纠缠对
 
