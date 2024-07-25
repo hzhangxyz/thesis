@@ -2051,15 +2051,15 @@ tetragono通过插件支持定义抽象态和抽象晶格来描述自定义物�
 tetragono的代码位于仓库的 =/tetragono= 目录下，组织如下：
 + 抽象态 (AbstractState) 实现在  =abstract_state.py=  中。
 + 抽象晶格 (AbstractLattice) 实现在  =abstract_lattice.py=  中。
-+ 精确对角化实现在  =exact_state.py=  中。
-+ 简单更新算法实现在  =simple_update_lattice.py=  中。
++ {{{ED}}}算法实现在  =exact_state.py=  中。
++ {{{SU}}}算法实现在  =simple_update_lattice.py=  中。
 + 鉴于采样方法的多样性，相关函数实现在  =sampling_lattice=  子目录中。在这个目录中：
   + =lattice.py=  指定了包含数据的晶格类型和个别采样结果的配置类型。
   + =sampling.py=  包含了若干方法，包括遍历、直接采样和Metropolis采样。
   + =observer.py=  用于从采样结果中测量并计算梯度。
   + 最后，所有这些功能通过 =gradient.py=  中的驱动函数集成并执行。
 + =utility.py=  包含各种工具函数。
-+ =auxiliaries=  目录，利用 =lazy_graph= ，如图 [[ref:fig:张量网络态计算套件的结构]] 所述，用于构型类型，包含几个辅助系统，旨在最小化在边界MPS方法中张量网络收缩的冗余计算，特别是移除或替换多个格点的张量时。
++ =auxiliaries=  目录，利用 =lazy_graph= ，如图 [[ref:fig:张量网络态计算套件的结构]] 所述，用于构型类型，包含几个辅助系统，旨在最小化在边界MPO方法和边界MPS方法中张量网络收缩的冗余计算，特别是移除或替换多个格点的张量时。
 + =conversion.py=  中定义了适用于不同算法的对象转换函数。
 + 最后， =shell.py=  提供了一个高层次、用户友好的接口，称为tetragono shell，用于访问tetragono中的所有功能。
 
