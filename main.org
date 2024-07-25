@@ -1522,8 +1522,8 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 而无论是计算观测量，还是计算梯度，都可以看作计算单项 $O_i$ 或其梯度后，再计算简单的多项之和，所以不改变问题难度，本章的下文中， $O$ 仅代表观测量的一项。
 
 使用 $O$ 对 $|\psi\rangle$ 进行测量时，观测量为 $\langle O \rangle=\frac{\langle \psi | O | \psi \rangle}{\langle \psi | \psi \rangle}$ 。
-当 $|\psi\rangle$ 使用张量网络进行表示时，比如二维的投影纠缠对态，如果直接计算观测量，我们需要收缩双层的网络 $\langle \psi | O | \psi \rangle$ 。
-如果使用边界MPS的近似方式，复杂度高达 $O(D^4 D_c^3 + d D^6 Dc^2)$  [[cite:Liu2017]] ，其中 $Dc$ 为边界MPS方法中的截断参数，通常 $D_c \propto D^2$。
+当 $|\psi\rangle$ 使用 {{{TNS}}} 作为 {{{Ansatz}}} 进行表示时，比如二维的{{{PEPS}}}，如果直接计算观测量，我们需要收缩双层的网络 $\langle \psi | O | \psi \rangle$ 。
+如果使用边界MPO的近似方式，复杂度高达 $O(D^4 D_c^3 + d D^6 Dc^2)$  [[cite:Liu2017]] ，其中 $Dc$ 为边界MPO方法中的截断参数，通常 $D_c \propto D^2$。
 而使用蒙特卡罗方法，可以避免双层网络的收缩。
 
 蒙特卡罗方法中，首先对 $\langle O \rangle$ 进行变形，得到
@@ -1531,7 +1531,7 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 \langle O \rangle=\frac{\sum_{s,s'}\langle \psi | s | O | s' | \psi \rangle}{\sum_{s}\langle \psi | s | \psi \rangle} , 
 \end{equation}
 其中 $s$ 和 $s'$ 是希尔伯特空间中对某个构型上的投影算子。
-我们这里的表述与标准的变分蒙特卡罗有些不同，比如 我们写成 $\langle \psi | s | \psi \rangle$ 而不是 $\langle \psi | s\rangle \langle s|\psi \rangle$ 。
+我们这里的表述与标准的变分蒙特卡罗算法有些不同，比如 我们写成 $\langle \psi | s | \psi \rangle$ 而不是 $\langle \psi | s\rangle \langle s|\psi \rangle$ 。
 这是因为使用费米子张量作为波函数表示时，我们无法将 $\langle \psi | s \rangle$ 写成构型无关的复数，而是得到 $\langle \psi | s$ 作为一个费米子张量，它可以进一步和 $|\psi\rangle$ 收缩得到复数。
 
 在公式 [[eqref:eq:观测量变形]] 中，有两个指标需要在整个希尔伯特空间中遍历，即 $s$ 和 $s'$ ，这是不可接受的，因为希尔伯特空间的大小高达 $d^N$ ，其中 $d$ 为单个物理指标的维度， $N$ 为物理指标的数目。
@@ -1577,7 +1577,7 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 
 *** 基于采样方法的变分法
 
-蒙特卡罗方法用于计算梯度即变分蒙特卡罗方法，考虑使用参数 $T_i$ 表示的态 $|\psi\rangle$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
+蒙特卡罗方法用于计算梯度即变分蒙特卡罗方法，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
 \begin{equation}
 \left\{
 \begin{aligned}
@@ -1657,9 +1657,9 @@ L(\delta x_i, \delta x_i^*, \lambda) = E(x_i) + \frac{\partial E}{\partial x_i} 
 \right.
 \end{equation}
 
-使用参数空间的参数表示量子态时，由于表示本身的原因，可能导致在参数空间中难以进行梯度下降。
-而希尔伯特空间中，能量函数有着较简单的形式，假设希尔伯特空间有平凡度规 ， 即 $g^H_{ij}=\delta_{ij}$ ，则可以在表示态的参数空间中诱导出参数空间的度规，从而提高优化效率。
-这种方法就是自然梯度，在变分蒙特卡罗中，也被称为随机重构型方法。
+使用 {{{Ansatz}}} 表示量子态时，参数空间的性质与 {{{Hilbert}}}空间 性质相差极大，由于 {{{Ansatz}}}本身的原因，可能导致在{{{Ansatz}}} 的参数空间中难以进行梯度下降。
+而希尔伯特空间中，能量函数有着较简单的形式，假设希尔伯特空间有平凡度规 ， 即 $g^H_{ij}=\delta_{ij}$ ，则可以在表示态的{{{Ansatz}}}参数空间中诱导出{{{Ansatz}}}参数空间的度规，从而提高优化效率。
+这种方法就是自然梯度，在 {{{VMC}}} 方法中，这种改进也被称为随机重构型方法。
 
 对于两个度量空间 $A$ 和 $B$ ， $x^{A*}_i g^{Aij} y^A_j = x^{B*}_i g^{Bij} y^B_j$ 所以
 \begin{equation}\label{eq:度规诱导}
@@ -1684,7 +1684,7 @@ g^{Cij}
 \end{aligned}
 \end{equation}
 
-而对于参数 $T_i$ 所在的参数空间 $T$ ，其度规为
+而对于参数 $T_i$ 所在的{{{Ansatz}}}参数空间 $T$ ，其度规为
 \begin{equation}\label{eq:度规推导}
 \begin{aligned}
 g^{Tij}
@@ -1702,7 +1702,7 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 \widehat{g^{Tij}} = \frac{\sum_{s \sim S} r_s \Delta_s^i \Delta_s^{j*}}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s \Delta_s^i}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s \Delta_s^{j*}}{\sum_{s \sim S} r_s} .
 \end{equation}
 
-至此，我们可以得到任意用于表示量子态的函数的参数空间中的度规，这样便我们可以利用公式 [[eqref:eq:自然梯度法]] ，将度规的逆作用在梯度上，得到参数更新的方向。
+至此，我们可以得到任意用于表示量子态的函数的参数空间中的度规，这样便我们可以利用公式 [[eqref:eq:自然梯度法]] ，将度规的逆作用在梯度上，得到自然梯度下参数更新的方向。
 
 *** 直接采样
 
