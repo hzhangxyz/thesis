@@ -2124,6 +2124,7 @@ class Node:
 对于每条边，费米- $Z(2)$ 对称性可能的两个量子数是偶性(+1)和奇性(-1)。
 物理边的简并度统一设置为 =1= 。
 虚拟边两个量子数的简并度设置为 =D1= 和 =D2= ，边界边的简并度设置为 =1= 和 =0= 。这里，参数 =D1= 和 =D2= 可以自由设置，只要它们的和等于表示虚拟指标总维度 =D= 。在更新过程中， =D1= 和 =D2= 将自动调整到最佳值。
+这里需要注意的是，虽然 $Z(2)$ 对称性内部实现使用 =False= 和 =True= 作为量子数，但是由于历史原因，我们提供了一个接口 =parity(+1)=False= ， =parity(-1)=True= 。
 
 随后，在代码 [[ref:code:init-peps.py]] 的第11-19行中，我们通过Python生成器创建一个二维列表，循环遍历{{{PEPS}}}中的每个点， =l1= 范围从 =0= 到 =L1-1= ， =l2= 范围从 =0= 到 =L2-1= ，其中 =L1= 和 =L2= 是晶格的大小。
 该列表由 =Node= 类的实例组成。
@@ -2249,7 +2250,7 @@ def simple_update(peps, gate, L1, L2, D):
 \end{lstlisting}
 
 定义了 =simple_update= 后， 函数可以直接用于执行简单更新的计算。
-代码 [[ref:code:runsu.py]] 中通过在 $4 \times 4$ 格子上执行 $50$ 步简单更新提供了一个示例， 虚拟指标维度被设置为 $D=4$ 。初始态中， $D$ 的一半分配给量子数 $+1$，另一半分配给 $-1$ 。
+代码 [[ref:code:runsu.py]] 中通过在 $4 \times 4$ 格子上执行 $50$ 步简单更新提供了一个示例， 虚拟指标维度被设置为 $D=4$ 。初始态中， $D$ 的一半分配给偶性，另一半分配给奇性 。
 
 \begin{lstlisting}[language=Python,label={code:runsu.py}, caption=使用\texttt{simple\_update}函数]
 L1 = L2 = 4
@@ -2263,14 +2264,14 @@ for i in range(step_number):
     simple_update(peps, gate, L1, L2, D)
 \end{lstlisting}
 
-从这个例子中，我们看到通过使用TAT，可以像编写普通的、用于玻色子或自旋系统的PEPS方法那样为费米子系统编写代码。
+从这个例子中，我们看到通过使用TAT，可以像编写普通的、用于玻色子或自旋系统的{{{PEPS}}}方法那样为费米子系统编写代码。
 一旦系统的哈密顿量和初始参数确定，就无需再在后续使用过程中考虑费米子的反对易性质。
 
 *** 使用tetragono实现的简单更新 <<sec:::tet-example>>
 
 在本章节中，我们使用tetragono接口重写了自由费米子模型的简单更新，与直接使用TAT相比，这大大简化了过程。
 一旦定义了物理模型，tetragono中实现的每个算法都可以通过一个命令访问。
-要描述自定义的物理模型，用户只需定义两个函数： =abstract_state= 用于确定模型的物理指标和哈密顿量，以及 =abstract_lattice= 用于设置PEPS中的虚拟指标。
+要描述自定义的物理模型，用户只需定义两个函数： =abstract_state= 用于确定模型的物理指标和哈密顿量，以及 =abstract_lattice= 用于设置{{{PEPS}}}中的虚拟指标。
 
 \begin{lstlisting}[language=Python, label={code:tet-abs-state.py}, caption=自由费米子的描述：\texttt{abstract\_state}]
 import TAT
@@ -2299,7 +2300,7 @@ def abstract_state(L1, L2):
 \end{lstlisting}
 
 在代码 [[ref:code:tet-abs-state.py]] 中，我们为自由费米子模型定义了 =abstract_state= ，包括系统大小和张量类型开始，以及每个格点的物理指标。
-该指标由两个段组成：一个量子数为 =+1= ，另一个为 =−1= ；每个段的简并度都是 =1= 。
+该指标由两个段组成：一个量子数为偶性 ，另一个为奇性 ；每个段的简并度都是 =1= 。
 根据 [[ref:sec:::费米子张量]] 中的讨论，物理指标的费米箭头默认设置为 =False= 。
 在tetragono中，每个格点可以承载多个物理指标，并通过其轨道索引区分。
 在本例子中，由于每个格点只有一个物理指标，所有轨道索引都是 =0= 。
@@ -2319,13 +2320,13 @@ def abstract_lattice(L1, L2, D):
     return lattice
 \end{lstlisting}
 
-要为给定模型构建PEPS波函数，还需要描述虚拟指标。
+要为给定模型构建{{{PEPS}}}波函数，还需要描述虚拟指标。
 这在 =abstract_lattice= 函数中实现，该函数根据在 =abstract_state= 函数获得的虚拟态的基础上，加上虚拟指标信息。
-如代码 [[ref:code:tet-abs-lattice.py]] 所示，每个边缘由两个段组成：一个段的量子数为 =+1= ，简并度为 =D/2= ；另一个段的量子数为 =−1= ，简并度相同。
+如代码 [[ref:code:tet-abs-lattice.py]] 所示，每个边缘由两个段组成：一个段的量子数为偶性 ，简并度为 =D/2= ；另一个段的量子数为奇性 ，简并度相同。
 当我们为格点 =(l1, l2)= 的设置下指标 ="D"= 时，对应格点 =(l1 + 1, l2)= 的上指标 ="U"= 会自动设置为其共轭，水平边上的指标也有相同的行为。
 
 一旦定义了这两个函数，它们可以被保存到如名为 =ff.py= 的文件中。
-随后，可以编写一个脚本，如代码 [[ref:code:tet-script.tet]] 所示，以对这个费米子PEPS执行简单更新算法。
+随后，可以编写一个脚本，如代码 [[ref:code:tet-script.tet]] 所示，以对这个费米子{{{PEPS}}}执行简单更新算法。
 在第1行，它初始化一个自由费米子模型的晶格，参数为 =L1=4= 、 =L2=4= 和 =D=4= ，这些参数对应于 =ff.py= 中的 =abstract_lattice= 函数。
 在第2行，它应用了简单更新算法，这里指定了总步骤、 $\Delta \tau$ 和简单更新中的维度截断。
 
@@ -2334,7 +2335,7 @@ su_create free_fermion.parity L1=4 L2=4 D=4
 su_update 100 0.01 4 # 总步数为100的简单更新，tau=0.01、 D=4
 \end{lstlisting}
 
-通过将这个脚本文件保存为如名为 =network_example.tet= 的文件，我们可以使用命令 =python -m tetragono.shell network_example.tet= 运行它，即创建一个 $4 \times 4$ 费米子PEPS上的自由费米子模型，随后进行简单更新。
+通过将这个脚本文件保存为如名为 =network_example.tet= 的文件，我们可以使用命令 =python -m tetragono.shell network_example.tet= 运行它，即创建一个 $4 \times 4$ 费米子{{{PEPS}}}上的自由费米子模型，随后进行简单更新。
 
 *** 使用 tetraku 进行的简单更新
 
