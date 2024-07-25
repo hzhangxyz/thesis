@@ -2008,10 +2008,10 @@ function & example\\\hline\hline
 \texttt{zero\_} & \texttt{A.zero\_()} \\\hline
 \end{tabular}
 \note{注：
-1. 函数名遵循命名约定，即内置函数以下划线 “\texttt{\_}” 结尾。
-2. \texttt{clear\_symmetry} 函数旨在最大程度地消除对称信息。对于非费米子对称性张量，此操作生成一个非对称性张量。反之，对于费米子张量，该操作的结果是一个费米-$Z(2)$ 对称性张量。
-3. \texttt{contract} 函数的第二个参数是一个包含对的集合，每对包含第一个张量中的一个边名及其在第二个张量中的对应边名。
-4. \texttt{exponential}、\texttt{identity\_} 和 \texttt{trace} 函数需要一组对来确认边的关系，明确指出张量中哪条边与哪条边对应。
+1. 函数名遵循就地操作函数以下划线 “\texttt{\_}” 结尾的名称约定。
+2. \texttt{clear\_symmetry} 函数旨在最大程度地消除对称性信息。对于非费米子对称性张量，此操作生成一个非对称性张量。反之，对于费米子张量，该操作的结果是一个费米-$Z(2)$ 对称性张量。
+3. \texttt{contract} 函数的第二个参数是一个包含指标名称对的集合，每个对包含第一个张量中的一个边名及其在第二个张量中的对应边名。
+4. \texttt{exponential}、\texttt{identity\_} 和 \texttt{trace} 函数需要一组指标名称对来确认边的关系，明确指出张量中哪条边与哪条边对应。
 5. 在 \texttt{qr} 函数中，当第一个参数为 \texttt{'r'} 时，第二个参数表示新形成的 \texttt{R} 张量的自由边。相反，如果第一个参数是 \texttt{'q'}，第二个参数则指定 \texttt{Q} 张量的自由边。最后两个参数表示 QR 分解过程中新创建的边的名称。
 6. \texttt{randn\_} 函数根据指定的均值和标准差生成正态随机数并填充到张量中，而 \texttt{rand\_} 函数在给定的上下边界内生成均匀随机数并填充到张量中。
 7. \texttt{split\_edge} 函数需要新边的分段信息，因为在合并过程中边的分段信息会丢失。
