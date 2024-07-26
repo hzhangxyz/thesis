@@ -1819,7 +1819,7 @@ TAT的代码位于仓库的 =/TAT/include/TAT= 目录中，包含 =TAT。hpp= �
 + =edge.hpp= 定义了基于对称性类型的边类型用以描述张量指标， 包括一个段和费米箭头， 这里的段被表示为一个C++的向量， 该向量由对称性类型(Symmetry)和维度(dimension)的对所组成 。
 + =core.hpp= 定义了核心类型，用于包含边序列和分块多维数组。
 + =tensor.hpp= 通过结合指向核心类型的指针 =shared_ptr<Core>= 和指标名称序列 =vector<Name>= 来描述张量类型，并声明了张量操作的函数，这些函数的实现可以在 =implement= 目录中的相应文件中找到。
-此外，TAT包的各种实用函数和类放置在 =utility= 目录中。在 =miscellaneous= 目录中，文件 =io.hpp= 专门用于定义张量的I/O函数， =scalar.hpp= 处理张量的标量算术，而 =mpi.hpp= 则专注于为张量提供各种MPI函数。
+此外，TAT包的各种实用函数和类放置在 =utility= 目录中。在 =miscellaneous= 目录中，文件 =io.hpp= 专门用于定义张量的I/O函数， =scalar.hpp= 处理张量的标量算术，而 =mpi.hpp= 则专注于为张量提供各种MPI [[cite:mpi40,Dalcn2005]] 操作的函数 。
 
 Python接口封装的代码位于仓库的 =/PyTAT= 目录中，包含三个主要文件：
 + =PyTAT.hpp= 定义了模板函数，这些函数用于封装张量和边。
@@ -1982,7 +1982,7 @@ A = TAT.FermiU1BoseZ2.D.Tensor(["i", "j"], [
 ]).zero_()
 \end{lstlisting}
 
-TAT的Python接口封装提供了与其他 Python 包出色的互操作性，能够通过 pickle 对 TAT 张量进行序列化和反序列化。此外，它支持将张量块导出为 NumPy 数组，并保持内存共享，从而实现与 Python 生态系统的无缝集成。
+TAT的Python接口封装提供了与其他 Python 包出色的互操作性，能够通过 pickle 对 TAT 张量进行序列化和反序列化。此外，它支持将张量块导出为 NumPy [[cite:Harris2020]] 数组，并保持内存共享，从而实现与 Python 生态系统的无缝集成。
 TAT中常用的函数列在表 [[ref:table:TAT-functions]] 中，由于C++和Python接口高度一致，这里只展示Python的接口。
 
 #+begin_export latex
@@ -2071,7 +2071,7 @@ tetragono的代码位于仓库的 =/tetragono= 目录下，组织如下：
 用户可以在命令行中执行 =python -m tetragono.shell= 进入 tetragono shell。
 在tetragono shell中输入 =help= 或 =?= 将显示可用命令。 要获取特定命令的详细使用信息, 用户可以输入 =help <command>= 。
 用户可以在tetragono shell中逐行执行命令, 也可以在脚本文件中列出多个命令, 并使用 =python -m tetragono.shell <script_file>= 运行它们。
-通过这种方式, 可以自动利用 MPI, 这意味着如果用户使用 =mpirun python -m tetragono.shell <script_file>= 执行脚本文件, tetragono 内部实现的每个算法都将在可能的情况下使用 MPI 并行运行，从而加快程序执行速度。
+通过这种方式, 可以自动利用 MPI [[cite:mpi40,Dalcn2005]] ， 这意味着如果用户使用 =mpirun python -m tetragono.shell <script_file>= 执行脚本文件, tetragono 内部实现的每个算法都将在可能的情况下使用 MPI 并行运行，从而加快程序执行速度。
 
 *** 常见模型合集（tetraku）
 
