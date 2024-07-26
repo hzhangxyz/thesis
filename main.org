@@ -1774,7 +1774,7 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 ** 主核程序移植工作
 
 我们 基于 {{{PEPS}}}的{{{VMC}}} 算法 实现 软件 中，除了 BLAS和 LAPACK [[cite:lapack]]，并没有其他的依赖项目，这使我们在主核移植中，没有遇到太大的困难。
-我们直接使用 NetLib 的 BLAS 和 LAPACK [[cite:lapack]] ，尝试进行编译。
+我们直接使用 Netlib 的 BLAS 和 LAPACK [[cite:lapack]] ，尝试进行编译。
 通过添加编译选项 =-mieee= 以启用IEEE浮点运算标准 [[cite:ieee]] ，确保程序中的浮点运算符合IEEE标准 ，修复运行时浮点异常后，软件的依赖问题在主核解决。
 
 软件本体实现为Fortran 和 少量 C++ ，通过修复部分误用的 GNU 扩展， 如 Fortran中的 =cdsqrt= 函数后，软件本体可以成功在主核上运行。
@@ -1783,22 +1783,47 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 
 我们以 $t-J$ 模型为例， 参数设置为 $N = 8 \times 8$ 的 {{{L4}}} ， 粒子数限制为 56 ， {{{PEPS}}}的虚拟指标维度设置为  $D=20$ , 进行 {{{VMC}}} 优化。
 经过单核10步采样后进行性能分析，结果列于表 [[ref:table:最开始的profiling]] 中。
-
+如表 [[ref:table:最开始的profiling]] 所示，前四个热点函数均为BLAS运算。
 
 #+caption: \label{table:最开始的profiling} 软件移植主核后的性能分析
 #+ATTR_LATEX: :font \scriptsize
-|---------------------------+--------+----------+---------|
-| 热点函数                    | 来源    | 运行时间   |     占比 |
-|---------------------------+--------+----------+---------|
-| =xGEMM=                   | BLAS   | 2763.53s |  52.36% |
-| =xCOPY=                   | BLAS   | 662.46s  |  12.55% |
-| =xGEMV=                   | BLAS   | 645.60s  |  12.23% |
-| =xGER=                    | BLAS   | 457.72s  |   8.67% |
-| =xLASR=                   | LAPACK | 96.94s   |   1.83% |
-| =permutation_rank3_data3= | 张量转置 |          |         |
-|---------------------------+--------+----------+---------|
-| 合计                       |        | 5277.54s | 100.00% |
-|---------------------------+--------+----------+---------|
+|---------------------------+---------------------+----------+---------|
+| 热点函数                    | 来源                 | 运行时间   |     占比 |
+|---------------------------+---------------------+----------+---------|
+| =xGEMM=                   | BLAS ，用于张量收缩    | 2763.53s |  52.36% |
+| =xCOPY=                   | BLAS ，部分用于张量转置 | 662.46s  |  12.55% |
+| =xGEMV=                   | BLAS ，用于张量收缩    | 645.60s  |  12.23% |
+| =xGER=                    | BLAS ，用于张量收缩    | 457.72s  |   8.67% |
+| =xLASR=                   | LAPACK ，用于张量分解  | 96.94s   |   1.83% |
+| =permutation_rank3_data3= | 用于张量转置           |          |         |
+|---------------------------+---------------------+----------+---------|
+| 合计                       |                     | 5277.54s | 100.00% |
+|---------------------------+---------------------+----------+---------|
+
+BLAS 中的 =xGEMM= ， =xGEMV= 和 =xGER= 以及 LAPACK中的 =xLASR= 作为张量运算的核心矩阵操作，无法在主核上进一步优化。
+而 =xCOPY= 有部分用于实现张量转置， 以双进度实数浮点数为例， 其形式如 代码 [[ref:code:dcopy.f]] 所示，其调用中，有大量 =INCX= 、 =INCY= 都为 1 的情况。
+这在通常使用的商用计算机中，大部分都被编译器自动地进行向量化优化了，而申威架构的编译器实现并没有针对此的优化。
+所以我们手动进行优化，具体而言，就是在 =xCOPY= 中检测 =INCX= 和 =INCY= 是否都为 1,
+如果是，则使用向量化数据复制操作，双进度实数浮点数的情况如代码 [[ref:code:better-dcopy.f]] 所示。
+其中 =FAST_DCOPY= 为针对连续数据复制任务优化后的函数，而 =REFERENCE_DCOPY= 为Netlib中原有的 =DCOPY= 实现。
+
+\begin{lstlisting}[caption={DCOPY的申明},label={code:dcopy.f},language=Fortran]
+SUBROUTINE DCOPY(N, DX, INCX, DY, INCY)
+\end{lstlisting}
+
+\begin{lstlisting}[caption={DCOPY的优化},label={code:better-dcopy.f},language=Fortran]
+SUBROUTINE DCOPY(N, DX, INCX, DY, INCY)
+    INTEGER, INTENT(IN) :: N, INCX, INCY
+    DOUBLE PRECISION, INTENT(IN) :: DX(*)
+    DOUBLE PRECISION, INTENT(INOUT) :: DY(*)
+
+    IF (INCX == 1 .AND. INCY == 1) THEN
+        CALL FAST_DCOPY(N, DX, DY)
+    ELSE
+        CALL REFERENCE_DCOPY(N, DX, INCX, DY, INCY)
+    END IF
+END SUBROUTINE DCOPY
+\end{lstlisting}
 
 * 张量网络态计算套件（TNSP） <<sec:软件>>
 
