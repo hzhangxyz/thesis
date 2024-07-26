@@ -2570,7 +2570,7 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{figures/honeycomb.pdf}
+\includegraphics[width=0.6\textwidth]{figures/honeycomb.pdf}
 \caption{六角晶格到方格子的映射}
 \label{fig:六角格子映射}
 \note{注：
@@ -2669,7 +2669,7 @@ C(\Delta r) = \frac{1}{N} \sum_{|{r}_1 - {r}_2| = \Delta r} |\langle \Delta({r}_
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{exp-decay.pdf}
+\includegraphics[width=0.6\textwidth]{exp-decay.pdf}
 \caption{六角晶格上哈伯德模型上 反铁磁态的Cooper关联衰减趋势}
 \note{注：
 Cooper对关联函数在 $\delta=0$ 时呈指数衰减。 系统为 $198$ 个格点的六角Hubbard模型；(a) $U=4$, (b) $U=8$, (c) $U=12$ 。}
@@ -2690,7 +2690,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{power-decay.pdf}
+\includegraphics[width=0.6\textwidth]{power-decay.pdf}
 \caption{六角晶格上哈伯德模型上 幂律衰减下的Cooper对关联函数}
 \note{注：
 在198个格点的六角晶格上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态Cooper对关联函数 $C(\Delta r)$ 。
@@ -2721,8 +2721,8 @@ C(\Delta r) \propto \Delta r^{-K} .
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{k-plot.pdf}
-\caption{六角晶格上哈伯德模型上 不同$U$和$\delta$下的基态Cooper对关联衰减指数$K$}
+\includegraphics[width=0.6\textwidth]{k-plot.pdf}
+\caption{六角晶格上哈伯德模型上 基态Cooper对关联衰减指数$K$}
 \note{注：
 在包含198个格点的六角晶格上，不同的相互作用强度 $U$ 下， 单态对关联函数的幂律衰减指数 $K_s$ 和三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
 (a) 单态对关联函数的幂律衰减指数 $K_s$ 随空穴掺杂 $\delta$ 的变化关系；
@@ -2760,7 +2760,7 @@ C(\Delta r) \propto \Delta r^{-K} .
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.35\textwidth]{sc-lattice.pdf}
+\includegraphics[width=0.6\textwidth]{sc-lattice.pdf}
 \caption{六角晶格上哈伯德模型的基态实空间图}
 \note{注：
 六角晶格上哈伯德模型在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
@@ -2794,7 +2794,7 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{k-space.pdf}
+\includegraphics[width=0.6\textwidth]{k-space.pdf}
 \caption{六角晶格上哈伯德模型的基态中空穴和自旋的结构因子}
 \note{注：
 (a) 空穴结构因子 $S_{h}({\bf k})$ 和 (b) 自旋结构因子 $S_z ({\bf k})$ 。
@@ -2820,7 +2820,7 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.45\textwidth]{factor-plot.pdf}
+\includegraphics[width=0.6\textwidth]{factor-plot.pdf}
 \caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序}
 \note{注：
 反铁磁（AFM，$S_{z}(K)$，用红色菱形表示）和电荷密度波（CDW，$S_{h}(K)$，用蓝色方块表示）的序参数，分别对应 (a) $U=4$，(b) $U=8$，(c) $U=12$ 和 (d) $U=16$，掺杂 $\delta$ 从 $0.00$ 到 $0.20$，系统为一个  198个格点的六角晶格上哈伯德模型。
@@ -2838,8 +2838,8 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.4\textwidth]{finite-scaling-cdw-afm.pdf}
-\caption{六角晶格上哈伯德模型上 反铁磁序与电荷密度波序 的有限尺寸效应}
+\includegraphics[width=0.6\textwidth]{finite-scaling-cdw-afm.pdf}
+\caption{六角晶格哈伯德模型上 反铁磁与电荷密度波序 的有限尺寸效应}
 \note{注：
 (a) 反铁磁序 $S_{z}(K)$ 和 (b) 电荷密度波序 $S_{h}(K)$ 关于 $\delta$ 的变化趋势，系统为 $U=12$ 时， 198个格点的六角晶格上哈伯德模型。
 }
@@ -3011,7 +3011,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{8x8-heisenberg.pdf}
+\includegraphics[width=0.8\textwidth]{8x8-heisenberg.pdf}
 \caption{海森堡模型的降温曲线}
 \note{注：
 二维反铁磁海森堡模型在 $8 \times 8$ 方格晶格上的表现：(a) 每格点能量，(b) 每格点比热，(c) 均匀磁化率 $\chi$ 随 $\beta = 1/T$ 的变化情况。
@@ -3049,7 +3049,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{4x4-j1j2.pdf}
+\includegraphics[width=0.8\textwidth]{4x4-j1j2.pdf}
 \caption{ $J_1-J_2$ 模型的降温曲线}
 \note{注：
 二维阻挫的 $J_1-J_2$ 模型在 $4 \times 4$ 方格晶格上的表现：(a) 每格点能量，(b) 每格点比热，(c) 均匀磁化率 $\chi$ 随 $\beta = 1/T$ 的变化情况。
@@ -3085,7 +3085,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 #+begin_export latex
 \begin{figure}
 \centering
-\includegraphics[width=0.5\textwidth]{6x6-hubbard.pdf}
+\includegraphics[width=0.8\textwidth]{6x6-hubbard.pdf}
 \caption{ 哈伯德模型的降温曲线 }
 \note{注：
 $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为 $U=8$，$t=1$ 和 $\mu=4$。(a) 每格点的能量 $E$ ，(b) 每格点的双占据 $D$ ，(c) 次近邻格点之间的自旋关联 $F$ 随着 $\beta = 1/T$ 的变化情况。
