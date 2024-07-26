@@ -1738,9 +1738,67 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 由于会重加权，虽然 $r_s$ 的均匀性会影响能量和梯度的偏差，但是直接采样过程中的边界MPO方法里，并不需要很大的 $Dc$ ，通常边界MPO中可以取 $Dc=4$ 甚至 $2$ 。
 而直接采样中的边界MPS的计算可以在后续计算观测量时复用，所以并没有效率上的影响。
 
-* 张量网络态程序基础算子在神威超级计算机上的优化 <<sec:神威优化>>
+* 张量网络态程序基础算子在神威系统上的优化 <<sec:神威优化>>
 
-TODO 神威优化
+** 背景与概述
+
+基于 {{{PEPS}}} 的 {{{VMC}}} 算法是二维大体系量子多体系统的有效的解决方案 [[cite:He2018,Liu2018]] 。
+而得益于 {{{MC}}} 采样算法的特性，基于 {{{PEPS}}} 的 {{{VMC}}} 算法有着高度的可扩展性。
+近年来，国产超级计算机发展取得了长足的进步 [[cite:Yang2016,Fu2017]] ，而这些进步使得国产超级计算机上的科学计算的移植工作变得更加意义。
+为了进一步拓宽基于 {{{PEPS}}} 的 {{{VMC}}} 算法的边界， 提高模拟软件执行效率的优化工作，特别是针对超级计算机系统上的适配优化十分重要。
+
+国产超级计算机神威 \cdot 太湖之光超级计算机使用申威处理器，每个CPU中有260个核心，其中4个主核，每个主核调控64个从核共同完成计算任务。
+移植过程中，软件应当首先确保在主核上运行成功，而后尝试利用从核分担计算任务以实现加速。
+所以虽然主核与从核指令集相同，但针对申威处理器的移植其实是异构计算的工作。
+与图形处理器通用计算不同，申威架构中，从核与主核均能够直接访问内存，这简化了程序的移植和优化工作的复杂性。
+
+我们在国产超级计算机神威 \cdot 太湖之光上对 基于{{{PEPS}}} 的 {{{VMC}}} 进行了深度的优化和适配。
+最终，我们的软件从100进程拓展到40000进程时，并行效率依然高大 $90.74\%$ 。
+而单进程执行效率相比于刚能够成功运行时提高了6倍。
+
+** 软件结构分析
+
+在摩尔定律逐渐失效的今天，超级计算机上的程序优化工作中，衡量并行性能的可扩展性相比于单核性能的优化的重要性逐步上升。
+而由于 {{{MC}}} 算法对构型采样的特性，实现基于 {{{PEPS}}}的{{{VMC}}} 算法时，可以轻松将采样任务无依赖地分配给每个计算单元。
+而待每个计算单元将观测量与梯度计算完毕后，为了进行统计所有样本结果而执行的 =MPI_Allreduce= [[cite:mpi40]] 是软件唯一的通信来源。
+因此，我们的工作将主要围绕单进程性能优化进行。
+
+由于我们的软件实现中，有大量的张量运算，计算性能应为软件的单核性能瓶颈。
+而张量的各种运算 又 通过 BLAS和 LAPACK [[cite:lapack]] 的矩阵运算加上张量的高阶转置来实现。
+这些矩阵运算主要包括，用于实现张量收缩的 =xGEMM= ，用于实现SVD分解的 =xGESVD= 和
+用于 QR分解 =xGEQRF= 、 =xGELQF= 、 =xORGQR= 、 =xORGLQ= 以及对应的复数版本 =xUNGQR= 与 =xUNGLQ= 。
+对于抽象的张量来说，转置操作是平凡的，故张量的QR分解可以被实现为转置后矩阵的QR分解，也可以被实现为另一种方式的转置后矩阵的LQ分解。
+由于对称性张量被实现为分块的张量，进行各种张量运算时，无论是张量收缩还是分解，转变为矩阵操作后，都将变成大量无依赖的相对小的矩阵操作，特别是张量的收缩操作。
+所以，批量版本的 BLAS 和 LAPACK 运算实现 和 高度优化的张量高阶转置实现 应是软件单进程优化的重点。
+
+** 主核程序移植工作
+
+我们 基于 {{{PEPS}}}的{{{VMC}}} 算法 实现 软件 中，除了 BLAS和 LAPACK [[cite:lapack]]，并没有其他的依赖项目，这使我们在主核移植中，没有遇到太大的困难。
+我们直接使用 NetLib 的 BLAS 和 LAPACK [[cite:lapack]] ，尝试进行编译。
+通过添加编译选项 =-mieee= 以启用IEEE浮点运算标准 [[cite:ieee]] ，确保程序中的浮点运算符合IEEE标准 ，修复运行时浮点异常后，软件的依赖问题在主核解决。
+
+软件本体实现为Fortran 和 少量 C++ ，通过修复部分误用的 GNU 扩展， 如 Fortran中的 =cdsqrt= 函数后，软件本体可以成功在主核上运行。
+
+** 软件热点分析与从核优化
+
+我们以 $t-J$ 模型为例， 参数设置为 $N = 8 \times 8$ 的 {{{L4}}} ， 粒子数限制为 56 ， {{{PEPS}}}的虚拟指标维度设置为  $D=20$ , 进行 {{{VMC}}} 优化。
+经过单核10步采样后进行性能分析，结果列于表 [[ref:table:最开始的profiling]] 中。
+
+
+#+caption: \label{table:最开始的profiling} 软件移植主核后的性能分析
+#+ATTR_LATEX: :font \scriptsize
+|---------------------------+--------+----------+---------|
+| 热点函数                    | 来源    | 运行时间   |     占比 |
+|---------------------------+--------+----------+---------|
+| =xGEMM=                   | BLAS   | 2763.53s |  52.36% |
+| =xCOPY=                   | BLAS   | 662.46s  |  12.55% |
+| =xGEMV=                   | BLAS   | 645.60s  |  12.23% |
+| =xGER=                    | BLAS   | 457.72s  |   8.67% |
+| =xLASR=                   | LAPACK | 96.94s   |   1.83% |
+| =permutation_rank3_data3= | 张量转置 |          |         |
+|---------------------------+--------+----------+---------|
+| 合计                       |        | 5277.54s | 100.00% |
+|---------------------------+--------+----------+---------|
 
 * 张量网络态计算套件（TNSP） <<sec:软件>>
 
@@ -1990,26 +2048,26 @@ TAT中常用的函数列在表 [[ref:table:TAT-functions]] 中，由于C++和Pyt
 \begin{center}
 \caption{\label{table:TAT-functions} TAT的Python接口中 常用的函数}
 \scriptsize
-\begin{tabular}{|c|c|}
+\begin{tabular}{cc}
 \hline
-function & example\\\hline\hline
-\texttt{clear\_symmetry} & \texttt{A.clear\_symmetry()} \\\hline
-\texttt{conjugate} & \texttt{A.conjugate()} \\\hline
-\texttt{contract} & \texttt{A.contract(B, {("i", "o")})} \\\hline
-\texttt{edge\_rename} & \texttt{A.edge\_rename({"i": "j"})} \\\hline
-\texttt{exponential} & \texttt{A.exponential({("i", "o")})} \\\hline
-\texttt{identity\_} & \texttt{A.identity\_({("i", "o")})} \\\hline
-\texttt{map} & \texttt{A.map(lambda x: x + 1)} \\\hline
-\texttt{merge\_edge} & \texttt{A.merge\_edge({"ij": ["i","j"]})} \\\hline
-\texttt{qr} & \texttt{A.qr('r', {"i"}, "q", "r")} \\\hline
-\texttt{randn\_} & \texttt{A.randn\_(0, 1)} \\\hline
-\texttt{rand\_} & \texttt{A.rand\_(0, 1)} \\\hline
-\texttt{reverse\_edge} & \texttt{A.reverse\_edge({"i"})} \\\hline
-\texttt{split\_edge} & \texttt{A.split\_edge({"ij": [("i", seg\_i), ("j", seg\_j)]})} \\\hline
-\texttt{svd} & \texttt{A.svd({"i"}, "u", "v", "su", "sv")} \\\hline
-\texttt{trace} & \texttt{A.trace({("i", "o")})} \\\hline
-\texttt{transform\_} & \texttt{A.transform\_(lambda x: x + 1)} \\\hline
-\texttt{transpose} & \texttt{A.transpose(["j","i"])} \\\hline
+函数 & 例子 \\\hline
+\texttt{clear\_symmetry} & \texttt{A.clear\_symmetry()} \\
+\texttt{conjugate} & \texttt{A.conjugate()} \\
+\texttt{contract} & \texttt{A.contract(B, {("i", "o")})} \\
+\texttt{edge\_rename} & \texttt{A.edge\_rename({"i": "j"})} \\
+\texttt{exponential} & \texttt{A.exponential({("i", "o")})} \\
+\texttt{identity\_} & \texttt{A.identity\_({("i", "o")})} \\
+\texttt{map} & \texttt{A.map(lambda x: x + 1)} \\
+\texttt{merge\_edge} & \texttt{A.merge\_edge({"ij": ["i","j"]})} \\
+\texttt{qr} & \texttt{A.qr('r', {"i"}, "q", "r")} \\
+\texttt{randn\_} & \texttt{A.randn\_(0, 1)} \\
+\texttt{rand\_} & \texttt{A.rand\_(0, 1)} \\
+\texttt{reverse\_edge} & \texttt{A.reverse\_edge({"i"})} \\
+\texttt{split\_edge} & \texttt{A.split\_edge({"ij": [("i", seg\_i), ("j", seg\_j)]})} \\
+\texttt{svd} & \texttt{A.svd({"i"}, "u", "v", "su", "sv")} \\
+\texttt{trace} & \texttt{A.trace({("i", "o")})} \\
+\texttt{transform\_} & \texttt{A.transform\_(lambda x: x + 1)} \\
+\texttt{transpose} & \texttt{A.transpose(["j","i"])} \\
 \texttt{zero\_} & \texttt{A.zero\_()} \\\hline
 \end{tabular}
 \note{注：
