@@ -1782,7 +1782,7 @@ g^{Tij} = \frac{\sum_k\langle \partial_{T_i^*}\psi|k|\partial_{T_j}\psi\rangle}{
 ** 软件热点分析与从核优化
 
 我们以 $t-J$ 模型为例， 参数设置为 $N = 8 \times 8$ 的 {{{L4}}} ， 粒子数限制为 56 ， {{{PEPS}}}的虚拟指标维度设置为  $D=20$ , 进行 {{{VMC}}} 优化。
-经过单核10步采样后进行性能分析，结果列于表 [[ref:table:最开始的profiling]] 中。
+经过单进程10步采样后进行性能分析，结果列于表 [[ref:table:最开始的profiling]] 中。
 如表 [[ref:table:最开始的profiling]] 所示，前四个热点函数均为BLAS运算。
 
 #+caption: \label{table:最开始的profiling} 软件移植主核后的性能分析
