@@ -1,4 +1,5 @@
 #+LATEX_CLASS: thesis
+#+TITLE: 张量网络方法的发展与应用
 #+OPTIONS: title:nil
 #+OPTIONS: toc:nil
 
