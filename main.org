@@ -69,6 +69,7 @@
 
 #+begin_export latex
 \begin{abstract}
+#+end_export
 上世纪发展的朗道 {{{F}}} 液体理论和基于自发对称性破缺的相变理论在解决了大量凝聚态问题后在强关联系统中失效。
 在这种系统中，粒子之间的相互作用非常强，使得传统微扰方法难以给出准确结果。
 因此，对这类系统的性质分析主要依赖于数值方法。
@@ -95,13 +96,16 @@ Sandvik于2007年提出了采样方法  ，通过仅收缩二维单层张量网�
 主要包括：
 一种将{{{TNS}}}应用于对称性系统和费米子系统的方案，此方案中，我们通过直接替换张量的运算规则实现了费米子的反对易性质；
 {{{TNS}}} 的程序在超级计算机上的优化工作，以及适用于 {{{TNS}}} 软件的开发细节；
-{{{TNS}}} 算法在 {{{Hubbard}}}模型中的应用，并给出了对 {{{SC}}} 相的判断；
-一种基于 {{{TNS}}}的有限温度的算法，以及在一些系统中的应用。
-
+{{{TNS}}} 算法在 {{{Hubbard}}}模型中的应用，包括了针对 {{{L4}}}上基态性质的分析，以及 {{{L6}}}上有限温的性质分析。
+#+begin_export latex
 \end{abstract}
+#+end_export
 
+#+begin_export latex
 \begin{abstract*}
+#+end_export
 abstract TODO
+#+begin_export latex
 \end{abstract*}
 #+end_export
 
