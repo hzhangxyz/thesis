@@ -3231,15 +3231,8 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 \section*{待发表论文}
 
 \begin{enumerate}
-\item A A A A A A A A A
+\item TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods. Hao Zhang, Shaojun Dong, Chao Wang, Meng Zhang, Lixin He.
 \end{enumerate}
-
-\section*{研究报告}
-\begin{enumerate}
-\item A A A A A A A A A
-\end{enumerate}
-
-TODO publication
 
 \end{publications}
 #+end_export
