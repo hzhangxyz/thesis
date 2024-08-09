@@ -104,7 +104,54 @@ Sandvik于2007年提出了采样方法  ，通过仅收缩二维单层张量网�
 #+begin_export latex
 \begin{abstract*}
 #+end_export
-abstract TODO
+The Landau Fermi liquid theory and the phase transition theory based on spontaneous symmetry breaking developed in the last century,
+while successfully solving numerous condensed matter problems,
+have failed in strongly correlated systems.
+In such systems, the interactions between particles are so strong that traditional perturbation methods can hardly give accurate results.
+Therefore, the analysis of the properties of these systems mainly relies on numerical methods.
+As a result, the development of numerical methods for strongly correlated systems has become one of the most focused research directions in recent years.
+
+The numerical solution of strongly correlated systems is limited by the huge dimension of the Hilbert space,
+which grows exponentially with the system size.
+Therefore, the traditional exact diagonalization (ED) method is only suitable for solving finite systems with about 30 lattice sites.
+In some special strongly correlated systems, quantum Monte Carlo (QMC) methods can give excellent results,
+but there is a sign problem in frustrated systems,
+and it requires an exponential increase in the sampling amount to converge.
+Another large class of methods use Ansatz functions to represent the wave function,
+and how to represent a vector in the huge Hilbert space with a limited amount of data is the key point of such numerical methods.
+
+In recent years, in addition to some traditional biased ansatzes and neural network quantum state (NQS) ansatzes,
+tensor network state (TNS) ansatzes have attracted great attention.
+In 2003, Vidal proposed the matrix product state as the earliest tensor network state.
+This method uses a one-dimensional tensor chain to represent the wave function of a one-dimensional system,
+which is particularly suitable for systems that satisfy the entanglement entropy area law.
+Verstaete subsequently generalized it to two-dimensional systems,
+namely projected entangled pair states (PEPS),
+which are also suitable for two-dimensional systems that satisfy the entanglement entropy area law.
+Vidal proposed the infinite time-evolving block decimation (iTEBD) for matrix product states,
+which can effectively obtain the ground state of a one-dimensional system.
+However, when dealing with two-dimensional systems,
+optimizing projected entangled pair states becomes very difficult,
+and the iTEBD algorithm cannot obtain accurate results.
+In 2008, Xiang Tao introduced a simple environment into the iTEBD algorithm for two-dimensional systems to obtain the simple update (SU) method,
+which can approximately obtain the ground state results without reducing computational efficiency.
+After obtaining the ground state of the system,
+in order to calculate the expectation values of relevant physical quantities,
+it is necessary to contract the two-dimensional bilayer tensor network.
+Sandvik proposed a sampling method in 2007, which can calculate observables by only contracting two-dimensional single-layer tensor networks.
+In 2017, the sampling method was used to calculate the gradient of energy,
+so that the ansatz wave function can be directly optimized by the sampling method.
+In recent years, direct sampling methods and natural gradient methods have been introduced,
+which greatly improve the sampling efficiency and optimization efficiency.
+
+This thesis presents the development and application of tensor network states and their algorithms.
+The main contents include:
+a scheme for applying tensor network states to symmetric systems and fermionic systems,
+in which we realize the anti-commutation property of fermions by directly replacing the operation rules of tensors;
+optimization work of tensor network state programs on supercomputers,
+and development details of software suitable for tensor network state;
+with the application of tensor network state algorithms in the Hubbard model,
+including the analysis of the ground state properties on a square lattice and the properties of finite temperature systems on a hexagonal lattice.
 #+begin_export latex
 \end{abstract*}
 #+end_export
