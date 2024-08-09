@@ -3225,13 +3225,13 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 \section*{已发表论文}
 
 \begin{enumerate}
-\item A A A A A A A A A
+\item Shaojun Dong; Hao Zhang; Chao Wang; Meng Zhang; Yong-Jian Han; Lixin He . A possible quantum spin liquid phase in the Kitaev-Hubbard model, Chinese Physics Letters, 2023, 40(12)
 \end{enumerate}
 
 \section*{待发表论文}
 
 \begin{enumerate}
-\item TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods. Hao Zhang, Shaojun Dong, Chao Wang, Meng Zhang, Lixin He.
+\item Hao Zhang; Shaojun Dong; Chao Wang; Meng Zhang; Lixin He. TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods.
 \end{enumerate}
 
 \end{publications}
