@@ -35,26 +35,6 @@
 }
 #+end_export
 
-#+begin_export latex
-\begin{abstract}
-摘要 TODO
-\end{abstract}
-
-\begin{abstract*}
-abstract TODO
-\end{abstract*}
-#+end_export
-
-#+begin_export latex
-\tableofcontents
-\listoffigures
-\listoftables
-#+end_export
-
-#+begin_export latex
-\newenvironment{ustcnotation}{\begin{notation}\begin{notationlist}{2em}}{\end{notationlist}\end{notation}}
-#+end_export
-
 #+MACRO: ED 严格对角化
 #+MACRO: MC 蒙特卡洛
 #+MACRO: QMC 量子 {{{MC}}}
@@ -73,27 +53,6 @@ abstract TODO
 #+MACRO: VMC 变分 {{{MC}}}
 #+MACRO: CDW 电荷密度波
 #+MACRO: AFM 反铁磁
-
-#+attr_latex: :environment ustcnotation
-- ED :: {{{ED}}} (Exact Diagonalization)
-- MC :: {{{MC}}} (Monte Carlo)
-- QMC :: {{{QMC}}} (Quantum Monte Carlo)
-- Ansatz :: {{{Ansatz}}} (Ansatz)
-- NQS :: {{{NQS}}} (Neural Quantum States)
-- TNS :: {{{TNS}}} (Tensor Network States)
-- MPS :: {{{MPS}}} (Matrix Product States)
-- PEPS :: {{{PEPS}}} (Projected Entangled Pair States)
-- VMC :: {{{VMC}}} (Variational Monte Carlo)
-- iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
-- SU :: {{{SU}}} (Simple Update)
-- DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
-- SR :: {{{SR}}} (Stochastic Reconfiguration)
-- SSE :: {{{SSE}}} (Stochastic Series Expansion)
-- DQMC :: {{{DQMC}}} (Determinant Quantum Monte Carlo)
-- SC :: {{{SC}}} (Superconductivity)
-- CDW :: {{{CDW}}} (Charge Density Wave)
-- AFM :: {{{AFM}}} (Antiferromagnetic)
-
 #+MACRO: F 费米
 #+MACRO: B 玻色
 #+MACRO: AL 纠缠熵面积定律
@@ -109,11 +68,7 @@ abstract TODO
 #+MACRO: Rydberg 里德伯
 
 #+begin_export latex
-\mainmatter
-#+end_export
-
-* 绪论 <<sec:绪论>>
-
+\begin{abstract}
 上世纪发展的朗道 {{{F}}} 液体理论和基于自发对称性破缺的相变理论在解决了大量凝聚态问题后在强关联系统中失效。
 在这种系统中，粒子之间的相互作用非常强，使得传统微扰方法难以给出准确结果。
 因此，对这类系统的性质分析主要依赖于数值方法。
@@ -135,6 +90,50 @@ Vidal针对 {{{MPS}}} 提出了 {{{iTEBD}}} (iTEBD) [[cite:Vidal2004,Vidal2007]]
 Sandvik于2007年提出了采样方法 [[cite:Sandvik2007]] ，通过仅收缩二维单层张量网络，便能计算观测量。
 2017年，采样方法被用于计算能量的梯度 [[cite:Liu2017]] ，从而可用采样方法直接优化 {{{Ansatz}}} 波函数。
 近几年，{{{DS}}} 方法 [[cite:Vieijra2021]] 和 {{{NG}}} 法 [[cite:Neuscamman2012]] 被引入，极大提升了采样效率和优化效率。
+\end{abstract}
+
+\begin{abstract*}
+abstract TODO
+\end{abstract*}
+#+end_export
+
+#+begin_export latex
+\tableofcontents
+\listoffigures
+\listoftables
+#+end_export
+
+#+begin_export latex
+\newenvironment{ustcnotation}{\begin{notation}\begin{notationlist}{2em}}{\end{notationlist}\end{notation}}
+#+end_export
+
+#+attr_latex: :environment ustcnotation
+- ED :: {{{ED}}} (Exact Diagonalization)
+- MC :: {{{MC}}} (Monte Carlo)
+- QMC :: {{{QMC}}} (Quantum Monte Carlo)
+- Ansatz :: {{{Ansatz}}} (Ansatz)
+- NQS :: {{{NQS}}} (Neural Quantum States)
+- TNS :: {{{TNS}}} (Tensor Network States)
+- MPS :: {{{MPS}}} (Matrix Product States)
+- PEPS :: {{{PEPS}}} (Projected Entangled Pair States)
+- VMC :: {{{VMC}}} (Variational Monte Carlo)
+- iTEBD :: {{{iTEBD}}} (Imaginary Time-evolving Block Decimation)
+- SU :: {{{SU}}} (Simple Update)
+- DMRG :: {{{DMRG}}} (Density Matrix Renormalization Group)
+- SR :: {{{SR}}} (Stochastic Reconfiguration)
+- SSE :: {{{SSE}}} (Stochastic Series Expansion)
+- DQMC :: {{{DQMC}}} (Determinant Quantum Monte Carlo)
+- SC :: {{{SC}}} (Superconductivity)
+- CDW :: {{{CDW}}} (Charge Density Wave)
+- AFM :: {{{AFM}}} (Antiferromagnetic)
+
+#+begin_export latex
+\mainmatter
+#+end_export
+
+* 绪论 <<sec:绪论>>
+
+TODO introduction
 
 本论文将介绍近些年我们对基于采样的张量网络方法的发展与应用。主要结构安排如下：
 + 第 [[ref:sec:绪论]] 章为绪论，即本章。
