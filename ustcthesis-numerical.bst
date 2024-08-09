@@ -1513,6 +1513,9 @@ FUNCTION {check.url}
 }
 
 FUNCTION {output.url}
+{ skip$ }
+
+FUNCTION {output.url.backup}
 { show.url is.pure.electronic or
   entry.url empty$ not and
     { new.block
@@ -1586,6 +1589,9 @@ FUNCTION {format.doi}
 }
 
 FUNCTION {output.doi}
+{ skip$ }
+
+FUNCTION {output.doi.backup}
 { doi empty$ not show.doi and
   show.english.translation entry.lang lang.zh = and not and
     { new.block
