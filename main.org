@@ -93,11 +93,12 @@ Sandvik于2007年提出了采样方法  ，通过仅收缩二维单层张量网�
 2017年，采样方法被用于计算能量的梯度  ，从而可用采样方法直接优化 {{{Ansatz}}} 波函数。
 近几年，{{{DS}}} 方法  和 {{{NG}}} 法  被引入，极大提升了采样效率和优化效率。
 
-本文介绍了基于张量网络态以及其算法的发展与应用。
+本文介绍了张量网络态以及其算法的发展与应用。
 主要包括：
-一种将{{{TNS}}}应用于对称性系统和费米子系统的方案，此方案中，我们通过直接替换张量的运算规则实现了费米子的反对易性质；
-{{{TNS}}} 的程序在超级计算机上的优化工作，以及适用于 {{{TNS}}} 算法的软件开发细节；
-{{{TNS}}} 算法在 {{{Hubbard}}}模型中的应用，包括了 {{{L4}}}上基态性质的分析，以及 {{{L6}}}上有限温系统的性质分析。
+一种将{{{TNS}}}应用于对称性系统和费米子系统的方案，此方案中，我们通过直接替换张量的运算规则实现了费米子的反对易性质，从而我们可以在网络层次忽略费米子性质的细节；
+{{{TNS}}} 的程序在超级计算机上的优化工作，以及适用于 {{{TNS}}} 算法的软件开发细节，最终我们封装得到了一个为各种 {{{TNS}}} 算法提供了一个用户友好界面的程序；
+{{{TNS}}} 算法在 {{{Hubbard}}}模型中的应用，具体来说，是在 {{{L6}}}上基态的各种性质的分析，包括超导性质与{{{CDW}}}以及{{{AFM}}}性质；
+一种基于{{{TNS}}}的有限温系统计算方法，以及在包括 {{{L4}}}上{{{Hubbard}}}模型的测试结果与性质分析。
 #+begin_export latex
 \end{abstract}
 #+end_export
@@ -145,14 +146,19 @@ so that the ansatz wave function can be directly optimized by the sampling metho
 In recent years, direct sampling methods and natural gradient methods have been introduced,
 which greatly improve the sampling efficiency and optimization efficiency.
 
-This thesis presents the development and application of tensor network states and their algorithms.
+This thesis presents tensor network states and the development and application of their algorithms.
 The main contents include:
 a scheme for applying tensor network states to symmetric systems and fermionic systems,
-in which we realize the anti-commutation property of fermions by directly replacing the operation rules of tensors;
-optimization work of tensor network state programs on supercomputers,
-and development details of software suitable for tensor network state;
-with the application of tensor network state algorithms in the Hubbard model,
-including the analysis of the ground state properties on a square lattice and the properties of finite temperature systems on a hexagonal lattice.
+in which we directly replace the operation rules of tensors to realize the anti-commutation properties of fermions,
+so that we can ignore the details of fermionic properties at the network level;
+the optimization of tensor network state programs on supercomputers,
+and the development details of software suitable for tensor network state algorithms,
+and finally, a program packaged that provides a user-friendly interface for various tensor network state algorithms;
+the application of tensor network state algorithms in the Hubbard model,
+specifically, the analysis of various properties of the ground state on a hexagonal lattice,
+including superconducting properties, charge density waves, and antiferromagnetic properties.
+A finite-temperature system calculation method based on tensor network states,
+as well as test results and property analysis including the Hubbard model on a square lattice.
 #+begin_export latex
 \end{abstract*}
 #+end_export
