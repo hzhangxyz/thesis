@@ -3231,13 +3231,18 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 \section*{已发表论文}
 
 \begin{enumerate}
-\item Shaojun Dong; Hao Zhang; Chao Wang; Meng Zhang; Yong-Jian Han; Lixin He . A possible quantum spin liquid phase in the Kitaev-Hubbard model, Chinese Physics Letters, 2023, 40(12)
+\item Shaojun Dong; Hao Zhang; Chao Wang; Meng Zhang; Yong-Jian Han; Lixin He ; A possible quantum spin liquid phase in the Kitaev-Hubbard model, Chinese Physics Letters, 2023, 40(12): 126403-126403
+\item Si-Jing Tao; Hao-Qing Zhang; Hao Zhang; Zhe Chen; Ran He; Shao-Jun Dong; Yong-Jian Han; Chuan-Feng Li; Guang-Can Guo ; Generating tensor-network states via combination of phonons and qubits in a trapped-ion platform, Physical review, 2022, 106(3): 032403-032403
+\item Meng Zhang; Chao Wang; Shaojun Dong; Hao Zhang; Yongjian Han; Lixin He ; Entanglement entropy scaling of noisy random quantum circuits in two dimensions, Physical Review A, 2022, 106(5): 052430-052430
+\item Meng Zhang; Chao Wang; Shaojun Dong; Hao Zhang; Yongjian Han; Lixin He ; Projected entangled pair states study of anisotropic-exchange magnets on the triangular lattice, Physical Review B, 2022, 105(2): 024411-024411
 \end{enumerate}
 
 \section*{待发表论文}
 
 \begin{enumerate}
-\item Hao Zhang; Shaojun Dong; Chao Wang; Meng Zhang; Lixin He. TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods.
+\item Hao Zhang; Shaojun Dong; Chao Wang; Meng Zhang; Lixin He ; TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods.
+\item Hao Zhang; Shaojun Dong; Lixin He ; Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice.
+\item Meng Zhang; Hao Zhang; Chao Wang; Lixin He ; Scalable tensor network algorithm for thermal quantum many-body systems in two dimension.
 \end{enumerate}
 
 \end{publications}
