@@ -298,7 +298,9 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 \input{tikz/bmpomps.tikz}
 \caption{张量收缩的边界MPS/MPO方法}
 \label{fig:b-mps-mpo}
-\note{注：张量收缩的边界MPS/MPO方法。
+\note{注：张量收缩的边界MPS/MPO方法，适用于有限大的 投影纠缠对态。
+其基本操作是将两行张量网络近似为一行，具体的近似手段可选奇异值分解或者迭代方程近似。
+(a) 边界上的两行张量网络；(b) 近似后的一行张量网络。
 }
 \end{figure}
 #+end_export
