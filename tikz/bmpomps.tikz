@@ -1,0 +1,93 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Straight Lines [id:da9918649825923163] 
+\draw    (131,114) -- (131,136.5) ;
+%Straight Lines [id:da6053773808858631] 
+\draw    (191,114) -- (191,136.5) ;
+%Straight Lines [id:da37711992073191336] 
+\draw    (251,115) -- (251,137.5) ;
+%Straight Lines [id:da9175139805621868] 
+\draw    (311,114) -- (311,136.5) ;
+%Straight Lines [id:da6139638363637372] 
+\draw    (429,159) -- (429,181.5) ;
+%Straight Lines [id:da026828220599742547] 
+\draw    (489,159) -- (489,181.5) ;
+%Straight Lines [id:da7876012708638624] 
+\draw    (549,160) -- (549,182.5) ;
+%Straight Lines [id:da5468683561812033] 
+\draw    (609,159) -- (609,181.5) ;
+
+% Text Node
+\draw    (131.3, 150.82) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (125.25,143.26) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (191.3, 150.36) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (185.25,142.8) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (251.3, 149.89) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (245.24,142.34) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (311.3, 149.43) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (305.24,141.88) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (131.69, 200.81) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (125.63,193.26) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (191.69, 200.35) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (185.63,192.8) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (251.69, 199.89) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (245.63,192.34) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (311.68, 199.43) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (305.63,191.88) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (429.3, 195.82) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (423.25,188.26) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (489.3, 195.36) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (483.25,187.8) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (549.3, 194.89) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (543.24,187.34) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw    (609.3, 194.43) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (603.24,186.88) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw (85,75) node [anchor=north west][inner sep=0.75pt]   [align=left] {(a)};
+% Text Node
+\draw (417,73) node [anchor=north west][inner sep=0.75pt]   [align=left] {(b)};
+% Connection
+\draw    (144.91,150.71) -- (177.7,150.46) ;
+% Connection
+\draw    (204.9,150.25) -- (237.7,150) ;
+% Connection
+\draw    (264.9,149.79) -- (297.7,149.54) ;
+% Connection
+\draw    (145.29,200.71) -- (178.09,200.46) ;
+% Connection
+\draw    (205.29,200.25) -- (238.08,200) ;
+% Connection
+\draw    (265.29,199.79) -- (298.08,199.54) ;
+% Connection
+\draw    (131.41,164.42) -- (131.58,187.21) ;
+% Connection
+\draw    (191.41,163.96) -- (191.58,186.75) ;
+% Connection
+\draw    (251.41,163.5) -- (251.58,186.29) ;
+% Connection
+\draw    (311.4,163.04) -- (311.58,185.83) ;
+% Connection
+\draw    (442.91,195.71) -- (475.7,195.46) ;
+% Connection
+\draw    (502.9,195.25) -- (535.7,195) ;
+% Connection
+\draw    (562.9,194.79) -- (595.7,194.54) ;
+
+\end{tikzpicture}
+

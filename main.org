@@ -287,10 +287,21 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 
 主流的二维张量网络收缩算法基本可以分为三大类：边界MPS/MPO方法；角传递矩阵方法；张量重整化方法。
 边界MPS/MPO方法 [[cite:Liu2017,Murg2007,Verstraete2008,Liu2021]] 中，在边界上不断通过使用一个 MPS 来近似MPS和矩阵乘积算子 (MPO) 的乘积，
-最终将整个二维的 {{{PEPS}}} 近似地收缩为一个 MPS 链。
+最终将整个二维的 {{{PEPS}}} 近似地收缩为一个 MPS 链， 如图 [[ref:fig:b-mps-mpo]] 。
 这种方法只适用于有限大系统，但是由于其近似次数只有网络的边长数目，其精度可以被控制得比较低。
 此方法的单元操作，通常使用迭代方程或者奇异值分解实现。
 本论文中主要使用此方法完成二维张量网络的收缩。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/bmpomps.tikz}
+\caption{张量收缩的边界MPS/MPO方法}
+\label{fig:b-mps-mpo}
+\note{注：张量收缩的边界MPS/MPO方法。
+}
+\end{figure}
+#+end_export
 
 角传递矩阵方法可追溯至1978 年 Baxter的工作 [[cite:Baxter1978]] ，并于1996 年被正式提出[[cite:Nishino1996]] 。
 这类方法通常用于无穷大的 {{{PEPS}}} ，这种 {{{PEPS}}} 中的张量构成了周期性的晶胞。
