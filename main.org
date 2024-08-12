@@ -244,6 +244,13 @@ Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论，他完全忽�
 
 {{{TNS}}} 作为一个 {{{VMC}}} 方法 的 {{{Ansatz}}} ，可以解决这个问题，他直接在实空间中对波函数进行表示从而模拟强相互作用系统的基态。
 由于这种 {{{Ansatz}}} 很好地捕捉了大部分量子系统的纠缠结构，各种系统的基态通常都会落于 {{{TNS}}} 的子流形中。
+具体而言，就是 {{{TNS}}} 表示的波函数均满足 {{{AL}}} ，而这正是大部分量子系统基态所满足的。
+
+最著名的 {{{TNS}}} 是 AKLT 态 [[cite:TODO]]， 它是一个一维的 自旋为 $1$ 的链。
+在构造时，AKLT 态首先在每两个格点之间生成了一个 自旋 $1/2$ 的单重态，
+$|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle)$ ，
+随后每个格点将两侧的 自旋 $1/2$ 粒子投影至 自旋 $1$ 的空间，
+$P = |1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow|+\langle\downarrow\uparrow|}{2}+|-1\rangle\langle\downarrow\downarrow|$ 。
 
 TODO introduction
 
