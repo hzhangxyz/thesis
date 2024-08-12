@@ -295,7 +295,7 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 #+begin_export latex
 \begin{figure}
 \centering
-\input{tikz/bmpomps.tikz}
+\input{tikz/bmpsmpo.tikz}
 \caption{张量收缩的边界MPS/MPO方法}
 \label{fig:b-mps-mpo}
 \note{注：张量收缩的边界MPS/MPO方法，适用于有限大的 投影纠缠对态。
