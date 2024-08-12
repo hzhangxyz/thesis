@@ -68,6 +68,7 @@
 #+MACRO: Hamiltonian 哈密顿量
 #+MACRO: Rydberg 里德伯
 #+MACRO: Metropolis 梅特罗波利斯
+#+MACRO: MERA 多尺度纠缠重整化 {{{Ansatz}}}
 
 #+begin_export latex
 \begin{abstract}
@@ -193,7 +194,8 @@ as well as test results and property analysis including the Hubbard model on a s
 - SC :: {{{SC}}} (Superconductivity)
 - CDW :: {{{CDW}}} (Charge Density Wave)
 - AFM :: {{{AFM}}} (Antiferromagnetic)
-
+- MERA :: {{{MERA}}} (Multiscale Entanglement Renormalization Ansatz)
+  
 #+begin_export latex
 \mainmatter
 #+end_export
@@ -273,8 +275,8 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 随着对 {{{PEPS}}} 研究的进行，许多有趣的波函数都被发现可以被表示为 {{{PEPS}}} ：
 Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局部无阻挫的可交换量子哈密顿量的基态 [[cite:Verstraete2006b]] 。
 
-
-TODO introduction
+在另一边，Vidal 提出了 {{{MERA}}} (MERA) [[cite:Vidal2007b]] ，推广了树形张量网络。
+与 {{{MPS}}}不同， {{{MERA}}} 用于描述尺度不变的波函数，并且可以表示超越{{{AL}}}的临界点波函数。
 
 本论文将介绍近些年我们对基于采样的张量网络方法的发展与应用。主要结构安排如下：
 + 第 [[ref:sec:绪论]] 章为绪论，即本章。
