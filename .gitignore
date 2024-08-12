@@ -10,3 +10,6 @@ main.tex
 main.toc
 main.bbl
 main.blg
+main.fls
+main.xdv
+main.fdb_latexmk
