@@ -250,7 +250,8 @@ Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论，他完全忽�
 在构造时，AKLT 态首先在每两个格点之间生成了一个 自旋 $1/2$ 的单重态，
 $|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle)$ ，
 随后每个格点将两侧的 自旋 $1/2$ 粒子投影至 自旋 $1$ 的空间，
-$P = |1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow|+\langle\downarrow\uparrow|}{2}+|-1\rangle\langle\downarrow\downarrow|$ 。
+$P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow|+\langle\downarrow\uparrow|}{2}+|-1\rangle\langle\downarrow\downarrow|$ 。
+随后人们认识到AKLT态是一类更大的态中的一个，即有限相关态(FCS)，而有限相关态则是一类特殊的 {{{MPS}}} 。
 
 TODO introduction
 
