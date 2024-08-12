@@ -266,7 +266,9 @@ $|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparro
 $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow|+\langle\downarrow\uparrow|}{2}+|-1\rangle\langle\downarrow\downarrow|$ 。
 随后人们认识到AKLT态是一类更大的态中的一个，即有限相关态(FCS) [[cite:Fannes1989]]，而有限相关态则是一类特殊的 {{{MPS}}} 。
 
-{{{MPS}}}在一维系统中的成功让人们尝试将 {{{MPS}}}引入二维系统。
+{{{MPS}}}在一维系统中的成功让人们尝试将 {{{MPS}}} 推广至二维系统 [[cite:Verstraete2004]] ，这种  {{{TNS}}} 被称为 {{{PEPS}}}。
+{{{PEPS}}} 可以自然地展示二维系统中的 {{{AL}}} ，故而可以很好的描述满足 {{{AL}}}的二维系统。
+实际上，理论物理中，早在1988年，二维系统的AKLT态作为一种特殊的{{{PEPS}}} 就曾被研究过 [[cite:Affleck1988]] 。
 
 TODO introduction
 
