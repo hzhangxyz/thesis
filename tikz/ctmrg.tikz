@@ -1,0 +1,92 @@
+
+
+\tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+
+\begin{tikzpicture}[x=0.75pt,y=0.75pt,yscale=-1,xscale=1]
+%uncomment if require: \path (0,300); %set diagram left start at 0, and has height of 300
+
+%Rounded Rect [id:dp19357195056458742] 
+\draw  [color={rgb, 255:red, 208; green, 2; blue, 27 }  ,draw opacity=1 ] (144,92.3) .. controls (144,80.26) and (153.76,70.5) .. (165.8,70.5) -- (236.2,70.5) .. controls (248.24,70.5) and (258,80.26) .. (258,92.3) -- (258,157.7) .. controls (258,169.74) and (248.24,179.5) .. (236.2,179.5) -- (165.8,179.5) .. controls (153.76,179.5) and (144,169.74) .. (144,157.7) -- cycle ;
+%Rounded Rect [id:dp05921005495393583] 
+\draw  [color={rgb, 255:red, 74; green, 144; blue, 226 }  ,draw opacity=1 ] (269,81.7) .. controls (269,75.51) and (274.01,70.5) .. (280.2,70.5) -- (313.8,70.5) .. controls (319.99,70.5) and (325,75.51) .. (325,81.7) -- (325,168.3) .. controls (325,174.49) and (319.99,179.5) .. (313.8,179.5) -- (280.2,179.5) .. controls (274.01,179.5) and (269,174.49) .. (269,168.3) -- cycle ;
+%Rounded Rect [id:dp19331205673970397] 
+\draw  [color={rgb, 255:red, 245; green, 166; blue, 35 }  ,draw opacity=1 ] (144,194.1) .. controls (144,188.25) and (148.75,183.5) .. (154.6,183.5) -- (247.4,183.5) .. controls (253.25,183.5) and (258,188.25) .. (258,194.1) -- (258,225.9) .. controls (258,231.75) and (253.25,236.5) .. (247.4,236.5) -- (154.6,236.5) .. controls (148.75,236.5) and (144,231.75) .. (144,225.9) -- cycle ;
+
+% Text Node
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]  (175.3, 102.18) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (169.25,94.63) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [color={rgb, 255:red, 0; green, 2; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ]  (235.3, 101.72) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (229.24,94.16) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ]  (295.3, 101.26) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (289.24,93.7) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]  (175.69, 152.18) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (169.63,144.62) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ]  (235.69, 151.72) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (229.63,144.16) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ]  (295.68, 151.26) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (289.63,143.7) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]  (176.07, 202.18) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (170.01,194.62) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ]  (236.07, 201.72) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (230.01,194.16) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ]  (296.07, 201.25) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (290.01,193.7) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 208; green, 2; blue, 27 }  ,fill opacity=1 ]  (509.3, 150.18) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (503.25,142.63) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [color={rgb, 255:red, 0; green, 2; blue, 0 }  ,draw opacity=1 ][fill={rgb, 255:red, 74; green, 144; blue, 226 }  ,fill opacity=1 ]  (569.3, 149.72) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (563.24,142.16) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 245; green, 166; blue, 35 }  ,fill opacity=1 ]  (509.69, 200.18) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (503.63,192.62) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw  [fill={rgb, 255:red, 189; green, 16; blue, 224 }  ,fill opacity=1 ]  (569.69, 199.72) circle [x radius= 13.6, y radius= 13.6]   ;
+\draw (563.63,192.16) node [anchor=north west][inner sep=0.75pt]  [rotate=-359.56]  {$$};
+% Text Node
+\draw (115,42) node [anchor=north west][inner sep=0.75pt]   [align=left] {(a)};
+% Text Node
+\draw (384,42) node [anchor=north west][inner sep=0.75pt]   [align=left] {(b)};
+% Connection
+\draw    (188.9,102.07) -- (221.7,101.82) ;
+% Connection
+\draw    (248.9,101.61) -- (281.7,101.36) ;
+% Connection
+\draw    (189.29,152.07) -- (222.08,151.82) ;
+% Connection
+\draw    (249.29,151.61) -- (282.08,151.36) ;
+% Connection
+\draw    (189.67,202.07) -- (222.47,201.82) ;
+% Connection
+\draw    (249.67,201.61) -- (282.47,201.36) ;
+% Connection
+\draw    (295.79,164.86) -- (295.96,187.65) ;
+% Connection
+\draw    (175.41,115.78) -- (175.58,138.58) ;
+% Connection
+\draw    (235.41,115.32) -- (235.58,138.12) ;
+% Connection
+\draw    (295.4,114.86) -- (295.58,137.65) ;
+% Connection
+\draw    (235.79,165.32) -- (235.96,188.11) ;
+% Connection
+\draw    (175.79,165.78) -- (175.97,188.57) ;
+% Connection
+\draw    (522.9,150.07) -- (555.7,149.82) ;
+% Connection
+\draw    (523.29,200.07) -- (556.08,199.82) ;
+% Connection
+\draw    (509.41,163.78) -- (509.58,186.58) ;
+% Connection
+\draw    (569.41,163.32) -- (569.58,186.12) ;
+
+\end{tikzpicture}
+
