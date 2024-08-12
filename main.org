@@ -266,6 +266,8 @@ $|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparro
 $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow|+\langle\downarrow\uparrow|}{2}+|-1\rangle\langle\downarrow\downarrow|$ 。
 随后人们认识到AKLT态是一类更大的态中的一个，即有限相关态(FCS) [[cite:Fannes1989]]，而有限相关态则是一类特殊的 {{{MPS}}} 。
 
+{{{MPS}}}在一维系统中的成功让人们尝试将 {{{MPS}}}引入二维系统。
+
 TODO introduction
 
 本论文将介绍近些年我们对基于采样的张量网络方法的发展与应用。主要结构安排如下：
