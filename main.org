@@ -297,7 +297,7 @@ TODO introduction
 而White在1992年提出了{{{DMRG}}}(DMRG)方法 [[cite:White1992]] 成功地求解了各种一维模型的低能态性质。
 后来Vidal提出 {{{MPS}}} (MPS) [[cite:Vidal2003]] ，人们认识到{{{DMRG}}}方法可以被认为是对 {{{MPS}}} {{{Ansatz}}}的波函数进行优化的过程。
 
-首先介绍{{{T}}}， $R$阶的张量 可以被简单地认为是多个线性空间上的 $R$ 阶多线性映射：
+首先介绍{{{T}}}， $R$ 阶的张量 可以被简单地认为是多个线性空间上的 $R$ 阶多线性映射：
 \begin{equation}
 \hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{R-1} \to \mathbb{K} .
 \end{equation}
