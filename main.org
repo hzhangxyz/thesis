@@ -245,8 +245,19 @@ Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论，他完全忽�
 {{{TNS}}} 作为一个 {{{VMC}}} 方法 的 {{{Ansatz}}} ，可以解决这个问题，他直接在实空间中对波函数进行表示从而模拟强相互作用系统的基态。
 由于这种 {{{Ansatz}}} 很好地捕捉了大部分量子系统的纠缠结构，各种系统的基态通常都会落于 {{{TNS}}} 的子流形中。
 具体而言，就是 {{{TNS}}} 表示的波函数均满足 {{{AL}}} ，而这正是大部分量子系统基态所满足的。
+{{{TNS}}} 的发展历经数十年，如今回首，正应了Feynman的那句话: ``
+I think it should be possible some day to describe field theory
+in some other way than with the wave functions and
+amplitudes. It might be something like the density
+matrices where you concentrate on quantities in a
+given locality and in order to start to talk about it
+you don’t immediately have to talk about what’s
+going on everywhere else''  。
 
-最著名的 {{{TNS}}} 是 AKLT 态 [[cite:Affleck1987,Affleck1988]]， 它是一个一维的 自旋为 $1$ 的链。
+计算物理中，张量网络态可以追溯至1992年White提出的用于模拟一维量子自旋链的{{{DMRG}}} 方法[[cite:White1992]] 。
+{{{DMRG}}}方法对一维的自旋链系统的基态求解可以达到极高的精度，时至今日，这仍然是一维自旋链系统求解的标准方法。
+
+另一边，在理论物理中，1987年提出的AKLT态是最著名的 {{{TNS}}} [[cite:Affleck1987,Affleck1988]]， 它是一个一维的 自旋为 $1$ 的链。
 在构造时，AKLT 态首先在每两个格点之间生成了一个 自旋 $1/2$ 的单重态，
 $|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle)$ ，
 随后每个格点将两侧的 自旋 $1/2$ 粒子投影至 自旋 $1$ 的空间，
