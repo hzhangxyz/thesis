@@ -77,7 +77,6 @@
 在这种系统中，粒子之间的相互作用非常强，使得传统微扰方法难以给出准确结果。
 因此，对这类系统的性质分析主要依赖于数值方法。
 故发展针对强关联系统的数值方法成了近年来备受关注的研究方向之一。
-
 强关联系统的数值求解受制于巨大的{{{Hilbert}}}空间维度，其随着系统尺寸增大而呈指数增长。
 因此，传统的 {{{ED}}} 方法（ED）仅适用于约30个格点的有限系统求解。
 在某些特殊的强关联系统中，{{{QMC}}} 方法(QMC)能够给出优异结果，但有阻错的系统存在符号问题，为了收敛他必须指数地增加采样量。
@@ -114,7 +113,6 @@ have failed in strongly correlated systems.
 In such systems, the interactions between particles are so strong that traditional perturbation methods can hardly give accurate results.
 Therefore, the analysis of the properties of these systems mainly relies on numerical methods.
 As a result, the development of numerical methods for strongly correlated systems has become one of the most focused research directions in recent years.
-
 The numerical solution of strongly correlated systems is limited by the huge dimension of the Hilbert space,
 which grows exponentially with the system size.
 Therefore, the traditional exact diagonalization (ED) method is only suitable for solving finite systems with about 30 lattice sites.
