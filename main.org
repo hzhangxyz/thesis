@@ -152,19 +152,26 @@ so that the ansatz wave function can be directly optimized by the sampling metho
 In recent years, direct sampling methods and natural gradient methods have been introduced,
 which greatly improve the sampling efficiency and optimization efficiency.
 
-This thesis presents tensor network states and the development and application of their algorithms.
-The main contents include:
-a scheme for applying tensor network states to symmetric systems and fermionic systems,
-in which we directly replace the operation rules of tensors to realize the anti-commutation properties of fermions,
-so that we can ignore the details of fermionic properties at the network level;
-the optimization of tensor network state programs on supercomputers,
-and the development details of software suitable for tensor network state algorithms,
-and finally, a program packaged that provides a user-friendly interface for various tensor network state algorithms;
-the application of tensor network state algorithms in the Hubbard model,
-specifically, the analysis of various properties of the ground state on a hexagonal lattice,
-including superconducting properties, charge density waves, and antiferromagnetic properties.
-A finite-temperature system calculation method based on tensor network states,
-as well as test results and property analysis including the Hubbard model on a square lattice.
+This thesis presents the development and applications of tensor network states and their algorithms.
+It primarily includes:
+a scheme applying tensor network states to symmetry systems and fermionic systems,
+where we implement the anti-commutation property of fermions by directly modifying tensor operation rules,
+which allows us to ignore detailed fermionic properties at the network level,
+thereby simplifying the algorithm design without considering symmetry and fermionic properties,
+which reduces the cognitive load during programming;
+optimization of tensor network state programs on supercomputers,
+where we performed comprehensive optimization from the ground up,
+including adapting low-level matrix operations to supercomputer platforms and adjusting data structures in upper-level algorithm implementations;
+software development details for tensor network state algorithms,
+culminating in a framework for developing tensor network algorithms,
+from an abstract tensor library for various types to a user-friendly interface for various tensor network algorithms;
+application of tensor network state algorithms in the Hubbard model,
+specifically analyzing the ground state properties on a hexagonal lattice,
+where we scanned a broad parameter range of the Hubbard model and found that superconducting properties in this range are suppressed,
+while also analyzed potential competing orders such as charge density waves and antiferromagnetism;
+and a finite-temperature computational method based on tensor network states,
+where we applied our proposed finite-temperature algorithm to various systems including the Hubbard model on square lattices,
+showing that our algorithm can yield reliable observables compared to benchmark results.
 #+begin_export latex
 \end{abstract*}
 #+end_export
