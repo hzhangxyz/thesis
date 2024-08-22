@@ -3299,8 +3299,9 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 如图 [[ref:fig:thermal-hubbard]] 所示，我们将{{{Hubbard}}}模型的结果与{{{DQMC}}}方法进行比较。
 在优化过程中使用了高达30000次采样，在测量过程中使用了600000次采样。
 可以看出，图  [[ref:fig:thermal-hubbard]] (a) 中每格点的能量 $E=\langle H \rangle / N$ 与{{{DQMC}}}结果一致。
-而图  [[ref:fig:thermal-hubbard]] (b) 中的 每格点的双占据 $D=\sum_i \langle n_{i\downarrow} n_{i\uparrow} \rangle / N$ 也和{{{DQMC}}}方法相符。
-图  [[ref:fig:thermal-hubbard]] (c) 则展示了次近邻格点之间的自旋关联 $F=\sum_{\langle\langle i, j \rangle\rangle}\langle \mathbf{S}_i \cdot \mathbf{S}_j \rangle / M$ ，其同样和 {{{DQMC}}} 方法获得的结果一致，其中 $M$ 是次近邻格点对的数量。
+图  [[ref:fig:thermal-hubbard]] (b) 展示了通过高斯过程回归来拟合能量后进行数值微分得到的 $C_v$ 。
+而图  [[ref:fig:thermal-hubbard]] (c) 中的 每格点的双占据 $D=\sum_i \langle n_{i\downarrow} n_{i\uparrow} \rangle / N$ 也和{{{DQMC}}}方法相符。
+图  [[ref:fig:thermal-hubbard]] (d) 则展示了次近邻格点之间的自旋关联 $F=\sum_{\langle\langle i, j \rangle\rangle}\langle \mathbf{S}_i \cdot \mathbf{S}_j \rangle / M$ ，其同样和 {{{DQMC}}} 方法获得的结果一致，其中 $M$ 是次近邻格点对的数量。
 
 #+begin_export latex
 \begin{figure}
@@ -3315,8 +3316,9 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 #+end_export
 
 如图  [[ref:fig:thermal-hubbard]] (a) 所示，随着温度的降低，能量逐渐下降。
-在图  [[ref:fig:thermal-hubbard]] (b) 中可以看出，约在 $1/T = 0.5$ 附近，双占据迅速减少。
-随着温度的进一步降低，次近邻格点之间的自旋关联在图  [[ref:fig:thermal-hubbard]] (c) 中从零增加到一个有限的值，约发生在 $1/T = 3.0$ 附近。
+在图  [[ref:fig:thermal-hubbard]] (c) 中可以看出，约在 $1/T = 0.5$ 附近，双占据迅速减少。
+随着温度的进一步降低，次近邻格点之间的自旋关联在图  [[ref:fig:thermal-hubbard]] (d) 中从零增加到一个有限的值，约发生在 $1/T = 4.0$ 附近。
+上面两个可能的突变分别对应于 图  [[ref:fig:thermal-hubbard]] (b)  中的两个峰。
 由于系统尺寸较小，有限尺寸效应使我们无法观察到明显的相变。
 值得一提的是，本测试结果与文献 [[cite:Li2023]] 中的结果基本一致，只是由于系统尺寸有差异，各个降温曲线不完全相同。
 
