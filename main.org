@@ -3361,7 +3361,35 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 #+begin_export latex
 \begin{acknowledgements}
 
-哦霍，听说致谢不算字数，反正也没人看，正文敲得手酸，这里就不写了。
+在中国科学技术大学攻读博士学位的五年里，我所从事的学习和研究工作，
+都是在导师以及系里其他老师和同学的指导和帮助下进行的。在完成论文之际，
+请容许我对他们表达诚挚的谢意。
+
+首先感谢我的导师何力新教授。我能取得今天的成绩，与何老师一直以来的
+悉心指导、严格要求和启发鼓舞是分不开的。何老师教给了我如何进行科学的思
+考和一个科研工作者应该所持有的工作态度。何老师严谨的治学态度、严密的思
+维方式、忘我的工作精神和努力开拓勇于进取的精神让我受益匪浅。
+
+感谢韩永建教授长期以来的指导和教诲。韩老师渊博的学识和宽广的胸怀
+令人印象深刻。韩老师不仅教给了我专业的知识，也教给了生活中的一些道理，
+让我对科研生活有更全面深刻的了解。
+
+感谢实验室主任郭光灿教授。郭老师为我们提供了一个学术氛围浓厚、科研
+条件优越的实验室，使我们能够专心于学术研究。正是在这样一个一流的实验室
+里，通过和各位老师同学互相交流互相鼓舞，我才能有机会得到锻炼和成长。
+
+感谢实验室的任新国老师、李传锋老师、周正威老师、周祥发老师、涂涛老
+师、邹旭波老师、易为老师、龚明老师、孙方稳老师、许金时老师以及其他所有
+相关的老师。他们传授了课堂和生活的知识给我，也以他们的品格影响了我。
+
+感谢董少钧、王超和张盟长期以来对我生活、学习和科研上的关心、帮助和指导。
+感谢我们研究小组的其他成员韩聿舟在科研方面的探讨与交流。
+也感谢我们小组的其他成员的关心与支持。同样感谢实验室的其他同学。
+
+最后，特别感谢我的家人。你们对我一贯的鼓励和支持，
+是我追求学业的坚强后盾。这个学位不仅属于我，同样也属于你们。
+
+\hfill 2024年9月1日
 
 \end{acknowledgements}
 
@@ -3370,18 +3398,30 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 \section*{已发表论文}
 
 \begin{enumerate}
-\item Shaojun Dong; Hao Zhang; Chao Wang; Meng Zhang; Yong-Jian Han; Lixin He ; A possible quantum spin liquid phase in the Kitaev-Hubbard model, Chinese Physics Letters, 2023, 40(12): 126403-126403
-\item Si-Jing Tao; Hao-Qing Zhang; Hao Zhang; Zhe Chen; Ran He; Shao-Jun Dong; Yong-Jian Han; Chuan-Feng Li; Guang-Can Guo ; Generating tensor-network states via combination of phonons and qubits in a trapped-ion platform, Physical review, 2022, 106(3): 032403-032403
-\item Meng Zhang; Chao Wang; Shaojun Dong; Hao Zhang; Yongjian Han; Lixin He ; Entanglement entropy scaling of noisy random quantum circuits in two dimensions, Physical Review A, 2022, 106(5): 052430-052430
-\item Meng Zhang; Chao Wang; Shaojun Dong; Hao Zhang; Yongjian Han; Lixin He ; Projected entangled pair states study of anisotropic-exchange magnets on the triangular lattice, Physical Review B, 2022, 105(2): 024411-024411
+\item Zhang Hao, Dong Shaojun, Wang Chao, Zhang Meng, He Lixin.
+TNSP: A framework supporting symmetry and fermion tensors for tensor network state methods[J/OL].
+Computer Physics Communications, 2024, 305: 109355.
+\item Dong Shaojun, Zhang Hao, Wang Chao, Zhang Meng, Han Yong-Jian, and He Lixin.
+A possible quantum spin liquid phase in the kitaev–hubbard model[J/OL].
+Chinese Physics Letters, 2023, 40(12): 126403.
+\item Zhang Meng, Wang Chao, Dong Shaojun, Zhang Hao, Han Yongjian, and He Lixin.
+Entanglement entropy scaling of noisy random quantum circuits in two dimensions[J/OL].
+Physical Review A, 2022, 106(5).
+\item Tao Si-Jing, Zhang Hao-Qing, Zhang Hao, Chen Zhe, He Ran, Dong Shao-Jun, Han Yong-Jian, Li Chuan-Feng, and Guo Guang-Can.
+Generating tensor-network states via combination of phonons and qubits in a trapped-ion platform[J/OL].
+Physical Review A, 2022, 106(3).
+\item Zhang Meng, Wang Chao, Dong Shaojun, Zhang Hao, Han Yongjian, and He Lixin.
+Projected entangled pair states study of anisotropic-exchange magnets on the triangular lattice[J/OL].
+Physical Review B, 2022, 105(2).
 \end{enumerate}
 
 \section*{待发表论文}
 
 \begin{enumerate}
-\item Hao Zhang; Shaojun Dong; Chao Wang; Meng Zhang; Lixin He ; TNSP: A Framework Supporting Symmetry and Fermion Tensors for Tensor Network State Methods.
-\item Hao Zhang; Shaojun Dong; Lixin He ; Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice.
-\item Meng Zhang; Hao Zhang; Chao Wang; Lixin He ; Scalable tensor network algorithm for thermal quantum many-body systems in two dimension.
+\item Zhang Meng, Zhang Hao, Wang Chao, He Lixin.
+Scalable tensor network algorithm for thermal quantum many-body systems in two dimension.
+\item Zhang Hao, Dong Shaojun, He Lixin.
+Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice.
 \end{enumerate}
 
 \end{publications}
