@@ -70,6 +70,8 @@
 #+MACRO: Metropolis 梅特罗波利斯
 #+MACRO: MERA 多尺度纠缠重整化 {{{Ansatz}}}
 #+MACRO: Cooper 库珀
+#+MACRO: Grassmann 格拉斯曼
+#+MACRO: TNSP 张量网络态计算套件
 
 #+begin_export latex
 \begin{abstract}
@@ -206,7 +208,8 @@ To address the challenges posed by tensor network states, particularly fermion t
 - CDW :: {{{CDW}}} (Charge Density Wave)
 - AFM :: {{{AFM}}} (Antiferromagnetic)
 - MERA :: {{{MERA}}} (Multiscale Entanglement Renormalization Ansatz)
-  
+- TNSP :: {{{TNSP}}} (Tensor Network State Packages)
+
 #+begin_export latex
 \mainmatter
 #+end_export
@@ -2123,17 +2126,17 @@ END SUBROUTINE DCOPY
 此工作探索了基于 {{{PEPS}}} 的 {{{VMC}}} 算法在程序设计与高并行运算的边界，为后续计算大尺寸量子多体问题提供了参考。
 同时，在本移植工作中，也发现过神威 \cdot 太湖之光系统中的一些不足，反馈后，也为国产超级计算机的生态建设做出了贡献。
 
-* 张量网络态计算套件（TNSP） <<sec:软件>>
+* {{{TNSP}}}(TNSP) <<sec:软件>>
 
 ** 背景介绍
 
-现代凝聚态物理学面临的主要挑战之一是开发有效的数值方法来求解强关联多粒子系统。
-在强关联条件下，微扰理论失效，非微扰数值模拟在揭示量子多体物理的本质方面起着至关重要的作用。
+现代凝聚态物理学面临的主要挑战之一是开发有效的数值方法来求解强关联多体系统。
+在强关联情况下，微扰理论失效，非微扰数值模拟在揭示量子多体物理的本质方面起着至关重要的作用。
 几种流行的方法，包括{{{ED}}} (ED)、{{{QMC}}} (QMC) [[cite:Kashurnikov2007,Syljusen2002]]和 {{{DMRG}}} (DMRG) [[cite:White1992,White1993]] ，已被广泛使用并取得了显著成功。
-然而，这些方法都有其固有的局限性：{{{ED}}} 方法面临 ``指数墙'' 挑战, {{{QMC}}}在模拟阻挫和费米子系统时遭遇所谓的符号问题 [[cite:Troyer2005]]，而{{{DMRG}}}局限于一维或准一维系统，在高维系统中表现不佳[[cite:Schollwck2011]]。
+然而，这些方法都有其固有的局限性：{{{ED}}} 方法面临 ``指数墙'' 挑战, {{{QMC}}}在模拟阻挫和费米子系统时遭遇所谓的``符号问题'' [[cite:Troyer2005]]，而{{{DMRG}}}局限于一维或准一维系统，在高维系统中表现不佳[[cite:Schollwck2011]]。
 因此，迫切需要开发新的、高效的数值算法。
 
-几年来，基于张量网络态(TNS)的方法，特别是投影纠缠对态(PEPS)[[cite:Schollwck2011,Garcia2006,Verstraete2008,Jiang2008,Vidal2008,Verstraete2004,Sfondrini2010,Verstraete2006b]] ，已被证明在模拟强关联多粒子系统中非常有效。
+近年来，基于张量网络态(TNS)的方法，特别是投影纠缠对态(PEPS)[[cite:Schollwck2011,Garcia2006,Verstraete2008,Jiang2008,Vidal2008,Verstraete2004,Sfondrini2010,Verstraete2006b]] ，已被证明在模拟强关联多体系统中非常有效。
 {{{PEPS}}} 不受符号问题的影响，在研究阻挫自旋模型 [[cite:Wang2016,Vidal2007,MllerHermes2012]] 方面取得了显著成功。
 此外，{{{PEPS}}} 方法已被应用于分析费米子系统，通过各种途径发展出了费米子{{{PEPS}}}（f-PEPS） [[cite:Corboz2010,Corboz2011,Gu2010,Gu2013,Kraus2010,Dong2019]] 。
 
@@ -2144,12 +2147,19 @@ END SUBROUTINE DCOPY
 这些方法旨在将费米子算符转换为玻色子算符，这一过程需要引入额外的张量或信息到网络中。
 这种引入可能会导致张量网络构建的复杂性增加。
 
-我们在 文献 [[cite:Dong2019]] 中提出并在 第 [[ref:sec:张量和张量网络]] 章 中详细介绍的费米子张量方法，在编程应用中显示出相当大的适应性。
-在这种方法中，我们引入了所谓的``费米箭头''来定义费米子算符的顺序，并通过建立特定的操作规则来重新定义费米子张量，这些规则有效地管理了费米子的交换性质，这些规则包括诸如收缩、转置和分解等基本操作。
-这种方法可以大大简化费米子 {{{PEPS}}} 方法。
-另一种处理 费米子 {{{PEPS}}} 的方法是 Grassmann 张量方法 [[cite:Gu2010,Yosprakob2023]] ，他与我们的方法有相似之处。
+我们在 文献 [[cite:Dong2019]] 中提出并在 第 [[ref:sec:张量和张量网络]] 章 中详细介绍的费米子张量方案，在编程应用中显示出相当大的适应性。
+在这种方案中，我们引入了所谓的``费米箭头''来定义费米子算符的顺序，并通过建立特定的操作规则来重新定义费米子张量，这些规则有效地管理了费米子的交换性质。
+这些规则包括诸如收缩、转置和分解等基本操作， 从而使得这种方案可以极大简化上层的费米子 {{{PEPS}}} 方法。
+另一种处理 费米子 {{{PEPS}}} 的方法是 {{{Grassmann}}} 张量方法 [[cite:Gu2010,Yosprakob2023]] ，他与我们的方法有很多相似之处。
 然而，尽管做出了这些努力，费米子 {{{PEPS}}} 方法及其相关软件的开发仍然极具挑战性。
-这种复杂性进一步加剧了支持 费米子 {{{TNS}}} 开发复杂需求的软件包的匮乏。
+这种复杂性也加剧了支持 费米子 {{{TNS}}} 开发复杂需求的软件包的匮乏。
+
+在我们之前的工作中，我们开发了一个专门为 {{{TNS}}} 方法设计的 Fortran2003 库，名为 TNSPackage [[cite:Dong2018]]。
+该库包含了一套最常用的张量操作，如乘法、收缩、排列、奇异值分解（SVD）和各种矩阵分解函数，显著简化了{{{TNS}}}的编程过程，特别是对于 {{{PEPS}}} 的方法。
+然而，TNSPackage的初始版本仅支持适用于玻色子和自旋模型的{{{TNS}}}方法，无法处理费米子 {{{TNS}}}。
+我们对TNSPackage进行了重大升级，以支持费米子 {{{TNS}}} 方法。
+我们构建了一个名为 {{{TNSP}}}(TNSP) [[cite:TNSP-repo]] 的框架，旨在支持玻色子和费米子 {{{TNS}}} 编程。
+{{{TNSP}}} 主要由两个主要组件组成：一个名为TAT的底层张量包，是 ``TAT is A Tensor package'' 的递归缩写，以及一个名为 tetragono 的上层接口包，在希腊语中意为``正方形''。
 
 ** 张量网络态计算套件概述
 
