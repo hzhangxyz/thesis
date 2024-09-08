@@ -3190,7 +3190,7 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \begin{equation} \label{eq:原始降温公式}
 \rho(\beta) = \mathrm{e}^{-\frac{\beta}{2} H} I \mathrm{e}^{-\frac{\beta}{2} H} ,
 \end{equation}
-其中 $I$ 是恒等算符，对应着无穷温处的热态( $\beta=0$ )。
+其中 $I$ 是恒等矩阵，对应着无穷温处的热态( $\beta=0$ )。
 可以将公式 [[eqref:eq:原始降温公式]] 写成演化形式，即
 \begin{equation} \label{eq:矩阵演化方程}
 - \frac{\mathrm{d}}{\mathrm{d} \beta}\rho(\beta) = \frac{H}{2} \rho(\beta) + \rho(\beta) \frac{H}{2}
@@ -3309,8 +3309,9 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 我们采用了传统的马尔可夫链方法对量子态的构型进行采样，总样本数量为 $40000$ ；
 对于高温情况，我们使用 $p_S=\sqrt{_\sharp \langle \rho | S | \rho \rangle_\sharp}$ 的权重进行采样并进行重加权，直到 $\beta \simeq 0.3$ 。
 然后使用正常采样方法直到较低温度 $\beta \simeq 10$ 。
-我们在高温附近调整了采样权重，这是因为对于非常高的温度， 未归一化的热态 $\rho(\beta)$ 接近恒等算子，其对角项接近于一，而非对角线项则接近于零。
+我们在高温附近调整了采样权重，这是因为对于非常高的温度， 未归一化的热态 $\rho(\beta)$ 接近恒等矩阵，其对角项接近于一，而非对角线项则接近于零。
 而降低温度后，非对角项权重应当扩大，但是由于此时权重过小，难以采样到，所以难以采出其梯度，也就难以扩大其权重，进而导致高温附近降温比真实情况更慢。
+另外，我们在初始的矢量化恒等矩阵 $|I\rangle_\sharp$ 上添加了小的随机扰动，以避免初始时梯度为零的情况。
 为了与我们的结果进行比较，我们更改了 {{{SSE}}} 代码 [[cite:SSE-code]] 的边界条件。
 在 {{{SSE}}} 方法中，我们使用的样本数为 $10^7$ 。
 
@@ -3340,7 +3341,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 这里，我们同{{{SSE}}}方法 [[cite:Sandvik2010]] 一样， 将 $\langle M_z \rangle^2$ 设置为0，因为哈密顿量中不包含磁场。
 如图 [[ref:fig:thermal-heisenberg]] (c)所示，均匀磁化率在整个温度范围内与{{{SSE}}}方法的结果高度一致。
 实际上，比起磁化强度，磁化率更难估计，因为随着温度下降，公式 [[eqref:eq:sus]] 中的 $\beta$ 增加，这要求对 $\langle M_z^2 \rangle$ 估计的精度有了更高的要求以达到固定的精度。
-这也是低温区域内磁化率与精确结果略有偏差的原因，见图 图 [[ref:fig:thermal-heisenberg]] (c)和图 [[ref:fig:thermal-heisenberg]] (c)中 $\beta \approx 10$ 的部分。
+这也是低温区域内磁化率与精确结果略有偏差的原因，见 图 [[ref:fig:thermal-heisenberg]] (c)和图 [[ref:fig:thermal-heisenberg]] (c)中 $\beta \approx 10$ 的部分。
 
 当公式 [[eqref:eq:j1-j2]] 中的 $J_2$ 不为零时， $J_1-J_2$ 模型是一个阻挫系统，由于符号问题，不适合使用量子蒙特卡罗方法进行计算。
 在零温度情况下，多个数值计算研究 [[cite:Liu2018,Liu2022,Jiang2012,Hu2013,Wang2018]] 显示，当 $J_2/J_1 = 0.5$ 时，$J_1-J_2$ 模型呈现出量子自旋液体相。
@@ -3373,21 +3374,35 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 其中， $c_{i\sigma}$ 是位于格点 $i$ 上自旋为 $\sigma = \uparrow$ 或 $\downarrow$ 的湮灭算符， $n_{i\sigma} = c_{i\sigma}^\dag c_{i\sigma}$ 是粒子数算符。
 在公式 [[eqref:eq:hubbard]] 中，最近邻格点 $\langle i, j \rangle$ 之间的跃迁项幅度为 $t$ ，同一格点 $i$ 上占据两个相反自旋的粒子之间的排斥相互作用参数为 $U$，化学势为 $\mu$。
 
-如第 [[ref:sec:超导]] 中提到过，{{{Hubbard}}}模型作为描述Mott绝缘体的基本工具，其在寻找超导现象，探究超导机理的计算与分析中极为重要。
+如第 [[ref:sec:超导]] 章中提到过，{{{Hubbard}}}模型作为描述Mott绝缘体的基本工具，其在寻找超导现象，探究超导机理的计算与分析中极为重要。
 在本次测试中，我们使用 $6 \times 6$ 大小的开边界方形晶格， 参数取 $t=1$ ， $U=8$ 以及 $\mu=4$ ，这对应着半满的反铁磁相 [[cite:Zheng2016]] 。
 需要注意的是，我们的方法也适用于正则系综，不过在此我们使用的是巨正则系综，以便与{{{DQMC}}}进行比较。
 由于这是半满的{{{Hubbard}}}模型，因此对于行列式量子蒙特卡洛算法来说不存在符号问题。
 
 在测试{{{Hubbard}}}模型中，我们发现{{{Hubbard}}}模型高温附近相比自旋系统更加难以及时降温。
-为了解决这个问题，除了取 $p_s' = \sqrt{\langle \psi | s | \psi \rangle}$ 外，
-我们还设置 $p_s = b_s p_s'$ ，其中 $b_s$ 是一个动态调整的值，使得对角项的 $p_s$ 不再远高于非对角项的 $p_s$ 。
+在取采样概率 $p_S = \sqrt{\langle \rho | S | \rho \rangle}$ 失败后，我们调整使用直接采样方法 [[cite:Vieijra2021]] 进行采样。
+TODO 介绍reweight策略
 
 如图 [[ref:fig:thermal-hubbard]] 所示，我们将{{{Hubbard}}}模型的结果与{{{DQMC}}}方法进行比较。
 在优化过程中使用了高达30000次采样，在测量过程中使用了600000次采样。
-可以看出，图  [[ref:fig:thermal-hubbard]] (a) 中每格点的能量 $E=\langle H \rangle / N$ 与{{{DQMC}}}结果一致。
+可以看出，图  [[ref:fig:thermal-hubbard]] (a) 中每格点的内能随着温度下降而降低，并逐渐收敛于基态的能量，在图中使用虚线指示。
+我们的结果与 {{{DQMC}}} 结果高度一致。
 图  [[ref:fig:thermal-hubbard]] (b) 展示了通过高斯过程回归来拟合能量后进行数值微分得到的 $C_v$ 。
-而图  [[ref:fig:thermal-hubbard]] (c) 中的 每格点的双占据 $D=\sum_i \langle n_{i\downarrow} n_{i\uparrow} \rangle / N$ 也和{{{DQMC}}}方法相符。
-图  [[ref:fig:thermal-hubbard]] (d) 则展示了次近邻格点之间的自旋关联 $F=\sum_{\langle\langle i, j \rangle\rangle}\langle \mathbf{S}_i \cdot \mathbf{S}_j \rangle / M$ ，其同样和 {{{DQMC}}} 方法获得的结果一致，其中 $M$ 是次近邻格点对的数量。
+尽管和 {{{DQMC}}} 的结果有小的不同，但这部分不同可能是由于计算 $C_v$ 时对能量计算结果的高精度要求导致的，而那需要更大的虚拟指标截断 $D$ 。
+除此之外，我们可以看到两个峰出现在 $C_v$ 的图上，大越分别在 $1/T_1=0.5$ 和 $1/T_2=4.0$ ，这也是和 {{{DQMC}}} 的结果一致的。
+这两个峰和文献 [[cite:Li2023]] 的结果一致。
+其中高温的峰来源于 {{{Hubbard}}} 带的激发，而低温峰来自于自旋态的激发 [[cite:Duffy1997]] 。
+高温峰的估计值为 $1/T_1 \approx \frac{4.8}{U} = 0.6$ 而低温峰的估计值为 $1/T_2 \approx \frac{3U}{8t^2} = 3.0$ [[cite:Paiva2001]] 。
+我们的结果和这个估计也比较一致。
+我们也计算了 每格点的双占据 $D=\sum_i \langle n_{i\downarrow} n_{i\uparrow} \rangle / N$ ，以及
+次近邻格点之间的自旋关联 $F=\sum_{\langle\langle i, j \rangle\rangle}\langle \mathbf{S}_i \cdot \mathbf{S}_j \rangle / M$ ，
+，其中 $M$ 是次近邻格点对的数量。
+结果分别展示在 图  [[ref:fig:thermal-hubbard]] (c) 和 图  [[ref:fig:thermal-hubbard]] (d) 中，
+并且同样和 {{{DQMC}}} 方法获得的结果一致。
+双占据在高温时接近 $0.2$ ，随着温度降低，逐渐降低并收敛到了 $0.05$  附近。
+而次近临自旋关联则从无穷温的零变化为 低温时接近的 $0.15$ 。
+由于我们的系统尺寸比较小，我们并不能判断这些可能的序的突变。
+我们的结果和文献 [[cite:Li2023]] 的结果基本一致，除了一些小的差异，那些差异可能是模拟时系统尺寸不同导致的。
 
 #+begin_export latex
 \begin{figure}
@@ -3395,18 +3410,11 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 \includegraphics[width=0.8\textwidth]{6x6-hubbard.pdf}
 \caption{ 哈伯德模型的降温曲线 }
 \note{注：
-$6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为 $U=8$，$t=1$ 和 $\mu=4$。(a) 每格点的能量 $E$ ，(b) 每格点的双占据 $D$ ，(c) 次近邻格点之间的自旋关联 $F$ 随着 $\beta = 1/T$ 的变化情况。
+$6 \times 6$ 方形晶格上的费米子哈伯德模型的降温曲线，参数为 $U=8$，$t=1$ 和 $\mu=4$。(a) 每格点的内能 $E/N$ ，(b)每格点比热 ，(c) 每格点的双占据 $D$ ，(d) 次近邻格点之间的自旋关联 $F$ 随着 $\beta = 1/T$ 的变化情况。
 }
 \label{fig:thermal-hubbard}
 \end{figure}
 #+end_export
-
-如图  [[ref:fig:thermal-hubbard]] (a) 所示，随着温度的降低，能量逐渐下降。
-在图  [[ref:fig:thermal-hubbard]] (c) 中可以看出，约在 $1/T = 0.5$ 附近，双占据迅速减少。
-随着温度的进一步降低，次近邻格点之间的自旋关联在图  [[ref:fig:thermal-hubbard]] (d) 中从零增加到一个有限的值，约发生在 $1/T = 4.0$ 附近。
-上面两个可能的突变分别对应于 图  [[ref:fig:thermal-hubbard]] (b)  中的两个峰。
-由于系统尺寸较小，有限尺寸效应使我们无法观察到明显的相变。
-值得一提的是，本测试结果与文献 [[cite:Li2023]] 中的结果基本一致，只是由于系统尺寸有差异，各个降温曲线不完全相同。
 
 ** 小结
 
