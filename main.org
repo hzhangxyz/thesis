@@ -164,7 +164,7 @@ To address the challenges posed by tensor network states, particularly fermion t
    However, as the hole doping $\delta$ increases or $U$ decreases, these domain wall structures disappear.
    When the hole doping is small, the system exhibits antiferromagnetic order, but this order weakens and disappears when $\delta > 0.05$.
    As the doping level increases, the charge density wave order also gradually weakens.
-   Notably, even at higher doping levels, significant charge density wave order can still be observed.
+   Notably, even at high doping levels, significant charge density wave order can still be observed.
    These results indicate that as the doping level $\delta$ increases, the antiferromagnetic order is gradually suppressed, while the charge density wave order gradually takes the dominant position.
 
 3. We proposed a scalable finite-temperature tensor network state algorithm for two-dimensional quantum many-body systems.
