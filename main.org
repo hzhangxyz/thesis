@@ -1429,7 +1429,7 @@ I = \delta_{i j} b^{\prime i} a^{\prime j} .
 
 在第 [[sec:张量网络态算法]] 章我们将介绍与具体张量类型无关的各种张量网络态算法，其中提到的张量都指对称性张量。
 
-* 张量网络态算法 <<sec:张量网络态算法>>
+* 张量网络态优化算法 <<sec:张量网络态算法>>
 
 基于包括 {{{MPS}}} 和 {{{PEPS}}} 在内的 各种 {{{TNS}}} ，有多种计算方法以解决给定的量子多体系统。
 本章节对一些 {{{TNS}}} 上的算法进行介绍，他们将被用于后续章节中。
@@ -3428,9 +3428,9 @@ Physical Review B, 2022, 105(2).
 
 \begin{enumerate}
 \item Zhang Meng, Zhang Hao, Wang Chao, He Lixin.
-Scalable tensor network algorithm for thermal quantum many-body systems in two dimension.
+Scalable tensor network algorithm for thermal quantum many-body systems in two dimension. (submitted)
 \item Zhang Hao, Dong Shaojun, He Lixin.
-Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice.
+Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice. (submitted)
 \end{enumerate}
 
 \end{publications}
