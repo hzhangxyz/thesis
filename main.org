@@ -3380,8 +3380,24 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 由于这是半满的{{{Hubbard}}}模型，因此对于行列式量子蒙特卡洛算法来说不存在符号问题。
 
 在测试{{{Hubbard}}}模型中，我们发现{{{Hubbard}}}模型高温附近相比自旋系统更加难以及时降温。
-在取采样概率 $p_S = \sqrt{\langle \rho | S | \rho \rangle}$ 失败后，我们调整使用直接采样方法 [[cite:Vieijra2021]] 进行采样。
-TODO 介绍reweight策略
+在取采样概率 $p_S = \sqrt{{_\sharp} \langle \rho | S | \rho \rangle_\sharp}$ 失败后，我们调整使用直接采样方法 [[cite:Vieijra2021]] 进行采样。
+直接采样使用自回归式的概率
+\begin{equation}
+p_{S_0\cdots S_{N-1}} = p^c_{S_0} p^c_{S_1 | S_0} p^c_{S_2 | S_0 S_1} \cdots,
+\end{equation}
+其中
+\begin{equation}
+p^c_{S_i|S_0 \cdots S_{i-1}} = \frac{\sum_{S_{i+1}S_{i+2}\cdots} {_\sharp} \langle \rho | S_0 S_1 \cdots S_{i-1} S_i S_{i+1}\cdots | \rho\rangle_\sharp}{\sum_{S_i S_{i+1}S_{i+2}\cdots}{_\sharp} \langle \rho | S_0 S_1 \cdots S_{i-1} S_i S_{i+1}\cdots | \rho\rangle_\sharp}.
+\end{equation}
+为了实现类似$p_S = \sqrt{{_\sharp} \langle \rho | S | \rho \rangle_\sharp}$ 的采样，我们选择
+\begin{equation}
+p_{S_0\cdots S_{N-1}} = p^c_{S_0} p^c_{S_1 | S_0} p^c_{S_2 | S_0 S_1} \cdots,
+\end{equation}
+其中
+\begin{equation}
+p^c_{S_i|S_0 \cdots S_{i-1}} = b(S_i)\sqrt{\frac{\sum_{S_{i+1}S_{i+2}\cdots}{_\sharp} \langle \rho | S_0 S_1 \cdots S_{i-1} S_i S_{i+1}\cdots | \rho\rangle_\sharp}{\sum_{S_i S_{i+1}S_{i+2}\cdots}{_\sharp} \langle \rho | S_0 S_1 \cdots S_{i-1} S_i S_{i+1}\cdots | \rho\rangle_\sharp}}.
+\end{equation}
+其中 $s_i\neq s'_i$ 时 $b(s_i s'_i) = 1$ ， $S_i=s_i s'_i$ 。否则他是一个的每步梯度后动态调整的值，使得对角构型数目不超过总数目的一半。
 
 如图 [[ref:fig:thermal-hubbard]] 所示，我们将{{{Hubbard}}}模型的结果与{{{DQMC}}}方法进行比较。
 在优化过程中使用了高达30000次采样，在测量过程中使用了600000次采样。
