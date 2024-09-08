@@ -3225,7 +3225,7 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 $T_i^{S_i}$ 是第 $i$ 个格点处的张量，其中 $N$ 为总的格点数。
 
 我们可以在 {{{PEPS}}} 表示上使用 {{{SU}}} 方法 [[cite:Jiang2008]] 或者 完整更新方法[[cite:Jordan2008]] 来实现 公式 [[eqref:eq:矢量演化方程]] 的演化。
-但是这些方法或有较大误差或计算量太大，本工作选择使用自然梯度法，也就是{{{SR}}}方法进行变分地降温。
+但是这些方法或有较大误差或计算量太大，本工作选择使用自然梯度法，也就是{{{SR}}}方法 [[cite:Sorella1998,Sorella2001]] 进行变分地降温。
 考虑直接在希尔伯特空间中，给定某个态 $|\psi\rangle$ ，给定某个哈密顿量 $O$ ，其能量为
 \begin{equation}
 E = \langle \psi | O | \psi \rangle .
@@ -3261,7 +3261,7 @@ $O \gets \frac{H \otimes I + I \otimes H^T}{4}$\;
 $\beta \gets 0$\;
 \While{$\beta$ 没有降温到目标温度}{
   $\rho(\beta) \gets \text{PEPS}(\theta)$\;
-  $E, G, g \gets \texttt{VMC}(O, \rho(\beta))$ \Comment*[r]{使用 \ref{sec::各种采样方法} 中的方法采样得到梯度和度规}
+  $E, G, g \gets \texttt{VMC}(O, \rho(\beta))$ \Comment*[r]{用 \ref{sec::各种采样方法} 中的方法得到梯度$G$和度规$g$}
   $\theta \gets \theta - \Delta\beta g^{-1} G$ \;
   $\beta \gets \beta + \Delta\beta$
 }
@@ -3273,19 +3273,21 @@ $\beta \gets 0$\;
 g X = G,
 \end{equation}
 其中 $g$ 为度规， $G$ 为梯度， $X$ 为更新参数的方向。
-这个求逆任务可以通过共轭梯度法实现 [[cite:Bjrck1979,Paige1982]]。
-在共轭梯度法中，我们不需要知道矩阵 $g$ 的显式形式，只需要知道如何将其作用在向量 $X$ 上，然后多次迭代即可。
-由于 $g$ 本身是 $n_p \times n_p$ 的矩阵，其中 $n_p$ 为参数空间大小。
+$g$ 本身是 $n_p \times n_p$ 的矩阵，其中 $n_p$ 为参数空间大小，直接求逆需要 $O(n_p^3)$ 的时间复杂度。
+幸运的是，这个求逆任务可以通过共轭梯度法实现 [[cite:Bjrck1979,Paige1982]]。
+在共轭梯度法中，我们不需要知道矩阵 $g$ 的显式形式，只需要知道如何将其作用在向量 $X$ 上，进行多次迭代即可。
 而采样方法中， 公式 [[eqref:eq:度规的采样计算]] 给出的度规估计实际上是由 $n_p \times n_s$ 的矩阵乘以 $n_s \times n_p$ 的矩阵得到的，其中 $n_s$ 为采样数目。
-故而共轭梯度法的复杂度为 $n_s n_p n_{cg}$ ，其中 $n_{cg}$ 为共轭梯度法的迭代步数。
+我们可以将 $\Delta_s^i$ 和 $\Delta_s^{j*}$ 两部分分别作用在向量 $X$ 上，这样作用 $g$ 矩阵的复杂度只有 $O(n_s n_p)$ 。
+故而共轭梯度法的总复杂度为 $O(n_s n_p n_{cg})$ ，其中 $n_{cg}$ 为共轭梯度法的迭代步数。
 当 $n_p \gg n_s$ 时，共轭梯度相比于直接求逆 的 $O(n_p^3)$ 复杂度要快很多。
+在我们的情形下，$n_{cg}$ 通常数百步即可收敛，而 $n_s \approx 10^4$， $n_p \approx 10^6$ ，所以这里使用共轭梯度法是个好选择。
 
 相较与标准的共轭梯度法，我们可以共轭梯度法内，计算 $X^\dag g X$ 时做一些改进。
 我们不需要将 $g$ 完全作用在 $X$ 上，取而代之，我们直接将 $X$ 放入公式 [[eqref:eq:度规的采样计算]] ，得到
 \begin{equation}
 X^\dag_i \widehat{g}^{ij} X_j = \frac{\sum_{s \sim S} r_s (X^\dag_i \Delta_s^i) (\Delta_s^{j*} X_j)}{\sum_{s \sim S} r_s} - \frac{\sum_{s \sim S} r_s (X^\dag_i \Delta_s^i)}{\sum_{s \sim S} r_s} \frac{\sum_{s \sim S} r_s (\Delta_s^{j*} X_j)}{\sum_{s \sim S} r_s} ,
 \end{equation}
-这样我们可以复用多个中间变量，既减少了运算，也提高了数值稳定性。
+这样我们可以复用中间变量 $X_i^\dag \Delta_s^i$，既减少了运算，也提高了数值稳定性。
 这是共轭梯度法的一个常见技巧 [[cite:Bjrck1979,Paige1982]] 。
 
 ** 基准测试结果
@@ -3327,7 +3329,7 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 如图 [[ref:fig:thermal-heisenberg]] (a) 所示，我们的方法计算得到的每点内能在整个温度范围内（ $\beta = [0, 10]$ ）与 {{{SSE}}} 的结果一致，这说明我们的方法即使在非常低的温度下也具有出色的精度。
 图 [[ref:fig:thermal-heisenberg]] (b) 显示了比热 $C_v$ 随 $\beta$ 的变化情况。
 在此，我们通过数值微分获取 $C_v$。
-具体来说，我们首先得到图 [[ref:fig:thermal-heisenberg]] (a) 数据的B样条曲线，然后可以从该曲线的导数中获取 $C_v$。
+具体来说，我们首先得到图 [[ref:fig:thermal-heisenberg]] (a) 数据的B样条曲线，然后可以从该曲线的数值导数中获取 $C_v$。
 如图 [[ref:fig:thermal-heisenberg]] (b) 所示，我们的结果与 {{{SSE}}} 的结果基本一致。
 尽管 $C_v$ 的峰值与 {{{SSE}}} 的结果存在一定的偏差，这主要是由于数值微分带来的误差，但相应的 $\beta$ 值与 {{{SSE}}} 的结果非常吻合。
 获取 $C_v$ 的更精确方法是直接计算 $\beta^2 (\langle H^2 \rangle - \langle H \rangle^2)$ ，然而在低温处，由于 $\beta^2$ 会放大采样误差，为了得到同等质量的结果，直接计算效率比数值差分要低。
