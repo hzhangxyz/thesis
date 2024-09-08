@@ -144,7 +144,7 @@ Additionally, tensor network state methods have also been extended to fermionic 
 Various fermion tensor network state (f-TNS) methods have been developed successively.
 However, due to the complexity of fermion tensor network state methods, their implementation faces enormous challenges,
 which are further exacerbated by the lack of foundational software packages supporting fermion tensor network state methods.
-To address the challenges posed by tensor network states, particularly fermion tensor network state methods, this thesis has undertaken the following work:
+To address the challenges posed by tensor network states, particularly fermion tensor network state methods, this thesis has undertaken the following works:
 
 1. To simplify the programming implementation of symmetry tensor network states and fermion tensor network states,
    we proposed a new scheme that successfully implements the anti-commutation properties of fermions by directly redefining the tensor operation rules.
