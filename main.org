@@ -1,5 +1,5 @@
 #+LATEX_CLASS: thesis
-#+TITLE: 张量网络方法的发展与应用
+#+TITLE: 费米子张量网络方法的发展及其在哈伯德模型中的应用
 #+OPTIONS: title:nil
 #+OPTIONS: toc:nil
 
