@@ -3427,10 +3427,12 @@ Physical Review B, 2022, 105(2).
 \section*{待发表论文}
 
 \begin{enumerate}
-\item Zhang Meng, Zhang Hao, Wang Chao, He Lixin.
-Scalable tensor network algorithm for thermal quantum many-body systems in two dimension. (submitted)
 \item Zhang Hao, Dong Shaojun, He Lixin.
-Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice. (submitted)
+Competing phases and suppression of superconductivity in hole-doped Hubbard model on honeycomb lattice.
+\item Zhang Meng, Zhang Hao, Wang Chao, He Lixin.
+Scalable tensor network algorithm for thermal quantum many-body systems in two dimension.
+\item Dong Shaojun, Wang Chao, Zhang Hao, Zhang Meng, He Lixin.
+Beyond Boundaries: efficient Projected Entangled Pair States methods for periodic quantum systems.
 \end{enumerate}
 
 \end{publications}
