@@ -152,9 +152,9 @@ To address the challenges posed by tensor network states, particularly fermion t
    Our previously developed tensor network state method software package, TNSPackage, only supported spin and boson models.
    In the latest version, we added support for symmetry tensors and fermion tensors.
    We developed a unified interface that can consistently handle boson, fermion, and various symmetry types of tensors, maintaining the user-friendliness and versatility of the software package.
-   This greatly simplifies the process of developing programs based on tensor network states, especially symmetry or fermion tensor network states.
-   The new TNSP framework consists of two main components: a low-level tensor library, TAT, which supports complex operations on different tensors;
-   and a high-level interface library, tetragono, built on TAT, designed to simplify the development of complex physical models on square lattices.
+   This greatly simplifies the process of developing programs based on tensor network states, especially symmetry and fermion tensor network states.
+   The new TNSP framework consists of two main components: a low-level tensor package, TAT, which supports complex operations on different tensors;
+   and a high-level interface package, tetragono, built on TAT, designed to simplify the development of complex physical models on square lattices.
    This framework enables researchers to more easily study various physical models without needing to delve into the underlying implementation details.
 
 2. We utilized the fermion projected entangled pair state (f-PEPS) method to study the Hubbard model with hole doping on a hexagonal lattice.
