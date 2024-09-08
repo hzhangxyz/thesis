@@ -104,7 +104,7 @@ tetragono 专为简化在方形晶格上开发复杂物理模型而设计。
 
 二、我们利用费米子投影纠缠对态（f-PEPS）方法研究了在六角晶格上掺杂空穴的哈伯德模型。
 研究发现，在这个模型中库珀对存在准长程序，其关联函数呈现幂律衰减，衰减指数 $K>1$。
-我们进一步分析了超导性与其他竞争相之间的关系，包括反铁磁（AFM）序和电荷密度波（CDW）序。
+我们进一步分析了超导性与其他竞争序之间的关系，包括反铁磁（AFM）序和电荷密度波（CDW）序。
 结果显示，当空穴掺杂 $\delta$ 较小且库仑参数 $U$ 较大时，系统中存在畴壁结构。
 然而，随着空穴掺杂 $\delta$ 的增加或 $U$ 的减少，这些畴壁结构会消失。
 当空穴掺杂较小时，系统表现出反铁磁序，但在 $\delta > 0.05$ 时该序减弱至消失。
@@ -159,7 +159,7 @@ To address the challenges posed by tensor network states, particularly fermion t
 
 2. We utilized the fermion projected entangled pair state (f-PEPS) method to study the Hubbard model with hole doping on a hexagonal lattice.
    Our research found that Cooper pairs exhibit quasi-long-range order in this model, with correlation functions showing power-law decay with a decay exponent $K > 1$.
-   We further analyzed the relationship between superconductivity and other competing phases, including antiferromagnetic (AFM) order and charge density wave (CDW) order.
+   We further analyzed the relationship between superconductivity and other competing order, including antiferromagnetic (AFM) order and charge density wave (CDW) order.
    The results show that when the hole doping $\delta$ is small and the Coulomb parameter $U$ is large, domain wall structures exist in the system.
    However, as the hole doping $\delta$ increases or $U$ decreases, these domain wall structures disappear.
    When the hole doping is small, the system exhibits antiferromagnetic order, but this order weakens and disappears when $\delta > 0.05$.
