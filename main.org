@@ -3431,6 +3431,12 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 #+begin_export latex
 \begin{acknowledgements}
 
+The acknowledgements have been drafted in \LaTeX comment.
+I comment it to count Chinese character easily for the main part of thesis.
+
+TODO: uncomment the acknowledgements.
+
+\iffalse
 在中国科学技术大学攻读博士学位的五年里，我所从事的学习和研究工作，
 都是在导师以及系里其他老师和同学的指导和帮助下进行的。在完成论文之际，
 请容许我对他们表达诚挚的谢意。
@@ -3460,6 +3466,7 @@ $6 \times 6$ 方形晶格上的费米子Hubbard模型的降温曲线，参数为
 是我追求学业的坚强后盾。这个学位不仅属于我，同样也属于你们。
 
 \hfill 2024年9月1日
+\fi
 
 \end{acknowledgements}
 
