@@ -114,7 +114,7 @@ tetragono 专为简化在方形晶格上开发复杂物理模型而设计。
 
 三、我们提出了一种可扩展的二维量子多体系统的有限温度张量网络态算法。
 该算法使用（费米子）投影纠缠对态来表示矢量化的量子热态，并通过随机重构型方法（SR）逐步将量子态从无穷温度冷却。
-为验证算法的有效性，我们对二维反铁磁海森堡模型、J1-J2模型和费米哈伯德模型进行了测试。
+为验证算法的有效性，我们对二维反铁磁海森堡模型、 $J_1-J_2$ 模型和费米哈伯德模型进行了测试。
 物理性质如内能、比热和磁化率等的计算结果与随机级数展开（SSE）、严格对角化和行列式量子蒙特卡洛（DQMC）方法的结果进行了对比，
 显示出高度一致性，验证了该算法的准确性和可靠性。
 #+begin_export latex
@@ -169,7 +169,7 @@ To address the challenges posed by tensor network states, particularly fermion t
 
 3. We proposed a scalable finite-temperature tensor network state algorithm for two-dimensional quantum many-body systems.
    This algorithm uses (fermion) projected entangled pair states to represent vectorized quantum thermal states and cools the quantum state from infinite temperature step-by-step through a stochastic reconfiguration (SR) method.
-   To verify the effectiveness of the algorithm, we tested it on the two-dimensional antiferromagnetic Heisenberg model, J1-J2 model, and fermionic Hubbard model.
+   To verify the effectiveness of the algorithm, we tested it on the two-dimensional antiferromagnetic Heisenberg model, $J_1-J_2$ model, and fermionic Hubbard model.
    The observed physical properties such as internal energy, specific heat, and magnetic susceptibility were compared with results from stochastic series expansion (SSE), exact diagonalization, and determinant quantum Monte Carlo (DQMC) methods,
    showing high agreements, which verifies the accuracy and reliability of the algorithm.
 #+begin_export latex
