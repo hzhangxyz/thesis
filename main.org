@@ -3182,20 +3182,21 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 
 ** 方法
 
-对于给定系统的哈密顿量 $H$ ，温度 $T=1/\beta$ 时，热态密度矩阵为
+对于给定系统的哈密顿量 $H$ ，温度 $T=1/\beta$ 时，热态密度矩阵（未归一化）为
 \begin{equation}
 \rho(\beta) = \mathrm{e}^{-\beta H} ,
 \end{equation}
 故而我们可以写成
 \begin{equation} \label{eq:原始降温公式}
-\rho(\beta) = \mathrm{e}^{-\frac{\beta}{2} H} I \mathrm{e}^{-\frac{\beta}{2} H} .
+\rho(\beta) = \mathrm{e}^{-\frac{\beta}{2} H} I \mathrm{e}^{-\frac{\beta}{2} H} ,
 \end{equation}
+其中 $I$ 是恒等算符，对应着无穷温处的热态( $\beta=0$ )。
 可以将公式 [[eqref:eq:原始降温公式]] 写成演化形式，即
 \begin{equation} \label{eq:矩阵演化方程}
 - \frac{\mathrm{d}}{\mathrm{d} \beta}\rho(\beta) = \frac{H}{2} \rho(\beta) + \rho(\beta) \frac{H}{2}
 \end{equation}
 
-而对于希尔伯特空间 $V$ 中的矩阵 $\rho$ ，我们可以将其矢量化为 $V \otimes V$ 空间中的向量，即
+而对于希尔伯特空间为 $V$ 的系统， 密度矩阵 $\rho$ 可以被矢量化为 $V \otimes V$ 空间中的向量，即
 \begin{equation}
 \rho = \sum_{ss'} \rho_{ss'} |s\rangle\langle s'| \to |\rho\rangle_\sharp = \sum_{ss'} \rho_{ss'} |s\rangle \otimes |s'\rangle.
 \end{equation}
@@ -3212,10 +3213,19 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \begin{equation}
 |\rho(\beta)\rangle_\sharp = \mathrm{e}^{-\beta H'}|\rho(0)\rangle_\sharp .
 \end{equation}
-这意味着，我们可以设 $|\rho(0)\rangle_\sharp=|I\rangle_\sharp$ ，并进行虚时间演化，从而得到系统的降温过程。
+这意味着，我们可以设 $|\rho(0)\rangle_\sharp=|I\rangle_\sharp$ ，即以矢量化的恒等矩阵作为无穷温度的初始状态，并进行虚时间演化，从而得到系统的降温过程。
 
-然而，对于二维的多体系统，表示为投影纠缠对态后，难以进行高精度的虚时间演化。
-因此我们选择使用自然梯度法的方式进行变分地降温。
+对于二维的多体系统， $|\rho(\beta)\rangle_\sharp$ 可以被表示为 {{{PEPS}}}:
+\begin{equation}
+|\rho(\beta)\rangle_\sharp = \sum_{S_0,\cdots,S_{N-1}=0}^{d^2-1} \prod_i T_i^{S_i} |S_0\cdots S_{N-1}\rangle.
+\end{equation}
+这里由于先前的矢量化，
+{{{PEPS}}}网络中每一个物理指标维度为 $d^2$ ，其中 $d$ 为原物理系统的物理指标维度。
+而每个格点的构型 $|S_i\rangle = |s_i\rangle |s'_i\rangle$ ，由物理指标和矢量化的共轭物理指标直积得到。
+$T_i^{S_i}$ 是第 $i$ 个格点处的张量，其中 $N$ 为总的格点数。
+
+我们可以在 {{{PEPS}}} 表示上使用 {{{SU}}} 方法 [[cite:Jiang2008]] 或者 完整更新方法[[cite:Jordan2008]] 来实现 公式 [[eqref:eq:矢量演化方程]] 的演化。
+但是这些方法或有较大误差或计算量太大，本工作选择使用自然梯度法，也就是{{{SR}}}方法进行变分地降温。
 考虑直接在希尔伯特空间中，给定某个态 $|\psi\rangle$ ，给定某个哈密顿量 $O$ ，其能量为
 \begin{equation}
 E = \langle \psi | O | \psi \rangle .
@@ -3236,8 +3246,8 @@ E = \langle \psi | O | \psi \rangle .
 \right.
 \end{equation}
 则公式 [[eqref:eq:Hilbert空间的优化]] 正是公式 [[eqref:eq:矢量演化方程]] 这个常微分方程的欧拉迭代解。
-这意味着，在希尔伯特空间直接使用 $H'/2$ 作为哈密顿量进行标准的梯度优化，相当于在对原密度矩阵进行降温。
-另一方面，[[ref:sec:::自然梯度法]] 介绍过的自然梯度法通过诱导度规，可以实现在参数空间中优化得到在希尔伯特空间进行标准的梯度下降的效果。
+这意味着，在矢量化后的希尔伯特空间直接使用 $H'/2$ 作为哈密顿量进行标准的梯度优化，相当于在对原系统的密度矩阵进行降温。
+另一方面，[[ref:sec:::自然梯度法]] 介绍过的自然梯度法通过诱导度规，可以实现在参数空间中变分得到在希尔伯特空间进行标准的梯度下降的效果。
 综上，我们可以通过算法 [[ref:alg:降温]] 实现在参数空间下的降温。
 
 #+begin_export latex
