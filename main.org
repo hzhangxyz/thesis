@@ -251,10 +251,11 @@ To address the challenges posed by tensor network states, particularly fermion t
 直接在指数级的 {{{Hilbert}}} 空间中提出一个 {{{Ansatz}}} 函数，并通过 {{{MC}}}来计算感兴趣的观测量。
 这里的 {{{Ansatz}}}函数通常具有一些先验物理知识，使得我们最终想表示的态位于 {{{Ansatz}}}函数所能表示的 子流形中。
 
-最简单的波函数 {{{Ansatz}}} 由Slater行列式给出，即 Hartree-Fock 理论，{{{Ansatz}}} 形式为
+最简单的波函数 {{{Ansatz}}} 由Slater行列式给出，即 Hartree-Fock 理论 [[cite:Echenique2007,Clark2013-mf]]，{{{Ansatz}}} 形式为
 $\psi^{HF}=\frac{1}{\sqrt{N!}} \mathrm{det}M$ ， 其中 $N$ 为系统中的粒子数目， $M$ 为 $N \times N$ 的矩阵 $M_{ij}=\phi_j(x_i)$ 。
 这种 {{{Ansatz}}} 对于弱相互作用的系统非常有效，甚至可以通过实时演化，获得系统的动力学特征。
-Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论，他完全忽略了粒子之间的相互作用，取而代之，他认为每个粒子处于其他所有粒子构成的平均场中。
+Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论[[cite:Chaikin2000-nq,Boudec2007-xj,Stanley1987-va]]，
+他完全忽略了粒子之间的相互作用，取而代之，他认为每个粒子处于其他所有粒子构成的平均场中。
 尽管Slater 行列式 在三维空间中表现良好，但对于低维系统并不那么适用。
 这种 {{{Ansatz}}} 的一大困难源于单粒子波函数，也就是自由系统的解通常在空间中弥散，而强关联系统中，每个粒子通常被束缚在实空间的局部。
 
