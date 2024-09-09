@@ -362,9 +362,6 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 + 第 [[ref:sec:有限温]] 章介绍一种有限温算法以及其测试结果。
 + 第 [[ref:sec:总结与展望]] 章进行总结与展望。
 
-本论文将一直使用爱因斯坦求和约定。
-本论文将一直从 $0$ 开始计数而不是 $1$ 开始计数。
-
 * {{{T}}} 和 {{{TN}}} <<sec:张量和张量网络>>
 
 ** {{{MPS}}} (MPS)
@@ -379,8 +376,9 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 
 首先介绍{{{T}}}， $R$ 阶的张量 可以被简单地认为是多个线性空间上的 $R$ 阶多线性映射：
 \begin{equation}
-\hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{R-1} \to \mathbb{K} .
+\hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{R-1} \to \mathbb{K} ,
 \end{equation}
+本论文将一直从 $0$ 开始计数而不是从 $1$ 开始计数。
 其中 $V_r$ 是 $\mathbb{K}$ 上的线性空间， $r=0,1,2,\cdots R-1$ , 记 $\mathrm{rank}(\hat T) = R$ 。
 而本论文中， $\mathbb{K}$ 只会取 $\mathbb{R}$ 或者 $\mathbb{C}$ ， $V_r$ 也一定是定义了内积的有限维线性空间，
 所以可以使用一个高维数组来表示一个张量，即
@@ -395,7 +393,7 @@ Anderson的共振价键（RVB）态、Kitaev的 toric code 态、以及任何局
 =
 T^{i_0,i_1,\cdots,i_\rrr} a_0^{i_0} a_1^{i_1} \cdots a_\rrr^{i_\rrr},
 \end{equation}
-其中 $D_r = \mathrm{dim}(V_r)$ ， 记 $\mathrm{rank}(T) = R$ 。
+其中 $D_r = \mathrm{dim}(V_r)$ ， 记 $\mathrm{rank}(T) = R$ ，本论文中将一直使用爱因斯坦求和约定。
 为了表达上的简便，我们直接称呼 $T$ 为张量， 即使严格的说张量应是其所表示的 $\hat T$ 。
 
 {{{MPS}}} 使用一个张量链来表示高维的向量。
