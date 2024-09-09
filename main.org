@@ -259,9 +259,12 @@ Slater 行列式 {{{Ansatz}}} 实际上是一种平均场理论[[cite:Chaikin200
 尽管Slater 行列式 在三维空间中表现良好，但对于低维系统并不那么适用。
 这种 {{{Ansatz}}} 的一大困难源于单粒子波函数，也就是自由系统的解通常在空间中弥散，而强关联系统中，每个粒子通常被束缚在实空间的局部。
 
-{{{TNS}}} 作为一个 {{{VMC}}} 方法 的 {{{Ansatz}}} ，可以解决这个问题，他直接在实空间中对波函数进行表示从而模拟强相互作用系统的基态。
+{{{TNS}}} [[cite:Vidal2003,Verstraete2004,Vidal2004,Vidal2007,Jiang2008,Sandvik2007,Liu2007,Vieijra2021]]
+作为一个 {{{VMC}}} 方法 的 {{{Ansatz}}} ，可以解决这个问题，他直接在实空间中对波函数进行表示从而模拟强相互作用系统的基态。
 由于这种 {{{Ansatz}}} 很好地捕捉了大部分量子系统的纠缠结构，各种系统的基态通常都会落于 {{{TNS}}} 的子流形中。
-具体而言，就是 {{{TNS}}} 表示的波函数均满足 {{{AL}}} ，而这正是大部分量子系统基态所满足的。
+具体而言，就是 {{{TNS}}} 表示的波函数均满足 {{{AL}}}
+[[cite:Eisert2010,Arad2013,Arad2017,Napp2022,Hastings2006,Brando2014,Hastings2015,Anshu2022,Abrahamsen2020]] ，
+而这正是大部分量子系统基态所满足的。
 {{{TNS}}} 的发展历经数十年，如今回首，正应了Feynman的那句话: ``
 I think it should be possible some day to describe field theory
 in some other way than with the wave functions and
