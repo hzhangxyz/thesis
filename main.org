@@ -721,7 +721,7 @@ m_0 & m_1 & m_2
 + 更高阶 :: 张量需要可以被分解为多个3阶对称性张量收缩的形式。
 
 如上所示，一般对称群的对称性张量结构十分复杂，但对于Abel群来说，情况却十分简单。
-Abel群的不可约表示一定是1维的，所以恒有 $m_s=0$ ,故我们将 $m_s$ 省略，使用 $(s,\alpha_s)$ 作为基。
+Abel群的不可约表示一定是1维的，所以恒有 $m_s=0$ ,故我们将 $m_s$ 省略，使用 $(s,\alpha_s)$ 作为基 [[cite:Singh2011]]。
 此时 $R$ 阶的对称性张量需要满足
 \begin{equation}
 U_g^{\otimes R} T_{(s_0,\alpha_{s_0}),(s_1,\alpha_{s_1}),\cdots (s_{R-1},\alpha_{s_{R-1}})} =
@@ -758,7 +758,7 @@ C(s_0,s_1,\cdots s_{R-1}) .
 可见Abel群的对称性张量是一个分块的张量，其中分块方案由对称性条件和张量每个边上的不可约表示分解决定。
 
 物理中常见的群是 $Z(2)$ 群和 $U(1)$ 群。
-对于 $Z(2)$ 群， $g=e$ 表示不变， $g=z$ 表示反转。
+对于 $Z(2)$ 群[[cite:Singh2010]]， $g=e$ 表示不变， $g=z$ 表示反转。
 群表示 $0$ 中 $U_e^0 = U_z^0 = +1$ ，另一个群表示 $1$ 中 $U_e^1 = +1$ ， $U_z^1 = -1$ 。
 所以 $Z(2)$ 群的对称性条件是：
 \begin{equation}\label{eq:Z2对称性条件}
@@ -769,7 +769,7 @@ C(s_0, s_1, \cdots s_{R-1}) = \left\{\begin{aligned}
 \end{equation}
 其中 $\bigoplus$ 为异或运算。
 
-而对于 $U(1)$ 群， $g=\theta$ 表示旋转 $\theta$ 。
+而对于 $U(1)$ 群[[cite:Singh2011]]， $g=\theta$ 表示旋转 $\theta$ 。
 群表示使用一个整数 $s$ 来标记， $U_\theta^s = \mathrm{e}^{\mathrm{i} s \theta}$ 。
 所以 $U(1)$ 群的对称性条件是：
 \begin{equation}
@@ -808,7 +808,7 @@ C_{\prod_i G_i} = \prod_i C_{G_i} .
 
 *** 费米子张量 <<sec:::费米子张量>>
 
-费米子系统中，由于反对易的性质，大部分用于表示费米子系统波函数的方法需要进行Jordan-Wigner变换，即：
+费米子系统中，由于反对易的性质，大部分用于表示费米子系统波函数的方法需要进行Jordan-Wigner变换 [[cite:Giamarchi2003,Coleman2015-mb]] ，即：
 \begin{equation}\label{eq:Jordan-Wigner变换}
 \left\{
 \begin{aligned}
