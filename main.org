@@ -497,8 +497,8 @@ M_{v_X, v_X'} =&
 而满足 {{{AL}}} 的一维系统，两部分的边界是零维的点，大小也是常数，所以 {{{MPS}}} {{{Ansatz}}} 能够表示的一维系统恰好是满足一维情况下 {{{AL}}} 的系统。
 
 由于{{{MPS}}}对{{{AL}}}恰到好处的掌握，{{{MPS}}} 可以较高效地表示满足 {{{AL}}} 的系统的波函数。
-一维情况下，局部 {{{Hamiltonian}}} 构成的有能隙系统的基态是满足 {{{AL}}} 的 [[cite:Eisert2010]]，所以一个固定 $D$ 的 {{{MPS}}} 可以很好地表示此类系统的基态。
-而对于无能隙的系统，有 $S \propto \alpha \ln L$ [[cite:Eisert2010]] ，即纠缠熵随着系统的尺寸对数上升，而 $S \propto \ln D$ ，所以应取 $D \propto L ^\alpha$ ，
+一维情况下，局部 {{{Hamiltonian}}} 构成的有能隙系统的基态是满足 {{{AL}}} 的 [[cite:Eisert2010,Hastings2007,Hastings2006,Nachtergaele2006]]，所以一个固定 $D$ 的 {{{MPS}}} 可以很好地表示此类系统的基态。
+而对于无能隙的系统，有 $S \propto \alpha \ln L$ [[cite:Eisert2010,Franchini2007,Korepin2004,Latorre2003,Vidal2003]] ，即纠缠熵随着系统的尺寸对数上升，而 $S \propto \ln D$ ，所以应取 $D \propto L ^\alpha$ ，
 不过对于 $\alpha$ 较小的情况， 所需的 $D$ 随着系统尺寸增长缓慢，我们依然可以通过计算相当大的系统来了解接近热力学极限时系统的性质。
 
 *** {{{TN}}} 的图形标记
