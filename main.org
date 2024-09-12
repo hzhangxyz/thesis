@@ -76,40 +76,43 @@
 #+begin_export latex
 \begin{abstract}
 #+end_export
-上世纪发展的朗道费米液体理论和基于自发对称性破缺的相变理论在研究许多凝聚态问题上取得了巨大的成功。
-然而，在强关联系统中，朗道费米液体理论失效。
-这类系统中，粒子间具有较强的相互作用，传统的微扰方法难以提供准确的结果，因此研究强关联系统的性质主要依赖于数值方法。
-近年来，针对强关联系统的数值方法发展成为备受关注的研究方向之一。
+上世纪发展起来的朗道费米液体理论和基于自发对称性破缺的相变理论在研究许多凝聚态问题上取得了巨大的成功。
+然而，这些理论在强关联系统中失效，因为在这类系统中，粒子间存在强的关联相互作用，导致传统的微扰理论无法得到准确的结果。
+因此，研究强关联系统的性质主要依赖于数值方法。近年来，随着计算技术和算法的进步，针对强关联系统的数值方法成为了备受关注的研究领域。
 
 强关联系统数值求解的根本困难在于其希尔伯特空间维度随着系统尺寸的增大呈指数增长。
-因此，传统的严格对角化方法（ED）仅能处理30多个格点的有限系统。
-在某些特殊的强关联系统中，量子蒙特卡洛方法（QMC）可以提供优异的结果，但在具有阻挫相互作用和费米子系统中，存在所谓的 ``符号问题''，为保证收敛，采样量必须指数增加。
-另一大类方法则依赖于使用拟设（Ansatz）函数来表示系统波函数，如何在有限参数量下有效表示庞大的希尔伯特空间中的相关向量，成为这些数值方法的关键问题。
+因此，传统的严格对角化方法（ED）仅能处理30多个格点左右的有限系统。
+在某些特殊的强关联系统中，量子蒙特卡洛方法（QMC）可以得到优异的结果，但在具有阻挫相互作用和费米子系统中，会遇到所谓的 ``符号问题''。
+为确保模拟结果的收敛，所需的采样量必须呈指数增加，极大地限制了QMC方法在这些系统中的适用性。
+另一大类数值方法依赖于使用拟设（Ansatz）函数来表示系统的波函数。
+由于强关联系统中的波函数往往包含大量的量子纠缠和复杂的多体关联，如何在有限的参数量下准确描述庞大的希尔伯特空间中的相关向量成为这类数值方法的核心问题。
 
 近年来，张量网络态（TNS）在强关联系统的研究中取得了显著进展。
 矩阵乘积态（MPS）已成功应用于一维系统，而投影纠缠对态（PEPS）则被推广到二维系统。
-尽管张量网络态方法在许多应用中表现优异，但在优化二维系统的基态和处理复杂相互作用时仍面临挑战。
-此外，张量网络态方法也被推广到费米子系统。
-各种费米子张量网络态（f-TNS）方法相继被开发。
-然而，由于费米子张量网络态方法的复杂性，其实现面临巨大的挑战，这种困难因缺乏支持费米子张量网络态方法的基础软件包而进一步加剧。
-为了解决张量网络态，特别是费米子张量网络态方法带来的挑战，本论文开展了以下工作：
+尽管张量网络态方法在许多应用中表现优异，但在处理复杂相互作用时仍面临挑战。
+此外，张量网络态方法已被成功扩展到费米子系统，并催生了多种费米子张量网络态（f-TNS）方法。
+由于费米子具有交换反对易性，f-TNS 的实现比玻色子系统更加复杂。
+因此，尽管 f-TNS 在理论上提供了处理费米子系统的强大工具，但其实际应用面临巨大挑战。
+特别是，由于缺乏专门支持费米子张量网络态的基础软件包，这进一步限制了f-TNS在实际计算中的推广和应用。
 
-一、为简化对称性张量网络态及费米子张量网络态的编程实现，我们提出了一种新方案，通过直接定义张量的运算规则，成功实现了费米子的反对易性质。
-这使得在网络层次可以忽略费米子张量网络的复杂细节，简化了对对称性和费米子性质的处理，显著降低了编程的复杂性。
-我们此前开发的张量网络态方法软件包，TNSPackage，仅支持自旋和玻色子模型。
-在最新版本中，我们增加了对对称性张量和费米子张量的支持。
-我们发展了一个统一的接口，可以一致性的处理玻色子、费米子和各种对称类型的张量，保持了软件包的用户友好性和多功能性。
-这极大简化了基于张量网络态，特别是对称性或费米子张量网络态的程序开发过程。
-新的 张量网络态计算套件 (TNSP) 框架包含两个主要组成部分：一个底层张量库 TAT，支持不同张量的复杂运算；以及基于 TAT 构建的高级接口库 tetragono。
-tetragono 专为简化在方形晶格上开发复杂物理模型算法而设计。
-此框架使研究人员能够更加轻松地研究各种的物理模型，而无需深入关注底层实现细节。
+为了解决这些挑战，尤其是发展对称性张量网络态和费米子张量网络态方法中遇到的问题，本论文开展了以下几项工作：
 
-二、我们利用费米子投影纠缠对态（f-PEPS）方法研究了在六角晶格上掺杂空穴的哈伯德模型。
-研究发现，在这个模型中库珀对存在准长程序，其关联函数呈现幂律衰减，衰减指数 $K>1$。
-我们进一步分析了超导性与其他竞争序之间的关系，包括反铁磁（AFM）序和电荷密度波（CDW）序。
+一、为简化对称性张量网络态和费米子张量网络态的编程实现，我们提出并实现了一种新方案。
+通过直接定义网络中张量的运算规则，成功地保持了张量运算中的对称性和费米子的反对易性质。
+这一改进使得在网络层次可以忽略对称性张量网络和费米子张量网络的复杂细节，简化了对对称性和费米子性质的处理，显著降低了编程的复杂性，并提升了实现效率和可扩展性。
+基于这一方法，我们开发了一个支持对称性和费米子张量的张量网络态方法框架：TNSP。
+我们设计了一个统一的接口，能够一致性地处理玻色子、费米子及多种对称类型的张量，同时保持软件包的用户友好性和多功能性。
+这个张量网络态计算套件TNSP包含两个主要组成部分：1. TAT（底层张量库）：支持不同类型张量的复杂运算。
+2. tetragono（高级接口库）：基于 TAT 构建，专为简化在方形晶格上开发复杂物理模型算法而设计。
+该框架使研究人员能够更加轻松地研究各种物理模型，无需深入关注底层实现细节。
+这极大简化了基于张量网络态的程序开发，尤其是涉及对称性或费米子张量网络态的应用。
+
+二、我们利用费米子投影纠缠对态 (f-PEPS) 方法研究了在六角晶格上空穴掺杂的哈伯德模型。
+研究发现，在这个模型中库珀对存在准长程序，其关联函数呈现幂律衰减，衰减指数 $K > 1$。
+我们进一步分析了超导性与其他竞争序之间的关系，包括反铁磁 (AFM) 序和电荷密度波 (CDW) 序。
 结果显示，当空穴掺杂 $\delta$ 较小且库仑参数 $U$ 较大时，系统中存在畴壁结构。
-然而，随着空穴掺杂 $\delta$ 的增加或 $U$ 的减少，这些畴壁结构会消失。
-当空穴掺杂较小时，系统表现出反铁磁序，但在 $\delta > 0.05$ 时该序减弱至消失。
+随着空穴掺杂 $\delta$ 的增加或 $U$ 的减少，这些畴壁结构会消失。
+当空穴掺杂较小时，系统表 现出反铁磁序，但在 $\delta > 0.05$ 时该序减弱至消失。
 而随着掺杂水平的增加，电荷密度波序也逐渐减弱。
 值得注意的是，即使在较高的掺杂水平下，仍然可以观察到显著的电荷密度波序。
 这些结果表明，随着掺杂水平 $\delta$ 的增加，反铁磁序逐渐受到抑制，而电荷密度波序则逐渐占据主导地位。
@@ -117,8 +120,12 @@ tetragono 专为简化在方形晶格上开发复杂物理模型算法而设计�
 三、我们提出了一种可扩展的二维量子多体系统的有限温度张量网络态算法。
 该算法使用（费米子）投影纠缠对态来表示矢量化的量子热态，并通过随机重构型方法（SR）逐步将量子态从无穷温度冷却。
 为验证算法的有效性，我们对二维反铁磁海森堡模型、 $J_1-J_2$ 模型和费米哈伯德模型进行了测试。
-物理性质如内能、比热和磁化率等的计算结果与随机级数展开（SSE）、严格对角化和行列式量子蒙特卡洛（DQMC）方法的结果进行了对比，
-显示出高度一致性，验证了该算法的准确性和可靠性。
+我们将计算所得的物理性质如内能、比热和磁化率等与随机级数展开（SSE）、严格对角化和行列式量子蒙特卡洛（DQMC）方法的结果进行了对比，显示出高度一致性，验证了该算法的准确性和可靠性。
+
+综上所述，本论文发展了一个支持对称性和费米子张量的张量网络态方法框架 TNSP，能够统一处理玻色子、费米子及多种对称类型的张量网络态，显著简化了算法开发的复杂性。
+在此基础上，我们利用费米子投影纠缠对态方法研究了六角晶格上空穴掺杂的哈伯德模型。
+研究结果表明，该模型中库珀对存在准长程序，并且存在相互竞争的反铁磁及电荷密度波序。
+最后，我们提出了一种可扩展的二维量子多体系统的有限温度张量网络态算法，为研究有限温度下的强关联系统提供了有力的工具和基础。
 #+begin_export latex
 \end{abstract}
 #+end_export
@@ -126,54 +133,63 @@ tetragono 专为简化在方形晶格上开发复杂物理模型算法而设计�
 #+begin_export latex
 \begin{abstract*}
 #+end_export
-The Landau Fermi liquid theory developed in the last century and the phase transition theory based on spontaneous symmetry breaking have achieved great success in studying many condensed matter problems.
-However, in strongly correlated systems, the Landau Fermi liquid theory fails.
-In such systems, particles have strong interactions, and traditional perturbation methods struggle to provide accurate results.
-Therefore, the properties of strongly correlated systems are primarily studied through numerical methods.
-In recent years, the development of numerical methods for strongly correlated systems has become one of the most prominent research directions.
+The Landau-Fermi liquid theory and the phase transition theory based on spontaneous symmetry breaking, developed in the last century, have achieved great success in studying many condensed matter problems.
+However, these theories fail in strongly correlated systems due to the strong interaction between particles in such systems, which causes traditional perturbation theories to yield inaccurate results.
+Therefore, the study of strongly correlated systems primarily relies on numerical methods.
+In recent years, with advances in computational technology and algorithms, numerical methods for strongly correlated systems have become a highly focused research area.
 
-The fundamental challenge in numerically solving strongly correlated systems lies in the exponential growth of the Hilbert space dimension with increasing system size.
-Consequently, traditional exact diagonalization (ED) methods can only handle finite systems with up to about 30 lattice sites.
-In certain special strongly correlated systems, quantum Monte Carlo methods (QMC) can provide excellent results, but they face the so-called "sign problem" in systems with frustrated interactions and fermionic systems,
-requiring an exponential increase in sampling to ensure convergence.
-Another major class of methods relies on using ansatz functions to represent the system's wave function.
-The key issue for these numerical methods is how to effectively represent the relevant vectors in the vast Hilbert space with a limited number of parameters.
+The fundamental difficulty in numerically solving strongly correlated systems lies in the exponential growth of the Hilbert space dimension with increasing system size.
+As a result, traditional exact diagonalization (ED) methods can only handle finite systems with around 30 or so lattice sites.
+In some special strongly correlated systems, quantum Monte Carlo (QMC) methods can provide excellent results, but in systems with frustrated interactions and fermionic systems, they encounter the so-called ``sign problem''.
+To ensure the convergence of simulation results, the required sampling must increase exponentially, greatly limiting the applicability of QMC methods in these systems.
+
+Another major class of numerical methods relies on using ansatz functions to represent the system's wave function.
+Because the wave functions in strongly correlated systems often contain significant quantum entanglement and complex many-body correlations,
+accurately describing the relevant vectors in the vast Hilbert space with a finite number of parameters becomes the core issue of these methods.
 
 In recent years, tensor network states (TNS) have made significant progress in the study of strongly correlated systems.
-Matrix product states (MPS) have been successfully applied to one-dimensional systems, while projected entangled pair states (PEPS) have been used to extend to two-dimensional systems.
-Although tensor network state methods perform excellently in many applications, they still face challenges in optimizing the ground states of two-dimensional systems and handling complex interactions.
-Additionally, tensor network state methods have also been extended to fermionic systems.
-Various fermion tensor network state (f-TNS) methods have been developed successively.
-However, due to the complexity of fermion tensor network state methods, their implementation faces enormous challenges,
-which are further exacerbated by the lack of foundational software packages supporting fermion tensor network state methods.
-To address the challenges posed by tensor network states, particularly fermion tensor network state methods, this thesis has undertaken the following works:
+Matrix product states (MPS) have been successfully applied to one-dimensional systems, while projected entangled pair states (PEPS) have been extended to two-dimensional systems.
+Although tensor network state methods perform excellently in many applications, they still face challenges when dealing with complex interactions.
+Additionally, tensor network methods have been successfully extended to fermionic systems, leading to various fermionic tensor network state (f-TNS) methods.
+Since fermions obey anticommutation relations, implementing f-TNS is more complex than in bosonic systems.
+Therefore, despite theoretically providing powerful tools for handling fermionic systems, practical applications of f-TNS face significant challenges.
+Particularly, the lack of specialized software packages supporting fermionic tensor network states further limits the promotion and application of f-TNS in practical computations.
 
-1. To simplify the programming implementation of symmetry tensor network states and fermion tensor network states,
-   we proposed a new scheme that successfully implements the anti-commutation properties of fermions by directly redefining the tensor operation rules.
-   This allows to ignore the complex details of fermion tensor in the network level, simplifying the handling of symmetry and fermion properties and significantly reducing programming complexity.
-   Our previously developed tensor network state method software package, TNSPackage, only supported spin and boson models.
-   In the latest version, we added support for symmetry tensors and fermion tensors.
-   We developed a unified interface that can consistently handle boson, fermion, and various symmetry types of tensors, maintaining the user-friendliness and versatility of the software package.
-   This greatly simplifies the process of developing programs based on tensor network states, especially symmetry and fermion tensor network states.
-   The new tensor network state packages (TNSP) framework consists of two main components: a low-level tensor package, TAT, which supports complex operations on different tensors;
-   and a high-level interface package, tetragono, built on TAT, designed to simplify the development of algorithm for complex physical models on square lattices.
-   This framework enables researchers to more easily study various physical models without needing to delve into the underlying implementation details.
+To address these challenges, especially those encountered in developing symmetry tensor network states and fermionic tensor network states, this thesis undertakes the following work:
 
-2. We utilized the fermion projected entangled pair state (f-PEPS) method to study the Hubbard model with hole doping on a hexagonal lattice.
-   Our research found that Cooper pairs exhibit quasi-long-range order in this model, with correlation functions showing power-law decay with a decay exponent $K > 1$.
-   We further analyzed the relationship between superconductivity and other competing order, including antiferromagnetic (AFM) order and charge density wave (CDW) order.
-   The results show that when the hole doping $\delta$ is small and the Coulomb parameter $U$ is large, domain wall structures exist in the system.
-   However, as the hole doping $\delta$ increases or $U$ decreases, these domain wall structures disappear.
-   When the hole doping is small, the system exhibits antiferromagnetic order, but this order weakens and disappears when $\delta > 0.05$.
-   As the doping level increases, the charge density wave order also gradually weakens.
-   Notably, even at high doping levels, significant charge density wave order can still be observed.
-   These results indicate that as the doping level $\delta$ increases, the antiferromagnetic order is gradually suppressed, while the charge density wave order gradually takes the dominant position.
+1. To simplify the programming implementation of symmetry tensor network states and fermionic tensor network states, we propose and implement a new scheme.
+   By directly defining the operation rules for tensors in the network, we effectively preserve both the symmetry of tensors and the anticommutation properties of fermions.
+   This improvement allows ignoring the complex details of symmetry tensor networks and fermionic tensor networks at the network level, simplifying the handling of symmetry and fermionic properties,
+   significantly reducing programming complexity, and improving implementation efficiency and scalability.
+   Based on this method, we have developed a tensor network state method framework that supports symmetry and fermionic tensors: TNSP.
+   We designed a unified interface capable of consistently handling bosonic, fermionic, and various symmetry tensor types while maintaining user-friendliness and multifunctionality.
+   This tensor network state computational suite, TNSP, includes two main components:
+   (1) TAT (Basic tensor library): Supports complex operations for different types of tensors.
+   (2) tetragono (Advanced interface library): Built on TAT, specifically designed to simplify the development of complex physical model algorithms on square lattices.
+   This framework enables researchers to more easily study various physical models without delving into the underlying implementation details.
+   It greatly simplifies the development of tensor network state-based programs, especially for applications involving symmetry or fermionic tensor network states.
 
-3. We proposed a scalable finite-temperature tensor network state algorithm for two-dimensional quantum many-body systems.
-   This algorithm uses (fermion) projected entangled pair states to represent vectorized quantum thermal states and cools the quantum state from infinite temperature step-by-step through a stochastic reconfiguration (SR) method.
-   To verify the effectiveness of the algorithm, we tested it on the two-dimensional antiferromagnetic Heisenberg model, $J_1-J_2$ model, and fermionic Hubbard model.
-   The observed physical properties such as internal energy, specific heat, and magnetic susceptibility were compared with results from stochastic series expansion (SSE), exact diagonalization, and determinant quantum Monte Carlo (DQMC) methods,
-   showing high agreements, which verifies the accuracy and reliability of the algorithm.
+2. We utilized the fermionic projected entangled pair states (f-PEPS) method to study the Hubbard model with hole doping on a hexagonal lattice.
+   Our study found that in this model, Cooper pairs exhibit quasi-long-range order with their correlation function showing a power-law decay with an exponent $K>1$.
+   We further analyzed the relationship between superconductivity and other competing orders, including antiferromagnetic (AFM) order and charge density wave (CDW) order.
+   Results show that when hole doping $\delta$ is small and the Coulomb parameter $U$ is large, domain wall structures exist in the system.
+   As hole doping $\delta$ increases or $U$ decreases, these domain wall structures disappear.
+   When hole doping is small, the system exhibits antiferromagnetic order, but this order weakens and vanishes for $\delta>0.05$.
+   As doping levels increase, the charge density wave order also gradually weakens.
+   Notably, significant charge density wave order can still be observed at higher doping levels.
+   These results indicate that with increasing doping level $\delta$, antiferromagnetic order is gradually suppressed while charge density wave order becomes dominant.
+
+3. We propose a scalable finite-temperature tensor network state algorithm for two-dimensional quantum many-body systems.
+   This algorithm uses (fermionic) projected entangled pair states to represent vectorized quantum thermal states and gradually cools the quantum states from infinite temperature using a stochastic reconfiguration method (SR).
+   To validate the algorithm's effectiveness, we tested it on the two-dimensional antiferromagnetic Heisenberg model, the $J_1-J_2$ model, and the fermionic Hubbard model.
+   We compared the measured physical properties such as internal energy, specific heat, and magnetic susceptibility with results from stochastic series expansion (SSE), exact diagonalization, and determinant quantum Monte Carlo (DQMC) methods,
+   showing high consistency and validating the algorithm's accuracy and reliability.
+
+In summary, this thesis develops a tensor network state method framework, TNSP, supporting symmetry and fermionic tensors, which can uniformly handle bosonic, fermionic, and various symmetry tensor network states,
+significantly simplifying the complexity of algorithm development.
+Building on this framework, we used the fermionic projected entangled pair states method to study the Hubbard model with hole doping on a hexagonal lattice.
+The study reveals that the model exhibits quasi-long-range order in Cooper pairs and competing antiferromagnetic and charge density wave orders.
+Finally, we propose a scalable finite-temperature tensor network state algorithm for two-dimensional quantum many-body systems, providing a powerful tool and foundation for studying strongly correlated systems at finite temperatures.
 #+begin_export latex
 \end{abstract*}
 #+end_export
