@@ -435,10 +435,25 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 (A_0 ^ {\sigma_0})_{v_1}
 (A_1 ^ {\sigma_1})_{v_1 v_2}
 (A_2 ^ {\sigma_2})_{v_2 v_3}
-\cdots (A_{L-1} ^ {\sigma_{N-1}})_{v_{N-1}} ,
+\cdots (A_{L-1} ^ {\sigma_{L-1}})_{v_{L-1}} ,
 \end{equation}
 其中 $\sigma_i$ 为第 $i$ 个格点处的自旋，可以取 $\uparrow$ 或者 $\downarrow$。
 从公式 [[eqref:eq:一维系统波函数的MPS展开]] 中看到，{{{MPS}}}表示的波函数在一个特定构型下的分量，是一连串的矩阵乘积，这是矩阵乘积态(MPS)名称由来。
+
+在实践中，通常可以通过多次奇异值分解（SVD）来将 公式 [[eqref:eq:一维系统波函数]] 写成 公式 [[eqref:eq:一维系统波函数的MPS展开]] 的形式。
+具体而言，首先将张量 $T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}}$ 视作矩阵 $T^{(\sigma_0), (\sigma_1,\cdots,\sigma_{L-1})}$ 并进行SVD分解得到， $T^{(\sigma_0), (\sigma_1,\cdots,\sigma_{L-1})} = U_0^{\sigma_0,v_1} S_0^{v_1, v'_1} V_0^{v'_1, \sigma_1,\cdots,\sigma_{L-1}}$ 。
+合并 $S_0$ 和 $V_0$ 并视作矩阵， 得到 $S_0^{v_1, v'_1} V_0^{v'_1, \sigma_1,\cdots,\sigma_{L-1}} = T_1^{v_1, \sigma_1,\cdots,\sigma_{L-1}} = T_1^{ (v_1, \sigma_1),(\sigma_2 \cdots,\sigma_{L-1})}$ ，随后再次进行SVD分解，得到
+$T_1^{(v_1, \sigma_1), (\sigma_2,\cdots,\sigma_{L-1})} = U_1^{v_1, \sigma_1,v_2} S_1^{v_2, v'_2} V_1^{v'_2, \sigma_2,\cdots,\sigma_{L-1}}$ 。
+以此类推，最终得到
+\begin{equation}
+T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
+U_0^{\sigma_0, v_1}
+U_1^{v_1, \sigma_1, v_2}
+\cdots
+U_{L-2}^{v_{L-2}, \sigma_{L-2}, v_{L-1}}
+T_{L-1}^{v_{L-1}, \sigma_{L-1}} .
+\end{equation}
+至此，已经可以通过替换符号名可以得到 公式 [[eqref:eq:一维系统波函数的MPS展开]] 。
 
 在 {{{MPS}}} {{{Ansatz}}} 中，除了最左边和最右边的格点外，第 $i$ 个格点处的 $(A_i^{\sigma_i})_{v_i v_{i+1}}$ 是一个三阶张量，他有一个物理指标 $\sigma_i$
 和两个虚拟指标 $v_i$ 和 $v_{i+1}$ 。
