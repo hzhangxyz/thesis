@@ -325,13 +325,14 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 \begin{figure}
 \centering
 \input{tikz/ctmrg.tikz}
-\caption{张量收缩的角传递矩阵方法}
-\label{fig:ctmrg}
-\note{注：张量收缩的角传递矩阵方法，以左上角的迭代收敛为例子。
+%\caption{张量收缩的角传递矩阵方法}
+%\note{注：张量收缩的角传递矩阵方法，以左上角的迭代收敛为例子。
+\caption{张量收缩的角传递矩阵方法，以左上角的迭代收敛为例子。
 (a) 无穷大系统的张量会通常表示为周期性的晶胞，这里以 $1 \times 1$ 的晶胞为例，使用紫色表示。
 左侧的列张量使用黄色表示，上侧的行张量使用蓝色表示，左上角的角传递张量使用红色表示。
 (b) 迭代一次后，蓝色框中的两个张量被更新为新的上侧行张量，黄色框中的两个张量被更新为新的左侧列张量，红色框中的四个张量被更新为新的角传递张量。
 }
+\label{fig:ctmrg}
 \end{figure}
 #+end_export
 
@@ -351,12 +352,13 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 \begin{figure}
 \centering
 \input{tikz/bmpsmpo.tikz}
-\caption{张量收缩的边界MPS/MPO方法}
-\label{fig:b-mps-mpo}
-\note{注：张量收缩的边界MPS/MPO方法，适用于有限大的 投影纠缠对态。
+%\caption{张量收缩的边界MPS/MPO方法}
+%\note{注：张量收缩的边界MPS/MPO方法，适用于有限大的 投影纠缠对态。
+\caption{张量收缩的边界MPS/MPO方法，适用于有限大的 投影纠缠对态。
 其基本操作是将两行张量网络近似为一行，具体的近似手段可选奇异值分解或者迭代方程近似。
 (a) 边界上的两行张量网络；(b) 近似后的一行张量网络。
 }
+\label{fig:b-mps-mpo}
 \end{figure}
 #+end_export
 
@@ -533,9 +535,9 @@ M_{v_X, v_X'} =&
 \begin{figure}
 \centering
 \input{tikz/graphical_notation.tikz}
-\caption{张量的图形标记法}
-\label{fig:张量的图形标记法}
-\note{注：
+%\caption{张量的图形标记法}
+%\note{注：
+\caption{张量的图形标记法。
 (a)是一个标量 $A$ ，即0阶张量；
 (b)是一个向量 $A_i$ ，即1阶张量，有一个指标 $i$ ；
 (c)是一个矩阵 $A_{ij}$ ，即2阶张量，有两个指标 $i$ 和 $j$ ；
@@ -543,6 +545,7 @@ M_{v_X, v_X'} =&
 (e)表示两个矩阵相乘，即 $A_{ij} B_{jk}$ ；
 (f)中三个矩阵彼此相连，表示了 $A_{ij} B_{jk} C_{ji}$ 。
 }
+\label{fig:张量的图形标记法}
 \end{figure}
 #+end_export
 
@@ -573,9 +576,10 @@ Verstraete在表示二维系统的 {{{MPS}}} 上额外加上了行间的边从�
 \begin{figure}
 \centering
 \input{tikz/mps_to_peps.tikz}
-\caption{用于表示二维系统的 矩阵乘积态 和 投影纠缠对态 }
+%\caption{用于表示二维系统的 矩阵乘积态 和 投影纠缠对态 }
+%\note{注：固定 虚拟指标维度 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
+\caption{用于表示二维系统的 矩阵乘积态 和 投影纠缠对态。固定 虚拟指标维度 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
 \label{fig:用于表示二维系统的MPS和PEPS}
-\note{注：固定 虚拟指标维度 $D$ 的 矩阵乘积态 只能表示常数的纠缠熵，通过在行间加上额外的边可以得到 投影纠缠对态， 投影纠缠对态 可以满足二维系统的面积定律。}
 \end{figure}
 #+end_export
 
@@ -693,13 +697,14 @@ $U_g^{\otimes R} = \bigotimes_{r=0}^{R-1} U_g^r$ ， $U_g^r$ 为 $g$ 在张量�
 \begin{figure}
 \centering
 \input{tikz/symmetry.tikz}
-\caption{对称性张量和对称性张量网络}
-\label{fig:对称性张量和对称性张量网络}
-\note{注：
+%\caption{对称性张量和对称性张量网络}
+%\note{注：
+\caption{对称性张量和对称性张量网络。
 (a)中，对张量做一个对称性变换相当与在张量的每个指标上作用上这个指标上 $g$ 的群表示矩阵，因为是群是紧致的，我们可以给张量找到一组合适的基使得矩阵是酉的。
 (b)中，如果张量网络中的每个张量都是对称性张量，我们可以在每个张量的周围都加上群的变换矩阵，而不改变张量网络的值，得到等式的左侧；
 而两个张量彼此相互收缩的线性空间是相互共轭的，所以他们的群表示是互逆的，所有的虚拟边上的两个矩阵可以相互抵消而不改变张量网络的值，得到等式的右侧；
 所以原有的张量网络等于只在物理边上做群变换，即整个张量网络的收缩结果是对称性张量。}
+\label{fig:对称性张量和对称性张量网络}
 \end{figure}
 #+end_export
 
@@ -1420,12 +1425,13 @@ P_A \left(a_{x+1}^{\dag d} a_{x}^{\dag d} \right) = \left(\delta_{i_x i_{x+1}} A
 \begin{figure}
 \centering
 \input{tikz/tensor-exp.tikz}
-\caption{张量指数的幂展开}
-\label{fig:张量指数的幂展开}
-\note{注：张量的指数由幂展开所定义。
+%\caption{张量指数的幂展开}
+%\note{注：张量的指数由幂展开所定义。
+\caption{张量指数的幂展开。张量的指数由幂展开所定义，
 不同于矩阵，两个矩阵 $A$ 和 $B$ 相乘只有 $A B$ ，而张量相互收缩时，需要指定收缩时边的关系，即哪两个边应当彼此相连。
 而幂展开中含有多个张量的收缩，所以在定义张量的指数时需要给定边之间的对应关系。
 }
+\label{fig:张量指数的幂展开}
 \end{figure}
 #+end_export
 
@@ -1657,10 +1663,11 @@ U
 \begin{figure}
 \centering
 \input{tikz/trivial_itebd.tikz}
-\caption{矩阵乘积态上朴素的逐块虚时间演化}
-\label{fig:朴素的itebd}
-\note{注：(a) 作用在 $A_x$ 和 $A_y$ 上的 $U_i$ ； (b) 收缩三个张量 ；(c) 对收缩后的张量进行SVD分解；  (c) 收缩奇异值张量，恢复矩阵乘积态的形式。
+%\caption{矩阵乘积态上朴素的逐块虚时间演化}
+%\note{注：(a) 作用在 $A_x$ 和 $A_y$ 上的 $U_i$ ； (b) 收缩三个张量 ；(c) 对收缩后的张量进行SVD分解；  (c) 收缩奇异值张量，恢复矩阵乘积态的形式。
+\caption{矩阵乘积态上朴素的逐块虚时间演化。 (a) 作用在 $A_x$ 和 $A_y$ 上的 $U_i$ ； (b) 收缩三个张量 ；(c) 对收缩后的张量进行SVD分解；  (c) 收缩奇异值张量，恢复矩阵乘积态的形式。
 }
+\label{fig:朴素的itebd}
 \end{figure}
 #+end_export
 
@@ -1739,8 +1746,9 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{su-scheme.pdf}
-\caption{简单更新的步骤}
-\note{注：
+%\caption{简单更新的步骤}
+%\note{注：
+\caption{简单更新的步骤。
 简单更新优化过程的示意图中涉及两个张量，$A$ 和 $B$。绿色菱形代表环境张量，而黄色菱形代表其逆。圆圈表示张量网络中的节点。
 在左侧面板中，传统的一步虚时间演化过程如下图所示：
 (a1) 张量 $A$ 和 $B$ 与所有相关环境张量及时间演化门的收缩。
@@ -2233,9 +2241,9 @@ C++17 的使用极大地简化了编码工作，并利用泛型和面向对象�
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{figures/structure-of-tnsp.pdf}
-\caption{张量网络态计算套件的结构}
-\label{fig:张量网络态计算套件的结构}
-\note{注：
+%\caption{张量网络态计算套件的结构}
+%\note{注：
+\caption{张量网络态计算套件的结构。
 张量网络计算套件的结构。该套件的核心是张量库TAT，他使用C++17设计，以提供各种张量类型的统一接口。
 通过pybind11为该张量库创建了Python接口。
 在Python接口的基础上，开发了一个名为tetragono的包，提供了一个易于访问和统一的接口，用于适用于不同物理模型和张量类型的多种TNS方法。
@@ -2243,6 +2251,7 @@ tetragono可以通过插件进行自定义修改。
 套件还包括一个名为tetraku的模型库，其中包含了一系列预定义的插件，这些插件涵盖了各种物理模型、采样策略等。
 此外，tetragono还使用了几个辅助库：lazy\_graph，提供了一种在计算中使用的惰性求值机制；以及PyScalapack，提供了ScaLAPACK的Python接口。
 }
+\label{fig:张量网络态计算套件的结构}
 \end{figure}
 #+end_export
 
@@ -2888,11 +2897,12 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/honeycomb.pdf}
-\caption{六角晶格到方格子的映射}
-\label{fig:六角格子映射}
-\note{注：
+%\caption{六角晶格到方格子的映射}
+%\note{注：
+\caption{六角晶格到方格子的映射。
 六角晶格到方格子的映射，用于 投影纠缠对态 方法。每个灰色椭圆对应于 投影纠缠对态 中一个单独的张量，他们包含了两个六角晶格的格点，左下角和右上角除外。黄色区域表示选择用于计算库珀对关联函数的区域。
 }
+\label{fig:六角格子映射}
 \end{figure}
 #+end_export
 
@@ -2912,11 +2922,12 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{figures/converge-D.pdf}
-\caption{六角晶格上哈伯德模型的能量随 $D$ 的收敛图}
-\label{fig:超导D收敛}
-\note{注：
+%\caption{六角晶格上哈伯德模型的能量随 $D$ 的收敛图}
+%\note{注：
+\caption{六角晶格上哈伯德模型的能量随 $D$ 的收敛图。
 对于 $10 \times 10$ 的晶格（ $198$ 个格点 ），在参数 $U=8$ 和 $δ=0.1$ 的情况下，系统的能量作为虚拟指标维度 $D$ 的倒数的函数呈现收敛趋势。当 $D$ 接近 $16$ 时，能量大约收敛到 $10^{-3}$。
 }
+\label{fig:超导D收敛}
 \end{figure}
 #+end_export
 
@@ -2959,12 +2970,13 @@ H = -t \sum_{\langle i,j \rangle, \sigma} \left( c_{i, \sigma}^\dagger c_{j, \si
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{cooper-pairs.pdf}
-\caption{六角晶格上库珀对的对称性示意图}
-\label{fig:cooper-pairs}
-\note{注：
+%\caption{六角晶格上库珀对的对称性示意图}
+%\note{注：
+\caption{六角晶格上库珀对的对称性示意图。
 (a) 对于 $s$ 波和 $f$ 波对，三个库珀对具有相同的相位；
 (b) 对于 $p$ 波和 $d$ 波对，三个库珀对 $\Delta_1$ 、 $\Delta_2$ 和 $\Delta_3$ 分别具有相同的、 ${\rm exp(\pm 2/3 \pi i)}$ 和 ${\rm exp(\pm 4/3 \pi i)}$ 相位。
 }
+\label{fig:cooper-pairs}
 \end{figure}
 #+end_export
 
@@ -2987,8 +2999,9 @@ C(\Delta r) = \frac{1}{N} \sum_{|{r}_1 - {r}_2| = \Delta r} |\langle \Delta({r}_
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{exp-decay.pdf}
-\caption{六角晶格上哈伯德模型上 反铁磁态的库珀关联衰减趋势}
-\note{注：
+%\caption{六角晶格上哈伯德模型上 反铁磁态的库珀关联衰减趋势}
+%\note{注：
+\caption{六角晶格上哈伯德模型上 反铁磁态的库珀关联衰减趋势。
 库珀对关联函数在 $\delta=0$ 时呈指数衰减。 系统为 $198$ 个格点的六角Hubbard模型；(a) $U=4$, (b) $U=8$, (c) $U=12$ 。}
 \label{fig:指数衰减的超导}
 \end{figure}
@@ -3008,8 +3021,9 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{power-decay.pdf}
-\caption{六角晶格上哈伯德模型上 幂律衰减下的库珀对关联函数}
-\note{注：
+%\caption{六角晶格上哈伯德模型上 幂律衰减下的库珀对关联函数}
+%\note{注：
+\caption{六角晶格上哈伯德模型上 幂律衰减下的库珀对关联函数。
 在198个格点的六角晶格上，对于不同的空穴掺杂浓度 $\delta$ ，计算了 $U = 8$ 时的单态和三态库珀对关联函数 $C(\Delta r)$ 。
 关联函数和 $\Delta r$ 均使用对数刻度表示。
 实线为通过幂律衰减函数拟合的结果：$ C(\Delta r) \propto \Delta r^{-K} $ 。
@@ -3039,8 +3053,9 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{k-plot.pdf}
-\caption{六角晶格上哈伯德模型上 基态库珀对关联衰减指数$K$}
-\note{注：
+%\caption{六角晶格上哈伯德模型上 基态库珀对关联衰减指数$K$}
+%\note{注：
+\caption{六角晶格上哈伯德模型上 基态库珀对关联衰减指数$K$。
 在包含198个格点的六角晶格上，不同的相互作用强度 $U$ 下， 单态对关联函数的幂律衰减指数 $K_s$ 和三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
 (a) 单态对关联函数的幂律衰减指数 $K_s$ 随空穴掺杂 $\delta$ 的变化关系；
 (b) 三态对关联函数的幂律衰减指数 $K_t$ 随空穴掺杂 $\delta$ 的变化关系。
@@ -3078,8 +3093,9 @@ C(\Delta r) \propto \Delta r^{-K} .
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{sc-lattice.pdf}
-\caption{六角晶格上哈伯德模型的基态实空间图}
-\note{注：
+%\caption{六角晶格上哈伯德模型的基态实空间图}
+%\note{注：
+\caption{六角晶格上哈伯德模型的基态实空间图。
 六角晶格上哈伯德模型在 $U=12$ 和 $\delta=0.05$ 条件下，198个格子上的空穴密度 $\langle n_h \rangle$ 和自旋 $\langle S_z \rangle$ 。
 颜色方案表示 $S_z$ 的幅值，红色表示自旋上，蓝色表示自旋下。圆圈的大小对应于空穴密度。
 }
@@ -3112,8 +3128,9 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{k-space.pdf}
-\caption{六角晶格上哈伯德模型的基态中空穴和自旋的结构因子}
-\note{注：
+%\caption{六角晶格上哈伯德模型的基态中空穴和自旋的结构因子}
+%\note{注：
+\caption{六角晶格上哈伯德模型的基态中空穴和自旋的结构因子。
 (a) 空穴结构因子 $S_{h}({\bf k})$ 和 (b) 自旋结构因子 $S_z ({\bf k})$ 。
 系统为198个格点的哈伯德模型模型，$U=12$ , $\delta=0.05$ 。
 }
@@ -3138,8 +3155,9 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{factor-plot.pdf}
-\caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序}
-\note{注：
+%\caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序}
+%\note{注：
+\caption{六角晶格上哈伯德模型各个参数下的反铁磁序与电荷密度波序。
 反铁磁（AFM，$S_{z}(K)$，用红色菱形表示）和电荷密度波（CDW，$S_{h}(K)$，用蓝色方块表示）的序参数，分别对应 (a) $U=4$，(b) $U=8$，(c) $U=12$ 和 (d) $U=16$，掺杂 $\delta$ 从 $0.00$ 到 $0.20$，系统为一个  198个格点的六角晶格上哈伯德模型。
 }
 \label{fig:factor-plot}
@@ -3156,8 +3174,9 @@ S_{z}(\mathbf{k}) &= \frac{1}{N^2}\sum_{i,j}\langle S_z^i S_z^j e^{2\pi i (\math
 \begin{figure}
 \centering
 \includegraphics[width=0.6\textwidth]{finite-scaling-cdw-afm.pdf}
-\caption{六角晶格哈伯德模型上 反铁磁与电荷密度波序 的有限尺寸效应}
-\note{注：
+%\caption{六角晶格哈伯德模型上 反铁磁与电荷密度波序 的有限尺寸效应}
+%\note{注：
+\caption{六角晶格哈伯德模型上 反铁磁与电荷密度波序 的有限尺寸效应。
 (a) 反铁磁序 $S_{z}(K)$ 和 (b) 电荷密度波序 $S_{h}(K)$ 关于 $\delta$ 的变化趋势，系统为 $U=12$ 时， 198个格点的六角晶格上哈伯德模型。
 }
 \label{fig:finite-scaling-cdw-afm}
@@ -3355,8 +3374,9 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{8x8-heisenberg.pdf}
-\caption{海森堡模型的降温曲线}
-\note{注：
+%\caption{海森堡模型的降温曲线}
+%\note{注：
+\caption{海森堡模型的降温曲线。
 二维反铁磁海森堡模型在 $8 \times 8$ 方格晶格上的表现：(a) 每格点能量，(b) 每格点比热，(c) 均匀磁化率 $\chi$ 随 $\beta = 1/T$ 的变化情况。
 }
 \label{fig:thermal-heisenberg}
@@ -3393,8 +3413,9 @@ H = J_{1} \sum_{\langle i, j\rangle} \mathbf{S}_{i} \cdot \mathbf{S}_{j} + J_{2}
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{4x4-j1j2.pdf}
-\caption{ $J_1-J_2$ 模型的降温曲线}
-\note{注：
+%\caption{ $J_1-J_2$ 模型的降温曲线}
+%\note{注：
+\caption{ $J_1-J_2$ 模型的降温曲线。
 二维阻挫的 $J_1-J_2$ 模型在 $4 \times 4$ 方格晶格上的表现：(a) 每格点能量，(b) 每格点比热，(c) 均匀磁化率 $\chi$ 随 $\beta = 1/T$ 的变化情况。
 }
 \label{fig:thermal-j1j2}
@@ -3460,8 +3481,9 @@ p^c_{S_i|S_0 \cdots S_{i-1}} = b(S_i)\sqrt{\frac{\sum_{S_{i+1}S_{i+2}\cdots}{_\s
 \begin{figure}
 \centering
 \includegraphics[width=0.8\textwidth]{6x6-hubbard.pdf}
-\caption{ 哈伯德模型的降温曲线 }
-\note{注：
+%\caption{ 哈伯德模型的降温曲线 }
+%\note{注：
+\caption{ 哈伯德模型的降温曲线。
 $6 \times 6$ 方形晶格上的费米子哈伯德模型的降温曲线，参数为 $U=8$，$t=1$ 和 $\mu=4$。(a) 每格点的内能 $E/N$ ，(b)每格点比热 ，(c) 每格点的双占据 $D$ ，(d) 次近邻格点之间的自旋关联 $F$ 随着 $\beta = 1/T$ 的变化情况。
 }
 \label{fig:thermal-hubbard}
