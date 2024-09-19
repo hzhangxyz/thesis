@@ -849,7 +849,9 @@ C_{\prod_i G_i} = \prod_i C_{G_i} .
 
 *** 费米子张量 <<sec:::费米子张量>>
 
-费米子系统中，由于反对易的性质，大部分用于表示费米子系统波函数的方法需要进行Jordan-Wigner变换 [[cite:Giamarchi2003,Coleman2015-mb]] ，即：
+#+LATEX: {\color{blue}HLX: 这句话不通。为什么是“大部分？”这只是一种可能的选择！ ZH: 除了fermion tensor，二次量子化表象下并没有见过不等价于JW变换的表示方式，修改了一下表述方式。 }
+
+费米子系统中，由于反对易的性质，二次量子化表象下，用于表示费米子系统波函数的方法 通常 需要进行Jordan-Wigner变换 [[cite:Giamarchi2003,Coleman2015-mb]] ，即：
 \begin{equation}\label{eq:Jordan-Wigner变换}
 \left\{
 \begin{aligned}
