@@ -60,13 +60,13 @@
 % Text Node
 \draw (267,104.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$B$};
 % Text Node
-\draw (415,54.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$A'$};
+\draw (415,54.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$A$};
 % Text Node
-\draw (486,54.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$B''$};
+\draw (486,54.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$B'$};
 % Text Node
-\draw (411,164.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$A''$};
+\draw (411,164.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$A'$};
 % Text Node
-\draw (486,164.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$B'$};
+\draw (486,164.4) node [anchor=north west][inner sep=0.75pt]  [font=\normalsize]  {$B$};
 % Text Node
 \draw (450.67,110) node [anchor=north west][inner sep=0.75pt]   [align=left] {or};
 % Text Node
@@ -76,4 +76,3 @@
 
 
 \end{tikzpicture}
-

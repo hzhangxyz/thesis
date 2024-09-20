@@ -1171,7 +1171,7 @@ B' &= (-1)^{p(b_y^{j_y})} (B)_{j_{0} j_{1} \cdots} .
 \begin{figure}
 \centering
 \input{tikz/reverse-arrow.tikz}
-\caption{费米箭头的翻转操作。翻转箭头产生的符号可以放在 $A$ 中或者 $B$ 中。}
+\caption{费米箭头的翻转操作。翻转箭头产生的符号 $(-1)^{p(b_y^{j_y})}$ 可以放在 $A$ 中或者 $B$ 中。}
 \label{fig:reverse-arrow}
 \end{figure}
 #+end_export
@@ -1207,8 +1207,8 @@ U_g^{s_0} U_g^{s_1} = U_g^{S(s_0, s_1)} , \forall g \in G .
 \begin{equation}
 \begin{aligned}
 P M =
-&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
-&(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
 &\left( a_x^{\dag d_0} b_y^{\dag d_0} \right) \left( a_{x+1}^{\dag d_1} b_{y+1}^{\dag d_1} \right) ,
 \end{aligned}
 \end{equation}
@@ -1216,8 +1216,8 @@ P M =
 \begin{equation}
 \begin{aligned}
 P M =
-&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
-&(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+&A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
 &
 (-1)^{p(b_y^{d_0}) p(b_{y+1}^{d_1})}
 (a_x^{d_0}a_{x+1}^{d_1})^\dag
@@ -1231,9 +1231,9 @@ P M =
 PM=
 &
 (-1)^{p(a_x^{i_x}) p(a_{x+1}^{i_{x+1}})}
-(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
 &
-(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
 &
 (a_x^{d_0}a_{x+1}^{d_1})^\dag
 (b_y^{d_0} b_{y+1}^{d_1})^\dag
@@ -1244,10 +1244,10 @@ PM=
 \begin{equation}
 \begin{aligned}
 PM=
-&(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
+&A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots\right)\\
 &
 (-1)^{p(b_y^{j_y}) p(b_{y+1}^{j_{y+1}})}
-(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
+B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots\right) \\
 &
 (a_x^{d_0}a_{x+1}^{d_1})^\dag
 (b_y^{d_0} b_{y+1}^{d_1})^\dag
@@ -1263,9 +1263,9 @@ PM=
 PM=
 &
 (-1)^{\sum_{m<n} p(a_m^{i_m}) p(a_n^{i_n})}
-(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
+A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
 &
-(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
+B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
 &
 (a_x^{d_0}a_{x+1}^{d_1}\cdots a_{x+l-1}^{d_{l-1}})^\dag
 (b_y^{d_0} b_{y+1}^{d_1}\cdots b_{y+l-1}^{d_{l-1}})^\dag
@@ -1277,10 +1277,10 @@ PM=
 \begin{aligned}
 PM=
 &
-(A_n)_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
+A_{i_{0} i_{1} \cdots} \left(\cdots a_x^{i_x} a_{x+1}^{i_{x+1}} \cdots a_{x+l-1}^{i_{x+l-1}} \cdots\right)\\
 &
 (-1)^{\sum_{m<n} p(b_m^{j_m}) p(b_n^{j_n})}
-(B_n)_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
+B_{j_{0} j_{1} \cdots} \left(\cdots b_y^{j_y} b_{y+1}^{j_{y+1}} \cdots b_{y+l-1}^{j_{y+l-1}} \cdots\right) \\
 &
 (a_x^{d_0}a_{x+1}^{d_1}\cdots a_{x+l-1}^{d_{l-1}})^\dag
 (b_y^{d_0} b_{y+1}^{d_1}\cdots b_{y+l-1}^{d_{l-1}})^\dag
@@ -1316,6 +1316,26 @@ PM=
 (-1)^{ \frac{2 \& \sum_n{p_n} }{ 2 }} ,
 \end{equation}
 其中 $\&$ 为按位与。
+
+综上所述，费米子张量的边的合并操作如图 [[ref:fig:merge-edge]] 所示，其中
+\begin{equation}
+\left\{
+\begin{aligned}
+A' &= (-1)^{\sum_{m<n} p(a_m^{i_m}) p(a_n^{i_n})} (A)_{i_{0} i_{1} \cdots}, \\
+B' &= (-1)^{\sum_{m<n} p(b_m^{j_m}) p(b_n^{j_n})} (B)_{j_{0} j_{1} \cdots} .
+\end{aligned}
+\right.
+\end{equation}
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/merge-edge.tikz}
+\caption{费米子张量的边的合并操作。合并产生的符号 $ (-1)^{\sum_{m<n} p(b_m^{j_m}) p(b_n^{j_n})}$ 可以放在 $A$ 中或者 $B$ 中。}
+\label{fig:merge-edge}
+\end{figure}
+#+end_export
+
 
 对于边的拆分，由于他是边的合并的逆运算，其产生的符号和边的合并产生的符号完全一样。
 
