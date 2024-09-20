@@ -1075,10 +1075,19 @@ a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
 他对应的纠缠对中的产生算副靠前，而类似的，共轭空间中的湮灭算符在纠缠对中靠后。
 这样不必再像公式 [[eqref:eq:投影纠缠对构造的一般张量网络]] 中的 $M$ 那样将物理边和虚拟边分开对待。
 
-综上所述，当我们对一个费米子张量进行共轭时，我们需要
+综上所述，如图 [[ref:fig:conjugate]]，当我们对一个费米子张量进行共轭时，我们需要
 1. 对每个元素取共轭；
 2. 加上一个全转置的符号 $(-1)^{\sum_{j<k} p(a_j^{i_j}) p(a_k^{i_k})}$ ；
 3. 将所有的费米箭头翻转。
+
+#+begin_export latex
+\begin{figure}
+\centering
+\input{tikz/conjugate.tikz}
+\caption{费米子张量的共轭操作。逐元素共轭，翻转所有的费米箭头，并乘上系数 $P=(-1)^{\sum_{j<k} p(a_j^{i_j}) p(a_k^{i_k})}$ 。}
+\label{fig:conjugate}
+\end{figure}
+#+end_export
 
 *** 翻转费米箭头
 
@@ -1087,8 +1096,8 @@ a^{\dag i_{A_n, j}}_{X_{A_n,j},Y_{A_n, j}} . \\
 \begin{equation}
 \begin{aligned}
 P M =
-&(A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
-&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+&A_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&B_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
 & a_x^{\dag d} b_y^{\dag d} ,
 \end{aligned}
 \end{equation}
@@ -1097,8 +1106,8 @@ P M =
 \begin{equation}
 \begin{aligned}
 P M =
-&(A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
-&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+&A_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&B_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
 & (-1)^{p(a_x^{\dag d}) p(b_y^{\dag d})} b_y^{\dag d} a_x^{\dag d} .
 \end{aligned}
 \end{equation}
@@ -1107,8 +1116,8 @@ P M =
 \begin{equation}
 \begin{aligned}
 P M =
-& (-1)^{p(a_x^{i_x})} (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
-&(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& (-1)^{p(a_x^{i_x})} A_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+&B_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
 & b_y^{\dag d} a_x^{\dag d} ,
 \end{aligned}
 \end{equation}
@@ -1132,8 +1141,8 @@ p(a_x^{\dag d}) p(b_y^{\dag d}) &= p(a_x^{\dag d}) ^ 2 \\
 \begin{equation}
 \begin{aligned}
 P M =
-& (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
-& (-1)^{p(b_y^{j_y})}(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& A_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+& (-1)^{p(b_y^{j_y})}B_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
 & b_y^{\dag d} a_x^{\dag d} .
 \end{aligned}
 \end{equation}
@@ -1142,8 +1151,8 @@ P M =
 \begin{equation}
 \begin{aligned}
 P M =
-& \mathrm{i}^{p(a_x^{i_x})} (A_n)_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
-& \mathrm{i}^{p(b_y^{j_y})}(B_n)_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
+& \mathrm{i}^{p(a_x^{i_x})} A_{i_{0} i_{1} \cdots} a_0^{i_0} a_1^{i_1} \cdots \\
+& \mathrm{i}^{p(b_y^{j_y})} B_{j_{0} j_{1} \cdots} b_0^{j_0} b_1^{j_1} \cdots \\
 & b_y^{\dag d} a_x^{\dag d} .
 \end{aligned}
 \end{equation}
