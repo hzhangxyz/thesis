@@ -402,6 +402,7 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 而White在1992年提出了{{{DMRG}}}(DMRG)方法 [[cite:White1992,White1993]] 成功地求解了各种一维模型的低能态性质。
 后来Vidal提出 {{{MPS}}} (MPS) [[cite:Vidal2003]] ，人们认识到{{{DMRG}}}方法可以被认为是对 {{{MPS}}} {{{Ansatz}}}的波函数进行优化的过程。
 
+矩阵乘积态作为一种特殊的张量网络态，其由多个张量以特定的方式连接而成的。
 {{{T}}} 的定义有很多种 [[cite:Dimitrienko2002-oy,Jeevanjee2009-oh,Lawden2003-mh,Bowen1976-hd]]， $R$ 阶的张量 可以被简单地认为是多个线性空间上的 $R$ 阶多线性映射[[cite:Lang2002-cr]]：
 \begin{equation}
 \hat T : V_0 \otimes V_1 \otimes V_2 \cdots V_{R-1} \to \mathbb{K} ,
