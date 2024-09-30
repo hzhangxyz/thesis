@@ -101,10 +101,12 @@
 
 一、为简化对称性张量网络态和费米子张量网络态的编程实现，我们提出并实现了一种新方案。
 通过直接定义网络中张量的运算规则，成功地保持了张量运算中的对称性和费米子的反对易性质。
-这一改进使得在网络层次可以忽略对称性张量网络和费米子张量网络的复杂细节，简化了对对称性和费米子性质的处理，显著降低了编程的复杂性，并提升了实现效率和可扩展性。
+这一改进使得在算法实现时可以忽略对称性张量网络和费米子张量网络的复杂细节，
+简化了对对称性和费米子性质的处理，显著降低了编程的复杂性，并提升了实现效率和可扩展性。
 基于这一方法，我们开发了一个支持对称性和费米子张量的张量网络态方法框架：TNSP。
 我们设计了一个统一的接口，能够一致性地处理玻色子、费米子及多种对称类型的张量，同时保持软件包的用户友好性和多功能性。
-这个张量网络态计算套件TNSP包含两个主要组成部分：1. TAT（底层张量库）：支持不同类型张量的复杂运算。
+这个张量网络态计算套件TNSP包含两个主要组成部分：
+1. TAT（底层张量库）：支持不同类型张量的复杂运算，包括收缩以及各种各种分解，并提供了统一的接口掩盖对称性和费米子性质以便上层使用。
 2. tetragono（高级接口库）：基于 TAT 构建，专为简化在方形晶格上开发复杂物理模型算法而设计。
 该框架使研究人员能够更加轻松地研究各种物理模型，无需深入关注底层实现细节。
 这极大简化了基于张量网络态的程序开发，尤其是涉及对称性或费米子张量网络态的应用。
@@ -161,12 +163,13 @@ To address these challenges, especially those encountered in developing symmetry
 
 1. To simplify the programming implementation of symmetry tensor network states and fermionic tensor network states, we propose and implement a new scheme.
    By directly defining the operation rules for tensors in the network, we effectively preserve both the symmetry of tensors and the anticommutation properties of fermions.
-   This improvement allows ignoring the complex details of symmetry tensor networks and fermionic tensor networks at the network level, simplifying the handling of symmetry and fermionic properties,
+   This improvement allows ignoring the complex details of symmetry tensor networks and fermionic tensor networks in algorithm implementation, simplifying the handling of symmetry and fermionic properties,
    significantly reducing programming complexity, and improving implementation efficiency and scalability.
    Based on this method, we have developed a tensor network state method framework that supports symmetry and fermionic tensors: TNSP.
    We designed a unified interface capable of consistently handling bosonic, fermionic, and various symmetry tensor types while maintaining user-friendliness and multifunctionality.
    This tensor network state computational suite, TNSP, includes two main components:
-   (1) TAT (Basic tensor library): Supports complex operations for different types of tensors.
+   (1) TAT (Basic tensor library): Supports complex operations for different types of tensors, including contractions and various decompositions,
+   and provides a unified interface to abstract away symmetry and fermion properties for use by higher-level applications.
    (2) tetragono (Advanced interface library): Built on TAT, specifically designed to simplify the development of complex physical model algorithms on square lattices.
    This framework enables researchers to more easily study various physical models without delving into the underlying implementation details.
    It greatly simplifies the development of tensor network state-based programs, especially for applications involving symmetry or fermionic tensor network states.
