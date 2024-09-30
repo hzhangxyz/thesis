@@ -248,13 +248,11 @@ Finally, we propose a scalable finite-temperature tensor network state algorithm
 然而，在量子多体系统中，由于存在叠加态，描述单个量子比特的希尔伯特空间为 $H = \mathbb{C}^{2}$，而 $n$ 个量子比特的总表示空间为各子系统空间的张量积，因此需要 $2^{n}$ 个 $\mathbb{C}$ 来描述，即 $H = \mathbb{C}^{2^{n}}$。
 这种量子系统中表示空间维度的指数增长，而不是经典系统中表示空间本身大小的指数增长，是量子多体问题复杂性的核心所在。
 
-#+LATEX: {\color{blue}ZH: 修改了这一段的表述方式，经典多体是空间大小指数增长，量子多体是空间维度指数增长。}
-
 理论物理学的一个核心目标是找到复杂系统的配分函数或波函数的有效表示 [[cite:Sandvik2007,Carleo2017,Liang2021,Adams2021,Acevedo2020,Drummond2005]]，以便简化处理具有指数级自由度的多体问题。
 通过这样的表示，可以更有效地计算系统的物理量，比如能量和磁化率等。
 量子微扰理论是实现这一目标的重要方法之一 [[cite:Schwartz2013,Talagrand2022,Simon1982,Sulejmanpasic2018,Dick2020]] 。
 在该方法中，系统的哈密顿量被分解为自由部分 $H_f$ 和相互作用部分 $H_i$，即 $H = H_f + H_i$。
-首先解决无相互作用的自由系统 $H_f$，这时的多体系统可以简单地表示为子空间解的张量积，随后再引入相互作用 $H_i$ 作为微扰，获得含有相互作用的系统的结果。
+首先求解无相互作用的自由系统 $H_f$，这时的多体系统可以简单地表示为子空间解的张量积，随后再引入相互作用 $H_i$ 作为微扰，获得含有相互作用的系统的结果。
 这种方法对于弱相互作用系统效果良好，但在相互作用起到关键作用时，例如系统经过由相互作用驱动的相变时，可能会失效。
 为了解决这个问题，Wilson 在1975年引入了重整化群 [[cite:Wilson1975]] 方法：
 首先对系统的有效场论作出一个猜测，然后通过积分掉高能的自由度，将重整化群流引入作用量或哈密顿量的空间 [[cite:Peskin2019-ut,ZinnJustin2002,Goldenfeld2018]]。
@@ -290,7 +288,7 @@ amplitudes. It might be something like the density
 matrices where you concentrate on quantities in a
 given locality and in order to start to talk about it
 you don’t immediately have to talk about what’s
-going on everywhere else''  。
+going on everywhere else.''
 
 张量网络态（或张量乘积态）方法在计算物理中的发展可以追溯到 1992 年， White 提出了用于模拟一维量子自旋链的  {{{DMRG}}} 方法（Density Matrix Renormalization Group, DMRG）[[cite:White1992]]。
 {{{DMRG}}} 在一维自旋链系统的基态求解中能够达到极高的精度，至今仍然是一维自旋链系统的标准求解方法 [[cite:Nakatani2018]]。
@@ -303,7 +301,7 @@ going on everywhere else''  。
 $|M\rangle = \frac{1}{\sqrt{2}} (|\uparrow\downarrow\rangle - |\downarrow\uparrow\rangle)$，
 随后每个格点将两侧的自旋 $1/2$ 粒子投影至自旋 $1$ 的空间，
 $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarrow| + \langle\downarrow\uparrow|}{2} + |-1\rangle\langle\downarrow\downarrow|$。
-后来，人们认识到 AKLT 态是一类更大的态中的一个，即有限相关态 (Finitely Correlated States, FCS) [[cite:Fannes1989]]，而有限相关态则是一类特殊的矩阵乘积态。
+后来，人们认识到 AKLT 态是一类更大的量子态中的一个，即有限相关态 (Finitely Correlated States, FCS) [[cite:Fannes1989]]，而有限相关态则是一类特殊的矩阵乘积态。
 
 矩阵乘积态在一维系统中的成功让人们尝试将其推广至二维系统 [[cite:Verstraete2004]]。
 这种张量网络态被称为投影纠缠对态（Projected Entangled Pair States, PEPS）。
@@ -347,11 +345,9 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 在边界 MPS/MPO 方法中 [[cite:He2018,Liu2017,Murg2007,Verstraete2008,Liu2021]] ，
 通过在边界上使用一个 MPS 来近似 MPS 和矩阵乘积算子 (MPO) 的乘积，
 逐步将整个二维投影纠缠对态近似收缩为一个 MPS 链，如图 [[ref:fig:b-mps-mpo]] 所示。
-这种方法适用于有限大系统，并且由于近似次数为网络的边长，误差累计效应以及计算精度能够较好地控制。
+这种方法适用于有限大系统，误差累计效应以及计算精度能够通过调整边界MPS/MPO的维度截断值较好地控制。
 该方法的基本操作通常通过迭代方程或奇异值分解来实现。
 本论文中主要采用此方法完成二维张量网络的缩并。
-
-#+LATEX: {\color{blue}ZH: 对于边长为 $L$ 的二维系统，TRG近似次数为 $O(L^2 \mathrm{log}(L))$ 的，而bMPS/MPO方法近似次数为 O(L) 。}
 
 #+begin_export latex
 \begin{figure}
