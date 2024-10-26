@@ -966,6 +966,9 @@ C_{\prod_i G_i} = \prod_i C_{G_i} .
 并且由于 {{{PEPS}}} 所表示的 {{{AL}}} ，其并不适用于长程相互作用的系统。
 为此，多种适用于费米子的 {{{PEPS}}} 方法被提出 [[cite:Corboz2010,Corboz2011,Gu2010,Gu2013,Kraus2010,Dong2019]] ，而本节中，我们将介绍董少钧的费米子方案 [[cite:Dong2019]] 。
 
+#+LATEX: {\color{blue} WC: 这没写费米子张量具体的数学表达式是啥。}
+#+LATEX: {\color{blue} ZH: 我有提到公式 \eqref{eq:费米子的投影算符} }
+
 费米子系统中，由于反对易的性质，二次量子化表象下，用于表示费米子系统波函数的方法 通常 需要进行Jordan-Wigner变换 [[cite:Giamarchi2003,Coleman2015-mb]] ，即：
 \begin{equation}\label{eq:Jordan-Wigner变换}
 \left\{
@@ -1018,7 +1021,7 @@ $a_{r+B,0}^{\dag d_{r+B}}$ 和 $c_r^{\dag d_{r+B}}$ 对于不同的 $d_{r+B}$ �
 我们可以使用 $Z(2)$ 对称性张量来构成表示这个系统的张量网络态。
 此时，每个张量网络中的每个张量都是在 $Z(2)$ 对称性变化下不变的分块张量，
 公式 [[eqref:eq:投影纠缠对构造的一般张量网络]] 中投影算符可以写为：
-\begin{equation}
+\begin{equation}\label{eq:费米子的投影算符}
 \begin{aligned}
 P_{\text{投影}, n} =
 &(A_{n, (s_0, s_1, \cdots s_{R-1})})_{\alpha_{s_0}, \alpha_{s_1}, \cdots \alpha_{s_{R-1}}} \\
