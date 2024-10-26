@@ -334,8 +334,8 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 事实上，早在 1988 年，二维系统中的 AKLT 态作为一种特殊的投影纠缠对态已经被研究过 [[cite:Affleck1988]] ；
 此外，满足杨-Baxter 方程的投影纠缠对态也在 1997 年被讨论过 [[cite:Niggemann1997]] 。
 随着对投影纠缠对态的深入研究，许多有趣的波函数被发现可以表示为投影纠缠对态，如 Anderson 的共振价键（Resonating Valence Bond, RVB）态、Kitaev 的 toric code 态，以及任何局部无阻挫的可交换量子哈密顿量的基态 [[cite:Verstraete2006b]]，等。
-与此同时，Vidal 提出了 多尺度纠缠重整化 拟设 (MERA) [[cite:Vidal2007b]] ，并发展了树形张量网络。
-与 {{{MPS}}}不同， {{{MERA}}} 用于描述尺度不变的波函数，并且可以表示超越{{{AL}}}的临界点波函数。
+与此同时，Vidal 发展了树形张量网络，并提出了 多尺度纠缠重整化 拟设 (MERA) [[cite:Vidal2007b]] 。
+与 {{{MPS}}}不同， {{{MERA}}} 用于描述尺度不变的波函数，并且可以表示超越{{{AL}}}的临界态波函数。
 
 本论文主要关注投影纠缠对态 [[cite:Verstraete2004,Verstraete2004b]] 的数值计算方法。
 投影纠缠对态满足纠缠熵面积定律，理论上能够在维度指数增长的希尔伯特空间中构建一个子流形，精确地描述系统的基态。
