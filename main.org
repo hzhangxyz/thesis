@@ -960,6 +960,12 @@ C_{\prod_i G_i} = \prod_i C_{G_i} .
 
 ** 费米子张量 <<sec::费米子张量>>
 
+费米子系统在凝聚态物理因富有多种新奇物理现象如超导性和量子相变 [[cite:Kaur2021,Wen2013,Bednorz1986,Keimer2015]] 而十分重要。
+但原始的 {{{PEPS}}} 在处理费米子问题时面临诸多挑战，采用 Jordan-Wigner 变换 [[cite:Giamarchi2003,Coleman2015-mb]] 将费米子映射为玻色子会产生许多长程相互作用，
+进而带来许多问题，例如虚时演化方案[[cite:Jiang2008]] 的失效。
+并且由于 {{{PEPS}}} 所表示的 {{{AL}}} ，其并不适用于长程相互作用的系统。
+为此，多种适用于费米子的 {{{PEPS}}} 方法被提出 [[cite:Corboz2010,Corboz2011,Gu2010,Gu2013,Kraus2010,Dong2019]] ，而本节中，我们将介绍董少钧的费米子方案 [[cite:Dong2019]] 。
+
 费米子系统中，由于反对易的性质，二次量子化表象下，用于表示费米子系统波函数的方法 通常 需要进行Jordan-Wigner变换 [[cite:Giamarchi2003,Coleman2015-mb]] ，即：
 \begin{equation}\label{eq:Jordan-Wigner变换}
 \left\{
