@@ -262,8 +262,10 @@ providing a robust tool and basis for investigating strongly correlated systems 
 
 * 绪论 <<sec:绪论>>
 
-自上世纪以来，多体系统一直是物理学研究中的一个重要课题 [[cite:Blanchet2001,Chenciner2007,Diacu1996,Trenti2008]]。
-在量子力学中，由于哈密顿量中不同算符之间的不可对易性，量子多体问题表现得更加复杂 [[cite:Hochstuhl2014,Thouless1972-pf,Fetter2003-sp,Nozieres1997-cw,Mattuck1975-pe]] 。
+#+LATEX: {\color{blue}ZH: 第一句话引用的都是经典的多体问题，所以应该是上上世纪而不是上世纪。}
+
+自19世纪以来，多体系统一直是物理学研究中的一个重要课题 [[cite:Blanchet2001,Chenciner2007,Diacu1996,Trenti2008]]。
+而在量子力学中，由于哈密顿量中不同算符之间的不可对易性，量子多体问题表现得更加复杂 [[cite:Hochstuhl2014,Thouless1972-pf,Fetter2003-sp,Nozieres1997-cw,Mattuck1975-pe]] 。
 尽管路径积分表明，量子多体问题可以类比于高一维的经典多体问题 [[cite:Brown2005,Feynman2010-xh]] ，具体问题的复杂性依然使得系统难以求解。
 量子多体问题的主要困难在于希尔伯特空间的张量积结构。
 相比于经典系统，若需要 $1$ 个比特来描述一个经典物体，其表示空间为 $V = 2$ ；
