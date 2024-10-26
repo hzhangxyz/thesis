@@ -532,13 +532,13 @@ $P_2 [\mathbf{S}^i + \mathbf{S}^{i+1}]$ 即为其向 自旋 $2$ 空间的投影�
 \end{figure}
 #+end_export
 
-#+LATEX: {\blue{WC: 这里应该加入一个小节，讲 MPS 的能力。定理：一维有 gap 短程相互作用系统基态可以被 MPS 表示。}}
-#+LATEX: {\blue{ZH: 我在下面一节写了}}
+#+LATEX: {\color{blue} WC: 这里应该加入一个小节，讲 MPS 的能力。定理：一维有 gap 短程相互作用系统基态可以被 MPS 表示。}
+#+LATEX: {\color{blue} ZH: 我在下面一节写了}
 
 *** {{{AL}}} 与 {{{MPS}}}
 
-#+LATEX: {\blue{WC: 感觉纠缠熵面积定律应该放在 PEPS 部分}}
-#+LATEX: {\blue{ZH: 可是MPS确实在1维时保证了面积定律啊，如果这里不写，到PEPS再写会很奇怪。}}
+#+LATEX: {\color{blue} WC: 感觉纠缠熵面积定律应该放在 PEPS 部分}
+#+LATEX: {\color{blue} ZH: 可是MPS确实在1维时保证了面积定律啊，如果这里不写，到PEPS再写会很奇怪。}
 
 在 $D$ 不变的情况下，{{{MPS}}} 可以使用随着系统尺寸线性上升的参数来表示维度指数上升的波函数。
 虽然 {{{MPS}}} 仅能表示 {{{Hilbert}}} 空间中极小区域的波函数，但是这些能够表示的态具有明确的物理意义，即：
@@ -618,8 +618,8 @@ M_{v_X, v_X'} =&
 
 *** {{{TN}}} 的图形标记
 
-#+LATEX {\blue{WC: 感觉这部分应该放在 PEPS 部分}}
-#+LATEX {\blue{ZH: 可是MPS里我们已经开始使用图形标记了}}
+#+LATEX: {\color{blue} WC: 感觉这部分应该放在 PEPS 部分}
+#+LATEX: {\color{blue} ZH: 可是MPS里我们已经开始使用图形标记了}
 
 由于 {{{TNS}}} 中各个 {{{T}}} 通常有复杂的运算关系，人们通常使用图形标记法来表示 {{{TN}}} [[cite:Ors2019,Biamonte2017]]。
 图形标记法中，使用一个闭合的图形表示一个 {{{T}}} ，图形上的每一条边表示张量的一个指标，两个张量之间彼此相连的边表示这两个指标将要求和。
@@ -669,7 +669,11 @@ M_{v_X, v_X'} =&
 为了解决这一问题，Verstraete 等人提出了投影纠缠对态（PEPS）[[cite:Verstraete2004]]，该 {{{Ansatz}}} 通过在矩阵乘积态的基础上引入额外的行间边，
 成功满足了二维系统的纠缠熵面积定律。
 
+#+LATEX: {\color{blue} WC: 可以将纠缠熵的面积定律章节移到这里}
+
 *** {{{PEPS}}}的表示
+
+#+LATEX: {\color{blue} WC: 可以将图形表示部分移到这里}
 
 {{{MPS}}} 成功地处理一维系统后，有一些将 {{{MPS}}} 直接应用于二维系统的尝试 [[cite:Verstraete2004]]，如图 [[ref:fig:用于表示二维系统的MPS和PEPS]] (a)所示。
 但是二维系统中，对于满足 {{{AL}}} 的系统 [[cite:Eisert2010]] ，纠缠熵 $S \propto L$ ，其中 $L$ 为边界的长度。
