@@ -659,6 +659,10 @@ M_{v_X, v_X'} =&
 
 ** 投影纠缠对态 (PEPS)
 
+在现代物理学的研究中，二维系统因多种独特的物理现象而引起了广泛关注。
+比如石墨烯[[cite:Cao2018,Fiori2009,Fiori2009b,Forestier2020]]，展现出独特的电子结构和相互作用特性，使得这些材料在新型电子器件和量子计算中具有潜在应用 [[cite:AlonsoCalafell2019,Wu2011]]。
+而多种高温超导 [[cite:Bednorz1986,Wu1987,Bednorz1986,Keimer2015]] ，量子霍尔效应[[cite:Tsui1982,Laughlin1983,Stormer1999]] 等现象的观察，也进一步推动了对二维材料的研究。
+
 *** {{{PEPS}}}的表示
 
 {{{MPS}}} 成功地处理一维系统后，有一些将 {{{MPS}}} 直接应用于二维系统的尝试 [[cite:Verstraete2004]]，如图 [[ref:fig:用于表示二维系统的MPS和PEPS]] (a)所示。
