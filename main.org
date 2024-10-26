@@ -415,7 +415,7 @@ $P = |+1\rangle\langle\uparrow\uparrow| + |0\rangle\frac{\langle\uparrow\downarr
 + 第 [[ref:sec:有限温]] 章介绍一种有限温度张量网络态算法以及其测试结果。
 + 第 [[ref:sec:总结与展望]] 章进行总结与展望。
 
-* {{{T}}} 和 {{{TN}}} <<sec:张量和张量网络>>
+* {{{T}}} 和 {{{TNS}}} <<sec:张量和张量网络>>
 
 ** {{{MPS}}} (MPS)
 
