@@ -2117,7 +2117,7 @@ G&=\frac{\sum_{s} p_s r_s \Delta_s E_s }{\sum_{s} p_s r_s}- \frac{\sum_s p_s r_s
 
 *** 基于采样的自然梯度法 <<sec:::自然梯度法>>
 
-度量空间中，梯度下降算法可以被自然梯度法所取代。
+度量空间中，梯度下降算法可以被自然梯度法所取代 [[cite:Sorella1998,Neuscamman2012,Stokes2020]]。
 考虑局部最小化函数 $E(x_i,x_i^*)$ 的任务，我们需要寻找 $\min_{\delta x_i^* g^{ij} \delta x_j = r^2} \hat E(x_i + \delta x_i, x_i^* + \delta x_i^*)$ 。
 其中 $\hat E$ 通过当前点 $(x_i,x_i^*)$ 处的梯度估计得到，即
 \begin{equation}
