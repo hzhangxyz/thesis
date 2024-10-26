@@ -2015,7 +2015,7 @@ T^{\sigma_0,\sigma_1,\cdots,\sigma_{L-1}} =
 如果使用边界MPO的近似方式，复杂度高达 $O(D^4 D_c^3 + d D^6 Dc^2)$  [[cite:Liu2017]] ，其中 $Dc$ 为边界MPO方法中的截断参数，通常 $D_c \propto D^2$。
 而使用蒙特卡罗方法，可以避免双层网络的收缩。
 
-蒙特卡罗方法中，首先对 $\langle O \rangle$ 进行变形，得到
+蒙特卡罗方法中 [[cite:Sandvik2007]] ，首先对 $\langle O \rangle$ 进行变形，得到
 \begin{equation}\label{eq:观测量变形}
 \langle O \rangle=\frac{\sum_{s,s'}\langle \psi | s | O | s' | \psi \rangle}{\sum_{s}\langle \psi | s | \psi \rangle} , 
 \end{equation}
@@ -2066,7 +2066,7 @@ $\langle q_s - p_s \rangle_M = 0$ 和 $\langle (q_s - p_s) (q_t - p_t) \rangle_M
 
 *** 基于采样方法的变分法 <<sec:::变分采样>>
 
-蒙特卡罗方法用于计算梯度即 {{{VMC}}} 方法，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
+蒙特卡罗方法用于计算梯度即 {{{VMC}}} 方法 [[cite:Sandvik2007,Umrigar2005,Sorella2005,Carleo2017,Liang2021,Drummond2005,Liu2017]] ，考虑某个 {{{Ansatz}}}表示的态 $|\psi\rangle$ ，{{{Ansatz}}} 的参数为 $T_i$ ，对公式 [[eqref:eq:观测量变形]] 进行求导，令 $O=H$ ，得到
 \begin{equation}
 \left\{
 \begin{aligned}
