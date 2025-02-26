@@ -252,6 +252,7 @@ providing a robust tool and basis for investigating strongly correlated systems 
 
 #+begin_export latex
 \mainmatter
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
 #+end_export
 
 * 绪论 <<sec:绪论>>
