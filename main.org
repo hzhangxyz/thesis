@@ -15,6 +15,21 @@
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                  ("\\paragraph{%s}" . "\\paragraph*{%s}")
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  (org-link-set-parameters "cite"
+                           :export (lambda (path desc backend)
+                           (cond
+                             ((eq backend 'latex) (format "\\cite{%s}" path))
+                             (t (format "[[cite:%s]]" path)))))
+  (org-link-set-parameters "ref"
+                           :export (lambda (path desc backend)
+                           (cond
+                             ((eq backend 'latex) (format "\\ref{%s}" path))
+                             (t (format "[[ref:%s]]" path)))))
+  (org-link-set-parameters "eqref"
+                           :export (lambda (path desc backend)
+                           (cond
+                             ((eq backend 'latex) (format "\\eqref{%s}" path))
+                             (t (format "[[eqref:%s]]" path)))))
   (setq org-latex-pdf-process
         '("xelatex -interaction nonstopmode -output-directory %o %f"
           "bibtex %b"
